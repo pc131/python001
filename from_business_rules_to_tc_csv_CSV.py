@@ -1,12 +1,14 @@
 import openpyxl as xl
+import shutil
 import os
 
-from openpyxl.styles import numbers
-
 working_dir = 'C:\\Users\\tomasz.skoczylas\\Downloads\\11\\'
-transaction_name = 'T321.R'
+transaction_name = 'T551.W'
 transaction_name_simple=transaction_name[1:].replace('.', '')
-test_cases_csv = 'Azure_Test_Cases_To_Import_T' + transaction_name_simple + '.csv'
+test_cases_csv = 'import_T' + transaction_name_simple + '_test_cases_into_azure_test_plan.csv'
+urls_for_test_cases =  'T' + transaction_name_simple + '_RULES_TESTCASES_URLS.html'
+test_cases_folder = working_dir + 'T' + transaction_name_simple + '_testcases'
+template_excel_file = 'T551W_113_MOSLTEST-W.xlsx' # template with correct transaction to populate
 business_rules_file = 'MOSL-Bilaterals-Business-Rules_V0.9.1.xlsx'
 
 
@@ -30,7 +32,7 @@ csv_file.write('ID,Work Item Type,Title,Test Step,Step Action,Step Expected,Area
 
 #initiate list of elements [[Business Rule 1, Description 1], [Business Rule 2, Description 2], ...]
 list_con_xxxx = []
-#count number of business rules for current transacti
+#count number of business rules for current transactiions, basen on column trx_col_number
 number_of_business_rules = 0
 for row_number1 in range(4, 169):
     #calculate number of business rules and create list of elements [[Business Rule 1, Description 1], [Business Rule 2, Description 2], ...]
@@ -53,7 +55,21 @@ for row_number1 in range(0, number_of_business_rules):
 
     
     csv_file.write(',"Test Case","TC-' + transaction_name_simple + '-' + con_number + '",,,,"Bilaterals UAT Testing","Tomasz Skoczylas <tomasz.skoczylas@cgi.com>","Design"\n')
-    csv_file.write(',,,"1","Submit the transaction ' + transaction_name + ' against following statement:\n\n' + business_rule_description +'","T209.M rejection notification is issued with ErrorReturnCode ' + con_number + ' and related DataItemReference, to the originator of the transaction",,,\n')
-
+    csv_file.write(',,,"1","Submit the transaction ' + transaction_name + ' with preconditions against following statement - ' + business_rule_description +'","T209.M rejection notification is issued with ErrorReturnCode ' + con_number + ' and related DataItemReference, to the originator of the transaction",,,\n')
 
 csv_file.close()
+
+#copy template file with correct transaction to files with business rules names to edit
+if not os.path.exists(test_cases_folder):
+    os.makedirs(test_cases_folder)
+for x in range(0, number_of_business_rules):
+    shutil.copy2(template_excel_file, test_cases_folder + '/TC-' + transaction_name_simple + '-' + list_con_xxxx[x][0]  + '.xlsx') 
+
+urls_file = open(urls_for_test_cases, 'w')
+urls_file.write('<html>\n<head>\n</head>\n<body>\n')
+urls_file.write('<a href=\"https://bilateralhubtestharness-dev-as.azurewebsites.net/api/ExecuteTestCase?code=NbXUVu704AnFSJTiV1JYZ6gq7YCWBqJDxh//C0x/NBAUMnLGWN5uGg==&filename=_TEMP/T207RW_MOSLTEST_MOSLTEST2.xlsx&format=JSON\" target=\"_blank\">T207RW_MOSLTEST_MOSLTEST2</a><br><br>\n')
+for x in range(0, number_of_business_rules):
+    print(list_con_xxxx[x][0])
+    urls_file.write('<a href=\"https://bilateralhubtestharness-dev-as.azurewebsites.net/api/ExecuteTestCase?code=NbXUVu704AnFSJTiV1JYZ6gq7YCWBqJDxh//C0x/NBAUMnLGWN5uGg==&filename=Bilats_CSD_UPDATE/T' + transaction_name_simple + '_RULES_UPDATE/TC-' + transaction_name_simple + '-' + list_con_xxxx[x][0]  + '.xlsx&format=JSON\" target=\"_blank\">TC-' + transaction_name_simple + '-' + list_con_xxxx[x][0]  + '</a><br><br>\n')
+urls_file.write('</body>\n<html>') 
+urls_file.close()
