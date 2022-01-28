@@ -4,8 +4,8 @@ import shutil
 
 script_path = 'C:\\Users\\tomasz.skoczylas\\Downloads\\11\\' # root folder for script and JSON file
 
-ORID = '0000011614C01' # ORID to look for
-filename = 'TC-C1W-REGRESSION_02_2022-01-27-10-00-00.json' # file with JSON messages from HUB
+ORID = '0000012009C01' # ORID to look for
+filename = 'TC-2WSL2RTL-NOTIF-C1R_02_2022-01-27_12-52-44.json' # file with JSON messages from HUB
 filename_no_ext = filename.replace('.json', '')
 
 f1_file = script_path + filename
@@ -139,13 +139,14 @@ f4.write('Number of requests: ' + str(len(trx_list)) + '\n')
 f4.write('Number of notifications: ' + str(len(ntx_list)) + '\n\n')
 for i in range(len(trx_list)):
     trx_count += 1
-
+    ##ntx_count = 0 #to have 14.01 14.03 14.03... - without it is 14.39 14.40. 14.14
     for j in range(len(ntx_list)):
         # compare OriginatorsReference from both lists of lists
         #if ewual print matching values
+        
         if trx_list[i][1] == ntx_list[j][1]:
             ntx_count += 1
-            f4_line = '[' + trx_list[i][0] + ']\t[' + trx_list[i][2] + ']\t[' + trx_list[i][1] + ']\t[' + ntx_list[j][0] + ']\t[' + ntx_list[j][2]+ ']'
+            f4_line = '[' + ((f"{trx_count:02d}")) + '.' + str((f"{ntx_count:02d}")) + ']\t[' + trx_list[i][0] + ']\t[' + trx_list[i][2] + ']\t[' + trx_list[i][1] + ']\t[' + ntx_list[j][0] + ']\t[' + ntx_list[j][2]+ ']'
             # don't add new line aster last row
             if (i==len(trx_list)-1 and j==len(ntx_list)-1):
                 f4.write(f4_line)
@@ -153,7 +154,9 @@ for i in range(len(trx_list)):
             else:
                 f4.write(f4_line + '\n')
                 print(f4_line)
+
     f4.write('\n')
+
 #f4.write('\nNumber of requests: ' + str(trx_count) + '\nNumber of notifications: ' + str(ntx_count))
 print('Number of requests: ' + str(trx_count))
 print('Number of notifications: ' + str(ntx_count))
