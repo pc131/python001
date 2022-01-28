@@ -1,3 +1,8 @@
+#### prepare bilaterals most recent business_rules_file (line 23)
+#### prepare a valid test script with most recent template_excel_file (line 22) for transaction transaction_name (line 11)
+#### test cases for business rules for given transaction will be generated as well as *.csv to import into azure and *.html with urls to execute tests
+
+
 import openpyxl as xl
 import shutil
 import os
@@ -5,11 +10,17 @@ import os
 working_dir = 'C:\\Users\\tomasz.skoczylas\\Downloads\\11\\'
 transaction_name = 'T551.W'
 transaction_name_simple=transaction_name[1:].replace('.', '')
-test_cases_csv = 'import_T' + transaction_name_simple + '_test_cases_into_azure_test_plan.csv'
-urls_for_test_cases =  'T' + transaction_name_simple + '_RULES_TESTCASES_URLS.html'
-test_cases_folder = working_dir + 'T' + transaction_name_simple + '_testcases'
-template_excel_file = 'T551W_113_MOSLTEST-W.xlsx' # template with correct transaction to populate
-business_rules_file = 'MOSL-Bilaterals-Business-Rules_V0.9.1.xlsx'
+folder_suffix = '_RULES_TESTCASES'
+
+test_cases_folder = working_dir + 'T' + transaction_name_simple + folder_suffix
+
+if not os.path.exists(test_cases_folder):
+    os.makedirs(test_cases_folder)
+
+test_cases_csv = test_cases_folder + '\\IMPORT_T' + transaction_name_simple + '_INTO_AZURE.csv'
+urls_for_test_cases = test_cases_folder + '\\T' + transaction_name_simple + '_RULES_TESTCASES_URLS.html'
+template_excel_file = working_dir + 'T551W_113_MOSLTEST-W.xlsx' # template with correct transaction to populate
+business_rules_file = working_dir + 'MOSL-Bilaterals-Business-Rules_V0.9.1.xlsx'
 
 
 wb1 = xl.load_workbook(business_rules_file)
@@ -60,16 +71,15 @@ for row_number1 in range(0, number_of_business_rules):
 csv_file.close()
 
 #copy template file with correct transaction to files with business rules names to edit
-if not os.path.exists(test_cases_folder):
-    os.makedirs(test_cases_folder)
+
 for x in range(0, number_of_business_rules):
     shutil.copy2(template_excel_file, test_cases_folder + '/TC-' + transaction_name_simple + '-' + list_con_xxxx[x][0]  + '.xlsx') 
 
 urls_file = open(urls_for_test_cases, 'w')
 urls_file.write('<html>\n<head>\n</head>\n<body>\n')
-urls_file.write('<a href=\"https://bilateralhubtestharness-dev-as.azurewebsites.net/api/ExecuteTestCase?code=NbXUVu704AnFSJTiV1JYZ6gq7YCWBqJDxh//C0x/NBAUMnLGWN5uGg==&filename=_TEMP/T207RW_MOSLTEST_MOSLTEST2.xlsx&format=JSON\" target=\"_blank\">T207RW_MOSLTEST_MOSLTEST2</a><br><br>\n')
+urls_file.write('<a href=\"https://bilateralhubtestharness-dev-as.azurewebsites.net/api/ExecuteTestCase?code=NbXUVu704AnFSJTiV1JYZ6gq7YCWBqJDxh//C0x/NBAUMnLGWN5uGg==&filename=TEST_SUITE_NAME/T207RW_MOSLTEST_MOSLTEST2.xlsx&format=JSON\" target=\"_blank\">T207RW_MOSLTEST_MOSLTEST2</a><br><br>\n')
 for x in range(0, number_of_business_rules):
     print(list_con_xxxx[x][0])
-    urls_file.write('<a href=\"https://bilateralhubtestharness-dev-as.azurewebsites.net/api/ExecuteTestCase?code=NbXUVu704AnFSJTiV1JYZ6gq7YCWBqJDxh//C0x/NBAUMnLGWN5uGg==&filename=Bilats_CSD_UPDATE/T' + transaction_name_simple + '_RULES_UPDATE/TC-' + transaction_name_simple + '-' + list_con_xxxx[x][0]  + '.xlsx&format=JSON\" target=\"_blank\">TC-' + transaction_name_simple + '-' + list_con_xxxx[x][0]  + '</a><br><br>\n')
+    urls_file.write('<a href=\"https://bilateralhubtestharness-dev-as.azurewebsites.net/api/ExecuteTestCase?code=NbXUVu704AnFSJTiV1JYZ6gq7YCWBqJDxh//C0x/NBAUMnLGWN5uGg==&filename=TEST_SUITE_NAME/T' + transaction_name_simple + folder_suffix + '/TC-' + transaction_name_simple + '-' + list_con_xxxx[x][0]  + '.xlsx&format=JSON\" target=\"_blank\">TC-' + transaction_name_simple + '-' + list_con_xxxx[x][0]  + '</a><br><br>\n')
 urls_file.write('</body>\n<html>') 
 urls_file.close()
