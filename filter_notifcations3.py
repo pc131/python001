@@ -1,5 +1,6 @@
 from re import I
-
+import os
+import shutil
 
 script_path = 'C:\\Users\\tomasz.skoczylas\\Downloads\\11\\' # root folder for script and JSON file
 
@@ -8,21 +9,32 @@ filename = 'TC-C1W-REGRESSION_02_2022-01-27-10-00-00.json' # file with JSON mess
 filename_no_ext = filename.replace('.json', '')
 
 f1_file = script_path + filename
-f2_file = script_path + filename_no_ext + '_RQS.json'
-f3_file = script_path + filename_no_ext + '_NTX.json'
-f4_file = script_path + filename_no_ext + '_ALL.json'
+
 filename_no_ext = filename.replace('.json', '')
 f1 = open(f1_file, 'r')
 f1_content= f1.read()
-f2 = open(f2_file, 'w')
-f3 = open(f3_file, 'w')
-f4 = open(f4_file, 'w')
 
 requests_start = f1_content.find('Request:')
 requests_end = f1_content.find('Peek Message:')
 
 requests = f1_content[requests_start:requests_end]
 peeked_notifications = f1_content[requests_end:]
+
+ORID1_start = requests.find('"ORID": "') + 9
+ORID1_end = ORID1_start + 13
+ORID1 = requests[ORID1_start:ORID1_end]
+
+dest_folder = script_path  + '\\' + filename_no_ext + ORID1 + '-ORID'
+print(dest_folder)
+if not os.path.exists(dest_folder):
+    os.makedirs(dest_folder)
+
+f2_file = script_path + filename_no_ext + ORID1 + '-ORID' +  '\\' +filename_no_ext + ORID1 + '-ORID_RQS.json'
+f3_file = script_path + filename_no_ext + ORID1 + '-ORID' +  '\\' +filename_no_ext + ORID1 + '-ORID_NTX.json'
+f4_file = script_path + filename_no_ext + ORID1 + '-ORID' +  '\\' +filename_no_ext + ORID1 + '-ORID_ALL.json'
+f2 = open(f2_file, 'w')
+f3 = open(f3_file, 'w')
+f4 = open(f4_file, 'w')
 
 requests_lines = requests.split('\n')
 
@@ -146,5 +158,11 @@ for i in range(len(trx_list)):
 print('Number of requests: ' + str(trx_count))
 print('Number of notifications: ' + str(ntx_count))
 f1.close()
+
+dest_folder = script_path  + '\\' + filename_no_ext + ORID1 + '-ORID'
+print(dest_folder)
+if not os.path.exists(dest_folder):
+    os.makedirs(dest_folder)
+shutil.copy2(f1_file, dest_folder + '\\' + filename_no_ext + ORID1 + '-ORID.json')
 f2.close()
 f3.close()
