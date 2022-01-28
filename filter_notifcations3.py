@@ -4,8 +4,9 @@ import shutil
 
 script_path = 'C:\\Users\\tomasz.skoczylas\\Downloads\\11\\' # root folder for script and JSON file
 
-ORID = '0000012009C01' # ORID to look for
-filename = 'TC-2WSL2RTL-NOTIF-C1R_02_2022-01-27_12-52-44.json' # file with JSON messages from HUB
+ORID = '0000012785C01' # ORID to look for
+filename = 'TC-TRANSFER-PH3-07-2WSL2RTL_C1R_WTR_INFOREQD_WTR_TRANSFER_TO_3RD_RTL_2022-01-28_13-38-44.json' # file with JSON messages from HUB
+
 filename_no_ext = filename.replace('.json', '')
 
 f1_file = script_path + filename
