@@ -150,14 +150,19 @@ if any('T291.M' in sublist for sublist in ntx_list):
         ntx_count += 1     
         f4_line = '[' + str((f"{ntx_count:02d}")) + ']\t[' + ntx_list[j][0] + ']\t[' + ntx_list[j][2]+ ']'
         
-        if (j==len(ntx_list)-1):
+        if (j==0):
+            f4.write(f4_line + '\n')
+            print(f4_line)       
+        elif(j>0 and j<(len(ntx_list))):
+            if ntx_list[j][0] == ntx_list[j-1][0]:
+                f4.write(f4_line + '\n')
+                print(f4_line)   
+            else:
+                f4.write('\n' + f4_line + '\n')
+                print('\n' + f4_line)                        
+        else:
             f4.write(f4_line)
             print(f4_line)
-        else:
-            f4.write(f4_line + '\n')
-            print(f4_line)
-            
-    f4.write('\n')
 ################### IF T291.M NOTIFICATIONS FILE DO NOT MATCH WIHTH REQUESTS, AS THERE ARE DUMMY T207 WITH DUMMY ORID #### 
 
 else:
