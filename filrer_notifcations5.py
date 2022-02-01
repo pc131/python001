@@ -80,7 +80,7 @@ for i in range(len(requests2)):
     orig_ref_start = request_trx.find('"OriginatorsReference": "') +  25
     orig_ref_end = orig_ref_start + 32
     orig_ref = request_trx[orig_ref_start:orig_ref_end]
-
+    
     src_org_id_start = request_trx.find('"TransactionSourceOrgID": "') +  27
     src_org_id_end = request_trx.find('",', src_org_id_start)
     src_org_id = request_trx[src_org_id_start:src_org_id_end]
@@ -138,7 +138,8 @@ for i in range(len(notifications2)):
 
 ################### IF T291.M NOTIFICATIONS FILE, DO NOT MATCH WIHTH REQUESTS, AS THERE ARE DUMMY T207 WITH DUMMY ORID ####   
 if any('T291.M' in sublist for sublist in ntx_list):
-    print('found T291 !!!!!!!!!!!!!!!!!!!!!!!!!')
+    #print('found T291 !!!!!!!!!!!!!!!!!!!!!!!!!')
+    f4.write('Number of notifications: ' + str(len(ntx_list)) + '\n\n')
     #SORT LIST OF NOTIFICATIONS BY TRANSACTION NAME
     #ntx_list= sorted(ntx_list, key=lambda x: x[0])
     # CUSTOM SORT LIST OF NOTIFICATIONS BY TRANSACTION NAME
