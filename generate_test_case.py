@@ -1,20 +1,17 @@
 import openpyxl as xl
 import random
 import os
-
+import sys
 
 # opening the source excel file with first two worksheets
 working_dir = "C:\\Users\\tomasz.skoczylas\\Downloads\\11\\"
-filename1 = working_dir + "Bilaterals 1.1 master.xlsx"
-#filename1 = "C:\\Users\\tomasz.skoczylas\\Downloads\\11\\Bilaterals 1.1 master.xlsx"
+filename1 = working_dir + "Bilaterals 1.3.3.1 master.xlsx"
 wb1 = xl.load_workbook(filename1)
 ws11 = wb1.worksheets[0]
 ws12 = wb1.worksheets[1]
 
 c1r_transactions = ['T201.W', 'T202.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R',
                     'T211.W', 'T212.W', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T321.R', 'T322.W', 'T323.W', 'T324.R', 'T325.R']
-c1w_transactions = ['T201.W', 'T202.W', 'T205.W', 'T206.W', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T211.W', 'T212.W',
-                    'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T217.W', 'T218.R', 'T321.W', 'T322.W', 'T323.W', 'T324.R', 'T325.R']
 
 C1R_T201W_allowed = ['T203.W', 'T205.W', 'T322.W', 'T323.W']
 C1R_T202W_allowed = ['T210.R']
@@ -29,6 +26,23 @@ C1R_T322W_allowed = ['T208.R', 'T210.R']
 C1R_T323W_allowed = ['T324.R', 'T325.R']
 C1R_T324R_allowed = ['T203.W', 'T205.W', 'T322.W']
 C1R_T325R_allowed = ['T203.W', 'T323.W']
+
+c1w_transactions = ['T201.W', 'T202.W', 'T205.W', 'T206.W', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T211.W', 'T212.W',
+                    'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T217.W', 'T218.R', 'T321.W', 'T322.W', 'T323.W', 'T324.R', 'T325.R']
+
+C1W_T201W_allowed = ['T203.W', 'T205.W', 'T322.W', 'T323.W']
+C1W_T202W_allowed = ['T210.R']
+C1W_T217W_allowed = ['T218.R']
+C1W_T218R_allowed = ['T217.W', 'T205.W', 'T322.W', 'T323.W']
+C1W_T205W_allowed = ['T206.W', 'T212.W', 'T322.W', 'T323.W']
+C1W_T206W_allowed = ['T217.W', 'T205.W']
+C1W_T210R_allowed = ['T201.W', 'T202.W']
+C1W_T212W_allowed = ['T217.W', 'T323.W']
+C1W_T321W_allowed = ['T201.W']
+C1W_T322W_allowed = ['T208.R', 'T210.R']
+C1W_T323W_allowed = ['T324.R', 'T325.R']
+C1W_T324R_allowed = ['T217.W', 'T205.W', 'T322.W']
+C1W_T325R_allowed = ['T217.W', 'T323.W']
 
 D8226 = ['NOCONTACT', 'UNCOOPCUST', 'INACCONTACT', 'MOREDETAILS']
 D8228 = ['WHOL', 'NONWHOL']
@@ -69,25 +83,29 @@ T322W_data_items = ['[orid]', '1', 'ELSTER', '10W11171016329', '0', '1', 'ELSTER
 
 
 def generate_test_case(number_of_steps):
+    last_transaction = False
     test_case_sequence = ['T321.R']
     # print('\nTest case sequence: ', test_case_sequence)
     last_transaction = test_case_sequence[-1]
     for i in range(1, number_of_steps):
-        transactions_allowed = globals(
-        )['C1R_' + last_transaction.replace('.', '') + '_allowed']
-        # print('last transaction: '+str(test_case_sequence[-1]))
-        # print('transactions allowed: ', transactions_allowed)
-        next_tran = random.choice(transactions_allowed)
-        # print('next transaction chosen: ' + next_tran)
-        test_case_sequence.append(next_tran)
-        last_transaction = test_case_sequence[-1]
-        # print('Test case sequence: ',test_case_sequence)
-        if next_tran == 'T208.R':
-            # print('reached the end')
-            break
+        if last_transaction !=True:
+            transactions_allowed = globals(
+            )['C1R_' + last_transaction.replace('.', '') + '_allowed']
+            print('last transaction: '+str(test_case_sequence[-1]))
+            print('transactions allowed: ', transactions_allowed)
+            print('i= ' + str(i))
+            next_tran = random.choice(transactions_allowed)
+            print('next transaction chosen: ' + next_tran)
+            test_case_sequence.append(next_tran)
+            last_transaction = test_case_sequence[-1]
+            print('Test case sequence: ',test_case_sequence)
+            if next_tran == 'T208.R':
+                last_transaction = True
+
     print('Test case sequence: ', test_case_sequence)
     new_filename = ''
-    for i in range(number_of_steps):
+    #now loop as many times, as there are trancastcions in the test case - in case T208.R was selected earlier...
+    for i in range(len(test_case_sequence)):
         ws11.cell(row=i+4, column=5).value = test_case_sequence[i]
         new_filename = new_filename + test_case_sequence[i] + '_'
         if test_case_sequence[i][-1] == 'R':
@@ -154,7 +172,6 @@ def generate_test_case(number_of_steps):
                               7).value = T325R_data_items[k]
     #remove last char from a string
     new_filename = new_filename[:-1]
-
     wb1.save(filename = working_dir + new_filename.replace('.','') + '.xlsx')
 
 
