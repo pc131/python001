@@ -1,14 +1,13 @@
-#### prepare bilaterals most recent business_rules_file (line 23)
-#### prepare a valid test script with most recent template_excel_file (line 22) for transaction transaction_name (line 11)
+#### prepare bilaterals most recent business_rules_file (line 22)
+#### prepare a valid test script with most recent template_excel_file (line 21) for transaction transaction_name (line 10)
 #### test cases for business rules for given transaction will be generated as well as *.csv to import into azure and *.html with urls to execute tests
-
 
 import openpyxl as xl
 import shutil
 import os
 
 working_dir = 'C:\\Users\\tomasz.skoczylas\\Downloads\\11\\'
-transaction_name = 'T551.W'
+transaction_name = 'T353.R'
 transaction_name_simple=transaction_name[1:].replace('.', '')
 folder_suffix = '_RULES_TESTCASES'
 
@@ -19,8 +18,8 @@ if not os.path.exists(test_cases_folder):
 
 test_cases_csv = test_cases_folder + '\\IMPORT_T' + transaction_name_simple + '_INTO_AZURE.csv'
 urls_for_test_cases = test_cases_folder + '\\T' + transaction_name_simple + '_RULES_TESTCASES_URLS.html'
-template_excel_file = working_dir + 'T551W_113_MOSLTEST-W.xlsx' # template with correct transaction to populate
-business_rules_file = working_dir + 'MOSL-Bilaterals-Business-Rules_V0.9.1.xlsx'
+template_excel_file = working_dir + 'Trancaction-1.xlsx' # template with correct transaction to populate
+business_rules_file = working_dir + 'MOSL-Bilaterals-Business-Rules_V0.9.3.xlsx'
 
 
 wb1 = xl.load_workbook(business_rules_file)
@@ -31,7 +30,8 @@ ws12 = wb1.worksheets[1] # Error codes
 
 #loop through list of transactions in Excel and find column, for current transaction
 col_number_trx = 0
-for col_number_trx in range(6, 45):
+#as there are new transactions coming check for maximum column number, where transaction can occur, 52 is for MOSL-Bilaterals-Business-Rules_V0.9.3.xlsx - T551.R
+for col_number_trx in range(6, 52):
     if(str(ws12.cell(row=2, column=col_number_trx).value)==transaction_name):
         trx_col_number = col_number_trx
 
@@ -45,7 +45,7 @@ csv_file.write('ID,Work Item Type,Title,Test Step,Step Action,Step Expected,Area
 list_con_xxxx = []
 #count number of business rules for current transactiions, basen on column trx_col_number
 number_of_business_rules = 0
-for row_number1 in range(4, 169):
+for row_number1 in range(4, 195): # 195 is the max row, when business rules are defined
     #calculate number of business rules and create list of elements [[Business Rule 1, Description 1], [Business Rule 2, Description 2], ...]
     if(str(ws12.cell(row=row_number1, column=trx_col_number).value)=='X'):
         number_of_business_rules += 1
@@ -71,9 +71,10 @@ for row_number1 in range(0, number_of_business_rules):
 csv_file.close()
 
 #copy template file with correct transaction to files with business rules names to edit
+#UNCOMMENT BELOW, when you want to generate *.xlsx files with current transaction to work for specific CON
 
-for x in range(0, number_of_business_rules):
-    shutil.copy2(template_excel_file, test_cases_folder + '/TC-' + transaction_name_simple + '-' + list_con_xxxx[x][0]  + '.xlsx') 
+#for x in range(0, number_of_business_rules):
+#   shutil.copy2(template_excel_file, test_cases_folder + '/TC-' + transaction_name_simple + '-' + list_con_xxxx[x][0]  + '.xlsx') 
 
 urls_file = open(urls_for_test_cases, 'w')
 urls_file.write('<html>\n<head>\n</head>\n<body>\n')
