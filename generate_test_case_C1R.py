@@ -1,4 +1,5 @@
 import openpyxl as xl
+from openpyxl.styles import PatternFill
 import os
 from datetime import datetime
 import random
@@ -14,18 +15,21 @@ ws12 = wb1.worksheets[1]
 
 RETAILER = 'MOSLTEST-R'
 WHOLESALER = 'MOSLTEST-W'
+# parameter can be: MEASURED, UNMEASURED or MISSING for C1R process
+REQUEST_TYPE = 'MEASURED'
 
-#TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W', 'T205.W', 'T323.W', 'T324.R', 'T322.W', 'T208.R'] #CLOSED
-#TEST_CASE_SEQUENCE = ['T321.R', 'T202.W', 'T210.R', 'T201.W'] #REJECTED ACCEPTED
 #TEST_CASE_SEQUENCE = ['T321.R'] # SUBMITTED
+#TEST_CASE_SEQUENCE = ['T321.R', 'T201.W'] #ACCEPTED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T202.W'] #REJECTED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T202.W', 'T210.R'] #RESUBMITTED
-#TEST_CASE_SEQUENCE = ['T321.R', 'T201.W'] #ACCEPTED
+#TEST_CASE_SEQUENCE = ['T321.R', 'T202.W', 'T210.R', 'T201.W'] #REJECTED ACCEPTED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T203.W'] #INFOREQST
 #TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T203.W', 'T204.R'] # INFOPROVD
 #TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T203.W', 'T204.R', 'T205.W'] #VISITSCHED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T322.W'] # COMPLETED
-TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T323.W'] #PLANPROP -> PLANAGREED BY HUB
+#TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T323.W'] #PLANPROP -> PLANAGREED BY HUB
+TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T203.W', 'T204.R', 'T323.W'] # INFOPROVD -> PLANPROP -> PLANAGREED BY HUB
+#TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W', 'T205.W', 'T323.W', 'T324.R', 'T322.W', 'T208.R'] #CLOSED
 
 TEST_CASE_LENGTH = len(TEST_CASE_SEQUENCE)
 
@@ -131,13 +135,14 @@ def time_not_weekend():
 
 # TRAN_SYMBOL = {"T201.W": "ACPT", "T202.W": "RJCT", "T203.W": "IFRQ", "T204.R": "IPRV", "T205.W": "VSCH", "T206.W": "VNOT", "T207.R": "RCOM", "T207.W": "WCOM", "T208.R": "CLSD", "T210.R": "RSBM", "T211.R": "RCNC", "T211.W": "WCNC", "T212.W": "PREP", "T213.W": "SDEF", "T214.W": "EDEF", "T215.R": "RPAT", "T215.W": "WPAT", "T216.R": "RRAT", "T216.W": "WRAT", "T217.W": "CIRQ", "T218.R": "CIPR", "T220.W": "QTPR", "T221.R": "QTAC", "T222.W": "COMP", "T223.W": "COMP", "T224.W": "PDLY", "T321.R": "C1RS", "T321.W": "C1WS", "T322.W": "C1CM", "T323.W": "PROP", "T324.R": "PAGR", "T325.R": "PDIS", "T351.R": "B5RS", "T351.W": "B5WS", "T352.W": "COMP", "T353.R": "B1RS", "T355.R": "B3RS", "T355.W": "B3WS", "T356.W": "COMP", "T357.W": "AWAI", "T365.R": "B7RS", "T501.R": "F4RS", "T501.W": "F4WS", "T505.R": "F5RS", "T505.W": "F5WS", "T551.R": "G1RS", "T551.W": "G1WS"}
 
-D8036 = ['ERROR', 'DUPLICATE', 'SWITCHED', 'REJECTION', 'UNABLEASST', 'DISAGREEPLAN'] # T211.R T211.W
-D8226 = ['NOCONTACT', 'UNCOOPCUST', 'INACCONTACT', 'MOREDETAILS'] # T203.W T217W
-D8228 = ['WHOL', 'NONWHOL'] # T206.W
-D8229 = ['CUSTOMER', 'RETAILER', 'THIRDPARTY', 'CONSENTS', 'REGULAT', 'WEATHER', 'FORCEMAJ', 'INFOREQD'] # T213.W
-D8230 = ['INACCURATE', 'DUPLICATE', 'WRONGPRO', 'POLICY', 'HOUSEHOLD', 'NOTWHOL'] # T202.W
-D8231 = ['DISPREJECT', 'DISPCMOS'] # T210.R
-D8236 = ['EMAIL', 'TEL', 'BOTH'] # T321.R T321.W
+D8036 = ['ERROR', 'DUPLICATE', 'SWITCHED', 'REJECTION', 'UNABLEASST', 'DISAGREEPLAN'] # T211.R T211.W Cancellation Reason Code
+D8226 = ['NOCONTACT', 'UNCOOPCUST', 'INACCONTACT', 'MOREDETAILS'] # T203.W T217W Additional Information Request Code
+D8228 = ['WHOL', 'NONWHOL'] # T206.W Site Visit Failure Code
+D8229 = ['CUSTOMER', 'RETAILER', 'THIRDPARTY', 'CONSENTS', 'REGULAT', 'WEATHER', 'FORCEMAJ', 'INFOREQD'] # T213.W Request Deferral Code
+D8230 = ['INACCURATE', 'DUPLICATE', 'WRONGPRO', 'POLICY', 'HOUSEHOLD', 'NOTWHOL'] # T202.W Reject Reason Code
+D8231 = ['DISPREJECT', 'DISPCMOS'] # T210.R Resubmit Reason Code
+D8236 = ['EMAIL', 'TEL', 'BOTH'] # T321.R T321.W Customer Preferred Method of Contact
+D2005 = ['SEMDV', 'NA'] # T321.R T321.W Customer Classification – Sensitive Customer
 D8237 = ['AM', 'PM', 'BOTH'] # T321.R T321.W
 D8242 = ['METER', 'SUPPLY', 'BOTH'] # T321.R T321.W
 D8262 = ['ACCEPT', 'REJECT'] # T321.R T321.W
@@ -193,8 +198,8 @@ def generate_test_case_C1R(type, loop_times):
         T321R_meas_items = [# basic data
                         SPID, 'MEASURED', 'RET_' + RANDOM_STRING, '', '1', '[today]', '1',
                         # customer and retailer data
-                        CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', 'AM',
-                        RANDOM_STRING, 'NA', RANDOM_STRING, RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL,
+                        CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', random.choice(D8237),
+                        RANDOM_STRING, random.choice(D2005), RANDOM_STRING, RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL,
                         # first meter details
                         METER_MNF, METER_SER, '0', '120', '[today-1]', '0', 'METER', '1', RANDOM_METER_MNF, '1', RANDOM_METER_SER, '1', '5', '1', '5',
                         '1', RANDOM_GISX, '1', RANDOM_GISY, '1', 'O', '1', RANDOM_METER_LOC, '1', OUTR_RANDOM_GISX, '1', OUTR_RANDOM_GISY, '1', 'I', '1', RANDOM_OUTRE_LOC, RANDOM_STRING, '',
@@ -208,8 +213,8 @@ def generate_test_case_C1R(type, loop_times):
         T321R_miss_items = [# basic data
                             SPID, 'MEASURED', 'RET_' + RANDOM_STRING, '', '1', '[today]', '1',
                             # customer and retailer data
-                            CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', 'AM',
-                            RANDOM_STRING, 'NA', RANDOM_STRING, RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL,
+                            CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', random.choice(D8237),
+                            RANDOM_STRING, random.choice(D2005), RANDOM_STRING, RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL,
                             # first meter details
                             '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
                             '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
@@ -223,8 +228,8 @@ def generate_test_case_C1R(type, loop_times):
         T321R_unme_items = [# basic data
                             SPID, 'UMEASURED', 'RET_' + RANDOM_STRING, '', '1', '[today]', '1',
                             # customer and retailer data
-                            CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', 'AM',
-                            RANDOM_STRING, 'NA', RANDOM_STRING, RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL,
+                            CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', random.choice(D8237),
+                            RANDOM_STRING, random.choice(D2005), RANDOM_STRING, RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL,
                             # first meter details
                             '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
                             '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
@@ -298,13 +303,13 @@ def generate_test_case_C1R(type, loop_times):
                             '1', '2', 'Unmeasured_A', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 
                             '1', '5', 'Updated']
         # depending on the C1 request type, different items will be used for MEASURED, MISSING and UNMEASURED for T321.R and T322.W
-        if type=='measured':
+        if type=='MEASURED':
             T321R_data_items = T321R_meas_items
             T322W_data_items = T322W_meas_items
-        elif type=='unmeasured':
+        elif type=='UNMEASURED':
             T321R_data_items = T321R_unme_items
             T322W_data_items = T322W_unme_items
-        elif type=='missing':
+        elif type=='MISSING':
             T321R_data_items = T321R_miss_items
             T322W_data_items = T322W_miss_items
         else:
@@ -325,6 +330,18 @@ def generate_test_case_C1R(type, loop_times):
             # then in second sheet 'Test case data' depending on the transaction, insert respctive data items
             match TEST_CASE_SEQUENCE[i]:
                 case 'T321.R':
+                    for cols in range(7,13): # color basic request items
+                        ws12.cell(row=4+(3*i)+(3*a*TEST_CASE_LENGTH), column=cols).fill = PatternFill(start_color="99FFCC", fill_type = "solid")
+                    for cols in range(13,34): # color customer data items
+                        ws12.cell(row=4+(3*i)+(3*a*TEST_CASE_LENGTH), column=cols).fill = PatternFill(start_color="CCE5FF", fill_type = "solid")
+                    for cols in range(34,67): # color 1st meter items
+                        ws12.cell(row=4+(3*i)+(3*a*TEST_CASE_LENGTH), column=cols).fill = PatternFill(start_color="FFE5CC", fill_type = "solid")
+                    for cols in range(67,100): # color 2nd meter items
+                        ws12.cell(row=4+(3*i)+(3*a*TEST_CASE_LENGTH), column=cols).fill = PatternFill(start_color="99FF99", fill_type = "solid")
+                    for cols in range(100,104): # color missing meters items
+                        ws12.cell(row=4+(3*i)+(3*a*TEST_CASE_LENGTH), column=cols).fill = PatternFill(start_color="C0C0C0", fill_type = "solid")
+                    for cols in range(104,140): # color unmeasured items
+                        ws12.cell(row=4+(3*i)+(3*a*TEST_CASE_LENGTH), column=cols).fill = PatternFill(start_color="A0A0A0", fill_type = "solid")
                     for k in range(len(T321R_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T321R_data_items[k]
@@ -383,11 +400,23 @@ def generate_test_case_C1R(type, loop_times):
         # remove lsast underscore from file name: T321R_T201W_T322W_                          
         ## new_filename = new_filename[:-1]
         # and save it with an xlsx extension
+    match REQUEST_TYPE:
+        case 'MEASURED':
+            prefix = 'MEAS_'
+        case 'UNMEASURED':
+            prefix = 'UNME_'
+        case 'MISSING':
+            prefix = 'MISS_'
     if loop_times > 1:
         suffix = '_X' + str(loop_times)
     new_filename = '_'.join(TEST_CASE_SEQUENCE)
-    wb1.save(filename = working_dir + new_filename.replace('.','') + suffix + '.xlsx')
+    
+    test_cases_folder = working_dir + 'TEST_CASES'
+    if not os.path.exists(test_cases_folder):
+        os.makedirs(test_cases_folder)
+
+    wb1.save(filename = test_cases_folder + '\\' + prefix + new_filename.replace('.','') + suffix + '.xlsx')
 
 # parameter can be: measured, unmeasured or missing for C1R process, loop_times repeats test case sequence in the excel file
 max_loop = int (100/TEST_CASE_LENGTH)
-generate_test_case_C1R('measured', max_loop)
+generate_test_case_C1R(REQUEST_TYPE, max_loop)
