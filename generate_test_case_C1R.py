@@ -19,8 +19,9 @@ WHOLESALER = 'MOSLTEST-W'
 REQUEST_TYPE = 'MEASURED'
 T216_URL = 'https://moservicesdev.mosl.co.uk/test/attachments/87ffc85e-ebd5-461c-99d6-2ac3eef43f7c'
 
-#TEST_CASE_SEQUENCE = ['T321.R'] # SUBMITTED
+TEST_CASE_SEQUENCE = ['T321.R'] # SUBMITTED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T201.W'] #ACCEPTED
+#TEST_CASE_SEQUENCE = ['T321.R', 'T211.R'] #CANCELLED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T202.W'] #REJECTED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T202.W', 'T210.R'] #RESUBMITTED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T202.W', 'T210.R', 'T201.W'] #REJECTED ACCEPTED
@@ -29,8 +30,9 @@ T216_URL = 'https://moservicesdev.mosl.co.uk/test/attachments/87ffc85e-ebd5-461c
 #TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T203.W', 'T204.R', 'T205.W'] #VISITSCHED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T322.W'] # COMPLETED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T323.W'] #PLANPROP -> PLANAGREED BY HUB
-TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T203.W', 'T204.R', 'T323.W'] # INFOPROVD -> PLANPROP -> PLANAGREED BY HUB
+#TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T203.W', 'T204.R', 'T323.W'] # INFOPROVD -> PLANPROP -> PLANAGREED BY HUB
 #TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W', 'T205.W', 'T323.W', 'T324.R', 'T322.W', 'T208.R'] #CLOSED
+#TEST_CASE_SEQUENCE = ['T321.R', 'T321.R', 'T201.W', 'T321.R', 'T202.W', 'T321.R', 'T202.W', 'T210.R', 'T321.R', 'T201.W', 'T203.W', 'T321.R', 'T201.W', 'T322.W', 'T321.R', 'T201.W', 'T323.W']
 
 TEST_CASE_LENGTH = len(TEST_CASE_SEQUENCE)
 
@@ -203,7 +205,7 @@ def generate_test_case_C1R(type, loop_times):
                             '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''
                             ]
         T321R_unme_items = [# basic data
-                            SPID, 'UMEASURED', 'RET_' + RANDOM_STRING, '', '1', '[today]', '1',
+                            SPID, 'UNMEASURED', 'RET_' + RANDOM_STRING, '', '1', '[today]', '1',
                             # customer and retailer data
                             CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', random.choice(D8237),
                             RANDOM_STRING, random.choice(D2005), RANDOM_STRING, RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL,
@@ -228,8 +230,8 @@ def generate_test_case_C1R(type, loop_times):
         T207W_data_items = ['[orid]', 'WHOLSALER_COMMENT']
         T208R_data_items = ['[orid]', 'CLOSED']
         T210R_data_items = ['[orid]', random.choice(D8231), 'RESUBMITTED']
-        T211R_data_items = ['[orid]', 'RTL CANCELLED']
-        T211W_data_items = ['[orid]', 'WSL CACELLED']
+        T211R_data_items = ['[orid]', random.choice(D8036), 'RTL CANCELLED']
+        #T211W_data_items = ['[orid]', 'WSL CACELLED']
         T212W_data_items = ['[orid]', 'PREPPLAN']
         T213W_data_items = ['[orid]', random.choice(D8229), '[today]', '[today+1]', 'START_DEFERRAL']
         T214W_data_items = ['[orid]', '[today]', 'END_DEFERRAL'] # can think of function to peek working day
@@ -296,10 +298,14 @@ def generate_test_case_C1R(type, loop_times):
         for i in range(TEST_CASE_LENGTH):
             # write transaction number to column 5
             # if looped many times, repeat every TEST_CASE_LENGTH rows
+            # put the transaction number in sheet Test Case Sequence, column E - Test Step ref
             ws11.cell(row=i+4+(a*TEST_CASE_LENGTH), column=5).value = TEST_CASE_SEQUENCE[i]
+            if ws11.cell(row=i+4+(a*TEST_CASE_LENGTH), column=5).value == 'T321.R':
+                ws11.cell(row=i+4+(a*TEST_CASE_LENGTH), column=5).fill = PatternFill(start_color="DFDF00", fill_type = "solid")
             # build file name based on transactions chain. i.e. T321R_T201W_T322W....
             # new_filename = new_filename + TEST_CASE_SEQUENCE[i] + '_'
             # if transaction has .R in the name, it is MOSLTEST-R as requestor
+            # put the transaction Source Org ID in sheet Test Case Sequence, column C - Source ID
             if TEST_CASE_SEQUENCE[i][-1] == 'R':
                 ws11.cell(row=i+4+(a*TEST_CASE_LENGTH), column=3).value = RETAILER
             else:
@@ -307,6 +313,7 @@ def generate_test_case_C1R(type, loop_times):
             # then in second sheet 'Test case data' depending on the transaction, insert respctive data items
             match TEST_CASE_SEQUENCE[i]:
                 case 'T321.R':
+                    ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=5).fill = PatternFill(start_color="FFFF66", fill_type = "solid")
                     for cols in range(7,13): # color basic request items
                         ws12.cell(row=4+(3*i)+(3*a*TEST_CASE_LENGTH), column=cols).fill = PatternFill(start_color="99FFCC", fill_type = "solid")
                     for cols in range(13,34): # color customer data items
@@ -354,11 +361,25 @@ def generate_test_case_C1R(type, loop_times):
                     for k in range(len(T210R_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T210R_data_items[k]
+                case 'T211.R':
+                    for k in range(len(T211R_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T211R_data_items[k]
                 case 'T212.W':
                     for k in range(len(T212W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T212W_data_items[k]
                 case 'T322.W':
+                    for cols in range(7,9): # color basic request items
+                        ws12.cell(row=4+(3*i)+(3*a*TEST_CASE_LENGTH), column=cols).fill = PatternFill(start_color="CCE5FF", fill_type = "solid")
+                    for cols in range(9,37): # color 1st meter items
+                        ws12.cell(row=4+(3*i)+(3*a*TEST_CASE_LENGTH), column=cols).fill = PatternFill(start_color="FFE5CC", fill_type = "solid")
+                    for cols in range(37,65): # color 2nd meter items
+                        ws12.cell(row=4+(3*i)+(3*a*TEST_CASE_LENGTH), column=cols).fill = PatternFill(start_color="99FF99", fill_type = "solid")
+                    for cols in range(65,71): # color bmissing meters items
+                        ws12.cell(row=4+(3*i)+(3*a*TEST_CASE_LENGTH), column=cols).fill = PatternFill(start_color="C0C0C0", fill_type = "solid")
+                    for cols in range(71,99): # color unmeasured items
+                        ws12.cell(row=4+(3*i)+(3*a*TEST_CASE_LENGTH), column=cols).fill = PatternFill(start_color="A0A0A0", fill_type = "solid")
                     for k in range(len(T322W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T322W_data_items[k]                              
@@ -394,6 +415,6 @@ def generate_test_case_C1R(type, loop_times):
 
     wb1.save(filename = test_cases_folder + '\\' + prefix + new_filename.replace('.','') + suffix + '.xlsx')
 
-# parameter can be: measured, unmeasured or missing for C1R process, loop_times repeats test case sequence in the excel file
+# loop_times repeats test case sequence in the excel file
 max_loop = int (100/TEST_CASE_LENGTH)
 generate_test_case_C1R(REQUEST_TYPE, max_loop)
