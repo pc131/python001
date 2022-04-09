@@ -417,4 +417,5 @@ def generate_test_case_C1R(type, loop_times):
 
 # loop_times repeats test case sequence in the excel file
 max_loop = int (100/TEST_CASE_LENGTH)
+# if you want to enter manually number of rows, do not exceed 100 - 100 / TEST_CASE_LENGTH shouldn't be bigger then max_loop!
 generate_test_case_C1R(REQUEST_TYPE, max_loop)
