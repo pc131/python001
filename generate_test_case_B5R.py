@@ -178,7 +178,7 @@ def generate_test_case_B5R(loop_times):
                             RANDOM_STRING, random.choice(D2005), RANDOM_STRING, RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL,
                             # meter details
                             METER_MNF, METER_SER, random.choice(D8330), str(random.randint(1111, 9999)) + RANDOM_STRING, str(random.randint(1111, 9999)) + RANDOM_STRING, RANDOM_ADDRESS1, RANDOM_ADDRESS2, RANDOM_ADDRESS3, RANDOM_ADDRESS4, RANDOM_ADDRESS5, random.choice(POSTCODES), random.randint(1, 99999999), '0', '',
-                            random.choice(D8332), '1', 'NOTREMOVED', '[today+3]', random.choice(D8335), 'METER_' + RANDOM_STRING, 'STOPPED', 'BACKWARD', 'SLOWED', '', 140, '[today-35]', 'HELP_ME'
+                            random.choice(D8332), '1', 'NOTREMOVED', '[today+' + str(random.randint(1, 15))  +']', random.choice(D8335), 'METER_' + RANDOM_STRING, 'STOPPED', 'BACKWARD', 'SLOWED', '', random.randint(100, 9999), '[today-' + str(random.randint(1, 45))  +']', fake.paragraph(nb_sentences=1)
                             ]
         T201W_data_items = ['[orid]', 'ACCEPTED']
         T202W_data_items = ['[orid]', 'WSL-123456', random.choice(D8230), 'REJECTED']
@@ -200,7 +200,7 @@ def generate_test_case_B5R(loop_times):
         T224W_data_items = ['[orid]', random.choice(D8227), 'PROCDELAY_' + RANDOM_STRING]
 
         T352W_data_items = [# basic data
-                            '[orid]', random.choice(D8341), 
+                            '[orid]', 'REPLACED', # random.choice(D8341), # when other option than REPLACED no NEW METER can be provided - CONSIDER RULE!
                             # meter data
                             METER_MNF, METER_SER, RANDOM_METER_MNF, RANDOM_METER_SER, '120', '[today]', '1', '12', '1', '5', '1', RANDOM_GISX, '1', RANDOM_GISY, '1', 'I', '1', RANDOM_METER_LOC,
                             '1', OUTR_RANDOM_GISX, '1', OUTR_RANDOM_GISY, '1', 'O', '1', RANDOM_OUTRE_LOC, 'UPDATED_METER_T352W',
