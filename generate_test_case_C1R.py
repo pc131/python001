@@ -102,13 +102,13 @@ def random_meter_loc():
 
 def date_not_weekend():
     if datetime.today().weekday() >=0 and datetime.today().weekday() <=3:
-        return '[today+' + (4 - datetime.weekday()) + ']'
+        return '[today+' + str(4 - datetime.today().weekday()) + ']'
     else:
         return '[today+3]'
 
 def time_not_weekend():
     if datetime.today().weekday() >=0 and datetime.today().weekday() <=3:
-        return '[now+' + (4 - datetime.weekday()) + ']'
+        return '[now+' + str(4 - datetime.weekday()) + ']'
     else: 
         return '[now+3]'
 
@@ -231,7 +231,6 @@ def generate_test_case_C1R(type, loop_times):
         T208R_data_items = ['[orid]', 'CLOSED']
         T210R_data_items = ['[orid]', random.choice(D8231), 'RESUBMITTED']
         T211R_data_items = ['[orid]', random.choice(D8036), 'RTL CANCELLED']
-        #T211W_data_items = ['[orid]', 'WSL CACELLED']
         T212W_data_items = ['[orid]', 'PREPPLAN']
         T213W_data_items = ['[orid]', random.choice(D8229), '[today]', '[today+1]', 'START_DEFERRAL']
         T214W_data_items = ['[orid]', '[today]', 'END_DEFERRAL'] # can think of function to peek working day
