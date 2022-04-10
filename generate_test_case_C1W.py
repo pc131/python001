@@ -338,6 +338,14 @@ def generate_test_case_C1W(type, loop_times):
                     for k in range(len(T206W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T206W_data_items[k]
+                case 'T207.R':
+                    for k in range(len(T207R_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T207R_data_items[k]
+                case 'T207.W':
+                    for k in range(len(T207W_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T207W_data_items[k]
                 case 'T208.R':
                     for k in range(len(T208R_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
