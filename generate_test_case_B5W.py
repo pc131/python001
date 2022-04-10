@@ -20,13 +20,13 @@ WHOLESALER = 'MOSLTEST-W'
 T216_URL = 'https://moservicesdev.mosl.co.uk/test/attachments/87ffc85e-ebd5-461c-99d6-2ac3eef43f7c'
 
 TEST_CASE_SEQUENCE = ['T351.W'] # SUBMITTED
-# TEST_CASE_SEQUENCE = ['T351.W', 'T201.W'] #ACCEPTED
-# TEST_CASE_SEQUENCE = ['T351.W', 'T211.W'] #CANCELLED
-# TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T352.W', 'T210.R'] #RESUBMITTED
-# TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T352.W', 'T210.R', 'T202.W'] #REJECTED
-# TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T217.W'] #INFOREQST
-# TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T217.W', 'T218.R'] # INFOPROVD
-# TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T217.W', 'T218.R', 'T205.W'] #VISITSCHED
+TEST_CASE_SEQUENCE = ['T351.W', 'T201.W'] #ACCEPTED
+TEST_CASE_SEQUENCE = ['T351.W', 'T211.W'] #CANCELLED
+TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T352.W', 'T210.R'] #RESUBMITTED
+TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T352.W', 'T210.R', 'T202.W'] #REJECTED
+TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T217.W'] #INFOREQST
+TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T217.W', 'T218.R'] # INFOPROVD
+TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T217.W', 'T218.R', 'T205.W'] #VISITSCHED
 # TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T224.W'] # PROCDELAY
 # TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T352.W'] # COMPLETED
 # TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T217.W', 'T218.R', 'T205.W', 'T206.W', 'T205.W', 'T224.W', 'T352.W', 'T208.R'] #CLOSED
@@ -104,7 +104,7 @@ def random_meter_loc():
 
 def date_not_weekend():
     if datetime.today().weekday() >=0 and datetime.today().weekday() <=3:
-        return '[today+' + (4 - datetime.weekday()) + ']'
+        return '[today+' + str(4 - datetime.today().weekday()) + ']'
     else:
         return '[today+3]'
 
