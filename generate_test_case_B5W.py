@@ -131,7 +131,7 @@ D8337 = D8838 = D8839 = ['STOPPED', 'BACKWARD', 'SLOWED', 'BURRIED', 'CONDENS', 
 D8330 = ['0', '1'] #T351.R T351.W Meter Fault address same as CMOS
 D8341 = ['REPLACED', 'REPAIRED', 'NOUPDATE', 'NOFAULT', 'NONMETER', 'UPDATE'] # T352.W Complete Reason Code
 
-def generate_test_case_B5R(loop_times):
+def generate_test_case_B5W(loop_times):
     new_filename = ''
     for a in range(loop_times):
         # assign random SPID, METER_MNF, METER_SERIAL to variables - use EXCEL or SPIDS_METERS static dictionary
@@ -164,7 +164,7 @@ def generate_test_case_B5R(loop_times):
         RANDOM_ADDRESS5 = get_random_address()
 
         T351W_data_items = [# basic data
-                            SPID, 'RET_' + RANDOM_STRING, '[today]',
+                            SPID, '' '[today]',
                             # meter details
                             METER_MNF, METER_SER, random.choice(D8330), str(random.randint(1111, 9999)) + RANDOM_STRING, str(random.randint(1111, 9999)) + RANDOM_STRING, RANDOM_ADDRESS1, RANDOM_ADDRESS2, RANDOM_ADDRESS3, RANDOM_ADDRESS4, RANDOM_ADDRESS5, random.choice(POSTCODES), random.randint(1, 99999999), '0', '',
                             random.choice(D8332), '1', 'NOTREMOVED', '[today+' + str(random.randint(1, 15))  +']', random.choice(D8335), 'METER_' + RANDOM_STRING, 'STOPPED', 'BACKWARD', 'SLOWED', '', random.randint(100, 9999), '[today-' + str(random.randint(1, 45))  +']', fake.paragraph(nb_sentences=1)
@@ -303,4 +303,4 @@ def generate_test_case_B5R(loop_times):
 # loop_times repeats test case sequence in the excel file
 max_loop = int (100/TEST_CASE_LENGTH)
 # if you want to enter manually number of rows, do not exceed 100 - 100 / TEST_CASE_LENGTH shouldn't be bigger then max_loop!
-generate_test_case_B5R(max_loop)
+generate_test_case_B5W(max_loop)
