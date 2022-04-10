@@ -7,6 +7,7 @@ import string
 import names
 import sys
 from random_address import real_random_address
+from faker import Faker
 
 working_dir = "C:\\Users\\tomasz.skoczylas\\Downloads\\11\\"
 filename = working_dir + "Bilaterals 1.3.3.1 master.xlsx"
@@ -63,6 +64,9 @@ SPIDS_METERS = {'3019053153W15':('ARAD','9125420'),'3019053676W14':('ELSTER','81
 #     meter_ser = spid_meter[1][1]
 #     return spid, meter_mnf, meter_ser
 
+#generate fake data
+fake = Faker()
+
 #pick random SPID, METER_MNF_ METER_SERIAL
 def pick_spid_meter():
     spid_meter = random.choice(list(SPIDS_METERS.items()))
@@ -73,7 +77,7 @@ def pick_spid_meter():
 
 
 def random_email():
-    return ''.join(random.choice(string.ascii_letters) for _ in range(10)) + '@bilats.test.uk'
+    return fake.company_email()
 
 def random_string():
     return ''.join(random.choice(string.ascii_letters) for _ in range(15))
