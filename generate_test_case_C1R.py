@@ -301,7 +301,7 @@ def generate_test_case_C1R(type, loop_times):
             # put the transaction number in sheet Test Case Sequence, column E - Test Step ref
             ws11.cell(row=i+4+(a*TEST_CASE_LENGTH), column=5).value = TEST_CASE_SEQUENCE[i]
             if ws11.cell(row=i+4+(a*TEST_CASE_LENGTH), column=5).value == 'T321.R':
-                ws11.cell(row=i+4+(a*TEST_CASE_LENGTH), column=5).fill = PatternFill(start_color="DFDF00", fill_type = "solid")
+                ws11.cell(row=i+4+(a*TEST_CASE_LENGTH), column=5).fill = PatternFill(start_color="CECE0B", fill_type = "solid")
             # build file name based on transactions chain. i.e. T321R_T201W_T322W....
             # new_filename = new_filename + TEST_CASE_SEQUENCE[i] + '_'
             # if transaction has .R in the name, it is MOSLTEST-R as requestor
@@ -417,5 +417,4 @@ def generate_test_case_C1R(type, loop_times):
 
 # loop_times repeats test case sequence in the excel file
 max_loop = int (100/TEST_CASE_LENGTH)
-# if you want to enter manually number of rows, do not exceed 100 - 100 / TEST_CASE_LENGTH shouldn't be bigger then max_loop!
 generate_test_case_C1R(REQUEST_TYPE, max_loop)
