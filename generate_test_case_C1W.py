@@ -16,22 +16,22 @@ ws12 = wb1.worksheets[1]
 RETAILER = 'MOSLTEST-R'
 WHOLESALER = 'MOSLTEST-W'
 # parameter can be: MEASURED, UNMEASURED or MISSING for C1R process
-REQUEST_TYPE = 'UNMEASURED'
+REQUEST_TYPE = 'MEASURED'
 T216_URL = 'https://moservicesdev.mosl.co.uk/test/attachments/87ffc85e-ebd5-461c-99d6-2ac3eef43f7c'
 
 TEST_CASE_SEQUENCE = ['T321.W'] # SUBMITTED
 #TEST_CASE_SEQUENCE = ['T321.W', 'T201.W'] #ACCEPTED
 #TEST_CASE_SEQUENCE = ['T321.W', 'T211.W'] #CANCELLED
 #TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T322.W', 'T210.R', 'T202.W'] #REJECTED
-#TEST_CASE_SEQUENCE = ['T321.W', 'T202.W', 'T322.W', 'T210.R'] #RESUBMITTED
-#TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T203.W'] #INFOREQST
-#TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T203.W', 'T204.R'] # INFOPROVD
-#TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T203.W', 'T204.R', 'T205.W'] #VISITSCHED
+#TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T322.W', 'T210.R'] #RESUBMITTED
+#TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T217.W'] #INFOREQST
+#TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T217.W', 'T218.R'] # INFOPROVD
+#TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T217.W', 'T218.R', 'T205.W'] #VISITSCHED
 #TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T322.W'] # COMPLETED
 #TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T323.W'] #PLANPROP -> PLANAGREED BY HUB
-#TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T203.W', 'T204.R', 'T323.W'] # INFOPROVD -> PLANPROP -> PLANAGREED BY HUB
-#TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W', 'T205.W', 'T323.W', 'T324.R', 'T322.W', 'T208.R'] #CLOSED
-#TEST_CASE_SEQUENCE = ['T321.W', 'T321.W', 'T201.W', 'T321.W', 'T201.W', 'T203.W', 'T321.W', 'T201.W', 'T322.W', 'T321.W', 'T201.W', 'T323.W']
+#TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T217.W', 'T218.R', 'T323.W'] # INFOPROVD -> PLANPROP -> PLANAGREED BY HUB
+#TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T217.W', 'T218.R', 'T205.W', 'T206.W', 'T205.W', 'T323.W', 'T324.R', 'T322.W', 'T208.R'] #CLOSED
+#TEST_CASE_SEQUENCE = ['T321.W', 'T321.W', 'T201.W', 'T321.W', 'T201.W', 'T217.W', 'T321.W', 'T201.W', 'T322.W', 'T321.W', 'T201.W', 'T323.W']
 
 TEST_CASE_LENGTH = len(TEST_CASE_SEQUENCE)
 
@@ -72,9 +72,17 @@ def pick_spid_meter():
     meter_ser = spid_meter[1][1]
     return spid, meter_mnf, meter_ser
 
+def random_email():
+    return ''.join(random.choice(string.ascii_letters) for _ in range(10)) + '@bilats.test.uk'
 
 def random_string():
     return ''.join(random.choice(string.ascii_letters) for _ in range(15))
+
+def random_name():
+    return names.get_full_name()
+
+def random_phone():
+    return random.randint(4400000000, 4499999999)
 
 def random_meter_ser():
     return '10W' + str(random.randint(0000000000, 9999999999))
@@ -143,7 +151,17 @@ def generate_test_case_C1W(type, loop_times):
         # assign random SPID, METER_MNF, METER_SERIAL to variables - use EXCEL or SPIDS_METERS static dictionary
         SPID, METER_MNF, METER_SER = pick_spid_meter()
         #SPID, METER_MNF, METER_SER = pick_spid_meter_xlsx()
+        CUST_EMAIL = random_email()
+        RET_EMAIL = random_email()
         RANDOM_STRING = random_string()
+        CUST_RANDOM_NAME = random_name()
+        CUST_RANDOM_PHONE = random_phone()
+        RET_RANDOM_NAME = random_name()
+        RET_RANDOM_PHONE = random_phone()
+        CUST_RANDOM_NAME2 = random_name()
+        CUST_RANDOM_PHONE2 = random_phone()
+        RET_RANDOM_NAME2 = random_name()
+        RET_RANDOM_PHONE2 = random_phone()
         RANDOM_METER_SER = random_meter_ser()
         RANDOM_METER_MNF = random_meter_mnf()
         RANDOM_GISX = random_gisx()
@@ -194,8 +212,6 @@ def generate_test_case_C1W(type, loop_times):
                             ]
         T201W_data_items = ['[orid]', 'ACCEPTED']
         T202W_data_items = ['[orid]', 'WSL-123456', random.choice(D8230), 'REJECTED']
-        T217W_data_items = ['[orid]', random.choice(D8226), 'INFOREQST']
-        T218R_data_items = ['[orid]', 'INFOPROVD']
         T205W_data_items = ['[orid]', DATE_NOT_WEEKEND, '', 'VISITSCHED']
         T206W_data_items = ['[orid]', random.choice(D8228), 'VISITNOTCOMP']
         T207R_data_items = ['[orid]', 'RETAILER_COMMENT']
@@ -211,6 +227,13 @@ def generate_test_case_C1W(type, loop_times):
         T215W_data_items = ['[orid]', '', 'img1png', 'PNG', '4oCwUE5HChoKICAgCklIRFIgICADICAgAwgCICAgxa5KIsSNICAgCXBIWXMgIA7DhCAgDsOEAeKAoisOGyAgICdJREFUCOKEomPDlG7Dn8O2y5nLmX8BNnbCpn/LmcWjMTMzH8OrxI9nYmXLmXd5w7cmxLrFmBAgxZDFnwrFpH4uJsKsICAgIElFTkTCrkJg4oCa']
         T216R_data_items = ['[orid]', T216_URL]
         T216W_data_items = ['[orid]', T216_URL]
+        T217W_data_items = ['[orid]', '1', random.choice(D8226), 'CUSTINFOREQST']
+
+        T218R_data_items = ['[orid]', 'RET_' + RANDOM_STRING, '[today]',
+                             '1', CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', 
+                             random.choice(D8237),  RANDOM_STRING, random.choice(D2005), RANDOM_STRING,RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', 
+                             RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL, 'CUSTINFOPROVD']
+
         T323W_data_items = ['[orid]', 'ABLE', TIME_NOT_WEEKEND, '0', '1', DATE_NOT_WEEKEND, 'PLANPROP']
         T324R_data_items = ['[orid]', 'PLANAGREED']
         T325R_data_items = ['[orid]', 'PLANDISP']
@@ -307,14 +330,6 @@ def generate_test_case_C1W(type, loop_times):
                     for k in range(len(T202W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T202W_data_items[k]
-                case 'T203.W':
-                    for k in range(len(T217W_data_items)):
-                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
-                                7).value = T217W_data_items[k]
-                case 'T204.R':
-                    for k in range(len(T218R_data_items)):
-                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
-                                7).value = T218R_data_items[k]
                 case 'T205.W':
                     for k in range(len(T205W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
@@ -339,6 +354,14 @@ def generate_test_case_C1W(type, loop_times):
                     for k in range(len(T212W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T212W_data_items[k]
+                case 'T217.W':
+                    for k in range(len(T217W_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T217W_data_items[k]
+                case 'T218.R':
+                    for k in range(len(T218R_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T218R_data_items[k]
                 case 'T322.W':
                     for cols in range(7,9): # color basic request items
                         ws12.cell(row=4+(3*i)+(3*a*TEST_CASE_LENGTH), column=cols).fill = PatternFill(start_color="CCE5FF", fill_type = "solid")
