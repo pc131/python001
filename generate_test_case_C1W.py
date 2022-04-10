@@ -16,22 +16,22 @@ ws12 = wb1.worksheets[1]
 RETAILER = 'MOSLTEST-R'
 WHOLESALER = 'MOSLTEST-W'
 # parameter can be: MEASURED, UNMEASURED or MISSING for C1R process
-REQUEST_TYPE = 'MEASURED'
+REQUEST_TYPE = 'MISSING'
 T216_URL = 'https://moservicesdev.mosl.co.uk/test/attachments/87ffc85e-ebd5-461c-99d6-2ac3eef43f7c'
 
 TEST_CASE_SEQUENCE = ['T321.W'] # SUBMITTED
-#TEST_CASE_SEQUENCE = ['T321.W', 'T201.W'] #ACCEPTED
-#TEST_CASE_SEQUENCE = ['T321.W', 'T211.W'] #CANCELLED
-#TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T322.W', 'T210.R', 'T202.W'] #REJECTED
-#TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T322.W', 'T210.R'] #RESUBMITTED
-#TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T217.W'] #INFOREQST
-#TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T217.W', 'T218.R'] # INFOPROVD
-#TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T217.W', 'T218.R', 'T205.W'] #VISITSCHED
-#TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T322.W'] # COMPLETED
-#TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T323.W'] #PLANPROP -> PLANAGREED BY HUB
-#TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T217.W', 'T218.R', 'T323.W'] # INFOPROVD -> PLANPROP -> PLANAGREED BY HUB
-#TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T217.W', 'T218.R', 'T205.W', 'T206.W', 'T205.W', 'T323.W', 'T324.R', 'T322.W', 'T208.R'] #CLOSED
-#TEST_CASE_SEQUENCE = ['T321.W', 'T321.W', 'T201.W', 'T321.W', 'T201.W', 'T217.W', 'T321.W', 'T201.W', 'T322.W', 'T321.W', 'T201.W', 'T323.W']
+# TEST_CASE_SEQUENCE = ['T321.W', 'T201.W'] #ACCEPTED
+# TEST_CASE_SEQUENCE = ['T321.W', 'T211.W'] #CANCELLED
+# TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T322.W', 'T210.R', 'T202.W'] #REJECTED
+# TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T322.W', 'T210.R'] #RESUBMITTED
+# TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T217.W'] #INFOREQST
+# TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T217.W', 'T218.R'] # INFOPROVD
+# TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T217.W', 'T218.R', 'T205.W'] #VISITSCHED
+# TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T322.W'] # COMPLETED
+# TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T323.W'] #PLANPROP -> PLANAGREED BY HUB
+# TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T217.W', 'T218.R', 'T323.W'] # INFOPROVD -> PLANPROP -> PLANAGREED BY HUB
+# TEST_CASE_SEQUENCE = ['T321.W', 'T201.W', 'T217.W', 'T218.R', 'T205.W', 'T206.W', 'T205.W', 'T323.W', 'T324.R', 'T322.W', 'T208.R'] #CLOSED
+# TEST_CASE_SEQUENCE = ['T321.W', 'T321.W', 'T201.W', 'T321.W', 'T201.W', 'T217.W', 'T321.W', 'T201.W', 'T322.W', 'T321.W', 'T201.W', 'T323.W']
 
 TEST_CASE_LENGTH = len(TEST_CASE_SEQUENCE)
 
@@ -296,7 +296,7 @@ def generate_test_case_C1W(type, loop_times):
             # put the transaction number in sheet Test Case Sequence, column E - Test Step ref
             ws11.cell(row=i+4+(a*TEST_CASE_LENGTH), column=5).value = TEST_CASE_SEQUENCE[i]
             if ws11.cell(row=i+4+(a*TEST_CASE_LENGTH), column=5).value == 'T321.W':
-                ws11.cell(row=i+4+(a*TEST_CASE_LENGTH), column=5).fill = PatternFill(start_color="DFDF00", fill_type = "solid")
+                ws11.cell(row=i+4+(a*TEST_CASE_LENGTH), column=5).fill = PatternFill(start_color="CECE0B", fill_type = "solid")
             # build file name based on transactions chain. i.e. T321W_T201W_T322W....
             # new_filename = new_filename + TEST_CASE_SEQUENCE[i] + '_'
             # if transaction has .R in the name, it is MOSLTEST-R as requestor
