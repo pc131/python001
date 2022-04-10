@@ -105,15 +105,9 @@ def random_meter_loc():
 
 def date_not_weekend():
     if datetime.today().weekday() >=0 and datetime.today().weekday() <=3:
-        return '[today+' + (4 - datetime.weekday()) + ']'
+        return '[today+' + str(4 - datetime.today().weekday()) + ']'
     else:
         return '[today+3]'
-
-def time_not_weekend():
-    if datetime.today().weekday() >=0 and datetime.today().weekday() <=3:
-        return '[now+' + (4 - datetime.weekday()) + ']'
-    else: 
-        return '[now+3]'
 
 def get_random_address(): # !!!!!!!!!! LEARN HOW TO USE IT
     rand_address =  real_random_address()
@@ -164,7 +158,6 @@ def generate_test_case_B5R(loop_times):
         RANDOM_METER_LOC = random_meter_loc()
         RANDOM_OUTRE_LOC = random_meter_loc()
         DATE_NOT_WEEKEND = date_not_weekend()
-        TIME_NOT_WEEKEND = time_not_weekend()
         RANDOM_ADDRESS1 = get_random_address()
         RANDOM_ADDRESS2 = get_random_address()
         RANDOM_ADDRESS3 = get_random_address()
