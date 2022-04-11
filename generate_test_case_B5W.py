@@ -27,10 +27,10 @@ TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T352.W', 'T210.R', 'T202.W'] #REJECTE
 TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T217.W'] #INFOREQST
 TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T217.W', 'T218.R'] # INFOPROVD
 TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T217.W', 'T218.R', 'T205.W'] #VISITSCHED
-# TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T224.W'] # PROCDELAY
-# TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T352.W'] # COMPLETED
-# TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T217.W', 'T218.R', 'T205.W', 'T206.W', 'T205.W', 'T224.W', 'T352.W', 'T208.R'] #CLOSED
-# TEST_CASE_SEQUENCE = ['T351.W', 'T351.W', 'T201.W', 'T351.W', 'T211.W', 'T351.W', 'T201.W', 'T352.W', 'T210.R', 'T202.W', 'T351.W', 'T201.W', 'T224.W', 'T351.W', 'T201.W', 'T352.W']
+TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T224.W'] # PROCDELAY
+TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T352.W'] # COMPLETED
+TEST_CASE_SEQUENCE = ['T351.W', 'T201.W', 'T217.W', 'T218.R', 'T205.W', 'T206.W', 'T205.W', 'T224.W', 'T352.W', 'T208.R'] #CLOSED
+TEST_CASE_SEQUENCE = ['T351.W', 'T351.W', 'T201.W', 'T351.W', 'T211.W', 'T351.W', 'T201.W', 'T352.W', 'T210.R', 'T202.W', 'T351.W', 'T201.W', 'T224.W', 'T351.W', 'T201.W', 'T352.W']
 
 TEST_CASE_LENGTH = len(TEST_CASE_SEQUENCE)
 
@@ -177,7 +177,7 @@ def generate_test_case_B5W(loop_times):
         T207W_data_items = ['[orid]', 'WHOLSALER_COMMENT']
         T208R_data_items = ['[orid]', 'CLOSED']
         T210R_data_items = ['[orid]', random.choice(D8231), 'RESUBMITTED']
-        T211R_data_items = ['[orid]', random.choice(D8036), 'RTL CANCELLED']
+        T211W_data_items = ['[orid]', random.choice(D8036), 'WSL CANCELLED']
         T213W_data_items = ['[orid]', random.choice(D8229), '[today]', '[today+1]', 'START_DEFERRAL']
         T214W_data_items = ['[orid]', '[today]', 'END_DEFERRAL'] # can think of function to peek working day
         T215R_data_items = ['[orid]', '', 'img1png', 'PNG', '4oCwUE5HChoKICAgCklIRFIgICADICAgAwgCICAgxa5KIsSNICAgCXBIWXMgIA7DhCAgDsOEAeKAoisOGyAgICdJREFUCOKEomPDlG7Dn8O2y5nLmX8BNnbCpn/LmcWjMTMzH8OrxI9nYmXLmXd5w7cmxLrFmBAgxZDFnwrFpH4uJsKsICAgIElFTkTCrkJg4oCa']
@@ -259,10 +259,10 @@ def generate_test_case_B5W(loop_times):
                     for k in range(len(T210R_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T210R_data_items[k]
-                case 'T211.R':
-                    for k in range(len(T211R_data_items)):
+                case 'T211.W':
+                    for k in range(len(T211W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
-                                7).value = T211R_data_items[k]
+                                7).value = T211W_data_items[k]
                 case 'T217.W':
                     for k in range(len(T217W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
