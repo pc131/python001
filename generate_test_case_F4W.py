@@ -119,7 +119,7 @@ def generate_test_case_F4W(loop_times):
         RET_RANDOM_PHONE2 = random_phone()
 
         T505W_data_items = [# basic data
-                            SPID, '[today-' + str(random.randint(0, 7))  +']', 'DWENQUIRY',random.choice(D8365),  fake.enzyme(), '', '[today]', fake.paragraph(nb_sentences=1),    # [today - 0] = [today]!!!
+                            SPID, '[today-' + str(random.randint(0, 7))  +']', 'DWENQUIRY',random.choice(D8365),  fake.enzyme(), '', fake.paragraph(nb_sentences=1),   '[today]', # [today - 0] = [today]!!!
                             ]
         T201W_data_items = ['[orid]', 'ACCEPTED']
         T202W_data_items = ['[orid]', 'WSL-123456', random.choice(D8230), 'REJECTED']
