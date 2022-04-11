@@ -107,7 +107,7 @@ def date_not_weekend():
 
 def time_not_weekend():
     if datetime.today().weekday() >=0 and datetime.today().weekday() <=3:
-        return '[now+' + str(4 - datetime.weekday()) + ']'
+        return '[now+' + str(4 - datetime.today().weekday()) + ']'
     else: 
         return '[now+3]'
 
