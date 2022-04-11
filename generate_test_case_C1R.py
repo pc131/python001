@@ -19,7 +19,7 @@ WHOLESALER = 'MOSLTEST-W'
 REQUEST_TYPE = 'MEASURED'
 T216_URL = 'https://moservicesdev.mosl.co.uk/test/attachments/87ffc85e-ebd5-461c-99d6-2ac3eef43f7c'
 
-TEST_CASE_SEQUENCE = ['T321.R'] # SUBMITTED
+#TEST_CASE_SEQUENCE = ['T321.R'] # SUBMITTED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T201.W'] #ACCEPTED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T211.R'] #CANCELLED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T202.W'] #REJECTED
@@ -31,7 +31,7 @@ TEST_CASE_SEQUENCE = ['T321.R'] # SUBMITTED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T322.W'] # COMPLETED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T323.W'] #PLANPROP -> PLANAGREED BY HUB
 #TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T203.W', 'T204.R', 'T323.W'] # INFOPROVD -> PLANPROP -> PLANAGREED BY HUB
-#TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W', 'T205.W', 'T323.W', 'T324.R', 'T322.W', 'T208.R'] #CLOSED
+TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W', 'T205.W', 'T323.W', 'T324.R', 'T322.W', 'T208.R'] #CLOSED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T321.R', 'T201.W', 'T321.R', 'T202.W', 'T321.R', 'T202.W', 'T210.R', 'T321.R', 'T201.W', 'T203.W', 'T321.R', 'T201.W', 'T322.W', 'T321.R', 'T201.W', 'T323.W']
 
 TEST_CASE_LENGTH = len(TEST_CASE_SEQUENCE)
@@ -108,7 +108,7 @@ def date_not_weekend():
 
 def time_not_weekend():
     if datetime.today().weekday() >=0 and datetime.today().weekday() <=3:
-        return '[now+' + str(4 - datetime.weekday()) + ']'
+        return '[now+' + str(4 - datetime.today().weekday()) + ']'
     else: 
         return '[now+3]'
 
