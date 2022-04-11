@@ -218,7 +218,6 @@ def generate_test_case_C1W(type, loop_times):
         T207W_data_items = ['[orid]', 'WHOLSALER_COMMENT']
         T208R_data_items = ['[orid]', 'CLOSED']
         T210R_data_items = ['[orid]', random.choice(D8231), 'RESUBMITTED']
-        #T211R_data_items = ['[orid]', random.choice(D8036), 'RTL CANCELLED']
         T211W_data_items = ['[orid]', random.choice(D8036), 'WSL CANCELLED']
         T212W_data_items = ['[orid]', 'PREPPLAN']
         T213W_data_items = ['[orid]', random.choice(D8229), '[today]', '[today+1]', 'START_DEFERRAL']
