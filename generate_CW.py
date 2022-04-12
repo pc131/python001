@@ -16,11 +16,12 @@ cw_working_dir = working_dir + "Creative_Work"
 mylist = os.listdir(cw_working_dir)
 
 period = '04_2022'
-period_working_days = 20
+period_working_days = 21
 period_working_hours = period_working_days * 8
 number_of_works = len(mylist)
 
 #list to keep hours for particular works
+#divide working hours a little randomly
 particular_hours = []
 
 working_hours_even = period_working_hours % number_of_works
@@ -42,14 +43,22 @@ all_list = []
 
 def num_pieces(num,lenght):
     for i in range(lenght-1):
-        n = random.randint(1,num)
-        if n < 0.8*num/lenght or n> 1.2*num/lenght:
-            n = int(0.9*num/lenght)
-        all_list.append(n)
-        num -= n
-    all_list.append(num)       
+        if i == 0:
+            n = random.randint(1,num)
+            if n < 0.8*num/lenght or n> 1.2*num/lenght:
+                n = int(0.9*num/lenght)
+            all_list.append(n)
+            num -= n
+        else:
+            n = random.randint(1,num)
+            if n < 0.8*num/(lenght-1) or n> 1.2*num/(lenght-1):
+                n = int(0.9*num/(lenght-1))
+            all_list.append(n)
+            num -= n
+    all_list.append(num) 
 
-num_pieces(period_working_hours, number_of_works) 
+num_pieces(int(0.9*period_working_hours), number_of_works) 
+#divide working hours a little randomly
 
 def w_miesiacu(month):
     match month:
