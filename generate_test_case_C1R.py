@@ -7,8 +7,8 @@ import string
 import names
 import sys
 
-working_dir = "C:\\Users\\tomasz.skoczylas\\Downloads\\11\\"
-filename = working_dir + "Bilaterals 1.3.3.1 master.xlsx"
+working_dir = "C:\\Users\\skocz\\Downloads\\11\\"
+filename = working_dir + "Bilaterals 1.4.0.0 master.xlsx"
 wb1 = xl.load_workbook(filename)
 ws11 = wb1.worksheets[0]
 ws12 = wb1.worksheets[1]
