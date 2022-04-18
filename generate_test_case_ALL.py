@@ -39,7 +39,7 @@ T216_URL = 'https://moservicesdev.mosl.co.uk/test/attachments/87ffc85e-ebd5-461c
 #TEST_CASE_SEQUENCE = ['T351.R', 'T201.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W', 'T205.W', 'T224.W', 'T352.W', 'T208.R'] 
 #TEST_CASE_SEQUENCE = ['T505.R', 'T201.W', 'T203.W', 'T204.R', 'T222.W', 'T208.R'] 
 #TEST_CASE_SEQUENCE = ['T501.R', 'T201.W', 'T203.W', 'T204.R', 'T222.W', 'T208.R']
-TEST_CASE_SEQUENCE = ['T551.R', 'T201.W', 'T215.R', 'T216.W', 'T203.W', 'T204.R', 'T207.R', 'T222.W', 'T207.W' 'T208.R']
+TEST_CASE_SEQUENCE = ['T551.R', 'T201.W', 'T215.R', 'T216.W', 'T203.W', 'T204.R', 'T207.R', 'T222.W', 'T207.W', 'T208.R']
 
 TEST_CASE_LENGTH = len(TEST_CASE_SEQUENCE)
 
@@ -136,8 +136,6 @@ D8360 = ['GSSFAILURE', 'OTHER', 'NONE'] #F5 T501.R/W Compensation Claimed
 #D8326 = ['CHGTYPE', 'CGHSSIZE', 'CGHLSIZE', 'CHGLOC'] # B7 T365.R Request Meter Change -> Meter Work Request Type
 #D8327 = ['NEWINSTALL', 'CHGNEW', 'LOCCHGNEW', 'LOCCHGEXG', 'UNFEASIBLE'] # B1 B7 COMPLETED T223.W -> Meter Work Complete Code
 
-
-# parameter can be: measured, unmeasured or missing for C1R process, loop_times repeats test case sequence in the excel file
 def generate_test_case(loop_times):
     new_filename = ''
     for a in range(loop_times):
@@ -297,6 +295,7 @@ def generate_test_case(loop_times):
             # new_filename = new_filename + TEST_CASE_SEQUENCE[i] + '_'
             # if transaction has .R in the name, it is MOSLTEST-R as requestor
             # put the transaction Source Org ID in sheet Test Case Sequence, column C - Source ID
+            ws11.cell(row=i+4+(a*TEST_CASE_LENGTH), column=5).value = TEST_CASE_SEQUENCE[i]
             if TEST_CASE_SEQUENCE[i][-1] == 'R':
                 ws11.cell(row=i+4+(a*TEST_CASE_LENGTH), column=3).value = RETAILER
             else:
@@ -363,6 +362,30 @@ def generate_test_case(loop_times):
                     for k in range(len(T212W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T212W_data_items[k]
+                case 'T213.W':
+                    for k in range(len(T213W_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T213W_data_items[k]
+                case 'T214.W':
+                    for k in range(len(T214W_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T214W_data_items[k]
+                case 'T215.R':
+                    for k in range(len(T215R_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T215R_data_items[k]
+                case 'T215.W':
+                    for k in range(len(T215W_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T215W_data_items[k]
+                case 'T216.R':
+                    for k in range(len(T216R_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T216R_data_items[k]
+                case 'T216.W':
+                    for k in range(len(T216W_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T216W_data_items[k]
                 case 'T217.W':
                     for k in range(len(T217W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
@@ -435,6 +458,8 @@ def generate_test_case(loop_times):
     test_cases_folder = working_dir + 'TEST_CASES'
     if not os.path.exists(test_cases_folder):
         os.makedirs(test_cases_folder)
+        
+    new_filename = '_'.join(TEST_CASE_SEQUENCE)
 
     wb1.save(filename = test_cases_folder + '\\' + new_filename.replace('.','') + '.xlsx')
 
