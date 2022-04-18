@@ -133,7 +133,7 @@ D8360 = ['GSSFAILURE', 'OTHER', 'NONE'] #F5 T501.R/W Compensation Claimed
 
 
 # parameter can be: measured, unmeasured or missing for C1R process, loop_times repeats test case sequence in the excel file
-def generate_test_case(type, loop_times):
+def generate_test_case(loop_times):
     new_filename = ''
     for a in range(loop_times):
         # assign random SPID, METER_MNF, METER_SERIAL to variables - use EXCEL or SPIDS_METERS static dictionary
