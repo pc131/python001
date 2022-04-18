@@ -95,6 +95,11 @@ def time_not_weekend():
         return '[now+' + str(4 - datetime.today().weekday()) + ']'
     else: 
         return '[now+3]'
+    
+def get_random_address(): # !!!!!!!!!! LEARN HOW TO USE IT
+    rand_address =  real_random_address()
+    return rand_address["address1"]
+
 #C1
 D8036 = ['ERROR', 'DUPLICATE', 'SWITCHED', 'REJECTION', 'UNABLEASST', 'DISAGREEPLAN'] # T211.R T211.W Cancellation Reason Code
 D8226 = ['NOCONTACT', 'UNCOOPCUST', 'INACCONTACT', 'MOREDETAILS'] # T203.W T217W Additional Information Request Code
@@ -160,6 +165,11 @@ def generate_test_case(loop_times):
         RANDOM_OUTRE_LOC = random_meter_loc()
         DATE_NOT_WEEKEND = date_not_weekend()
         TIME_NOT_WEEKEND = time_not_weekend()
+        RANDOM_ADDRESS1 = get_random_address()
+        RANDOM_ADDRESS2 = get_random_address()
+        RANDOM_ADDRESS3 = get_random_address()
+        RANDOM_ADDRESS4 = get_random_address()
+        RANDOM_ADDRESS5 = get_random_address()
 
         T321R_data_items = [# basic data
                         SPID, 'MEASURED', 'RET_' + RANDOM_STRING, '', '1', '[today]', '1',
