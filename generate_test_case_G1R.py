@@ -54,7 +54,7 @@ SPIDS_METERS = {'3019053153W15':('ARAD','9125420'),'3019053676W14':('ELSTER','81
 #         spids.append(spid)
 #         #append list of meter_mnf and meter_ser as second list
 #         meters.append([meter_mnf, meter_ser])
-#         #combine these 2 lists as dictionaty, where element from 1st list is key, and second list meter_mnf_, meter_ser is value
+#         #combine these 2 lists as dictionaty, where element from 1st list is key, and second list meter_mnf_, meter_ser is the value
 #         spids_meters = dict(zip(spids, meters))
 #     spid_meter = random.choice(list(spids_meters.items()))
 #     spid = spid_meter[0]
