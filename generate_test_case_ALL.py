@@ -249,7 +249,7 @@ def generate_test_case(loop_times):
         available_processes = available_processes + "{:2}".format(b+1) + " " + PROCESSES[b] + "\n"
     chosen_process = input("Choose process - available are: \n" + available_processes + "\n")
     #ask user to choose process among aviailable
-    while int(chosen_process) not in range(len(PROCESSES)+1):
+    while int(chosen_process) not in range(1, len(PROCESSES)+1):
             chosen_process = input("You can only choose from available processes: \n" + available_processes + "\nChoose process:")
     chosen_proc = int(chosen_process)
     print("\nYour choice: " + str(PROCESSES[chosen_proc-1])) 
