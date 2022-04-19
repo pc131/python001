@@ -11,7 +11,8 @@ from faker import Faker
 from faker_biology.mol_biol import Enzyme
 
 
-working_dir = "C:\\Users\\skocz\\Downloads\\11\\"
+# working_dir = "C:\\Users\\skocz\\Downloads\\11\\"
+working_dir = "C:\\Users\\tomasz.skoczylas\\Downloads\\11\\"
 filename = working_dir + "Bilaterals 1.4.0.0 master.xlsx"
 wb1 = xl.load_workbook(filename)
 ws11 = wb1.worksheets[0]
@@ -21,6 +22,8 @@ RETAILER = 'MOSLTEST-R'
 WHOLESALER = 'MOSLTEST-W'
 PROCESSES = ['C1R', 'C1W', 'B5R', 'B5W', 'F4R', 'F4W', 'F5R', 'F5W', 'G1R', 'G1W']
 T216_URL = 'https://moservicesdev.mosl.co.uk/test/attachments/87ffc85e-ebd5-461c-99d6-2ac3eef43f7c'
+
+PROC_START_TRANS = {'C1R': 'T321.R', 'C1W': 'T321.W', 'B5R': 'T351.R', 'B5W': 'T351.W', 'F4R': 'T505.R', 'F4W': 'T505.W', 'F5R': 'T501.R', 'F5W': 'T501.W', 'G1R': 'T551.R', 'G1W': 'T551.W'}
 
 C1R_TRANSACTIONS = ['T201.W', 'T202.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T212.W', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T321.R', 'T322.W', 'T323.W', 'T324.R', 'T325.R']
 
@@ -37,6 +40,90 @@ C1R_T322W_allowed = ['T208.R', 'T210.R']
 C1R_T323W_allowed = ['T324.R', 'T325.R']
 C1R_T324R_allowed = ['T203.W', 'T205.W', 'T322.W']
 C1R_T325R_allowed = ['T203.W', 'T323.W']
+
+C1W_T201W_allowed = ['T217.W', 'T205.W', 'T322.W', 'T323.W']
+C1W_T202W_allowed = ['T210.R']
+C1W_T217W_allowed = ['T218.R']
+C1W_T218R_allowed = ['T217.W', 'T205.W', 'T322.W', 'T323.W']
+C1W_T205W_allowed = ['T206.W', 'T212.W', 'T322.W', 'T323.W']
+C1W_T206W_allowed = ['T217.W', 'T205.W']
+C1W_T210R_allowed = ['T201.W', 'T202.W']
+C1W_T212W_allowed = ['T217.W', 'T323.W']
+C1W_T321W_allowed = ['T201.W']
+C1W_T322W_allowed = ['T208.R', 'T210.R']
+C1W_T323W_allowed = ['T324.R', 'T325.R']
+C1W_T324R_allowed = ['T217.W', 'T205.W', 'T322.W']
+C1W_T325R_allowed = ['T217.W', 'T323.W']
+
+B5R_T201W_allowed = ['T203.W', 'T205.W', 'T224.W', 'T352.W']
+B5R_T202W_allowed = ['T210.R']
+B5R_T203W_allowed = ['T204.R']
+B5R_T204R_allowed = ['T203.W', 'T205.W', 'T224.W', 'T352.W']
+B5R_T205W_allowed = ['T206.W', 'T224.W', 'T352.W']
+B5R_T206W_allowed = ['T203.W', 'T205.W']
+B5R_T210R_allowed = ['T201.W', 'T202.W']
+B5R_T224W_allowed = ['T201.W', 'T203.W', 'T205.W', 'T352.W']
+B5R_T351R_allowed = ['T201.W', 'T202.W']
+B5R_T352W_allowed = ['T208.R', 'T210.R']
+
+B5W_T201W_allowed = ['T217.W', 'T205.W', 'T224.W', 'T352.W']
+B5W_T202W_allowed = ['T210.R']
+B5W_T217W_allowed = ['T218.R']
+B5W_T218R_allowed = ['T217.W', 'T205.W', 'T224.W', 'T352.W']
+B5W_T205W_allowed = ['T206.W', 'T224.W', 'T352.W']
+B5W_T206W_allowed = ['T217.W', 'T205.W']
+B5W_T210R_allowed = ['T201.W', 'T202.W']
+B5W_T224W_allowed = ['T201.W', 'T217.W', 'T205.W', 'T352.W']
+B5W_T351W_allowed = ['T201.W']
+B5W_T352W_allowed = ['T208.R', 'T210.R']
+
+F4R_T505R_allowed = ['T201.W', 'T202.W']
+F4R_T201W_allowed = ['T203.W', 'T222.W']
+F4R_T202W_allowed = ['T210.R']
+F4R_T203W_allowed = ['T204.R']
+F4R_T204R_allowed = ['T203.W', 'T222.W']
+F4R_T210R_allowed = ['T201.W', 'T202.W']
+F4R_T222W_allowed = ['T208.R', 'T210.R']
+
+F4W_T505W_allowed = ['T201.W']
+F4W_T201W_allowed = ['T217.W', 'T222.W']
+F4W_T202W_allowed = ['T210.R']
+F4W_T217W_allowed = ['T218.R']
+F4W_T218R_allowed = ['T217.W', 'T222.W']
+F4W_T210R_allowed = ['T201.W', 'T202.W']
+F4W_T222W_allowed = ['T208.R', 'T210.R']
+
+F5R_T501R_allowed = ['T201.W', 'T202.W']
+F5R_T201W_allowed = ['T203.W', 'T222.W']
+F5R_T202W_allowed = ['T210.R']
+F5R_T203W_allowed = ['T204.R']
+F5R_T204R_allowed = ['T203.W', 'T222.W']
+F5R_T210R_allowed = ['T201.W', 'T202.W']
+F5R_T222W_allowed = ['T208.R', 'T210.R']
+
+F5W_T501W_allowed = ['T201.W']
+F5W_T201W_allowed = ['T217.W', 'T222.W']
+F5W_T202W_allowed = ['T210.R']
+F5W_T217W_allowed = ['T218.R']
+F5W_T218R_allowed = ['T217.W', 'T222.W']
+F5W_T210R_allowed = ['T201.W', 'T202.W']
+F5W_T222W_allowed = ['T208.R', 'T210.R']
+
+G1R_T551R_allowed = ['T201.W', 'T202.W']
+G1R_T201W_allowed = ['T203.W', 'T222.W']
+G1R_T202W_allowed = ['T210.R']
+G1R_T203W_allowed = ['T204.R']
+G1R_T204R_allowed = ['T203.W', 'T222.W']
+G1R_T210R_allowed = ['T201.W', 'T202.W']
+G1R_T222W_allowed = ['T208.R', 'T210.R']
+
+G1W_T551W_allowed = ['T201.W']
+G1W_T201W_allowed = ['T217.W', 'T222.W']
+G1W_T202W_allowed = ['T210.R']
+G1W_T217W_allowed = ['T218.R']
+G1W_T218R_allowed = ['T217.W', 'T222.W']
+G1W_T210R_allowed = ['T201.W', 'T202.W']
+G1W_T222W_allowed = ['T208.R', 'T210.R']
 
 #TEST_CASE_SEQUENCE = ['T321.R'] # SUBMITTED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T201.W'] #ACCEPTED
@@ -155,6 +242,55 @@ D8360 = ['GSSFAILURE', 'OTHER', 'NONE'] #F5 T501.R/W Compensation Claimed
 
 def generate_test_case(loop_times):
     new_filename = ''
+    # ASK USER WHICH TEST CASE HE/SHE WANTS
+    TEST_CASE_SEQUENCE = []
+    available_processes = ""
+    for b in range(len(PROCESSES)):
+        available_processes = available_processes + "{:2}".format(b+1) + " " + PROCESSES[b] + "\n"
+    chosen_process = input("Choose process - available are: \n" + available_processes + "\n")
+    #ask user to choose process among aviailable
+    while int(chosen_process) not in range(len(PROCESSES)+1):
+            chosen_process = input("You can only choose from available processes: \n" + available_processes + "\nChoose process:")
+    chosen_proc = int(chosen_process)
+    print("\nYour choice: " + str(PROCESSES[chosen_proc-1])) 
+    # check which process starts with which transaction
+    print("We will start with " + str(PROC_START_TRANS.get(PROCESSES[chosen_proc-1])))
+    chosen_transaction = PROC_START_TRANS.get(PROCESSES[chosen_proc-1])
+    #append initiating transaction to the TEST_CASE_SEQUENCE
+    TEST_CASE_SEQUENCE.append(PROC_START_TRANS.get(PROCESSES[chosen_proc-1]))
+    more_transactions = input("I will generate test case with transaction " + PROC_START_TRANS.get(PROCESSES[chosen_proc-1]) + " - do you want to add more transactions? Y/N\n")
+    while more_transactions not in ('Y', 'N'):
+        more_transactions = input("You can only choose [Y]es or [N]o. Do you want to add more transactions? Y/N\n")
+    if more_transactions =='N':
+        print("Generating a test case, thank you. Bye!")
+    if more_transactions == 'Y':
+        while more_transactions == 'Y':
+            #depending on the process chosen, check available transactions after initiating transaction i.e. for C1R = C1R_T321R_allowed = ['T201.W', 'T202.W']      
+            next_transactions = globals()[PROCESSES[chosen_proc-1] + '_' + chosen_transaction.replace('.', '') + '_allowed']
+            print("\nAvailable transactions are:")
+            for i in range(len(next_transactions)):
+                print(str(i+1) + " " + str(next_transactions[i]))  
+            print('\n')
+            next_transaction = input("Which transaction you want next?\n")
+            next_tran = int(next_transaction)
+            # while next_tran not in range(len(next_transactions)):
+            #     next_tran = input("Choose correct transaction number\n")               
+            print("Your choice: " + str(next_transactions[next_tran-1])) 
+            TEST_CASE_SEQUENCE.append(next_transactions[next_tran-1])
+            if str(next_transactions[next_tran-1]) == 'T208.R':
+                print("\nTest case sequence:")
+                print(TEST_CASE_SEQUENCE)
+                print("\nT208.R was the last transaction. Generating a test case, thank you. Bye!")
+                break
+            print("\nTest case sequence:")
+            print(TEST_CASE_SEQUENCE)
+            chosen_transaction = next_transactions[next_tran-1]
+            more_transactions = input("Do you want to add more transactions? Y/N\n")
+            while more_transactions != 'Y' and more_transactions != 'N':
+                more_transactions = input("You can only choose [Y]es or [N]o. Do you want to add more transactions? Y/N\n")
+            if more_transactions =='N':
+                print("Generating a test case, thank you. Bye!")     
+
     for a in range(loop_times):
         # assign random SPID, METER_MNF, METER_SERIAL to variables - use EXCEL or SPIDS_METERS static dictionary
         SPID, METER_MNF, METER_SER = pick_spid_meter()
@@ -306,37 +442,7 @@ def generate_test_case(loop_times):
         T551W_data_items = [# basic data
                             SPID, 'DPID_' + RANDOM_STRING, '[today-' + str(random.randint(0, 7))  +']', fake.paragraph(nb_sentences=1), '', fake.paragraph(nb_sentences=1), '[today]'      # [today - 0] = [today]!!!
                            ]
-        
-        # ASK USER WHICH TEST CASE HE/SHE WANTS
-        available_processes = ""
-        for b in range(len(PROCESSES)):
-            available_processes = available_processes + "{:2}".format(b+1) + " " + PROCESSES[b] + "\n"
-        chosen_process = input("Choose process - available are: \n" + available_processes + "\n")
-        if chosen_process == 'C1R':
-            print("\nYour choice: C1R") 
-        chosen_transaction = 'T321.R'
-        TEST_CASE_SEQUENCE = ['T321.R']
-        more_transactions = input("I will generate test case with transaction T321.R - do you want to add more transactions? Y/N\n")
-        if more_transactions == 'Y':
-            while more_transactions == 'Y':       
-                next_transactions = globals()['C1R_' + chosen_transaction.replace('.', '') + '_allowed']
-                print("\nAvailable transactions are:")
-                for i in range(len(next_transactions)):
-                    print(str(i+1) + " " + str(next_transactions[i]))  
-                print('\n')
-                next_transaction = input("Which transaction you want next?\n")
-                next_tran = int(next_transaction)
-                print("Your choice: " + str(next_transactions[next_tran-1])) 
-                TEST_CASE_SEQUENCE.append(next_transactions[next_tran-1])
-                print("\nTest case sequence:")
-                print(TEST_CASE_SEQUENCE)
-                chosen_transaction = next_transactions[next_tran-1]
-                more_transactions = input("Do you want to add more transactions? Y/N\n")
-                while more_transactions != 'Y' and more_transactions != 'N':
-                    more_transactions = input("You can only choose [Y]es or [N]o. Do you want to add more transactions? Y/N\n")
-                if more_transactions =='N':
-                    print("Generating a test case, thank you. Bye!")                                              
-        #
+      #
         
         TEST_CASE_LENGTH = len(TEST_CASE_SEQUENCE)
         #gererate test case sequence in Excel file       

@@ -30,7 +30,7 @@ C1R_T325R_allowed = ['T203.W', 'T323.W']
 c1w_transactions = ['T201.W', 'T202.W', 'T205.W', 'T206.W', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T211.W', 'T212.W',
                     'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T217.W', 'T218.R', 'T321.W', 'T322.W', 'T323.W', 'T324.R', 'T325.R']
 
-C1W_T201W_allowed = ['T203.W', 'T205.W', 'T322.W', 'T323.W']
+C1W_T201W_allowed = ['T217.W', 'T205.W', 'T322.W', 'T323.W']
 C1W_T202W_allowed = ['T210.R']
 C1W_T217W_allowed = ['T218.R']
 C1W_T218R_allowed = ['T217.W', 'T205.W', 'T322.W', 'T323.W']
