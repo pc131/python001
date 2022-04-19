@@ -19,7 +19,24 @@ ws12 = wb1.worksheets[1]
 
 RETAILER = 'MOSLTEST-R'
 WHOLESALER = 'MOSLTEST-W'
+PROCESSES = ['C1R', 'C1W', 'B5R', 'B5W', 'F4R', 'F4W', 'F5R', 'F5W', 'G1R', 'G1W']
 T216_URL = 'https://moservicesdev.mosl.co.uk/test/attachments/87ffc85e-ebd5-461c-99d6-2ac3eef43f7c'
+
+C1R_TRANSACTIONS = ['T201.W', 'T202.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T212.W', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T321.R', 'T322.W', 'T323.W', 'T324.R', 'T325.R']
+
+C1R_T201W_allowed = ['T203.W', 'T205.W', 'T322.W', 'T323.W']
+C1R_T202W_allowed = ['T210.R']
+C1R_T203W_allowed = ['T204.R']
+C1R_T204R_allowed = ['T203.W', 'T205.W', 'T322.W', 'T323.W']
+C1R_T205W_allowed = ['T206.W', 'T212.W', 'T322.W', 'T323.W']
+C1R_T206W_allowed = ['T203.W', 'T205.W']
+C1R_T210R_allowed = ['T201.W', 'T202.W']
+C1R_T212W_allowed = ['T203.W', 'T323.W']
+C1R_T321R_allowed = ['T201.W', 'T202.W']
+C1R_T322W_allowed = ['T208.R', 'T210.R']
+C1R_T323W_allowed = ['T324.R', 'T325.R']
+C1R_T324R_allowed = ['T203.W', 'T205.W', 'T322.W']
+C1R_T325R_allowed = ['T203.W', 'T323.W']
 
 #TEST_CASE_SEQUENCE = ['T321.R'] # SUBMITTED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T201.W'] #ACCEPTED
@@ -289,6 +306,36 @@ def generate_test_case(loop_times):
         T551W_data_items = [# basic data
                             SPID, 'DPID_' + RANDOM_STRING, '[today-' + str(random.randint(0, 7))  +']', fake.paragraph(nb_sentences=1), '', fake.paragraph(nb_sentences=1), '[today]'      # [today - 0] = [today]!!!
                            ]
+        
+        # ASK USER WHICH TEST CASE HE/SHE WANTS
+        available_processes = ""
+        for b in range(len(PROCESSES)):
+            available_processes = available_processes + "{:2}".format(b+1) + " " + PROCESSES[b] + "\n"
+        chosen_process = input("Choose process - available are: \n" + available_processes + "\n")
+        if chosen_process == 'C1R':
+            print("\nYour choice: C1R") 
+        chosen_transaction = 'T321.R'
+        TEST_CASE_SEQUENCE = ['T321.R']
+        more_transactions = input("I will generate test case with transaction T321.R - do you want to add more transactions? Y/N\n")
+        while more_transactions == 'Y':       
+            next_transactions = globals()['C1R_' + chosen_transaction.replace('.', '') + '_allowed']
+            print("\nAvailable transactions are:")
+            for i in range(len(next_transactions)):
+                print(str(i+1) + " " + str(next_transactions[i]))  
+            print('\n')
+            next_transaction = input("Which transaction you want next?\n")
+            next_tran = int(next_transaction)
+            print("Your choice: " + str(next_transactions[next_tran-1])) 
+            TEST_CASE_SEQUENCE.append(next_transactions[next_tran-1])
+            print("\nTest case sequence:")
+            print(TEST_CASE_SEQUENCE)
+            chosen_transaction = next_transactions[next_tran-1]
+            more_transactions = input("Do you want to add more transactions? Y/N\n")
+            if more_transactions =='N':
+                print("Generating a test case, thank you. Bye!")                                              
+        #
+        
+        TEST_CASE_LENGTH = len(TEST_CASE_SEQUENCE)
         #gererate test case sequence in Excel file       
         for i in range(TEST_CASE_LENGTH):
             # build file name based on transactions chain. i.e. T321R_T201W_T322W....
@@ -464,5 +511,6 @@ def generate_test_case(loop_times):
     wb1.save(filename = test_cases_folder + '\\' + new_filename.replace('.','') + '.xlsx')
 
 # loop_times repeats test case sequence in the excel file
-max_loop = int (100/TEST_CASE_LENGTH)
+# max_loop = int (100/TEST_CASE_LENGTH)
+max_loop = 1
 generate_test_case(max_loop)
