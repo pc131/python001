@@ -248,7 +248,7 @@ def generate_test_case(loop_times):
     for b in range(len(PROCESSES)):
         available_processes = available_processes + "{:2}".format(b+1) + " " + PROCESSES[b] + "\n"
     chosen_process = input("Choose process - available are: \n" + available_processes + "\n")
-    #ask user to choose process among aviailable
+    #ask user to choose process among aviailable counting from 1 range(1, len(PROCESSES)+1) - list is counted from 0!
     while int(chosen_process) not in range(1, len(PROCESSES)+1):
             chosen_process = input("You can only choose from available processes: \n" + available_processes + "\nChoose process:")
     chosen_proc = int(chosen_process)
@@ -273,7 +273,7 @@ def generate_test_case(loop_times):
             print('\n')
             next_transaction = input("Which transaction you want next?\n")
             next_tran = int(next_transaction)
-            # while next_tran not in range(len(next_transactions)):
+            # while next_tran not in range(len(next_transactions)): ## try adding IF BEFORE
             #     next_tran = input("Choose correct transaction number\n")               
             print("Your choice: " + str(next_transactions[next_tran-1])) 
             TEST_CASE_SEQUENCE.append(next_transactions[next_tran-1])
