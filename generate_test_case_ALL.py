@@ -20,13 +20,15 @@ ws12 = wb1.worksheets[1]
 
 RETAILER = 'MOSLTEST-R'
 WHOLESALER = 'MOSLTEST-W'
-PROCESSES = ['C1R', 'C1W', 'B5R', 'B5W', 'F4R', 'F4W', 'F5R', 'F5W', 'G1R', 'G1W']
+PROCESSES = ['C1R', 'C1W', 'B1R', 'B3R', 'B3W', 'B5R', 'B5W', 'B7R', 'F4R', 'F4W', 'F5R', 'F5W', 'G1R', 'G1W']
 T216_URL = 'https://moservicesdev.mosl.co.uk/test/attachments/87ffc85e-ebd5-461c-99d6-2ac3eef43f7c'
 new_filename = ''
 
 PROC_NAMES = {'B1R':'Request Meter Install Work', 'B3R':'Request Meter Accuracy Test', 'B3W':'Request Meter Accuracy Test', 'B5R':'Request Meter Repair Replacement Work', 'B5W':'Request Meter Repair Replacement Work', 'B7R':'Request Meter Change', 'C1R':'Request Meter And Supply Arrangement Verification', 'C1W':'Request Meter And Supply Arrangement Verification', 'F4R':'Submit Non-Household Customer Enquiry', 'F4W':'Submit Non-Household Customer Enquiry', 'F5R':'Submit Non-Household Customer Complaint', 'F5W':'Submit Non-Household Customer Complaint', 'G1R':'Submit Non-Household Customer TE Enquiry', 'G1W':'Submit Non-Household Customer TE Enquiry'}
 TRANSACTION_NAMES = {'T201.W':'Accept Service Request', 'T202.W':'Reject Service Request', 'T203.W':'Request For Additional Information', 'T204.R':'Provide Additional Information', 'T205.W':'Update Site Visit Date', 'T206.W':'Update Site Visit Failure', 'T207.R':'Submit Trading Party Comments', 'T207.W':'Submit Trading Party Comments', 'T208.R':'Close Service Request', 'T210.R':'Resubmit Service Request', 'T211.R':'Cancel Service Request', 'T211.W':'Cancel Service Request', 'T212.W':'Visit Complete And Preparing Plan', 'T213.W':'Start Service Request Deferral', 'T214.W':'End Service Request Deferral', 'T215.R':'Provide Attachment', 'T215.W':'Provide Attachment', 'T216.R':'Request Attachment', 'T216.W':'Request Attachment', 'T217.W':'Request For Customer Details and Additional Information', 'T218.R':'Provide Customer Details and Additional Information', 'T220.W':'Provide Quote For Non Standard Activity', 'T221.R':'Accept Quote For Non Standard Activity', 'T222.W':'Advise Service Request Complete', 'T223.W':'Advise Meter Work Completion', 'T224.W':'Advise Process Delay', 'T321.R':'Request Meter And Supply Arrangement Verification', 'T321.W':'Request Meter And Supply Arrangement Verification', 'T322.W':'Update Corrections Complete for C1', 'T323.W':'Propose Corrections Plan for C1', 'T324.R':'Agree Proposed Corrections Plan for C1', 'T325.R':'Dispute Proposed Corrections Plan for C1', 'T351.R':'Request Meter Repair Replacement Work', 'T351.W':'Request Meter Repair Replacement Work', 'T352.W':'Advise Meter Repair Replacement Work Completion', 'T353.R':'Request Meter Install Work', 'T355.R':'Request Meter Accuracy Test', 'T355.W':'Request Meter Accuracy Test', 'T356.W':'Advise Meter Accuracy Test Complete', 'T357.W':'Awaiting Meter Accuracy Test', 'T365.R':'Request Meter Change', 'T501.R':'Submit Non Household Customer Complaint', 'T501.W':'Submit Non Household Customer Complaint', 'T505.R':'Submit Non Household Customer Enquiry', 'T505.W':'Submit Non Household Customer Enquiry', 'T551.R':'Submit Non Household Customer TE Enquiry', 'T551.W':'Submit Non Household Customer TE Enquiry'}
-PROC_START_TRANS = {'C1R': 'T321.R', 'C1W': 'T321.W', 'B5R': 'T351.R', 'B5W': 'T351.W', 'F4R': 'T505.R', 'F4W': 'T505.W', 'F5R': 'T501.R', 'F5W': 'T501.W', 'G1R': 'T551.R', 'G1W': 'T551.W'}
+
+#DEFINE STARTING TRANSACTONS FOR PROCESSES
+PROC_START_TRANS = {'C1R': 'T321.R', 'C1W': 'T321.W', 'B1R': 'T353.R', 'B3R': 'T355.R', 'B3W': 'T355.W', 'B5R': 'T351.R', 'B5W': 'T351.W', 'B7R': 'T365.R', 'F4R': 'T505.R', 'F4W': 'T505.W', 'F5R': 'T501.R', 'F5W': 'T501.W', 'G1R': 'T551.R', 'G1W': 'T551.W'}
 
 C1R_TRANSACTIONS = ['T201.W', 'T202.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T212.W', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T321.R', 'T322.W', 'T323.W', 'T324.R', 'T325.R']
 
@@ -68,6 +70,60 @@ B5R_T210R_allowed = ['T201.W', 'T202.W']
 B5R_T224W_allowed = ['T201.W', 'T203.W', 'T205.W', 'T352.W']
 B5R_T351R_allowed = ['T201.W', 'T202.W']
 B5R_T352W_allowed = ['T208.R', 'T210.R']
+
+B1R_T353R_allowed = ['T201.W', 'T202.W']
+B1R_T201W_allowed = ['T203.W', 'T205.W', 'T220.W', 'T224.W', 'T223.W']
+B1R_T202W_allowed = ['T210.R']
+B1R_T203W_allowed = ['T204.R']
+B1R_T204R_allowed = ['T203.W', 'T205.W', 'T220.W', 'T224.W', 'T223.W']
+B1R_T205W_allowed = ['T206.W', 'T220.W', 'T224.W', 'T223.W']
+B1R_T206W_allowed = ['T203.W', 'T205.W']
+B1R_T210R_allowed = ['T201.W', 'T202.W']
+B1R_T220W_allowed = ['T210.R', 'T221.R']
+B1R_T221R_allowed = ['T205.W', 'T224.W', 'T223.W']
+B1R_T224W_allowed = ['T203.W', 'T205.W', 'T220.W', 'T223.W']
+B1R_T223W_allowed = ['T208.R', 'T210.R']
+
+B3R_T355R_allowed = ['T201.W', 'T202.W']
+B3R_T201W_allowed = ['T203.W', 'T205.W', 'T220.W', 'T224.W', 'T356.W']
+B3R_T202W_allowed = ['T210.R']
+B3R_T203W_allowed = ['T204.R']
+B3R_T204R_allowed = ['T203.W', 'T205.W', 'T220.W', 'T224.W', 'T356.W']
+B3R_T205W_allowed = ['T206.W', 'T220.W', 'T224.W', 'T357.W', 'T356.W']
+B3R_T206W_allowed = ['T203.W', 'T205.W']
+B3R_T210R_allowed = ['T201.W', 'T202.W']
+B3R_T220W_allowed = ['T210.R', 'T221.R']
+B3R_T221R_allowed = ['T205.W', 'T224.W', 'T356.W']
+B3R_T224W_allowed = ['T203.W', 'T205.W', 'T220.W', 'T356.W']
+B3R_T357W_allowed = ['T356.W']
+B3R_T356W_allowed = ['T208.R', 'T210.R']
+
+B3W_T355W_allowed = ['T201.W']
+B3W_T201W_allowed = ['T217.W', 'T205.W', 'T220.W', 'T224.W', 'T356.W']
+B3W_T202W_allowed = ['T210.R']
+B3W_T217W_allowed = ['T218.R']
+B3W_T218R_allowed = ['T217.W', 'T205.W', 'T220.W', 'T224.W', 'T356.W']
+B3W_T205W_allowed = ['T206.W', 'T220.W', 'T224.W', 'T357.W', 'T356.W']
+B3W_T206W_allowed = ['T217.W', 'T205.W']
+B3W_T210R_allowed = ['T201.W', 'T202.W']
+B3W_T220W_allowed = ['T210.R', 'T221.R']
+B3W_T221R_allowed = ['T205.W', 'T224.W', 'T356.W']
+B3W_T224W_allowed = ['T217.W', 'T205.W', 'T220.W', 'T356.W']
+B3W_T357W_allowed = ['T356.W']
+B3W_T356W_allowed = ['T208.R', 'T210.R']
+
+B7R_T365R_allowed = ['T201.W', 'T202.W']
+B7R_T201W_allowed = ['T203.W', 'T205.W', 'T220.W', 'T224.W', 'T223.W']
+B7R_T202W_allowed = ['T210.R']
+B7R_T203W_allowed = ['T204.R']
+B7R_T204R_allowed = ['T203.W', 'T205.W', 'T220.W', 'T224.W', 'T223.W']
+B7R_T205W_allowed = ['T206.W', 'T220.W', 'T224.W', 'T223.W']
+B7R_T206W_allowed = ['T203.W', 'T205.W']
+B7R_T210R_allowed = ['T201.W', 'T202.W']
+B7R_T220W_allowed = ['T210.R', 'T221.R']
+B7R_T221R_allowed = ['T205.W', 'T224.W', 'T223.W']
+B7R_T224W_allowed = ['T203.W', 'T205.W', 'T220.W', 'T223.W']
+B7R_T223W_allowed = ['T208.R', 'T210.R']
 
 B5W_T201W_allowed = ['T217.W', 'T205.W', 'T224.W', 'T352.W']
 B5W_T202W_allowed = ['T210.R']
@@ -166,7 +222,7 @@ def pick_spid_meter():
     return spid, meter_mnf, meter_ser
 
 def random_email():
-    return ''.join(random.choice(string.ascii_letters) for _ in range(10)) + '@bilats.test.uk'
+    return fake.company_email()
 
 def random_string():
     return ''.join(random.choice(string.ascii_letters) for _ in range(15))
@@ -221,6 +277,17 @@ D8237 = ['AM', 'PM', 'BOTH'] # T321.R T321.W
 D8242 = ['METER', 'SUPPLY', 'BOTH'] # T321.R T321.W
 D8262 = ['ACCEPT', 'REJECT'] # T321.R T321.W
 D8242 = ['PDF', 'JPG', 'PNG'] # T215.R T215.W
+D3025 = ['I', 'O']
+
+#B1 #B7
+D8327 = ['NEWINSTALL', 'CHGNEW', 'LOCCHGNEW', 'LOCCHGEXG', 'UNFEASIBLE'] # B1 B7 COMPLETED T223.W -> Meter Work Complete Code
+
+#B3
+D8346 = ['INSIDE', 'OUTSIDE', 'UNKNOWN'] # T353.R Meter Location Code
+D8348 = ['OVERRECORD', 'UNDERRECORD', 'OTHER'] # T353.R Meter Location Code
+D8367 = ['AFTEREXCHG', 'ALREADYTESTSED', 'INSITUTESTED']
+D8368 = ['WITHIN', 'OUTSIDE']
+D8369 = ['1', '0']
 
 #B5
 D8227 = ['PARTS', 'STREETWORKS', 'THIRDPARTY', 'CUSTCONFRM', 'PREPWORK', 'OTHER'] # T224.W Delay Reason Code - B5R B5W - Advise Process Delay
@@ -230,6 +297,9 @@ D8335 = ['STD', 'NONSTD'] # T351.R T351.W Meter Model
 D8337 = D8838 = D8839 = ['STOPPED', 'BACKWARD', 'SLOWED', 'BURRIED', 'CONDENS', 'ELECT', 'BURST', 'SMASHED', 'REMOVED', 'NONMETER', 'OTHER'] # T351.R T351.W Meter Fault
 D8330 = ['0', '1'] #T351.R T351.W Meter Fault address same as CMOS
 D8341 = ['REPLACED', 'REPAIRED', 'NOUPDATE', 'NOFAULT', 'NONMETER', 'UPDATE'] # T352.W Complete Reason Code
+
+#B7
+D8326 = ['CHGTYPE', 'CGHSSIZE', 'CGHLSIZE', 'CHGLOC'] # B7 T365.R Request Meter Change -> Meter Work Request Type
 
 #F4
 D8364 = ['DWENQUIRY', 'OTHERENQUIRY'] # F4 T505.R Request Type
@@ -241,8 +311,7 @@ D8356 = ['FIRST', 'FURTHER', 'CCWLEVEL', 'ADR', 'OTHER'] #F5 T501.R/W Complaint 
 D8358 = ['ADMINISTRATION', 'METERINGASSET', 'BILLING', 'WATER', 'SEWERAGE', 'OTHER'] #F5 T501.R/W Complaint Category
 D8360 = ['GSSFAILURE', 'OTHER', 'NONE'] #F5 T501.R/W Compensation Claimed
 
-#D8326 = ['CHGTYPE', 'CGHSSIZE', 'CGHLSIZE', 'CHGLOC'] # B7 T365.R Request Meter Change -> Meter Work Request Type
-#D8327 = ['NEWINSTALL', 'CHGNEW', 'LOCCHGNEW', 'LOCCHGEXG', 'UNFEASIBLE'] # B1 B7 COMPLETED T223.W -> Meter Work Complete Code
+
 
 def generate_test_case(loop_times):
 
@@ -282,7 +351,7 @@ def generate_test_case(loop_times):
 
             #allow user to choose only valid transactions - check if user inpur is digit and it is from allowed range
             while ((not next_transaction.isdigit()) or (int(next_transaction) not in range(1, len(next_transactions)+1))):
-                    next_transaction = input("You can only choose from available transactions \n" + next_transactions1  + "\nChoose transaction:")
+                    next_transaction = input("You can only choose from available transactions \n" + next_transactions1  + "\nChoose transaction: ")
             next_tran = int(next_transaction)
 
             print("Your choice: " + str(next_transactions[next_tran-1])) 
@@ -306,7 +375,6 @@ def generate_test_case(loop_times):
     for a in range(loop_times):
         # assign random SPID, METER_MNF, METER_SERIAL to variables - use EXCEL or SPIDS_METERS static dictionary
         SPID, METER_MNF, METER_SER = pick_spid_meter()
-        #SPID, METER_MNF, METER_SER = pick_spid_meter_xlsx()
         CUST_EMAIL = random_email()
         RET_EMAIL = random_email()
         RANDOM_STRING = random_string()
@@ -386,9 +454,18 @@ def generate_test_case(loop_times):
                              '1', CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', 
                              random.choice(D8237),  RANDOM_STRING, random.choice(D2005), RANDOM_STRING,RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', 
                              RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL, 'CUSTINFOPROVD']
+        T220W_data_items = ['[orid]', fake.paragraph(nb_sentences=1)]
+        T221R_data_items = ['[orid]', fake.paragraph(nb_sentences=1)]
         T222W_data_items = [# basic data
-                            '[orid]', 'FOLLOWON', fake.paragraph(nb_sentences=1), fake.paragraph(nb_sentences=1), '[today+' + str(random.randint(0, 10))  +']','1', '', '', fake.paragraph(nb_sentences=1)
-                            ] # CANNOT USE D8352 = 'FOLLOWON' because it then is depenent on other items in T222.W
+                            '[orid]', random.choice(D8327), fake.paragraph(nb_sentences=1), random.randint(100, 1000), '[today-' + str(random.randint(2, 30))  +']', random.randint(5, 15), random.randint(2, 6), RANDOM_GISX, RANDOM_GISY, 
+                            #meter work copletion data
+                            RANDOM_METER_SER, RANDOM_METER_MNF, random.randint(100, 1000), '[today-' + str(random.randint(2, 30))  +']', random.randint(5, 15), random.randint(2, 6), RANDOM_GISX, RANDOM_GISY, random.choice(D3025), RANDOM_METER_LOC, OUTR_RANDOM_GISX, OUTR_RANDOM_GISY, random.choice(D3025), RANDOM_OUTRE_LOC, RANDOM_STRING, RANDOM_STRING, RANDOM_ADDRESS1, RANDOM_ADDRESS2, RANDOM_ADDRESS3, RANDOM_ADDRESS4, RANDOM_ADDRESS5, random.choice(POSTCODES), random.randint(1, 99999999)
+                            ]
+        T223W_data_items = [# basic data
+                            '[orid]', random.choice(D8327), fake.paragraph(nb_sentences=1),
+                            #meter work copletion data
+                            RANDOM_METER_SER, RANDOM_METER_MNF, random.randint(100, 1000), '[today-' + str(random.randint(2, 30))  +']', random.randint(5, 15), random.randint(2, 6), RANDOM_GISX, RANDOM_GISY, random.choice(D3025), RANDOM_METER_LOC, OUTR_RANDOM_GISX, OUTR_RANDOM_GISY, random.choice(D3025), RANDOM_OUTRE_LOC, RANDOM_STRING, RANDOM_STRING, RANDOM_ADDRESS1, RANDOM_ADDRESS2, RANDOM_ADDRESS3, RANDOM_ADDRESS4, RANDOM_ADDRESS5, random.choice(POSTCODES), random.randint(1, 99999999)
+                            ] 
         T224W_data_items = ['[orid]', random.choice(D8227), 'PROCDELAY_' + RANDOM_STRING]
         T323W_data_items = ['[orid]', 'ABLE', TIME_NOT_WEEKEND, '0', '1', DATE_NOT_WEEKEND, 'PLANPROP']
         T324R_data_items = ['[orid]', 'PLANAGREED']
@@ -427,8 +504,47 @@ def generate_test_case(loop_times):
                             METER_MNF, METER_SER, RANDOM_METER_MNF, RANDOM_METER_SER, '120', '[today]', '1', '12', '1', '5', '1', RANDOM_GISX, '1', RANDOM_GISY, '1', 'I', '1', RANDOM_METER_LOC,
                             '1', OUTR_RANDOM_GISX, '1', OUTR_RANDOM_GISY, '1', 'O', '1', RANDOM_OUTRE_LOC, 'UPDATED_METER_T352W',
                             ]
+        T353R_data_items = [# basic data
+                            SPID, 'RET_' + RANDOM_STRING, '', '1', '[today]', 
+                            # customer and retailer data
+                            '1', CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', random.choice(D8237),
+                            RANDOM_STRING, random.choice(D2005), RANDOM_STRING, RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL,
+                            # install meter details
+                            '1', RANDOM_STRING, RANDOM_STRING,  RANDOM_ADDRESS1, RANDOM_ADDRESS2, RANDOM_ADDRESS3, RANDOM_ADDRESS4, RANDOM_ADDRESS5, random.choice(POSTCODES), random.randint(1, 99999999), random.randint(10, 30), random.choice(D8335), 'METER_' + RANDOM_STRING, random.choice(D8346), fake.paragraph(nb_sentences=1), fake.paragraph(nb_sentences=1)
+                            ]
+        T355R_data_items = [# basic data
+                            SPID, 'RET_' + RANDOM_STRING, '', '1', '[today]', 
+                            # customer and retailer data
+                            '1', CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', random.choice(D8237),
+                            RANDOM_STRING, random.choice(D2005), RANDOM_STRING, RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL,
+                            # request accuracy meter details
+                            METER_MNF, METER_SER, '1', RANDOM_STRING, RANDOM_STRING, RANDOM_ADDRESS1, RANDOM_ADDRESS2, RANDOM_ADDRESS3, RANDOM_ADDRESS4, RANDOM_ADDRESS5, random.choice(POSTCODES), random.randint(1, 99999999), '0', '', '1', 'NOTREMOVED', '[today+' + str(random.randint(1, 15))  +']', random.choice(D8335), 'METER_' + RANDOM_STRING, random.choice(D8348), '', fake.paragraph(nb_sentences=1)
+                            ]
+        T355W_data_items = [# basic data
+                            SPID, '', '[today]', 
+                            # request accuracy meter details
+                            METER_MNF, METER_SER, '1', RANDOM_STRING, RANDOM_STRING, RANDOM_ADDRESS1, RANDOM_ADDRESS2, RANDOM_ADDRESS3, RANDOM_ADDRESS4, RANDOM_ADDRESS5, random.choice(POSTCODES), random.randint(1, 99999999), '0', '', '1', 'NOTREMOVED', '[today+' + str(random.randint(1, 15))  +']', random.choice(D8335), 'METER_' + RANDOM_STRING, random.choice(D8348), '', fake.paragraph(nb_sentences=1)
+                            ]
+        T356W_data_items = [# basic data
+                            '[orid]',
+                            # rAwaiting Meter Accuracy Test data
+                            METER_MNF, METER_SER, random.choice(D8367), random.choice(D8368), '1', random.randint(100, 9999), random.randint(100, 9999), '[today-' + str(random.randint(1, 45))  +']', '1', '', fake.paragraph(nb_sentences=1)
+                            ]
+        T357W_data_items = [# basic data
+                            '[orid]',
+                            # rAwaiting Meter Accuracy Test data
+                            METER_MNF, METER_SER, RANDOM_METER_MNF, RANDOM_METER_SER, random.randint(100, 9999), '[today-' + str(random.randint(1, 45))  +']', '1', random.randint(3, 10), '1', random.randint(2, 6), '1', RANDOM_GISX, '1', RANDOM_GISY, '1', random.choice(D3025), '1', RANDOM_METER_LOC, '1', OUTR_RANDOM_GISX, '1', OUTR_RANDOM_GISY, '1', random.choice(D3025), '1', RANDOM_OUTRE_LOC, fake.paragraph(nb_sentences=1)
+                            ]
+        T365R_data_items = [# basic data
+                            SPID, 'RET_' + RANDOM_STRING, '', '1', '[today]', 
+                            # customer and retailer data
+                            '1', CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', random.choice(D8237),
+                            RANDOM_STRING, random.choice(D2005), RANDOM_STRING, RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL,
+                            # Meter Change details
+                            METER_MNF, METER_SER, '1', RANDOM_STRING, RANDOM_STRING,  RANDOM_ADDRESS1, RANDOM_ADDRESS2, RANDOM_ADDRESS3, RANDOM_ADDRESS4, RANDOM_ADDRESS5, random.choice(POSTCODES), random.randint(1, 99999999), '0', '', random.choice(D8332), '1', 'NOTREMOVED', '[today+' + str(random.randint(1, 15))  +']', random.choice(D8326), random.randint(10, 30), random.choice(D8335), 'METER_' + RANDOM_STRING, random.choice(D8346), fake.paragraph(nb_sentences=1), fake.paragraph(nb_sentences=1)
+                            ]
         T501R_data_items = [# basic data
-                            SPID, 'RET_' + RANDOM_STRING, '[today-' + str(random.randint(0, 7))  +']', fake.paragraph(nb_sentences=1), random.choice(D8356), RANDOM_STRING, random.choice(D8358), RANDOM_STRING,random.choice(D8360), RANDOM_STRING, '', '1', fake.paragraph(nb_sentences=1), '[today]', '1',       # [today - 0] = [today]!!!
+                            SPID, 'RET_' + RANDOM_STRING, '[today-' + str(random.randint(0, 7))  +']', fake.paragraph(nb_sentences=1), random.choice(D8356), RANDOM_STRING, random.choice(D8358), RANDOM_STRING,random.choice(D8360), RANDOM_STRING, '', '1', fake.paragraph(nb_sentences=1), '[today]', '1',
                             # customer and retailer data
                             CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', random.choice(D8237),
                             fake.paragraph(nb_sentences=1), random.choice(D2005), fake.paragraph(nb_sentences=1), RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL,
@@ -562,10 +678,22 @@ def generate_test_case(loop_times):
                     for k in range(len(T218R_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T218R_data_items[k]
+                case 'T220.W':
+                    for k in range(len(T220W_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T220W_data_items[k]
                 case 'T222.W':
                     for k in range(len(T222W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T222W_data_items[k]
+                case 'T221.R':
+                    for k in range(len(T221R_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T221R_data_items[k]
+                case 'T223.W':
+                    for k in range(len(T223W_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T223W_data_items[k]
                 case 'T224.W':
                     for k in range(len(T224W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
@@ -598,6 +726,30 @@ def generate_test_case(loop_times):
                     for k in range(len(T352W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T352W_data_items[k]
+                case 'T353.R':
+                    for k in range(len(T353R_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T353R_data_items[k]
+                case 'T355.R':
+                    for k in range(len(T355R_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T355R_data_items[k]
+                case 'T355.W':
+                    for k in range(len(T355W_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T355W_data_items[k]
+                case 'T356.W':
+                    for k in range(len(T356W_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T356W_data_items[k]
+                case 'T357.W':
+                    for k in range(len(T357W_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T357W_data_items[k]
+                case 'T365.R':
+                    for k in range(len(T365R_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T365R_data_items[k]
                 case 'T501.R':
                     for k in range(len(T501R_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +

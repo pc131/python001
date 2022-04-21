@@ -1,5 +1,5 @@
 #### prepare bilaterals most recent business_rules_file (line 22)
-#### prepare a valid test script with most recent template_excel_file (line 21) for transaction transaction_name (line 10)
+#### prepare a valid test script with most recent template_excel_file (line 11) for transaction transaction_name (line 10)
 #### test cases for business rules for given transaction will be generated as well as *.csv to import into azure and *.html with urls to execute tests
 
 import openpyxl as xl
@@ -7,7 +7,9 @@ import shutil
 import os
 
 working_dir = 'C:\\Users\\tomasz.skoczylas\\Downloads\\11\\'
-transaction_name = 'T353.R'
+transaction_name = 'T365.R'
+# EXCEL WITH CORRECT TRANSACTION
+source_test_case = working_dir + 'T365R.xlsx'
 transaction_name_simple=transaction_name[1:].replace('.', '')
 folder_suffix = '_RULES_TESTCASES'
 
@@ -18,12 +20,11 @@ if not os.path.exists(test_cases_folder):
 
 test_cases_csv = test_cases_folder + '\\IMPORT_T' + transaction_name_simple + '_INTO_AZURE.csv'
 urls_for_test_cases = test_cases_folder + '\\T' + transaction_name_simple + '_RULES_TESTCASES_URLS.html'
-template_excel_file = working_dir + 'Trancaction-1.xlsx' # template with correct transaction to populate
 business_rules_file = working_dir + 'MOSL-Bilaterals-Business-Rules_V0.9.3.xlsx'
 
 
 wb1 = xl.load_workbook(business_rules_file)
-ws12 = wb1.worksheets[1] # Error codes
+ws12 = wb1.worksheets[0] # Error codes - CHECK IF THIS IS CORRECT SHEET NUMBER!!
 
 #define dictionary to change description
 #substitute_list = [['must be', 'is not'], ['is mandatory', 'is not provided'], ['is not', 'is'], ['must not be', 'is'], ['is', 'is not']]
@@ -81,6 +82,10 @@ urls_file.write('<html>\n<head>\n</head>\n<body>\n')
 urls_file.write('<a href=\"https://bilateralhubtestharness-dev-as.azurewebsites.net/api/ExecuteTestCase?code=NbXUVu704AnFSJTiV1JYZ6gq7YCWBqJDxh//C0x/NBAUMnLGWN5uGg==&filename=TEST_SUITE_NAME/T207RW_MOSLTEST_MOSLTEST2.xlsx&format=JSON\" target=\"_blank\">T207RW_MOSLTEST_MOSLTEST2</a><br><br>\n')
 for x in range(0, number_of_business_rules):
     print(list_con_xxxx[x][0])
+    #GENERATE HTML URLS
     urls_file.write('<a href=\"https://bilateralhubtestharness-dev-as.azurewebsites.net/api/ExecuteTestCase?code=NbXUVu704AnFSJTiV1JYZ6gq7YCWBqJDxh//C0x/NBAUMnLGWN5uGg==&filename=TEST_SUITE_NAME/T' + transaction_name_simple + folder_suffix + '/TC-' + transaction_name_simple + '-' + list_con_xxxx[x][0]  + '.xlsx&format=JSON\" target=\"_blank\">TC-' + transaction_name_simple + '-' + list_con_xxxx[x][0]  + '</a><br><br>\n')
+    dest = test_cases_folder +'\\TC-' + transaction_name_simple + '-' + list_con_xxxx[x][0] + '.xlsx'
+    # COPY OVER THE XLSX FILES, NEXT WORK ON EVERY TEST CASE (OPEN AND EDIT) TO TRIGGER CORRESPONDING CON
+    shutil.copy(source_test_case, dest)
 urls_file.write('</body>\n<html>') 
 urls_file.close()

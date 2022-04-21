@@ -7,7 +7,7 @@ import string
 import names
 import sys
 
-working_dir = "C:\\Users\\skocz\\Downloads\\11\\"
+working_dir = "C:\\Users\\tomasz.skoczylas\\Downloads\\11\\"
 filename = working_dir + "Bilaterals 1.4.0.0 master.xlsx"
 wb1 = xl.load_workbook(filename)
 ws11 = wb1.worksheets[0]
@@ -19,7 +19,7 @@ WHOLESALER = 'MOSLTEST-W'
 REQUEST_TYPE = 'MEASURED'
 T216_URL = 'https://moservicesdev.mosl.co.uk/test/attachments/87ffc85e-ebd5-461c-99d6-2ac3eef43f7c'
 
-#TEST_CASE_SEQUENCE = ['T321.R'] # SUBMITTED
+TEST_CASE_SEQUENCE = ['T321.R'] # SUBMITTED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T201.W'] #ACCEPTED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T211.R'] #CANCELLED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T202.W'] #REJECTED
@@ -31,7 +31,7 @@ T216_URL = 'https://moservicesdev.mosl.co.uk/test/attachments/87ffc85e-ebd5-461c
 #TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T322.W'] # COMPLETED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T323.W'] #PLANPROP -> PLANAGREED BY HUB
 #TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T203.W', 'T204.R', 'T323.W'] # INFOPROVD -> PLANPROP -> PLANAGREED BY HUB
-TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W', 'T205.W', 'T323.W', 'T324.R', 'T322.W', 'T208.R'] #CLOSED
+#TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W', 'T205.W', 'T323.W', 'T324.R', 'T322.W', 'T208.R'] #CLOSED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T321.R', 'T201.W', 'T321.R', 'T202.W', 'T321.R', 'T202.W', 'T210.R', 'T321.R', 'T201.W', 'T203.W', 'T321.R', 'T201.W', 'T322.W', 'T321.R', 'T201.W', 'T323.W']
 
 TEST_CASE_LENGTH = len(TEST_CASE_SEQUENCE)
@@ -412,9 +412,14 @@ def generate_test_case_C1R(type, loop_times):
             prefix = 'UNME_'
         case 'MISSING':
             prefix = 'MISS_'
-    if loop_times > 1:
-        suffix = '_X' + str(loop_times)
+    
+    # if loop_times > 1:
+    #     suffix = '_X' + str(loop_times)
+    # new_filename = '_'.join(TEST_CASE_SEQUENCE)
+    
+    suffix = '_X' + str(loop_times)
     new_filename = '_'.join(TEST_CASE_SEQUENCE)
+    
     
     test_cases_folder = working_dir + 'TEST_CASES'
     if not os.path.exists(test_cases_folder):
@@ -423,5 +428,6 @@ def generate_test_case_C1R(type, loop_times):
     wb1.save(filename = test_cases_folder + '\\' + prefix + new_filename.replace('.','') + suffix + '.xlsx')
 
 # loop_times repeats test case sequence in the excel file
-max_loop = int (100/TEST_CASE_LENGTH)
+#max_loop = int (100/TEST_CASE_LENGTH)
+max_loop = 1
 generate_test_case_C1R(REQUEST_TYPE, max_loop)
