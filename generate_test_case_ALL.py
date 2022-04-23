@@ -11,8 +11,8 @@ from faker import Faker
 from faker_biology.mol_biol import Enzyme
 
 
-# working_dir = "C:\\Users\\skocz\\Downloads\\11\\"
-working_dir = "C:\\Users\\tomasz.skoczylas\\Downloads\\11\\"
+working_dir = "C:\\Users\\skocz\\Downloads\\11\\"
+#working_dir = "C:\\Users\\tomasz.skoczylas\\Downloads\\11\\"
 filename = working_dir + "Bilaterals 1.4.0.0 master.xlsx"
 wb1 = xl.load_workbook(filename)
 ws11 = wb1.worksheets[0]
@@ -31,7 +31,6 @@ TRANSACTION_NAMES = {'T201.W':'Accept Service Request', 'T202.W':'Reject Service
 PROC_START_TRANS = {'C1R': 'T321.R', 'C1W': 'T321.W', 'B1R': 'T353.R', 'B3R': 'T355.R', 'B3W': 'T355.W', 'B5R': 'T351.R', 'B5W': 'T351.W', 'B7R': 'T365.R', 'F4R': 'T505.R', 'F4W': 'T505.W', 'F5R': 'T501.R', 'F5W': 'T501.W', 'G1R': 'T551.R', 'G1W': 'T551.W'}
 
 C1R_TRANSACTIONS = ['T201.W', 'T202.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T212.W', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T321.R', 'T322.W', 'T323.W', 'T324.R', 'T325.R']
-
 C1R_T201W_allowed = ['T203.W', 'T205.W', 'T322.W', 'T323.W']
 C1R_T202W_allowed = ['T210.R']
 C1R_T203W_allowed = ['T204.R']
@@ -46,6 +45,7 @@ C1R_T323W_allowed = ['T324.R', 'T325.R']
 C1R_T324R_allowed = ['T203.W', 'T205.W', 'T322.W']
 C1R_T325R_allowed = ['T203.W', 'T323.W']
 
+C1W_TRANSACTIONS = ['T201.W', 'T202.W', 'T217.W', 'T218.R', 'T205.W', 'T206.W', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T212.W', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T321.W', 'T322.W', 'T323.W', 'T324.R', 'T325.R']
 C1W_T201W_allowed = ['T217.W', 'T205.W', 'T322.W', 'T323.W']
 C1W_T202W_allowed = ['T210.R']
 C1W_T217W_allowed = ['T218.R']
@@ -60,6 +60,7 @@ C1W_T323W_allowed = ['T324.R', 'T325.R']
 C1W_T324R_allowed = ['T217.W', 'T205.W', 'T322.W']
 C1W_T325R_allowed = ['T217.W', 'T323.W']
 
+B5R_TRANSACTIONS = ['T201.W', 'T202.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T224.W', 'T351.R', 'T352.W']
 B5R_T201W_allowed = ['T203.W', 'T205.W', 'T224.W', 'T352.W']
 B5R_T202W_allowed = ['T210.R']
 B5R_T203W_allowed = ['T204.R']
@@ -71,6 +72,19 @@ B5R_T224W_allowed = ['T201.W', 'T203.W', 'T205.W', 'T352.W']
 B5R_T351R_allowed = ['T201.W', 'T202.W']
 B5R_T352W_allowed = ['T208.R', 'T210.R']
 
+B5W_TRANSACTIONS = ['T201.W', 'T202.W', 'T217.W', 'T218.R', 'T205.W', 'T206.W', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T224.W', 'T351.W', 'T352.W']
+B5W_T201W_allowed = ['T217.W', 'T205.W', 'T224.W', 'T352.W']
+B5W_T202W_allowed = ['T210.R']
+B5W_T217W_allowed = ['T218.R']
+B5W_T218R_allowed = ['T217.W', 'T205.W', 'T224.W', 'T352.W']
+B5W_T205W_allowed = ['T206.W', 'T224.W', 'T352.W']
+B5W_T206W_allowed = ['T217.W', 'T205.W']
+B5W_T210R_allowed = ['T201.W', 'T202.W']
+B5W_T224W_allowed = ['T201.W', 'T217.W', 'T205.W', 'T352.W']
+B5W_T351W_allowed = ['T201.W']
+B5W_T352W_allowed = ['T208.R', 'T210.R']
+
+B1R_TRANSACTIONS = ['T201.W', 'T202.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T220.W', 'T221.R', 'T224.W', 'T353.R', 'T223.W']
 B1R_T353R_allowed = ['T201.W', 'T202.W']
 B1R_T201W_allowed = ['T203.W', 'T205.W', 'T220.W', 'T224.W', 'T223.W']
 B1R_T202W_allowed = ['T210.R']
@@ -84,6 +98,7 @@ B1R_T221R_allowed = ['T205.W', 'T224.W', 'T223.W']
 B1R_T224W_allowed = ['T203.W', 'T205.W', 'T220.W', 'T223.W']
 B1R_T223W_allowed = ['T208.R', 'T210.R']
 
+B3R_TRANSACTIONS = ['T201.W', 'T202.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T220.W', 'T221.R', 'T224.W', 'T355.R', 'T356.W', 'T357.W']
 B3R_T355R_allowed = ['T201.W', 'T202.W']
 B3R_T201W_allowed = ['T203.W', 'T205.W', 'T220.W', 'T224.W', 'T356.W']
 B3R_T202W_allowed = ['T210.R']
@@ -98,6 +113,7 @@ B3R_T224W_allowed = ['T203.W', 'T205.W', 'T220.W', 'T356.W']
 B3R_T357W_allowed = ['T356.W']
 B3R_T356W_allowed = ['T208.R', 'T210.R']
 
+B3W_TRANSACTIONS = ['T201.W', 'T202.W', 'T217.W', 'T218.R', 'T205.W', 'T206.W', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T220.W', 'T221.R', 'T224.W', 'T355.W', 'T356.W', 'T357.W']
 B3W_T355W_allowed = ['T201.W']
 B3W_T201W_allowed = ['T217.W', 'T205.W', 'T220.W', 'T224.W', 'T356.W']
 B3W_T202W_allowed = ['T210.R']
@@ -112,6 +128,8 @@ B3W_T224W_allowed = ['T217.W', 'T205.W', 'T220.W', 'T356.W']
 B3W_T357W_allowed = ['T356.W']
 B3W_T356W_allowed = ['T208.R', 'T210.R']
 
+
+B7R_TRANSACTIONS = ['T201.W', 'T202.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T220.W', 'T221.R', 'T224.W', 'T365.R', 'T223.W']
 B7R_T365R_allowed = ['T201.W', 'T202.W']
 B7R_T201W_allowed = ['T203.W', 'T205.W', 'T220.W', 'T224.W', 'T223.W']
 B7R_T202W_allowed = ['T210.R']
@@ -125,17 +143,7 @@ B7R_T221R_allowed = ['T205.W', 'T224.W', 'T223.W']
 B7R_T224W_allowed = ['T203.W', 'T205.W', 'T220.W', 'T223.W']
 B7R_T223W_allowed = ['T208.R', 'T210.R']
 
-B5W_T201W_allowed = ['T217.W', 'T205.W', 'T224.W', 'T352.W']
-B5W_T202W_allowed = ['T210.R']
-B5W_T217W_allowed = ['T218.R']
-B5W_T218R_allowed = ['T217.W', 'T205.W', 'T224.W', 'T352.W']
-B5W_T205W_allowed = ['T206.W', 'T224.W', 'T352.W']
-B5W_T206W_allowed = ['T217.W', 'T205.W']
-B5W_T210R_allowed = ['T201.W', 'T202.W']
-B5W_T224W_allowed = ['T201.W', 'T217.W', 'T205.W', 'T352.W']
-B5W_T351W_allowed = ['T201.W']
-B5W_T352W_allowed = ['T208.R', 'T210.R']
-
+F4R_TRANSACTIONS = ['T201.W', 'T202.W', 'T203.W', 'T204.R', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T505.R', 'T222.W']
 F4R_T505R_allowed = ['T201.W', 'T202.W']
 F4R_T201W_allowed = ['T203.W', 'T222.W']
 F4R_T202W_allowed = ['T210.R']
@@ -144,6 +152,7 @@ F4R_T204R_allowed = ['T203.W', 'T222.W']
 F4R_T210R_allowed = ['T201.W', 'T202.W']
 F4R_T222W_allowed = ['T208.R', 'T210.R']
 
+F4W_TRANSACTIONS = ['T201.W', 'T202.W', 'T203.W', 'T204.R', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T505.W', 'T222.W']
 F4W_T505W_allowed = ['T201.W']
 F4W_T201W_allowed = ['T217.W', 'T222.W']
 F4W_T202W_allowed = ['T210.R']
@@ -152,6 +161,7 @@ F4W_T218R_allowed = ['T217.W', 'T222.W']
 F4W_T210R_allowed = ['T201.W', 'T202.W']
 F4W_T222W_allowed = ['T208.R', 'T210.R']
 
+F5R_TRANSACTIONS = ['T201.W', 'T202.W', 'T203.W', 'T204.R', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T501.R', 'T222.W']
 F5R_T501R_allowed = ['T201.W', 'T202.W']
 F5R_T201W_allowed = ['T203.W', 'T222.W']
 F5R_T202W_allowed = ['T210.R']
@@ -160,6 +170,7 @@ F5R_T204R_allowed = ['T203.W', 'T222.W']
 F5R_T210R_allowed = ['T201.W', 'T202.W']
 F5R_T222W_allowed = ['T208.R', 'T210.R']
 
+F5W_TRANSACTIONS = ['T201.W', 'T202.W', 'T203.W', 'T204.R', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T501.W', 'T222.W']
 F5W_T501W_allowed = ['T201.W']
 F5W_T201W_allowed = ['T217.W', 'T222.W']
 F5W_T202W_allowed = ['T210.R']
@@ -168,6 +179,7 @@ F5W_T218R_allowed = ['T217.W', 'T222.W']
 F5W_T210R_allowed = ['T201.W', 'T202.W']
 F5W_T222W_allowed = ['T208.R', 'T210.R']
 
+G1R_TRANSACTIONS = ['T201.W', 'T202.W', 'T203.W', 'T204.R', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T551.R', 'T222.W']
 G1R_T551R_allowed = ['T201.W', 'T202.W']
 G1R_T201W_allowed = ['T203.W', 'T222.W']
 G1R_T202W_allowed = ['T210.R']
@@ -176,6 +188,7 @@ G1R_T204R_allowed = ['T203.W', 'T222.W']
 G1R_T210R_allowed = ['T201.W', 'T202.W']
 G1R_T222W_allowed = ['T208.R', 'T210.R']
 
+G1W_TRANSACTIONS = ['T201.W', 'T202.W', 'T203.W', 'T204.R', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T551.W', 'T222.W']
 G1W_T551W_allowed = ['T201.W']
 G1W_T201W_allowed = ['T217.W', 'T222.W']
 G1W_T202W_allowed = ['T210.R']
@@ -321,8 +334,8 @@ def generate_test_case(loop_times):
         available_processes = available_processes + "{:2}".format(b+1) + " - " + PROCESSES[b] + " - " +  PROC_NAMES.get(PROCESSES[b])+ "\n"
     chosen_process = input("Choose process to start with - available are: \n" + available_processes + "\n")
     #ask user to choose process among aviailable counting from 1 range(1, len(PROCESSES)+1) - list is counted from 0!
-    while int(chosen_process) not in range(1, len(PROCESSES)+1):
-            chosen_process = input("You can only choose from available processes: \n" + available_processes + "\nChoose process:")
+    while ((not chosen_process.isdigit()) or (int(chosen_process) not in range(1, len(PROCESSES)+1))):
+            chosen_process = input("\nWrong choice! You can only choose from available processes: \n" + available_processes + "\nChoose process:")
     chosen_proc = int(chosen_process)
     print("\nYour choice: " + str(PROCESSES[chosen_proc-1]) + " - " +  PROC_NAMES.get(PROCESSES[chosen_proc-1])) 
     # check which process starts with which transaction
@@ -330,47 +343,50 @@ def generate_test_case(loop_times):
     chosen_transaction = PROC_START_TRANS.get(PROCESSES[chosen_proc-1])
     #append initiating transaction to the TEST_CASE_SEQUENCE
     TEST_CASE_SEQUENCE.append(PROC_START_TRANS.get(PROCESSES[chosen_proc-1]))
-    more_transactions = input("I will generate test case with transaction:\n" + PROC_START_TRANS.get(PROCESSES[chosen_proc-1]) + " - " + TRANSACTION_NAMES.get(PROC_START_TRANS.get(PROCESSES[chosen_proc-1])) + "\ndo you want to add more transactions? [Y]/[N] or [C]hange process?\n")
-    while more_transactions not in ('Y', 'N', 'C'):
-        more_transactions = input("You can only choose [Y]es or [N]o. Do you want to add more transactions? [Y]/[N] or [C]hange process?\n")
+    more_transactions = input("I will generate test case with transaction:\n" + PROC_START_TRANS.get(PROCESSES[chosen_proc-1]) + " - " + TRANSACTION_NAMES.get(PROC_START_TRANS.get(PROCESSES[chosen_proc-1])) + "\nDo you want to add more transactions for current process? [Y]/[N], [C]hange process or [A]ny transaction from current process?\n")
+    while more_transactions not in ('Y', 'N', 'C', 'A'):
+        more_transactions = input("You can only choose [Y]es, [N]o, [C]hange or [A]ny. Do you want to add more transactions for current process? [Y]/[N], [C]hange process or [A]ny transaction from current process?\n")
     if more_transactions =='N':
         print("Generating a test case, thank you. Bye!")
     if more_transactions == 'C':
-        generate_test_case(max_loop) # REPEAT FROM START - TEST_CASE_SEQUEMCE WILL NOT BE OVERWRITTEN!!!!      
-    if more_transactions == 'Y':
-        while more_transactions == 'Y':
-            #depending on the process chosen, check available transactions after initiating transaction i.e. for C1R = C1R_T321R_allowed = ['T201.W', 'T202.W']      
+        generate_test_case(max_loop) # REPEAT FROM START - TEST_CASE_SEQUENCE WILL NOT BE OVERWRITTEN!!!!    
+        
+    # when A selected loop through all transactions in the process, when Y selected loop through available transactions in the process    
+    while more_transactions == 'Y' or more_transactions == 'A':
+        if  more_transactions == 'A':
+            next_transactions = globals()[PROCESSES[chosen_proc-1] + '_TRANSACTIONS']
+        if more_transactions == 'Y':   
             next_transactions = globals()[PROCESSES[chosen_proc-1] + '_' + chosen_transaction.replace('.', '') + '_allowed']
-            print("\nAvailable transactions are:")
-            next_transactions1 = ""
-            for i in range(len(next_transactions)):
-                next_transactions1 += str(i+1) + " " + next_transactions[i] + "\n" 
-                print(str(i+1) + " " + str(next_transactions[i]) + " - " + TRANSACTION_NAMES.get(next_transactions[i]))
-            print('\n')
-            next_transaction = input("Which transaction you want next?\n")
-
-            #allow user to choose only valid transactions - check if user inpur is digit and it is from allowed range
-            while ((not next_transaction.isdigit()) or (int(next_transaction) not in range(1, len(next_transactions)+1))):
-                    next_transaction = input("You can only choose from available transactions \n" + next_transactions1  + "\nChoose transaction: ")
-            next_tran = int(next_transaction)
-
-            print("Your choice: " + str(next_transactions[next_tran-1])) 
-            TEST_CASE_SEQUENCE.append(next_transactions[next_tran-1])
-            if str(next_transactions[next_tran-1]) == 'T208.R':
-                print("\nTest case sequence:")
-                print(TEST_CASE_SEQUENCE)
-                print("\nT208.R was the last transaction. Generating a test case, thank you. Bye!")
-                break
+        print("\nAvailable transactions for this process are:")
+        next_transactions1 = ""
+        for i in range(len(next_transactions)):
+            next_transactions1 += str(i+1) + " " + next_transactions[i] + "\n" 
+            print(str(i+1) + " " + str(next_transactions[i]) + " - " + TRANSACTION_NAMES.get(next_transactions[i]))
+        print('\n')
+        next_transaction = input("Which transaction you want next?\n")
+        #allow user to choose only valid transactions - check if user inpur is digit and it is from allowed range
+        while ((not next_transaction.isdigit()) or (int(next_transaction) not in range(1, len(next_transactions)+1))):
+                next_transaction = input("You can only choose from available transactions \n" + next_transactions1  + "\nChoose transaction: ")
+        next_tran = int(next_transaction)
+        print("Your choice: " + str(next_transactions[next_tran-1])) 
+        TEST_CASE_SEQUENCE.append(next_transactions[next_tran-1])
+        # if in available processes mode exit when found T208.R
+        if more_transactions == 'Y' and str(next_transactions[next_tran-1]) == 'T208.R':
             print("\nTest case sequence:")
             print(TEST_CASE_SEQUENCE)
-            chosen_transaction = next_transactions[next_tran-1]
-            more_transactions = input("Do you want to add more transactions? [Y]/[N] or [C]hange process?\n")
-            while more_transactions not in ('Y', 'N', 'C'):
-                more_transactions = input("You can only choose [Y]es or [N]o. Do you want to add more transactions? [Y]/[N] or [C]hange process?\n")
-            if more_transactions == 'C':
-                generate_test_case(max_loop) # REPEAT FROM START - TEST_CASE_SEQUEMCE WILL NOT BE OVERWRITTEN!!!!                   
-            if more_transactions =='N':
-                print("Generating a test case, thank you. Bye!") 
+            print("\nT208.R was the last transaction. Generating a test case, thank you. Bye!")
+            break
+        print("\nTest case sequence:")
+        print(TEST_CASE_SEQUENCE)
+        chosen_transaction = next_transactions[next_tran-1]
+        more_transactions = input("Do you want to add more transactions for current process? [Y]/[N], [C]hange process or [A]ny transaction from current process?\n")
+        while more_transactions not in ('Y', 'N', 'C', 'A'):
+            more_transactions = input("You can only choose [Y]es, [N]o, [C]hange or [A]ny. Do you want to add more transactions for current process? [Y]/[N], [C]hange process or [A]ny transaction from current process?\n")
+        if more_transactions == 'C':
+            generate_test_case(max_loop) # REPEAT FROM START - TEST_CASE_SEQUENCE WILL NOT BE OVERWRITTEN!!!!                   
+        if more_transactions =='N':
+            print("Generating a test case, thank you. Bye!") 
+        
 ##############################################################################    
     for a in range(loop_times):
         # assign random SPID, METER_MNF, METER_SERIAL to variables - use EXCEL or SPIDS_METERS static dictionary
