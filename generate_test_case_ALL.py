@@ -297,13 +297,14 @@ D8356 = ['FIRST', 'FURTHER', 'CCWLEVEL', 'ADR', 'OTHER'] #F5 T501.R/W Complaint 
 D8358 = ['ADMINISTRATION', 'METERINGASSET', 'BILLING', 'WATER', 'SEWERAGE', 'OTHER'] #F5 T501.R/W Complaint Category
 D8360 = ['GSSFAILURE', 'OTHER', 'NONE'] #F5 T501.R/W Compensation Claimed
 
+test_case_sequence = []
 def generate_test_case(loop_times):
-    new_filename = ''
-    program_mode = input("Do you want to run in [I]interactive or [P}redefined mode? ")
+    global test_case_sequence
+    new_filename = ""
+    program_mode = input("Do you want to run in [I]interactive or [P]redefined mode? ")
     while program_mode not in ('I', 'P'):
         program_mode = input("You can choose only from [I]interactive or [P}redefined mode? What's your choice? ")
     if program_mode == 'I':
-        TEST_CASE_SEQUENCE = []
         ############################################################### ASK USER WHICH TEST CASE HE/SHE WANTS
         available_processes = ""
         for b in range(len(PROC_NAMES)):
@@ -320,7 +321,7 @@ def generate_test_case(loop_times):
         starting_transaction = chosen_process1[0]
         
         #append initiating transaction to the TEST_CASE_SEQUENCE
-        TEST_CASE_SEQUENCE.append(starting_transaction)
+        test_case_sequence.append(starting_transaction)
         more_transactions = input("I will generate test case with transaction:\n" + starting_transaction + " - " + TRANSACTION_NAMES.get(starting_transaction) + "\nDo you want to add more transactions for current process? [Y]/[N], [C]hange process or [A]ny transaction from current process?\n")
         while more_transactions not in ('Y', 'N', 'C', 'A'):
             more_transactions = input("You can only choose [Y]es, [N]o, [C]hange or [A]ny. Do you want to add more transactions for current process? [Y]/[N], [C]hange process or [A]ny transaction from current process?\n")
@@ -347,15 +348,15 @@ def generate_test_case(loop_times):
                     next_transaction = input("You can only choose from available transactions \n" + next_transactions1  + "\nChoose transaction: ")
             next_tran = int(next_transaction)
             print("Your choice: " + str(next_transactions[next_tran-1])) 
-            TEST_CASE_SEQUENCE.append(next_transactions[next_tran-1])
+            test_case_sequence.append(next_transactions[next_tran-1])
             # if in available processes mode exit when found T208.R
             if more_transactions == 'Y' and str(next_transactions[next_tran-1]) == 'T208.R':
                 print("\nTest case sequence:")
-                print(TEST_CASE_SEQUENCE)
+                print(test_case_sequence)
                 print("\nT208.R was the last transaction. Generating a test case, thank you. Bye!")
                 break
             print("\nTest case sequence:")
-            print(TEST_CASE_SEQUENCE)
+            print(test_case_sequence)
             starting_transaction = next_transactions[next_tran-1]
             more_transactions = input("Do you want to add more transactions for current process? [Y]/[N], [C]hange process or [A]ny transaction from current process?\n")
             while more_transactions not in ('Y', 'N', 'C', 'A'):
@@ -365,7 +366,7 @@ def generate_test_case(loop_times):
             if more_transactions =='N':
                 print("Generating a test case, thank you. Bye!") 
     if program_mode == 'P':
-        TEST_CASE_SEQUENCE = TEST_CASE_TRANSACTIONS        
+        test_case_sequence = TEST_CASE_TRANSACTIONS        
 ##############################################################################    
     for a in range(loop_times):
         # assign random SPID, METER_MNF, METER_SERIAL to variables - use EXCEL or SPIDS_METERS static dictionary
@@ -567,20 +568,20 @@ def generate_test_case(loop_times):
                            ]
       #
         
-        TEST_CASE_LENGTH = len(TEST_CASE_SEQUENCE)
+        TEST_CASE_LENGTH = len(test_case_sequence)
         #gererate test case sequence in Excel file       
         for i in range(TEST_CASE_LENGTH):
             # build file name based on transactions chain. i.e. T321R_T201W_T322W....
             # new_filename = new_filename + TEST_CASE_SEQUENCE[i] + '_'
             # if transaction has .R in the name, it is MOSLTEST-R as requestor
             # put the transaction Source Org ID in sheet Test Case Sequence, column C - Source ID
-            ws11.cell(row=i+4+(a*TEST_CASE_LENGTH), column=5).value = TEST_CASE_SEQUENCE[i]
-            if TEST_CASE_SEQUENCE[i][-1] == 'R':
+            ws11.cell(row=i+4+(a*TEST_CASE_LENGTH), column=5).value = test_case_sequence[i]
+            if test_case_sequence[i][-1] == 'R':
                 ws11.cell(row=i+4+(a*TEST_CASE_LENGTH), column=3).value = RETAILER
             else:
                 ws11.cell(row=i+4+(a*TEST_CASE_LENGTH), column=3).value = WHOLESALER
             # then in second sheet 'Test case data' depending on the transaction, insert respctive data items
-            match TEST_CASE_SEQUENCE[i]:
+            match test_case_sequence[i]:
                 case 'T321.R':
                     for k in range(len(T321R_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
@@ -774,7 +775,7 @@ def generate_test_case(loop_times):
     if not os.path.exists(test_cases_folder):
         os.makedirs(test_cases_folder)
         
-    new_filename = '_'.join(TEST_CASE_SEQUENCE)
+    new_filename = '_'.join(test_case_sequence)
 
     wb1.save(filename = test_cases_folder + '\\' + new_filename.replace('.','') + '.xlsx')
 
