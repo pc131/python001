@@ -7,9 +7,9 @@ import shutil
 import os
 
 working_dir = 'C:\\Users\\tomasz.skoczylas\\Downloads\\11\\'
-transaction_name = 'T365.R'
+transaction_name = 'T221.R'
 # EXCEL WITH CORRECT TRANSACTION
-source_test_case = working_dir + 'T365R.xlsx'
+source_test_case = working_dir + 'T353R_T201W_T220W_T221R.xlsx'
 transaction_name_simple=transaction_name[1:].replace('.', '')
 folder_suffix = '_RULES_TESTCASES'
 
@@ -25,9 +25,6 @@ business_rules_file = working_dir + 'MOSL-Bilaterals-Business-Rules_V0.9.3.xlsx'
 
 wb1 = xl.load_workbook(business_rules_file)
 ws12 = wb1.worksheets[0] # Error codes - CHECK IF THIS IS CORRECT SHEET NUMBER!!
-
-#define dictionary to change description
-#substitute_list = [['must be', 'is not'], ['is mandatory', 'is not provided'], ['is not', 'is'], ['must not be', 'is'], ['is', 'is not']]
 
 #loop through list of transactions in Excel and find column, for current transaction
 col_number_trx = 0

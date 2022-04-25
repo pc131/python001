@@ -9,8 +9,8 @@ from random_address import real_random_address
 from faker import Faker
 from faker_biology.mol_biol import Enzyme
 
-working_dir = "C:\\Users\\skocz\\Downloads\\11\\"
-#working_dir = "C:\\Users\\tomasz.skoczylas\\Downloads\\11\\"
+#working_dir = "C:\\Users\\skocz\\Downloads\\11\\"
+working_dir = "C:\\Users\\tomasz.skoczylas\\Downloads\\11\\"
 filename = working_dir + "Bilaterals 1.4.0.0 master.xlsx"
 wb1 = xl.load_workbook(filename)
 ws11 = wb1.worksheets[0]
@@ -572,7 +572,7 @@ def generate_test_case(loop_times):
         #gererate test case sequence in Excel file       
         for i in range(TEST_CASE_LENGTH):
             # build file name based on transactions chain. i.e. T321R_T201W_T322W....
-            # new_filename = new_filename + TEST_CASE_SEQUENCE[i] + '_'
+            new_filename = new_filename + test_case_sequence[i] + '_'
             # if transaction has .R in the name, it is MOSLTEST-R as requestor
             # put the transaction Source Org ID in sheet Test Case Sequence, column C - Source ID
             ws11.cell(row=i+4+(a*TEST_CASE_LENGTH), column=5).value = test_case_sequence[i]
@@ -774,8 +774,11 @@ def generate_test_case(loop_times):
     test_cases_folder = working_dir + 'TEST_CASES'
     if not os.path.exists(test_cases_folder):
         os.makedirs(test_cases_folder)
-        
-    new_filename = '_'.join(test_case_sequence)
+
+    if len(new_filename) > 20:
+        new_filename = "RECENT_TESTCASE"
+    else:    
+        new_filename = '_'.join(test_case_sequence)
 
     wb1.save(filename = test_cases_folder + '\\' + new_filename.replace('.','') + '.xlsx')
 
