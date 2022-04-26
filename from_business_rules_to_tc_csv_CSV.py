@@ -7,9 +7,9 @@ import shutil
 import os
 
 working_dir = 'C:\\Users\\tomasz.skoczylas\\Downloads\\11\\'
-transaction_name = 'T221.R'
+transaction_name = 'T356.W'
 # EXCEL WITH CORRECT TRANSACTION
-source_test_case = working_dir + 'T353R_T201W_T220W_T221R.xlsx'
+source_test_case = working_dir + 'T355R_T201W_T356W.xlsx'
 transaction_name_simple=transaction_name[1:].replace('.', '')
 folder_suffix = '_RULES_TESTCASES'
 
