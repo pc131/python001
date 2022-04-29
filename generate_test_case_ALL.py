@@ -16,7 +16,7 @@ wb1 = xl.load_workbook(filename)
 ws11 = wb1.worksheets[0]
 ws12 = wb1.worksheets[1]
 
-TEST_CASE_TRANSACTIONS = ['T321.R']
+TEST_CASE_TRANSACTIONS = ['T321.R','T201.W', 'T213.W']
 
 RETAILER = 'MOSLTEST-R'
 WHOLESALER = 'MOSLTEST-W'

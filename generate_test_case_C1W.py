@@ -8,7 +8,7 @@ import names
 import sys
 
 working_dir = "C:\\Users\\tomasz.skoczylas\\Downloads\\11\\"
-filename = working_dir + "Bilaterals 1.3.3.1 master.xlsx"
+filename = working_dir + "Bilaterals 1.4.0.0 master.xlsx"
 wb1 = xl.load_workbook(filename)
 ws11 = wb1.worksheets[0]
 ws12 = wb1.worksheets[1]
@@ -16,7 +16,7 @@ ws12 = wb1.worksheets[1]
 RETAILER = 'MOSLTEST-R'
 WHOLESALER = 'MOSLTEST-W'
 # parameter can be: MEASURED, UNMEASURED or MISSING for C1R process
-REQUEST_TYPE = 'MISSING'
+REQUEST_TYPE = 'UNMEASURED'
 T216_URL = 'https://moservicesdev.mosl.co.uk/test/attachments/87ffc85e-ebd5-461c-99d6-2ac3eef43f7c'
 
 TEST_CASE_SEQUENCE = ['T321.W'] # SUBMITTED
@@ -405,8 +405,8 @@ def generate_test_case_C1W(type, loop_times):
             prefix = 'UNME_'
         case 'MISSING':
             prefix = 'MISS_'
-    if loop_times > 1:
-        suffix = '_X' + str(loop_times)
+    
+    suffix = '_X' + str(loop_times)
     new_filename = '_'.join(TEST_CASE_SEQUENCE)
     
     test_cases_folder = working_dir + 'TEST_CASES'
@@ -416,6 +416,7 @@ def generate_test_case_C1W(type, loop_times):
     wb1.save(filename = test_cases_folder + '\\' + prefix + new_filename.replace('.','') + suffix + '.xlsx')
 
 # loop_times repeats test case sequence in the excel file
-max_loop = int (100/TEST_CASE_LENGTH)
+#max_loop = int (100/TEST_CASE_LENGTH)
+max_loop = 1
 # if you want to enter manually number of rows, do not exceed 100 - 100 / TEST_CASE_LENGTH shouldn't be bigger then max_loop!
 generate_test_case_C1W(REQUEST_TYPE, max_loop)

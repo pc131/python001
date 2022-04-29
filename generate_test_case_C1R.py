@@ -16,11 +16,12 @@ ws12 = wb1.worksheets[1]
 RETAILER = 'MOSLTEST-R'
 WHOLESALER = 'MOSLTEST-W'
 # parameter can be: MEASURED, UNMEASURED or MISSING for C1R process
-REQUEST_TYPE = 'MEASURED'
+REQUEST_TYPE = 'UNMEASURED'
 T216_URL = 'https://moservicesdev.mosl.co.uk/test/attachments/87ffc85e-ebd5-461c-99d6-2ac3eef43f7c'
 
-TEST_CASE_SEQUENCE = ['T321.R'] # SUBMITTED
-#TEST_CASE_SEQUENCE = ['T321.R', 'T201.W'] #ACCEPTED
+#TEST_CASE_SEQUENCE = ['T321.R'] # SUBMITTED
+#TEST_CASE_SEQUENCE = ['T321.R', 'T201.W', 'T213.W'] #DEFERRED
+TEST_CASE_SEQUENCE = ['T213.W'] #ACCEPTED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T211.R'] #CANCELLED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T202.W'] #REJECTED
 #TEST_CASE_SEQUENCE = ['T321.R', 'T202.W', 'T210.R'] #RESUBMITTED
@@ -376,6 +377,30 @@ def generate_test_case_C1R(type, loop_times):
                     for k in range(len(T212W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T212W_data_items[k]
+                case 'T213.W':
+                    for k in range(len(T213W_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T213W_data_items[k]
+                case 'T214.W':
+                    for k in range(len(T214W_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T214W_data_items[k]
+                case 'T215.R':
+                    for k in range(len(T215R_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T215R_data_items[k]
+                case 'T215.W':
+                    for k in range(len(T215W_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T215W_data_items[k]
+                case 'T216.R':
+                    for k in range(len(T216R_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T216R_data_items[k]
+                case 'T216.W':
+                    for k in range(len(T216W_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T216W_data_items[k]
                 case 'T322.W':
                     for cols in range(7,9): # color basic request items
                         ws12.cell(row=4+(3*i)+(3*a*TEST_CASE_LENGTH), column=cols).fill = PatternFill(start_color="CCE5FF", fill_type = "solid")
