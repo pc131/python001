@@ -285,7 +285,7 @@ D8330 = ['0', '1'] #T351.R T351.W Meter Fault address same as CMOS
 D8341 = ['REPLACED', 'REPAIRED', 'NOUPDATE', 'NOFAULT', 'NONMETER', 'UPDATE'] # T352.W Complete Reason Code
 
 #B7
-D8326 = ['CHGTYPE', 'CGHSSIZE', 'CGHLSIZE', 'CHGLOC'] # B7 T365.R Request Meter Change -> Meter Work Request Type
+D8326 = ['CHGTYPE', 'CHGSSIZE', 'CHGLSIZE', 'CHGLOC'] # B7 T365.R Request Meter Change -> Meter Work Request Type
 
 #F4
 D8364 = ['DWENQUIRY', 'OTHERENQUIRY'] # F4 T505.R Request Type

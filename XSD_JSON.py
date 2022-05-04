@@ -6,10 +6,10 @@
 
 import xml.etree.ElementTree as ET
 
-xsd_filename = 'BilateralsHviMessage.V1.0.3.0.xsd'
+xsd_filename = 'BilateralsHviMessage.V1.0.3.1.xsd'
 tree = ET.parse(xsd_filename)
-transaction = 'T323.M'
-next_transaction = 'T324.R' # what is the next transaction in XSD file after transaction above
+transaction = 'T365.R'
+next_transaction = '365.M' # what is the next transaction in XSD file after transaction above
 
 root = tree.getroot()
 
@@ -54,7 +54,7 @@ transaction_XSD3 = transaction_XSD2[5:]
 transactions_JSON = []
 
 #import file with JSON transactions
-filename = 'C1_T323M.json'
+filename = 'B7_T365.R.json'
 f1 = open(filename, 'r') # open source file
 lines = f1.readlines()
 keep_current_line = False
