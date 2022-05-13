@@ -1,9 +1,10 @@
 import json
 
-working_dir = 'C:\\Users\\skocz\\Downloads\\11\\'
+#working_dir = 'C:\\Users\\skocz\\Downloads\\11\\'
+working_dir = 'C:\\Users\\tomasz.skoczylas\\Downloads\\11\\'
 bad_words = ['---- Start Time', 'Request:', 'Response:', 'Peek Message:']
 
-filename = "TC-C1R-REGRESSION_01_2022-04-27_18-43-43.json"
+filename = "TC-C1R-REGRESSION_01_2022-03-29_14-40-20.json"
 source_file = working_dir + filename
 source_json_file = source_file.replace(".json", "-json.json")
 source_json_string = ""
@@ -12,54 +13,55 @@ newfile = open(source_json_file, 'w')
 for line in oldfile:
     if not (any(bad_word in line for bad_word in bad_words) or line.isspace()):
         source_json_string += line.lstrip()
-source_json_string = source_json_string.replace("\n", "").replace("}{", "}\n{")     
-#print(source_json_string)
+source_json_string = source_json_string.replace("\n", "").replace("}{", "}\n{")
+# print(source_json_string)
 newfile.write(source_json_string)
 oldfile.close()
 newfile.close()
 
-json_messages_list = []
-print("Started Reading JSON file which contains multiple JSON document")
+dict_message = {}
+
+def print_depth(d, start=0):
+    for key, value in d.items():
+        print(key, start + 1)
+        if key in ("SendMessageRequest", "SendMessageResponse", "PeekMessageResponse"):
+            dict_message["RequestType"] = key
+        if key == "DocumentReferenceNumber":
+            dict_message["DocumentReferenceNumber"] = value
+        if key == "Transaction":
+            transaction = value.keys()
+            *transaction1, = transaction
+            dict_message["Transaction"] = transaction1[0]
+        if key == "DataTransaction":
+            dict_message["DataTransaction"] = value        
+        if key == "OriginatorsReference":
+            dict_message["OriginatorsReference"] = value    
+        if key == "TransactionTimestamp":
+            dict_message["TransactionTimestamp"] = value        
+        if key == "ORID":
+            dict_message["ORID"] = value
+        if isinstance(value, dict):
+            print_depth(value, start=start+1)
+
+#list of JSON messages, each message as nested dictionary
+json_messages = []
+#list of part of JSON messages, each message as flat dictionary
+json_messages1 = []
 with open(source_json_file) as f:
-    for jsonObj in f:
-        json_message = json.loads(jsonObj)
-        print("Type of json_message is: " + str(type(json_message)))
-        #print(json_message)
-        print(json_message['SendMessageRequest']['MessageContainer']['DocumentReferenceNumber'])
-        print(json_message['SendMessageRequest']['MessageContainer']['Payload'])
-        # print(json_message['SendMessageRequest']['MessageContainer']['Payload']['Transaction'][0]['Header'])
-        # header = message_container['Payload']['Transaction']
-        # print(header)
-       # json_messages_list.append(json_message)
+    x = 0
+    for line in f:     
+        json_messages.append(json.loads(line))
+        print_depth(json_messages[x])
+        print('\n')
+        print(dict_message)
+        json_messages1.append(dict_message.copy())
+        print('\n')
+        x += 1
 
-# print("Printing each JSON Decoded Object")
-# for json_message in json_messages_list:
-#     print(json_message)
-
-def get_items(test_dict, lvl):
-  
-    # querying for lowest level
-    if lvl == 0:
-        yield from ((key, val) for key, val in test_dict.items()
-                    if not isinstance(val, dict))
-    else:
-  
-        # recur for inner dictionaries
-        yield from ((key1, val1) for val in test_dict.values()
-                    if isinstance(val, dict) for key1, val1 in get_items(val, lvl - 1))
-  
-  
-# initializing dictionary
-test_dict = json_message
-  
-# printing original dictionary
-print("The original dictionary is : " + str(test_dict))
-  
-# initializing K
-K = 2
-  
-# calling function
-res = get_items(test_dict, K)
-  
-# printing result
-print("Required items : " + str(dict(res)))
+#print_depth(json_message)
+# print('\n')
+print(json_messages)
+print('\n')
+print(json_messages1)
+# print('\n')
+#print(json_message)

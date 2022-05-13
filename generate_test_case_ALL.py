@@ -454,7 +454,7 @@ def generate_test_case(loop_times):
         T221R_data_items = ['[orid]', fake.paragraph(nb_sentences=1)]
         T222W_data_items = [# basic data
                             '[orid]', random.choice(D8327), fake.paragraph(nb_sentences=1), random.randint(100, 1000), '[today-' + str(random.randint(2, 30))  +']', random.randint(5, 15), random.randint(2, 6), RANDOM_GISX, RANDOM_GISY, 
-                            #meter work copletion data
+                            #meter work completion data
                             RANDOM_METER_SER, RANDOM_METER_MNF, random.randint(100, 1000), '[today-' + str(random.randint(2, 30))  +']', random.randint(5, 15), random.randint(2, 6), RANDOM_GISX, RANDOM_GISY, random.choice(D3025), RANDOM_METER_LOC, OUTR_RANDOM_GISX, OUTR_RANDOM_GISY, random.choice(D3025), RANDOM_OUTRE_LOC, RANDOM_STRING, RANDOM_STRING, RANDOM_ADDRESS1, RANDOM_ADDRESS2, RANDOM_ADDRESS3, RANDOM_ADDRESS4, RANDOM_ADDRESS5, random.choice(POSTCODES), random.randint(1, 99999999)
                             ]
         T223W_data_items = [# basic data
