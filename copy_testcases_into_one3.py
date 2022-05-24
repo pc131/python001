@@ -35,19 +35,20 @@ for i in range(len(mylist)):
         #print("Total transactions = " + str(total_transactions + 1))
         print("Number of current transaction in current file = " + str(number_of_transactions))
         ws11.cell(row = total_transactions + number_of_transactions + 3, column = 3).value = trading_party.value
-        print("Writing trading party to new excel, cell " + str(total_transactions + number_of_transactions + 3) + ",3")
+        print("Writing trading party to new excel, cell " + str(total_transactions -1  + number_of_transactions + 3) + ",3")
         ws11.cell(row = total_transactions + number_of_transactions + 3, column = 5).value = transaction.value
-        print("Writing transaction to new excel, cell " + str(total_transactions + number_of_transactions + 3)+ ",5")
-        print("Reading data from source test case data sheet, row "+ str(3*(number_of_transactions-1) + 6) + " Max columns is: " + str(max_cols))
+
+        ws11.cell(row = total_transactions + number_of_transactions + 3, column = 7).value = con_rule
+        print("Writing transaction to new excel, cell " + str(total_transactions -1 + number_of_transactions + 3)+ ",5")
+        print("Reading data from source test case data sheet, row "+ str(3*(number_of_transactions-1) + 6))
         print("Writing data to target test case data sheet, row "+ str(3*(total_transactions) + 3*(number_of_transactions-1) + 6))
         print("----------------------")
-        ws11.cell(row = total_transactions + number_of_transactions + 3, column = 7).value = con_rule
-
-        for col in range(7, max_cols+1):
-            # reading cell value from source excel file
-            value1 = test_case_data_sheet.cell(row = 3*(number_of_transactions-1) + 6, column=col)
-            # writing the read value to destination excel file
-            ws12.cell(row=3*(total_transactions) + 3*(number_of_transactions-1) + 6, column=col).value = value1.value
+        
+        # for col in range(7, max_cols+1):
+        #     # reading cell value from source excel file
+        #     value1 = test_case_data_sheet.cell(row = 3*(number_of_transactions-1) + 6, column=col)
+        #     # writing the read value to destination excel file
+        #     ws12.cell(row=3*(total_transactions) + 3*(number_of_transactions-1) + 6, column=col).value = value1.value
         
     total_transactions += number_of_transactions
 

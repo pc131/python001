@@ -8,8 +8,8 @@ import xml.etree.ElementTree as ET
 
 xsd_filename = 'BilateralsHviMessage.V1.0.3.1.xsd'
 tree = ET.parse(xsd_filename)
-transaction = 'T365.M'
-next_transaction = 'T501.R' # what is the next transaction in XSD file after transaction above
+transaction = 'T223.W'
+next_transaction = 'T223.M' # what is the next transaction in XSD file after transaction above
 
 root = tree.getroot()
 
@@ -38,7 +38,7 @@ transaction_XSD1 = []
 
 for j in range(len(transaction_XSD)):
     #remove from XSD list CustomerContact and SelectedMeter elements
-    if not ('SelectedMeter' in str(transaction_XSD[j]) or 'CustomerConsent' in str(transaction_XSD[j]) or 'RepairedMeter' in str(transaction_XSD[j]) or 'InstallMeter' in str(transaction_XSD[j])):
+    if not ('SelectedMeter' in str(transaction_XSD[j]) or 'CustomerConsent' in str(transaction_XSD[j]) or 'Meter' in str(transaction_XSD[j]) or 'RepairedMeter' in str(transaction_XSD[j]) or 'InstallMeter' in str(transaction_XSD[j])):
         data_item_end = str(transaction_XSD[j]).find(',') - 1
         transaction_XSD1.append(str(transaction_XSD[j])[10:data_item_end])
 ###truncate data items from {'name' stuff from XSD and save just element names of data items
@@ -54,7 +54,7 @@ transaction_XSD3 = transaction_XSD2[5:]
 transactions_JSON = []
 
 #import file with JSON transactions
-filename = 'T365M.json'
+filename = 'T223W.json'
 f1 = open(filename, 'r') # open source file
 lines = f1.readlines()
 keep_current_line = False
