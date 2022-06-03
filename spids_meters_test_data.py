@@ -10,12 +10,12 @@ ws11 = wb1.worksheets[0]
 ws12 = wb1.worksheets[1]
 
 spids_meters_filename = working_dir + "TEST_DATA.xlsx"
-standalone_spids = wb1.worksheets[1]
+standalone_spids = wb1.worksheets[4]
 
 def pick_spid_meter_xlsx():
     # how many different SPIDS and METERS to pick from the Excel
     dict_spids = "{"
-    for a in range(51,351): #choose SPIDs from rows 50-350
+    for a in range(51,101): #choose SPIDs from rows 50-350
         spid = standalone_spids.cell(row=a, column=1).value
         meter_mnf = standalone_spids.cell(row=a, column=4).value
         meter_ser = standalone_spids.cell(row=a, column=5).value
