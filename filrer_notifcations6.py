@@ -4,7 +4,7 @@ import json
 working_dir = 'C:\\Users\\tomasz.skoczylas\\Downloads\\11\\'
 bad_words = ['---- Start Time', 'Request:', 'Response:', 'Peek Message:']
 
-filename = "TC-C1R-REGRESSION_01_2022-03-29_14-40-20.json"
+filename = "T223W.json"
 source_file = working_dir + filename
 source_json_file = source_file.replace(".json", "-json.json")
 source_json_string = ""
