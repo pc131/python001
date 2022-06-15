@@ -7,9 +7,9 @@ import shutil
 import os
 
 working_dir = 'C:\\Users\\tomasz.skoczylas\\Downloads\\11\\'
-transaction_name = 'T357.W'
+transaction_name = 'T556.R'
 # EXCEL WITH CORRECT TRANSACTION
-source_test_case = working_dir + 'T355R_T201W_T205W_T357W.xlsx'
+source_test_case = working_dir + 'T556R.xlsx'
 transaction_name_simple=transaction_name[1:].replace('.', '')
 folder_suffix = '_RULES_TESTCASES'
 
@@ -20,7 +20,8 @@ if not os.path.exists(test_cases_folder):
 
 test_cases_csv = test_cases_folder + '\\IMPORT_T' + transaction_name_simple + '_INTO_AZURE.csv'
 urls_for_test_cases = test_cases_folder + '\\T' + transaction_name_simple + '_RULES_TESTCASES_URLS.html'
-business_rules_file = working_dir + 'MOSL-Bilaterals-Business-Rules_V0.9.4.xlsx'
+#business_rules_file = working_dir + 'MOSL-Bilaterals-Business-Rules_V0.9.4.xlsx'
+business_rules_file = working_dir + 'MOSL-Bilaterals-Business-Rules_V0.9.5-WIP.xlsx'
 
 
 wb1 = xl.load_workbook(business_rules_file)
@@ -29,8 +30,8 @@ ws12 = wb1.worksheets[1] # Error codes - CHECK IF THIS IS CORRECT SHEET NUMBER!!
 #loop through list of transactions in Excel and find column, for current transaction
 col_number_trx = 0
 #trx_col_number = 0
-#as there are new transactions coming check for maximum column number, where transaction can occur, 52 is for MOSL-Bilaterals-Business-Rules_V0.9.4.xlsx - T551.R
-for col_number_trx in range(6, 52):
+#as there are new transactions coming check for maximum column number, where transaction can occur, 58 is for MOSL-Bilaterals-Business-Rules_V0.9.5-WIP.xlsx - T556.R
+for col_number_trx in range(6, 59):
     if(str(ws12.cell(row=2, column=col_number_trx).value)==transaction_name):
         trx_col_number = col_number_trx
 
@@ -44,7 +45,7 @@ csv_file.write('ID,Work Item Type,Title,Test Step,Step Action,Step Expected,Area
 list_con_xxxx = []
 #count number of business rules for current transactiions, basen on column trx_col_number
 number_of_business_rules = 0
-for row_number1 in range(4, 196): # 195 is the max row, when business rules are defined
+for row_number1 in range(4, 210): # 209 is the max row, when business rules are defined in 0.9.5-WIP - always add 1 row
     #calculate number of business rules and create list of elements [[Business Rule 1, Description 1], [Business Rule 2, Description 2], ...]
     if(str(ws12.cell(row=row_number1, column=trx_col_number).value)=='X'):
         number_of_business_rules += 1
