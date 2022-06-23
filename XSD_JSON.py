@@ -4,12 +4,14 @@
 #Next JSON file is parsed as a text flie and data items are retrieved and saved to a list
 #Next we compare these lists and if discrepanies are found we mark it wit little star * character
 
+#  IF JSON has more elements than XSD but is missing some from XSD, then it will not show, what's extra in XSD!!!!!!!!!!!!!!!!
+
 import xml.etree.ElementTree as ET
 
 xsd_filename = 'BilateralsHviMessage.V1.0.3.1.xsd'
 tree = ET.parse(xsd_filename)
-transaction = 'T355.M'
-next_transaction = 'T356.W' # what is the next transaction in XSD file after transaction above
+transaction = 'T365.M'
+next_transaction = 'T501.R' # what is the next transaction in XSD file after transaction above
 
 root = tree.getroot()
 
@@ -60,7 +62,7 @@ for m in range(len(transaction_XSD2)):
 transactions_JSON = []
     
 #import file with JSON transactions
-filename = 'T355M.json'
+filename = 'T365M.json'
 f1 = open(filename, 'r') # open source file
 lines = f1.readlines()
 
