@@ -11,18 +11,23 @@ from faker_biology.mol_biol import Enzyme
 
 #working_dir = "C:\\Users\\skocz\\Downloads\\11\\"
 working_dir = "C:\\Users\\tomasz.skoczylas\\Downloads\\11\\"
-filename = working_dir + "Bilaterals 1.5.0.0 master.xlsx"
+filename = working_dir + "Bilaterals 1.6.0.1 master.xlsx"
 wb1 = xl.load_workbook(filename)
 ws11 = wb1.worksheets[0]
 ws12 = wb1.worksheets[1]
 
-
-#SLAS B7
-TEST_CASE_TRANSACTIONS = ['T353.R','T202.W','T353.R','T201.W','T203.W','T353.R','T201.W','T223.W','T353.R','T201.W','T220.W','T355.R','T202.W','T355.R','T201.W','T203.W','T355.R','T201.W','T356.W','T355.W','T201.W','T356.W','T210.R','T202.W','T355.W','T201.W','T356.W','T365.R','T202.W','T365.R','T201.W','T203.W','T365.R','T201.W','T223.W','T365.R','T201.W','T220.W']
-
+#SINGLE_SPIDS TEST UAT
 SPIDS_METERS = {'3019178819W13':('KENT','000000000000189985'),'3019178827W10':('KENT','4A059235'),'3019178843W15':('KENT','4A026515'),'3019178851W12':('ELSTER','000000000008081344'),'301917886XW1X':('ARAD','152026121'),'3019178991W12':('KENT','000000000000221909'),'3019179017W10':('KENT','4A024157'),'3019179033W15':('KENT','2T021233'),'3019179130W16':('KENT','90P169156'),'3019179149W13':('KENT','3T042349'),'3019179173W15':('ARAD','09044840'),'3019179289W13':('KENT','AE188861'),'301917936XW1X':('KENT','4A023209'),'3019179386W14':('ARAD','16732739'),'3019179416W14':('ARAD','8004476'),'3019179483W15':('AMR','8569517'),'3019179564W11':('ARAD','9103911'),'3019179653W15':('KENT','000000000083235847'),'3019024854W11':('ARAD','9097878'),'3019025117W10':('SW_METER','9M129866'),'3019025125W18':('KENT','2M034061'),'3019025230W16':('KENT','3M310071'),'3019025486W14':('KENT','4M093717'),'3019025532W19':('ARAD','000000000008011122'),'3019025648W17':('ARAD','000000000008596289'),'3019025648W17':('ARAD','000000000008385953'),'3019025737W10':('KENT','4M058479'),'3019026067W10':('KENT','1M079127'),'301902644XW1X':('KENT','000000000090248995'),'3019027314W11':('ARAD','000000000008110959'),'3019027322W19':('KENT','1M202328'),'301902739XW1X':('KENT','000000000087080861'),'3019027691W12':('KENT','000000000085077189'),'3019027780W16':('SW_METER','7M472116'),'3019028310W16':('KENT','94A003592'),'301902840XW1X':('KENT','4A044797'),'3019028574W11':('KENT','5M049422'),'3019179726W14':('KENT','4T024221'),'3019179750W16':('ELSTER','7A165214'),'3019179793W15':('KENT','000000000089116779'),'3019179858W17':('ELSTER','000000000008064363'),'3019179874W11':('KENT','000000000000191037'),'3019179890W16':('ARAD','18AI0248'),'3019179912W19':('ARAD','000000000008295070'),'3019180058W17':('KENT','000000000085179813'),'3019180244W11':('ARAD','09135365'),'3019180309W13':('KENT','000000000082099104'),'3019180368W17':('SCHLUMBERGER','96AQ151103'),'3019180384W11':('ARAD','9135944'),'3019180449W13':('KENT','000000000001489140'),'3019180465W18':('ARAD','9114869'),'3019180473W15':('NEPTUNE_MEASUREMENT','000000000000221940'),'3019180856W14':('KENT','4T007899'),'3019180902W19':('AQUADIS','96AL002538'),'3019180929W13':('KENT','4T019536'),'3019181127W10':('KENT','1M068999'),'3019181240W16':('KENT','4T033566'),'3019181259W13':('ARAD','000000000008232146'),'3019181313W15':('NEPTUNE_MEASUREMENT','1T024790'),'3019181372W19':('NEPTUNE_MEASUREMENT','93M054980'),'3019181429W13':('SW_METER','9A072507'),'3019181518W17':('KENT','4T025116'),'3019181682W19':('AQUADIS','97PC602000'),'3019181763W15':('ARAD','000000000008280228'),'3019181798W17':('ARAD','8174889'),'3019181860W16':('KENT','4T018841'),'3019181895W18':('FROST','AL022639'),'3019181917W10':('KENT','000000000082089093'),'3019181925W18':('KENT','4T012674'),'3019182085W18':('KENT','3M301521'),'3019182166W14':('ELSTER','000000000008496706'),'3019182174W11':('ARAD','9164269'),'3019182247W10':('SCHLUMBERGER','97AQ268415'),'3019182484W11':('SCHLUMBERGER','96AQ123266'),'3019182506W14':('KENT','2M000061'),'3019182980W16':('KENT','95M186330'),'3019183081W12':('KENT','3M335173'),'301918309XW1X':('ARAD','000000000008017074'),'3019183111W12':('KENT','91M126435'),'3019183227W10':('KENT','6T007525'),'3019183286W14':('KENT','000000000085179921'),'3019183308W17':('KENT','000000000000023101'),'3019183316W14':('ELSTER','12A10363'),'3019183324W11':('KENT','93A023199'),'3019183340W16':('KENT','000000000087164732'),'301918343XW1X':('ELSTER','000000000008093998'),'3019029031W12':('KENT','4T007325'),'3019029058W17':('ELSTER','1M219584'),'3019029147W10':('ARAD','9158366'),'3019029368W17':('ARAD','000000000008378520'),'3019029449W13':('ARAD','000000000008174844'),'3019029457W10':('KENT','93M213479'),'3019029546W14':('KENT','95A138505'),'301903020XW1X':('KENT','4M097305'),'3019030803W15':('KENT','1A161821'),'3019031141W12':('KENT','4M117380'),'3019031214W11':('AQUADIS','98PB300065'),'301903129XW1X':('ELSTER','4M093252'),'3019031559W13':('KENT','95A521326'),'3019031567W10':('KENT','93M154072'),'3019031575W18':('ELSTER','000000000008094716'),'3019031591W12':('ELSTER','000000000008999775'),'3019031621W12':('ARAD','000000000008270804'),'3019031850W16':('KENT','4M097140'),'3019032008W17':('KENT','2M224449'),'3019032377W10':('KENT','4T007843'),'3019032474W11':('SW_METER','4A061558'),'3019183553W15':('SCHLUMBERGER','99WPE05580'),'3019183642W19':('ARAD','000000000008963442'),'3019183693W15':('KENT','94M073927'),'3019183723W15':('KENT','000000000082089069'),'3019183790W16':('KENT','95A517029'),'3019183820W16':('ELSTER','000000000008103182'),'3019183855W18':('KENT','4T016561'),'3019183898W17':('KENT','4A023537'),'3019183952W19':('NA','9045596'),'3019184045W18':('KENT','000000000083103119'),'3019184061W12':('KENT','5A026406'),'301918410XW1X':('KENT','AF518194'),'3019184320W16':('KENT','4M201816'),'3019184363W15':('KENT','4M201366'),'3019184371W12':('KENT','4M117218'),'3019184495W18':('KENT','000000000085134566'),'3019184509W13':('SCHLUMBERGER','96AQ183368'),'3019184525W18':('KENT','94M004196'),'3019184770W16':('ARAD','000000000009050719'),'3019184878W17':('ELSTER','000000000003426633'),'301918522XW1X':('KENT','95M246039'),'3019185297W10':('SCHLUMBERGER','95A131611'),'3019185319W13':('NEPTUNE_MEASUREMENT','000000000091506905'),'3019185661W12':('ARAD','000000000008540387'),'3019185688W17':('ARAD','8219393'),'301903258XW1X':('KENT','93A556059'),'3019032601W12':('SW_METER','8M223846'),'301903261XW1X':('SW_METER','8M473776'),'3019032628W17':('KENT','91P033387'),'301903275XW1X':('ELSTER','000000000012207830'),'3019032938W17':('ARAD','9103768'),'3019032946W14':('ARAD','19AI0097'),'3019032954W11':('ELSTER','9097938'),'3019032997W10':('KENT','PC502819'),'3019033004W11':('KENT','AE183174'),'3019033012W19':('KENT','79011716'),'3019033020W16':('KENT','000000000073225966'),'3019033039W13':('KENT','97A080026'),'3019033047W10':('ARAD','08013499'),'301903308XW1X':('ARAD','000000000008567195'),'3019033101W12':('KENT','AM014229'),'301903311XW1X':('KENT','529791'),'3019033128W17':('KENT','000000000006259797'),'3019033136W14':('ELSTER','10AC017906'),'3019033144W11':('KENT','000000000082099364'),'3019033152W19':('KENT','4A054549'),'3019033160W16':('NEPTUNE_MEASUREMENT','000000000000321187'),'3019033195W18':('ARAD','000000000008584440'),'3019185696W14':('KENT','088174268'),'301918570XW1X':('KENT','AG610576'),'3019185815W18':('NEPTUNE_MEASUREMENT','99AL005090'),'3019185963W15':('KENT','000000000089582490'),'3019186064W11':('ARAD','000000000008360573'),'3019186080W16':('SW_METER','8M086205'),'301918620XW1X':('KENT','000000000073339733'),'3019186218W17':('KENT','4A045367'),'3019186226W14':('ARAD','000000000008581723'),'3019186234W11':('KENT','93A021395'),'3019186250W16':('ELSTER','000000000008217650'),'3019186285W18':('KENT','3M266548'),'3019186315W18':('KENT','93M126286'),'3019186323W15':('KENT','000000000078144637'),'301918634XW1X':('KENT','PC502050'),'3019186366W14':('KENT','000000000078144630'),'3019186374W11':('KENT','000000000079113691'),'3019186412W19':('KENT','000000000080079221'),'3019186439W13':('ARAD','000000000008119893'),'3019186552W19':('KENT','4T012332'),'3019186560W16':('KENT','4A061265'),'3019186587W10':('KENT','4A061268'),'3019186609W13':('KENT','000000000000610563'),'3019186633W15':('ARAD','16286125'),'3019186668W17':('KENT','000000000073339734'),'3019186676W14':('SW_METER','9M174577'),'3019186765W18':('SOCAM','000000000004748629'),'3019186781W12':('ELSTER','000000000008036473'),'3019187192W19':('ELSTER','8M001142'),'301918732XW1X':('SW_METER','7A128306'),'3019187400W16':('KENT','4A029940'),'3019187516W14':('KENT','90P194329'),'3019187524W11':('KENT','4M093692'),'3019187613W15':('ELSTER','000000000008951107'),'3019187729W13':('SW_METER','8A026502'),'301918777XW1X':('KENT','4A061242'),'3019187850W16':('KENT','93A579245'),'3019187907W10':('KENT','000000000073279189'),'3019188059W13':('ELSTER','000000000008092307'),'3019188105W18':('KENT','4A022348'),'3019188172W19':('ARAD','9116984'),'3019188202W19':('KENT','AG610567'),'3019188245W18':('ABB','G/09289/1/1'),'3019188253W15':('KENT','4A072078'),'3019188296W14':('ARAD','8189888'),'3019188334W11':('KENT','4T013708'),'3019188385W18':('KENT','92M047166'),'3019188458W17':('SW_METER','8M088276'),'3019188466W14':('KENT','M210093'),'3019188490W16':('KENT','6A048505'),'3019188512W19':('KENT','000000000000405089'),'3019033276W14':('ARAD','9089368'),'3019033306W14':('KENT','4T009453'),'3019033322W19':('ELSTER','000000000009080130'),'3019033330W16':('ELSTER','000000000008288295'),'3019033373W15':('ARAD','9108738'),'3019033381W12':('KENT','000000000073260854'),'3019033411W12':('SW_METER','9M129985'),'301903342XW1X':('KENT','AL034255'),'3019033438W17':('NEPTUNE_MEASUREMENT','368175'),'3019033462W19':('KENT','4A052252'),'3019033500W16':('KENT','4T015998'),'3019033535W18':('KENT','4A022358'),'3019033578W17':('KENT','86027961'),'3019033594W11':('KENT','4A022325'),'3019033624W11':('KENT','000000000073261507'),'3019033632W19':('KENT','000000000082099358'),'3019033659W13':('ARAD','9124697'),'3019033667W10':('KENT','000000000088457019'),'3019033721W12':('KENT','000000000000638354'),'301903373XW1X':('KENT','3M060812'),'3019033829W13':('KENT','4A023413'),'3019033837W10':('SW_METER','8T000006'),'3019033845W18':('KENT','3A246396'),'3019033853W15':('KENT','000000000008507331'),'3019033888W17':('ARAD','9120052'),'3019033926W14':('SW_METER','14AI0081'),'3019123186W14':('KENT','87148248'),'3019123194W11':('ELSTER','000000000008360024'),'3019123275W18':('ARAD','000000000008536005'),'3019123364W11':('SCHLUMBERGER','96AQ133204'),'3019123453W15':('ELSTER','10A033112'),'3019123518W17':('KENT','4T025198'),'3019123607W10':('SW_METER','9A081604'),'301912364XW1X':('ARAD','9417713'),'3019123682W19':('KENT','000000000072165998'),'3019123704W11':('KENT','3M158669'),'3019123917W10':('KENT','000000000078149353'),'3019123925W18':('KENT','000000000082096204'),'3019123933W15':('ARAD','8188202'),'3019123968W17':('ARAD','000000000009063868'),'3019124034W11':('KENT','000000000082089101'),'3019124050W16':('KENT','3M158614'),'3019124093W15':('ELSTER','8123500'),'3019124158W17':('KENT','5M045270'),'3019124174W11':('SCHLUMBERGER','99AQ448419'),'3019124190W16':('KENT','4T024226'),'3019124263W15':('SCHLUMBERGER','96AQ138070'),'3019124271W12':('KENT','3M073842'),'3019124328W17':('KENT','4T008475'),'3019124409W13':('ELSTER','000000000008189180'),'3019124417W10':('ELSTER','000000000008034615'),'3019124425W18':('KENT','000000000082089158'),'3019124433W15':('KENT','4T009051'),'3019391148W17':('ARAD','000000000008075195'),'3019391407W10':('KENT','4M097120'),'3019391849W13':('KENT','4T012147'),'301939189XW1X':('SCHLUMBERGER','99PB401460'),'3019391938W17':('KENT','5M370619'),'3019392500W16':('ARAD','9118075'),'301939273XW1X':('ARAD','09089691'),'301939287XW1X':('KENT','4M060742'),'3019393213W15':('SEVERN_TRENT_(ELECTRONIC)','000000000000000072'),'3019393221W12':('KENT','5M006818'),'301939323XW1X':('ARAD','09141412'),'3019393280W16':('KENT','88073486'),'3019393396W14':('KENT','4T014731'),'3019393639W13':('KENT','2M002958'),'3019394007W10':('KENT','4A072064'),'3019394090W16':('KENT','4A219373'),'3019394139W13':('KENT','4M261957'),'3019394147W10':('KENT','5M020001'),'3019394171W12':('KENT','4A071623'),'3019394309W13':('KENT','4A052357'),'3019394481W12':('KENT','4T041981'),'3019394716W14':('KENT','6M145886'),'3019394724W11':('KENT','2M074007'),'3019394759W13':('SCHLUMBERGER','99AQ503224'),'3019394805W18':('KENT','6M294789'),'3019394902W19':('KENT','4A052265'),'3019394953W15':('KENT','4T031858'),'3019394961W12':('KENT','4A052354'),'3019395267W10':('KENT','90P57308'),'3019395291W12':('KENT','1M243814'),'3019395321W12':('ARAD','09416996'),'3019395364W11':('KENT','4A023500'),'3019395429W13':('KENT','4M346891'),'301939550XW1X':('ARAD','16732862'),'3019395550W16':('ARAD','9104838'),'3019395593W15':('SCHLUMBERGER','AL022619'),'3019395615W18':('ARAD','9147350'),'3019395852W19':('KENT','9106312'),'3019395976W14':('ARAD','9161215'),'3019396026W14':('KENT','2A156701'),'3019396115W18':('KENT','000000000000525071')}
-#2WSL_2RTL
+
+#2WSL_2RTL TEST UAT
 #SPIDS_METERS = {'3200643021W12':('ELSTER','08019965'),'3200647175W18':('ELSTER','10W10270746134'),'320065323XW1X':('KENT','92A588101'),'3200663693W15':('ELSTER','06M294533'),'3200675837W10':('ARAD','9129186'),'3200681691W12':('ELSTER','4A064322'),'3200719893W15':('ARAD','9132435'),'3200720123W15':('ARAD','9140801'),'320072031XW1X':('ARAD','9139171'),'3200727020W16':('ARAD','9131614'),'3200751924W11':('ARAD','16287021'),'320076144XW1X':('ARAD','9149113'),'3200767723W15':('ELSTER','AM076399'),'3200768703W15':('Elster','4T006734'),'3200772247W10':('SW_METER','7T020818'),'3200772344W11':('KENT','2A198645'),'3200795069W13':('ARAD','9157122'),'3200795700W16':('ARAD','9153721'),'3200795824W11':('ARAD','16284757'),'3200795956W14':('ARAD','16284749'),'3200796227W10':('ARAD','16735108'),'320080758XW1X':('ARAD','9153952'),'3200808098W17':('ARAD','16287218'),'320081974XW1X':('ELSTER','8994469'),'320082252XW1X':('ARAD','9157217'),'3200832975W18':('ELSTER','9045272'),'3200854618W17':('ARAD','9134010'),'3200858052W19':('TAGUS','13A10338'),'3200882530W16':('ARAD','9163543'),'3200887478W17':('ARAD','09150547'),'320090190XW1X':('ARAD','9160017'),'3200908998W17':('ARAD','17A0001122'),'3200914556W14':('ARAD','9317073'),'3200914645W18':('ARAD','9412020'),'3200921196W14':('SW_METER','8M097098'),'3200924446W14':('ARAD','9164296'),'3200925795W18':('ARAD','9315201'),'3200930713W15':('ARAD','9156780'),'3200937726W14':('ARAD','9511653'),'3200946997W10':('Elster','82089120'),'3200951575W18':('ARAD','9416836'),'3200966254W11':('ARAD','9161998'),'3201012467W10':('ARAD','9133188'),'3201014737W10':('ARAD','9155967'),'3201033294W11':('ARAD','8554218'),'320104721XW1X':('ARAD','9416445'),'3201047260W16':('ARAD','9414050'),'3201050164W11':('ARAD','9510449'),'3201052868W17':('ARAD','20MS000335'),'3201061018W17':('ARAD','08966422')}
+
+#SINGLE_SPIDS ASSURANCE 2022-07-05
+#SPIDS_METERS = {'3200205725W18':('ELSTER','10W05271221493'),'3200205768W17':('ELSTER','10W05271251052'),'3200205768W17':('ELSTER','10W05271251110'),'3200205784W11':('ELSTER','10W05271306017'),'3200205784W11':('ELSTER','10W05271321005'),'3200205806W14':('ELSTER','10W05271315470'),'3200205806W14':('ELSTER','10W05271321048'),'3200255129W13':('ELSTER','10W07010442137'),'3200255234W11':('ELSTER','10W07010550556'),'3200255331W12':('ELSTER','10W07010716294'),'3200255331W12':('ELSTER','10W07010722006'),'3200255331W12':('ELSTER','10W07010722031'),'3200255331W12':('ELSTER','10W07010722073'),'3200255331W12':('ELSTER','10W07010722104'),'3200255331W12':('ELSTER','10W07010722169'),'3200255455W18':('ELSTER','10W07010816204'),'3200255463W15':('astar','20170701a'),'3200255463W15':('ELSTER','20170701mi'),'3200255498W17':('ELSTER','10W07010826253'),'3200255498W17':('ELSTER','10W07010831478'),'3200255498W17':('ELSTER','10W07010831491'),'3200255498W17':('ELSTER','10W07010831516'),'3200255498W17':('ELSTER','10W07010831529'),'3200255498W17':('ELSTER','10W07010831581'),'3200272465W18':('ELSTER','10W07271002164'),'3200325216W14':('ELSTER','10W09301106187'),'3200325291W12':('ELSTER','10W09301147156'),'3200325291W12':('ELSTER','10W09301146504'),'3200325291W12':('ELSTER','10X09301146185'),'3200325291W12':('ELSTER','10X09301146171')}
+
+#2WSL_2RTL ASSURANCE 2022-07-05
+#SPIDS_METERS = {'3200399597W10':('ELSTER','10W12020906334'),'3200399600W16':('ELSTER','10W12020916250'),'3200399619W13':('ELSTER','10W12021155562'),'3200399619W13':('ELSTER','10W12021200598'),'3200399619W13':('ELSTER','10W12021201044'),'3200399619W13':('ELSTER','10W12021201092'),'3200399635W18':('ELSTER','10W12021216156'),'3200542845W18':('ELSTER','18A20180518b'),'3200543795W18':('ELSTER','18A20180519a'),'3200543833W15':('ELSTER','10W05191031159')}
+#TEST_CASE_TRANSACTIONS = ['T321.R','T202.W','T210.R','T351.R','T202.W','T210.R','T353.R','T202.W','T210.R','T355.R','T202.W','T210.R','T365.R','T202.W','T210.R','T501.R','T202.W','T210.R','T505.R','T202.W','T210.R','T551.R','T202.W','T210.R']
 
 RETAILER = 'MOSLTEST-R'
 WHOLESALER = 'MOSLTEST-W'
@@ -30,12 +35,13 @@ T216_URL = 'https://moservicesdev.mosl.co.uk/test/attachments/87ffc85e-ebd5-461c
 
 POSTCODES = ['B1 1HQ', 'BN88 1AH', 'BS98 1TL', 'BX1 1LT', 'BX2 1LB', 'BX3 2BB', 'BX4 7SB', 'BX5 5AT', 'CF10 1BH', 'CF99 1NA', 'CO4 3SQ', 'CV4 8UW', 'CV35 0DB', 'E14 5EY', 'DA1 1RT', 'DE99 3GG', 'DE55 4SW', 'DH98 1BT', 'DH99 1NS', 'E14 5HQ', 'E14 5JP', 'E16 1XL', 'E20 2AQ', 'E20 2BB', 'E20 2ST', 'E20 3BS', 'E20 3EL', 'E20 3ET', 'E20 3HB', 'E20 3HY', 'E98 1SN', 'E98 1ST', 'E98 1TT', 'EC2N 2DB', 'EC4Y 0HQ', 'EH12 1HQ', 'EH99 1SP', 'G58 1SB', 'GIR 0AA', 'IV21 2LR', 'L30 4GB', 'LS98 1FD', 'M50 2BH', 'M50 2QH', 'N1 9G', 'N81 1ER', 'NE1 4ST', 'NG80 1EH', 'NG80 1LH', 'NG80 1RH', 'NG80 1TH', 'PH1 5RB', 'PH1 2SJ', 'S2 4SU	', 'S6 1SW', 'S14 7UP', 'SE1 0NE', 'SE1 8UJ', 'SM6 0HB', 'SN38 1NW', 'SR5 1SU', 'SW1A 0AA', 'SW1A 0PW', 'SW1A 1AA', 'SW1A 2AA', 'SW1A 2AB', 'SW1H 0TL', 'SW1P 3EU', 'SW1W 0DT', 'SW11 7US', 'SW19 5AE', 'TW8 9GS', 'W1A 1AA', 'W1D 4FA', 'W1N 4DJ', 'W1T 1FB']
 
-### MAKE SURE THERE IS THE SAME NUMBER OF ELEMENTS IN PROCESSES AND PROC_NAMES DICTIONARIES/TUPLES !!!!!!!!!!!!!!
-PROCESSES = ['B1R', 'B3R', 'B3W', 'B5R', 'B5W', 'B7R', 'C1R', 'C1W', 'F4R', 'F4W', 'F5R', 'F5W', 'G1R', 'G1W', 'G2AR', 'G2AW', 'G2BR', 'G2BW']
+### MAKE SURE THERE IS THE SAME NUMBER AND THE SAME ORDER OF ELEMENTS IN PROCESSES AND PROC_NAMES ###
+PROCESSES = ['B1R', 'B3R', 'B3W', 'B5R', 'B5W', 'B7R', 'C1R', 'C1W', 'C2', 'C3', 'F4R', 'F4W', 'F5R', 'F5W', 'G1R', 'G1W', 'G2AR', 'G2AW', 'G2BR', 'G2BW']
+### MAKE SURE THERE IS THE SAME NUMBER AND THE SAME ORDER OF ELEMENTS IN PROCESSES AND PROC_NAMES ###
+PROC_NAMES = {'B1R':'Request Meter Install Work', 'B3R':'Request Meter Accuracy Test', 'B3W':'Request Meter Accuracy Test', 'B5R':'Request Meter Repair Replacement Work', 'B5W':'Request Meter Repair Replacement Work', 'B7R':'Request Meter Change', 'C1R':'Request Meter And Supply Arrangement Verification', 'C1W':'Request Meter And Supply Arrangement Verification', 'C2': 'Submit Gap Site Application For C2', 'C3': 'Submit Gap Site Application For C3',
+'F4R':'Submit Non-Household Customer Enquiry', 'F4W':'Submit Non-Household Customer Enquiry', 'F5R':'Submit Non-Household Customer Complaint', 'F5W':'Submit Non-Household Customer Complaint', 'G1R':'Submit Non-Household Customer TE Enquiry', 'G1W':'Submit Non-Household Customer TE Enquiry', 'G2AR':'Submit TE Consent Application With SPID', 'G2AW':'Submit TE Consent Application With SPID', 'G2BR':'Submit TE Consent Application Without SPID', 'G2BW':'Submit TE Consent Application Without SPID'}
 
-PROC_NAMES = {'B1R':'Request Meter Install Work', 'B3R':'Request Meter Accuracy Test', 'B3W':'Request Meter Accuracy Test', 'B5R':'Request Meter Repair Replacement Work', 'B5W':'Request Meter Repair Replacement Work', 'B7R':'Request Meter Change', 'C1R':'Request Meter And Supply Arrangement Verification', 'C1W':'Request Meter And Supply Arrangement Verification', 'F4R':'Submit Non-Household Customer Enquiry', 'F4W':'Submit Non-Household Customer Enquiry', 'F5R':'Submit Non-Household Customer Complaint', 'F5W':'Submit Non-Household Customer Complaint', 'G1R':'Submit Non-Household Customer TE Enquiry', 'G1W':'Submit Non-Household Customer TE Enquiry', 'G2AR':'Submit TE Consent Application With SPID', 'G2AW':'Submit TE Consent Application With SPID', 'G2BR':'Submit TE Consent Application Without SPID', 'G2BW':'Submit TE Consent Application Without SPID'}
-
-TRANSACTION_NAMES = {'T201.W':'Accept Service Request', 'T202.W':'Reject Service Request', 'T203.W':'Request For Additional Information', 'T204.R':'Provide Additional Information', 'T205.W':'Update Site Visit Date', 'T206.W':'Update Site Visit Failure', 'T207.R':'Submit Trading Party Comments', 'T207.W':'Submit Trading Party Comments', 'T208.R':'Close Service Request', 'T210.R':'Resubmit Service Request', 'T211.R':'Cancel Service Request', 'T211.W':'Cancel Service Request', 'T212.W':'Visit Complete And Preparing Plan', 'T213.W':'Start Service Request Deferral', 'T214.W':'End Service Request Deferral', 'T215.R':'Provide Attachment', 'T215.W':'Provide Attachment', 'T216.R':'Request Attachment', 'T216.W':'Request Attachment', 'T217.W':'Request For Customer Details and Additional Information', 'T218.R':'Provide Customer Details and Additional Information', 'T220.W':'Provide Quote For Non Standard Activity', 'T221.R':'Accept Quote For Non Standard Activity', 'T222.W':'Advise Service Request Complete', 'T223.W':'Advise Meter Work Completion', 'T224.W':'Advise Process Delay', 'T321.R':'Request Meter And Supply Arrangement Verification', 'T321.W':'Request Meter And Supply Arrangement Verification', 'T322.W':'Update Corrections Complete for C1', 'T323.W':'Propose Corrections Plan for C1', 'T324.R':'Agree Proposed Corrections Plan for C1', 'T325.R':'Dispute Proposed Corrections Plan for C1', 'T351.R':'Request Meter Repair Replacement Work', 'T351.W':'Request Meter Repair Replacement Work', 'T352.W':'Advise Meter Repair Replacement Work Completion', 'T353.R':'Request Meter Install Work', 'T355.R':'Request Meter Accuracy Test', 'T355.W':'Request Meter Accuracy Test', 'T356.W':'Advise Meter Accuracy Test Complete', 'T357.W':'Awaiting Meter Accuracy Test', 'T365.R':'Request Meter Change', 'T501.R':'Submit Non Household Customer Complaint', 'T501.W':'Submit Non Household Customer Complaint', 'T505.R':'Submit Non Household Customer Enquiry', 'T505.W':'Submit Non Household Customer Enquiry', 'T551.R':'Submit Non Household Customer TE Enquiry', 'T551.W':'Submit Non Household Customer TE Enquiry', 'T555.R':'Submit TE Consent Application With SPID', 'T555.W':'Submit TE Consent Application With SPID', 'T556.R':'Submit TE Consent Application Without SPID', 'T556.W':'Submit TE Consent Application Without SPID', 'T557.W':'Advise TE Consent Application Outcome'}
+TRANSACTION_NAMES = {'T201.W':'Accept Service Request', 'T202.W':'Reject Service Request', 'T203.W':'Request For Additional Information', 'T204.R':'Provide Additional Information', 'T205.W':'Update Site Visit Date', 'T206.W':'Update Site Visit Failure', 'T207.R':'Submit Trading Party Comments', 'T207.W':'Submit Trading Party Comments', 'T208.R':'Close Service Request', 'T210.R':'Resubmit Service Request', 'T211.R':'Cancel Service Request', 'T211.W':'Cancel Service Request', 'T212.W':'Visit Complete And Preparing Plan', 'T213.W':'Start Service Request Deferral', 'T214.W':'End Service Request Deferral', 'T215.R':'Provide Attachment', 'T215.W':'Provide Attachment', 'T216.R':'Request Attachment', 'T216.W':'Request Attachment', 'T217.W':'Request For Customer Details and Additional Information', 'T218.R':'Provide Customer Details and Additional Information', 'T220.W':'Provide Quote For Non Standard Activity', 'T221.R':'Accept Quote For Non Standard Activity', 'T222.W':'Advise Service Request Complete', 'T223.W':'Advise Meter Work Completion', 'T224.W':'Advise Process Delay', 'T321.R':'Request Meter And Supply Arrangement Verification', 'T321.W':'Request Meter And Supply Arrangement Verification', 'T322.W':'Update Corrections Complete for C1', 'T323.W':'Propose Corrections Plan for C1', 'T324.R':'Agree Proposed Corrections Plan for C1', 'T331.W':'Submit Gap Site Application For C2', 'T332.W':'Advise Gap Site Application Outcome For C2', 'T335.R':'Submit Gap Site Application For C3', 'T336.W':'Advise Gap Site Application Outcome For C3', 'T325.R':'Dispute Proposed Corrections Plan for C1', 'T351.R':'Request Meter Repair Replacement Work', 'T351.W':'Request Meter Repair Replacement Work', 'T352.W':'Advise Meter Repair Replacement Work Completion', 'T353.R':'Request Meter Install Work', 'T355.R':'Request Meter Accuracy Test', 'T355.W':'Request Meter Accuracy Test', 'T356.W':'Advise Meter Accuracy Test Complete', 'T357.W':'Awaiting Meter Accuracy Test', 'T365.R':'Request Meter Change', 'T501.R':'Submit Non Household Customer Complaint', 'T501.W':'Submit Non Household Customer Complaint', 'T505.R':'Submit Non Household Customer Enquiry', 'T505.W':'Submit Non Household Customer Enquiry', 'T551.R':'Submit Non Household Customer TE Enquiry', 'T551.W':'Submit Non Household Customer TE Enquiry', 'T561.R':'Submit TE Consent Application With SPID', 'T561.W':'Submit TE Consent Application With SPID', 'T562.R':'Submit TE Consent Application Without SPID', 'T562.W':'Submit TE Consent Application Without SPID', 'T563.W':'Advise TE Consent Application Outcome'}
 
 C1R_TRANSACTIONS = ['T321.R', 'T201.W', 'T202.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T212.W', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T322.W', 'T323.W', 'T324.R', 'T325.R']
 C1R_T201W_allowed = ['T203.W', 'T205.W', 'T322.W', 'T323.W']
@@ -204,53 +210,73 @@ G1W_T218R_allowed = ['T217.W', 'T222.W']
 G1W_T210R_allowed = ['T201.W', 'T202.W']
 G1W_T222W_allowed = ['T208.R', 'T210.R']
 
-G2AR_TRANSACTIONS = ['T555.R', 'T201.W', 'T202.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W','T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T224.W', 'T557.W']
-G2AR_T201W_allowed = ['T203.W', 'T205.W', 'T224.W', 'T557.W']
+G2AR_TRANSACTIONS = ['T561.R', 'T201.W', 'T202.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W','T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T224.W', 'T563.W']
+G2AR_T201W_allowed = ['T203.W', 'T205.W', 'T224.W', 'T563.W']
 G2AR_T202W_allowed = ['T210.R']
 G2AR_T203W_allowed = ['T204.R']
-G2AR_T204R_allowed = ['T203.W', 'T205.W', 'T224.W', 'T557.W']
-G2AR_T205W_allowed = ['T206.W', 'T224.W', 'T557.W']
+G2AR_T204R_allowed = ['T203.W', 'T205.W', 'T224.W', 'T563.W']
+G2AR_T205W_allowed = ['T206.W', 'T224.W', 'T563.W']
 G2AR_T206W_allowed = ['T203.W', 'T205.W']
 G2AR_T210R_allowed = ['T201.W', 'T202.W']
-G2AR_T224W_allowed = ['T203.W', 'T205.W', 'T557.W']
-G2AR_T555R_allowed = ['T201.W', 'T202.W']
-G2AR_T557W_allowed = ['T208.R', 'T210.R']
+G2AR_T224W_allowed = ['T203.W', 'T205.W', 'T563.W']
+G2AR_T561R_allowed = ['T201.W', 'T202.W']
+G2AR_T563W_allowed = ['T208.R', 'T210.R']
 
-G2AW_TRANSACTIONS = ['T555.W', 'T201.W', 'T202.W', 'T217.W', 'T218.R', 'T205.W', 'T206.W','T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.W', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T224.W', 'T557.W']
-G2AW_T201W_allowed = ['T217.W', 'T205.W', 'T224.W', 'T557.W']
+G2AW_TRANSACTIONS = ['T561.W', 'T201.W', 'T202.W', 'T217.W', 'T218.R', 'T205.W', 'T206.W','T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.W', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T224.W', 'T563.W']
+G2AW_T201W_allowed = ['T217.W', 'T205.W', 'T224.W', 'T563.W']
 G2AW_T202W_allowed = ['T210.R']
 G2AW_T203W_allowed = ['T218.R']
-G2AW_T204R_allowed = ['T217.W', 'T205.W', 'T224.W', 'T557.W']
-G2AW_T205W_allowed = ['T206.W', 'T224.W', 'T557.W']
+G2AW_T204R_allowed = ['T217.W', 'T205.W', 'T224.W', 'T563.W']
+G2AW_T205W_allowed = ['T206.W', 'T224.W', 'T563.W']
 G2AW_T206W_allowed = ['T217.W', 'T205.W']
 G2AW_T210R_allowed = ['T201.W', 'T202.W']
-G2AW_T224W_allowed = ['T217.W', 'T205.W', 'T557.W']
-G2AW_T555W_allowed = ['T201.W']
-G2AW_T557W_allowed = ['T208.R', 'T210.R']
+G2AW_T224W_allowed = ['T217.W', 'T205.W', 'T563.W']
+G2AW_T561W_allowed = ['T201.W']
+G2AW_T563W_allowed = ['T208.R', 'T210.R']
 
-G2BR_TRANSACTIONS = ['T556.R', 'T201.W', 'T202.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W','T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T224.W', 'T557.W']
-G2BR_T201W_allowed = ['T203.W', 'T205.W', 'T224.W', 'T557.W']
+G2BR_TRANSACTIONS = ['T562.R', 'T201.W', 'T202.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W','T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T224.W', 'T563.W']
+G2BR_T201W_allowed = ['T203.W', 'T205.W', 'T224.W', 'T563.W']
 G2BR_T202W_allowed = ['T210.R']
 G2BR_T203W_allowed = ['T204.R']
-G2BR_T204R_allowed = ['T203.W', 'T205.W', 'T224.W', 'T557.W']
-G2BR_T205W_allowed = ['T206.W', 'T224.W', 'T557.W']
+G2BR_T204R_allowed = ['T203.W', 'T205.W', 'T224.W', 'T563.W']
+G2BR_T205W_allowed = ['T206.W', 'T224.W', 'T563.W']
 G2BR_T206W_allowed = ['T203.W', 'T205.W']
 G2BR_T210R_allowed = ['T201.W', 'T202.W']
-G2BR_T224W_allowed = ['T203.W', 'T205.W', 'T557.W']
-G2BR_T556R_allowed = ['T201.W', 'T202.W']
-G2BR_T557W_allowed = ['T208.R', 'T210.R']
+G2BR_T224W_allowed = ['T203.W', 'T205.W', 'T563.W']
+G2BR_T562R_allowed = ['T201.W', 'T202.W']
+G2BR_T563W_allowed = ['T208.R', 'T210.R']
 
-G2BW_TRANSACTIONS = ['T556.W', 'T201.W', 'T202.W', 'T217.W', 'T218.R', 'T205.W', 'T206.W','T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.W', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T224.W', 'T557.W']
-G2BW_T201W_allowed = ['T217.W', 'T205.W', 'T224.W', 'T557.W']
+G2BW_TRANSACTIONS = ['T562.W', 'T201.W', 'T202.W', 'T217.W', 'T218.R', 'T205.W', 'T206.W','T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.W', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T224.W', 'T563.W']
+G2BW_T201W_allowed = ['T217.W', 'T205.W', 'T224.W', 'T563.W']
 G2BW_T202W_allowed = ['T210.R']
 G2BW_T203W_allowed = ['T218.R']
-G2BW_T204R_allowed = ['T217.W', 'T205.W', 'T224.W', 'T557.W']
-G2BW_T205W_allowed = ['T206.W', 'T224.W', 'T557.W']
+G2BW_T204R_allowed = ['T217.W', 'T205.W', 'T224.W', 'T563.W']
+G2BW_T205W_allowed = ['T206.W', 'T224.W', 'T563.W']
 G2BW_T206W_allowed = ['T217.W', 'T205.W']
 G2BW_T210R_allowed = ['T201.W', 'T202.W']
-G2BW_T224W_allowed = ['T217.W', 'T205.W', 'T557.W']
-G2BW_T556W_allowed = ['T201.W']
-G2BW_T557W_allowed = ['T208.R', 'T210.R']
+G2BW_T224W_allowed = ['T217.W', 'T205.W', 'T563.W']
+G2BW_T562W_allowed = ['T201.W']
+G2BW_T563W_allowed = ['T208.R', 'T210.R']
+
+C2_TRANSACTIONS = ['T331.W', 'T201.W', 'T202.W', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.W', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T332.W']
+C2_T201W_allowed = ['T332.W']
+C2_T331W_allowed = ['T201.W']
+C2_T332W_allowed = ['T208.R', 'T210.R']
+C2_T210R_allowed = ['T201.W', 'T202.W']
+C2_T202W_allowed = ['T210.R']
+
+C3_TRANSACTIONS = ['T335.R', 'T201.W', 'T202.W', 'T203.W', 'T204.R', 'T205.W', 'T206.W', 'T207.R', 'T207.W', 'T208.R', 'T210.R', 'T211.R', 'T213.W', 'T214.W', 'T215.R', 'T215.W', 'T216.R', 'T216.W', 'T224.W', 'T336.W']
+C3_T201W_allowed = ['T203.W', 'T205.W', 'T224.W', 'T336.W']
+C3_T202W_allowed = ['T210.R']
+C3_T203W_allowed = ['T204.R']
+C3_T204R_allowed = ['T203.W', 'T205.W', 'T224.W', 'T336.W']
+C3_T205W_allowed = ['T206.W', 'T224.W', 'T336.W']
+C3_T206W_allowed = ['T203.W', 'T205.W']
+C3_T210R_allowed = ['T201.W', 'T202.W']
+C3_T224W_allowed = ['T203.W', 'T205.W', 'T336.W']
+C3_T335R_allowed = ['T201.W', 'T202.W']
+C3_T336W_allowed = ['T208.R', 'T210.R']
+
 
 fake = Faker()
 fake.add_provider(Enzyme)
@@ -365,6 +391,14 @@ D8380 =	['YES', 'NO', 'NA']
 D8381 =	['YES', 'NO', 'NA']
 D8382 =	['NOTREQD', 'GRANTED', 'NOTGRANTED']
 D8383 =	['PERMANENT', 'TEMPORARY', 'RENEWAL']
+D8384 =	['YES', 'NO', 'NA']
+D8385 =	['YES', 'NO', 'NA']
+D8386 =	['YES', 'NO', 'NA']
+
+#C2 C3
+D8391 = ['METERED','UNMETERED']
+D8393 = ['WSPID', 'SSPID', 'WSSPID']
+D8402 = ['GS', 'CU']
 
 test_case_sequence = []
 def generate_test_case(loop_times):
@@ -546,6 +580,19 @@ def generate_test_case(loop_times):
                             # unmeasured  data
                             '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 
                             '', '', '']
+        T331W_data_items = [SPID, 'UNMETERED', '123', '[today-' + str(random.randint(1, 45))  +']', 'WSPID', fake.paragraph(nb_sentences=1), '0', '0', '0',
+                            '0', '1', 'WSPID', '0', '', fake.paragraph(nb_sentences=1), '[today]', '', '', '', '', '', ''
+                            ]   
+                            # CKECK CHECK!!!!!!!!!!!!!!!!!!!!!!!!!!!! POSATCODE
+        T332W_data_items = ['[orid]', '[today-' + str(random.randint(1, 45))  +']', random.choice(D8402), 'VOA_BA_REF', '', '12345678', '', 'WATERS CO UK',
+                            '', '', '', '', '', '', 'Southampton 123', '', '', '', '', '123456' ,'', '', '', '', '', '', '', '', ''
+                            ]
+        T335R_data_items = ['MOSLTEST-W', 'REF123', 'HOT WATERS', '', '', '', '', 'Mancherster 123', '', '', '', '', random.choice(POSTCODES), '', '', '', 
+                            'METERED', '', '[today-' + str(random.randint(1, 45))  +']', 'WSPID', fake.paragraph(nb_sentences=1), '0', '0', '0', '0', '0', '', '', '', fake.paragraph(nb_sentences=1), '1', '1', '[today]', '1', CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '103', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', random.choice(D8237), RANDOM_STRING, random.choice(D2005), RANDOM_STRING, RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''
+                            ]
+        T336W_data_items = ['[orid]', 'RA', 'MOSLTEST-R','1', '', SPID, 'UNMETERED', '1', '', '', '1', fake.paragraph(nb_sentences=1),
+                             fake.paragraph(nb_sentences=1), '', '[today-' + str(random.randint(1, 45))  +']', 'GS', 'VOA_BA_REF', '', '123123123', '', 'COLD WATERS', '', '', '', '', '', RANDOM_ADDRESS1, RANDOM_ADDRESS2, RANDOM_ADDRESS3, RANDOM_ADDRESS4, RANDOM_ADDRESS5, random.choice(POSTCODES), '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''
+                             ]
         T351R_data_items = [# basic data
                             SPID, 'RET_' + RANDOM_STRING, '', '1', '[today]', '1',
                             # customer and retailer data
@@ -633,33 +680,33 @@ def generate_test_case(loop_times):
         T551W_data_items = [# basic data
                             SPID, 'DPID_' + RANDOM_STRING, '[today-' + str(random.randint(0, 7))  +']', fake.paragraph(nb_sentences=1), '', fake.paragraph(nb_sentences=1), '[today]'      # [today - 0] = [today]!!!
                            ]
-        T555R_data_items = [# basic data
-                            SPID, 'DPID_' + RANDOM_STRING, 'RET_' + RANDOM_STRING, '', '1', random.choice(D8371), '[today+' + str(random.randint(0, 7))  +']', '[today-' + str(random.randint(0, 7))  +']', fake.paragraph(nb_sentences=1),'[today]',
+        T561R_data_items = [# basic data
+                            SPID, 'DPID_' + RANDOM_STRING, 'RET_' + RANDOM_STRING, '', '1', random.choice(D8371), '[today+' + str(random.randint(0, 7))  +']', '[today-' + str(random.randint(0, 7))  +']', fake.paragraph(nb_sentences=1), '[today+' + str(random.randint(0, 7))  +']', fake.paragraph(nb_sentences=1),'[today]',
+                            # customer and retailer data
+                            '1', CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', random.choice(D8237),
+                            fake.paragraph(nb_sentences=1), random.choice(D2005), fake.paragraph(nb_sentences=1), RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL,
+                            # Group Attached Application
+                            random.choice(D8374), random.choice(D8375), random.choice(D8376), random.choice(D8377), random.choice(D8378), random.choice(D8379), random.choice(D8384), random.choice(D8385), random.choice(D8386), random.choice(D8380), 'YES'
+                            ]
+        T561W_data_items = [# basic data
+                            SPID, 'DPID_' + RANDOM_STRING, 'RET_' + RANDOM_STRING, '', '1', random.choice(D8371), '[today+' + str(random.randint(0, 7))  +']', '[today-' + str(random.randint(0, 7))  +']', fake.paragraph(nb_sentences=1), '[today+' + str(random.randint(0, 7))  +']', fake.paragraph(nb_sentences=1),'[today]',
+                            # Group Attached Application
+                            random.choice(D8374), random.choice(D8375), random.choice(D8376), random.choice(D8377), random.choice(D8378), random.choice(D8379), random.choice(D8384), random.choice(D8385), random.choice(D8386), random.choice(D8380), 'YES'
+                            ]
+        T562R_data_items = [# basic data
+                            'MOLSTEST-W', 'DPID_' + RANDOM_STRING, 'RET_' + RANDOM_STRING, '1', '', 'MOSLTEST-W', 'MOSLTEST-W', 'MOSLTEST-W', 'SEC_' + RANDOM_STRING, 'PRI_' + RANDOM_STRING, RANDOM_ADDRESS1, RANDOM_ADDRESS2, RANDOM_ADDRESS3, RANDOM_ADDRESS4, RANDOM_ADDRESS5, random.choice(POSTCODES), random.randint(1, 99999999), RANDOM_STRING, random.randint(1, 99999999), random.choice(D8371), '[today-' + str(random.randint(0, 7))  +']', fake.paragraph(nb_sentences=1), '[today+' + str(random.randint(0, 7))  +']', fake.paragraph(nb_sentences=1),'[today]',
                             # customer and retailer data
                             '1', CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', random.choice(D8237),
                             fake.paragraph(nb_sentences=1), random.choice(D2005), fake.paragraph(nb_sentences=1), RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL,
                             # Group Attached Application
                             random.choice(D8374), random.choice(D8375), random.choice(D8376), random.choice(D8377), random.choice(D8378), random.choice(D8379), random.choice(D8380), 'YES' #random.choice(D8381), - at least 1 Yes
                             ]
-        T555W_data_items = [# basic data
-                            SPID, 'DPID_' + RANDOM_STRING, '', random.choice(D8371), '[today+' + str(random.randint(0, 7))  +']', '[today-' + str(random.randint(0, 7))  +']', fake.paragraph(nb_sentences=1),'[today]',
+        T562W_data_items = [# basic data
+                            'DPID_' + RANDOM_STRING, 'MOSLTEST-R', 'RET_' + RANDOM_STRING, '', 'MOSLTEST-R', 'MOSLTEST-R', 'MOSLTEST-R', 'SEC_' + RANDOM_STRING, 'PRI_' + RANDOM_STRING, RANDOM_ADDRESS1, RANDOM_ADDRESS2, RANDOM_ADDRESS3, RANDOM_ADDRESS4, RANDOM_ADDRESS5, random.choice(POSTCODES), random.randint(1, 99999999), RANDOM_STRING, random.randint(1, 99999999), random.choice(D8371), fake.paragraph(nb_sentences=1), '[today-' + str(random.randint(0, 7))  +']', '[today+' + str(random.randint(0, 7))  +']', fake.paragraph(nb_sentences=1), '[today]',
                             # Group Attached Application
-                            random.choice(D8374), random.choice(D8375), random.choice(D8376), random.choice(D8377), random.choice(D8378), random.choice(D8379), random.choice(D8380), 'YES' #random.choice(D8381), - at least 1 Yes
+                            random.choice(D8374), random.choice(D8375), random.choice(D8376), random.choice(D8377), random.choice(D8378), random.choice(D8379), random.choice(D8384), random.choice(D8385), random.choice(D8386), random.choice(D8380), 'YES' #random.choice(D8381), - at least 1 Yes
                             ]
-        T556R_data_items = [# basic data
-                            'RET_' + RANDOM_STRING, '1', '', 'MOSLTEST-W', 'MOSLTEST-W', 'MOSLTEST-W', 'SEC_' + RANDOM_STRING, 'PRI_' + RANDOM_STRING, RANDOM_ADDRESS1, RANDOM_ADDRESS2, RANDOM_ADDRESS3, RANDOM_ADDRESS4, RANDOM_ADDRESS5, random.choice(POSTCODES), random.randint(1, 99999999), RANDOM_STRING, random.randint(1, 99999999), random.choice(D8371), '[today-' + str(random.randint(0, 7))  +']', fake.paragraph(nb_sentences=1),'[today]',
-                            # customer and retailer data
-                            '1', CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', random.choice(D8237),
-                            fake.paragraph(nb_sentences=1), random.choice(D2005), fake.paragraph(nb_sentences=1), RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL,
-                            # Group Attached Application
-                            random.choice(D8374), random.choice(D8375), random.choice(D8376), random.choice(D8377), random.choice(D8378), random.choice(D8379), random.choice(D8380), 'YES' #random.choice(D8381), - at least 1 Yes
-                            ]
-        T556W_data_items = [# basic data
-                            'RET_' + RANDOM_STRING, '', 'MOSLTEST-R', 'MOSLTEST-R', 'MOSLTEST-R', 'SEC_' + RANDOM_STRING, 'PRI_' + RANDOM_STRING, RANDOM_ADDRESS1, RANDOM_ADDRESS2, RANDOM_ADDRESS3, RANDOM_ADDRESS4, RANDOM_ADDRESS5, random.choice(POSTCODES), random.randint(1, 99999999), RANDOM_STRING, random.randint(1, 99999999), random.choice(D8371), '[today-' + str(random.randint(0, 7))  +']', fake.paragraph(nb_sentences=1),'[today]',
-                            # Group Attached Application
-                            random.choice(D8374), random.choice(D8375), random.choice(D8376), random.choice(D8377), random.choice(D8378), random.choice(D8379), random.choice(D8380), 'YES' #random.choice(D8381), - at least 1 Yes
-                            ]
-        T557W_data_items = [# basic data
+        T563W_data_items = [# basic data
                             '[orid]', 'GRANTED', 'PERMANENT', '[today]', fake.paragraph(nb_sentences=1)
                             ]
         
@@ -805,6 +852,22 @@ def generate_test_case(loop_times):
                     for k in range(len(T325R_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T325R_data_items[k]
+                case 'T331.W':
+                    for k in range(len(T331W_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T331W_data_items[k]
+                case 'T332.W':
+                    for k in range(len(T332W_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T332W_data_items[k]
+                case 'T335.R':
+                    for k in range(len(T335R_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T335R_data_items[k]
+                case 'T336.W':
+                    for k in range(len(T336W_data_items)):
+                        ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
+                                7).value = T336W_data_items[k]
                 case 'T351.R':
                     for k in range(len(T351R_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
@@ -865,26 +928,26 @@ def generate_test_case(loop_times):
                     for k in range(len(T551W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T551W_data_items[k]
-                case 'T555.R':
-                    for k in range(len(T555R_data_items)):
+                case 'T561.R':
+                    for k in range(len(T561R_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
-                                7).value = T555R_data_items[k]
-                case 'T555.W':
-                    for k in range(len(T555W_data_items)):
+                                7).value = T561R_data_items[k]
+                case 'T561.W':
+                    for k in range(len(T561W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
-                                7).value = T555W_data_items[k]
-                case 'T556.R':
-                    for k in range(len(T556R_data_items)):
+                                7).value = T561W_data_items[k]
+                case 'T562.R':
+                    for k in range(len(T562R_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
-                                7).value = T556R_data_items[k]
-                case 'T556.W':
-                    for k in range(len(T556W_data_items)):
+                                7).value = T562R_data_items[k]
+                case 'T562.W':
+                    for k in range(len(T562W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
-                                7).value = T556W_data_items[k]
-                case 'T557.W':
-                    for k in range(len(T557W_data_items)):
+                                7).value = T562W_data_items[k]
+                case 'T563.W':
+                    for k in range(len(T563W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
-                                7).value = T557W_data_items[k]
+                                7).value = T563W_data_items[k]
 
     
     test_cases_folder = working_dir + 'TEST_CASES'

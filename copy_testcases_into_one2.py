@@ -6,8 +6,8 @@ mylist = os.listdir(working_dir)
 # for filename in mylist:
 #     if "CON-" not in filename or "z" in filename:
 #         mylist.remove(filename)
-mylist.remove("Bilaterals 1.5.0.0 master.xlsx")
-master_excel = working_dir + "Bilaterals 1.5.0.0 master.xlsx"
+mylist.remove("Bilaterals 1.6.0.1 master.xlsx")
+master_excel = working_dir + "Bilaterals 1.6.0.1 master.xlsx"
 wb1 = xl.load_workbook(master_excel)
 ws11 = wb1.worksheets[0]
 ws12 = wb1.worksheets[1]

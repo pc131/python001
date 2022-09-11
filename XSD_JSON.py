@@ -8,10 +8,10 @@
 
 import xml.etree.ElementTree as ET
 
-xsd_filename = 'BilateralsHviMessage.V1.0.3.1.xsd'
+xsd_filename = 'BilateralsHviMessage.V1.0.4.0.xsd'
 tree = ET.parse(xsd_filename)
-transaction = 'T365.M'
-next_transaction = 'T501.R' # what is the next transaction in XSD file after transaction above
+transaction = 'T336.W'
+next_transaction = 'T336.M' # what is the next transaction in XSD file after transaction above
 
 root = tree.getroot()
 
@@ -47,7 +47,7 @@ transaction_XSD2 = list(filter(None, transaction_XSD1))
 # print(len(transaction_XSD2))
 new_x = []
 for index, element in enumerate(transaction_XSD2):
-    if element not in ('SelectedMeter', 'CustomerConsent', 'Meter', 'RepairedMeter', 'InstallMeter'):
+    if element not in ('SelectedMeter', 'CustomerConsent', 'Meter', 'RepairedMeter', 'InstallMeter', 'PotentialMeters', 'PotentialMeter', 'GSDetails'):
         new_x.append(element)
 transaction_XSD2 = new_x
 #remove non data items like 'SelectedMeter', 'CustomerConsent', 'Meter', 'RepairedMeter', 'InstallMeter'
@@ -62,7 +62,7 @@ for m in range(len(transaction_XSD2)):
 transactions_JSON = []
     
 #import file with JSON transactions
-filename = 'T365M.json'
+filename = 'T336W.json'
 f1 = open(filename, 'r') # open source file
 lines = f1.readlines()
 
@@ -115,58 +115,16 @@ if(transactions_JSON==transaction_XSD3):
     for p in range(len(transactions_JSON)):
         print(str(p+1).rjust(2, '0') + ' | {0:41} | {1:41}'.format(transaction_XSD3[p], transactions_JSON[p]))
         f1.write(str(p+1).rjust(2, '0') + ' | {0:41} | {1:41}'.format(transaction_XSD3[p], transactions_JSON[p]) + '\n')
-# else:
-#     print("XSD tags names are NOT equal to JSON data items names - check rows with *\n")
-#     f1.write("XSD tags names are NOT equal to JSON data items names check rows with *\n\n")
-#     print('XSD' + ' ' * 39 + '| JSON\n')
-#     f1.write('XSD' + ' ' * 39 + '| JSON\n\n')
-#     for r in range(len(transactions_JSON)):
-#         if transaction_XSD3[r]==transactions_JSON[r]:
-#             print('{0:41} | {1:41}'.format(transaction_XSD3[r], transactions_JSON[r]))
-#             f1.write('{0:41} | {1:41}'.format(transaction_XSD3[r], transactions_JSON[r]) + '\n')
-#         else:
-#             #if data items are not identical display * start in the row
-#             print('{0:41} * {1:41}'.format(transaction_XSD3[r], transactions_JSON[r]))
-#             f1.write('{0:41} * {1:41}'.format(transaction_XSD3[r], transactions_JSON[r]) + '\n')
-elif (len(transactions_JSON)>len(transaction_XSD3)):
+else:
     print("XSD tags names are NOT equal to JSON data items names - check rows with *\n")
     f1.write("XSD tags names are NOT equal to JSON data items names check rows with *\n\n")
     print('XSD' + ' ' * 39 + '| JSON\n')
     f1.write('XSD' + ' ' * 39 + '| JSON\n\n')
-    #create list3 and insert * for missing fields
-    list3 = []
-    for i in range(len(transactions_JSON)):
-        if transactions_JSON[i] not in transaction_XSD3:
-            list3.append('*')
-        else:
-            list3.append(transactions_JSON[i])
-    #create list3 and insert * for missing fields
     for r in range(len(transactions_JSON)):
-        if transactions_JSON[r]==list3[r]:
-            print('{0:41} | {1:41}'.format(list3[r], transactions_JSON[r]))
-            f1.write('{0:41} | {1:41}'.format(list3[r], transactions_JSON[r]) + '\n')
+        if transaction_XSD3[r]==transactions_JSON[r]:
+            print('{0:41} | {1:41}'.format(transaction_XSD3[r], transactions_JSON[r]))
+            f1.write('{0:41} | {1:41}'.format(transaction_XSD3[r], transactions_JSON[r]) + '\n')
         else:
             #if data items are not identical display * start in the row
-            print('{0:41} * {1:41}'.format(list3[r], transactions_JSON[r]))
-            f1.write('{0:41} * {1:41}'.format(list3[r], transactions_JSON[r]) + '\n')
-elif (len(transaction_XSD3)>len(transactions_JSON)):
-    print("XSD tags names are NOT equal to JSON data items names - check rows with *\n")
-    f1.write("XSD tags names are NOT equal to JSON data items names check rows with *\n\n")
-    print('XSD' + ' ' * 39 + '| JSON\n')
-    f1.write('XSD' + ' ' * 39 + '| JSON\n\n')
-    #create list3 and insert * for missing fields
-    list3 = []
-    for i in range(len(transaction_XSD3)):
-        if transaction_XSD3[i] not in transactions_JSON:
-            list3.append('*')
-        else:
-            list3.append(transaction_XSD3[i])
-    #create list3 and insert * for missing fields
-    for r in range(len(transaction_XSD3)):
-        if transaction_XSD3[r]==list3[r]:
-            print('{0:41} | {1:41}'.format(transaction_XSD3[r], list3[r]))
-            f1.write('{0:41} | {1:41}'.format(transaction_XSD3[r], list3[r]) + '\n')
-        else:
-            #if data items are not identical display * start in the row
-            print('{0:41} * {1:41}'.format(transaction_XSD3[r], list3[r]))
-            f1.write('{0:41} * {1:41}'.format(transaction_XSD3[r], list3[r]) + '\n')
+            print('{0:41} * {1:41}'.format(transaction_XSD3[r], transactions_JSON[r]))
+            f1.write('{0:41} * {1:41}'.format(transaction_XSD3[r], transactions_JSON[r]) + '\n')
