@@ -1,20 +1,23 @@
 import openpyxl as xl
 import os
 # list files in current directory
-mylist = os.listdir("C:\\Users\\tomasz.skoczylas\\Downloads\\11\\")
+working_dir = "C:\\Users\\tomasz.skoczylas\\Downloads\\11\\"
+working_dir1 = "C:\\Users\\tomasz.skoczylas\\Downloads\\11\\TEST_CASES\\"
+excel_template_file = working_dir + "Bilaterals 1.8.0.1 master.xlsx"
+mylist = os.listdir(working_dir1)
 # remove the template file from the list, so it is not used as source file
-mylist.remove('Bilaterals 1.1 master.xlsx')
+##mylist.remove(excel_template_file)
 
 for f in mylist:
 
     # opening the source excel file with first two worksheets
-    filename1 = "C:\\Users\\tomasz.skoczylas\\Downloads\\11\\" + f
+    filename1 = working_dir1 + f
     wb1 = xl.load_workbook(filename1)
     ws11 = wb1.worksheets[0]
     ws12 = wb1.worksheets[1]
 
     # opening the destination excel file
-    filename2 = "C:\\Users\\tomasz.skoczylas\\Downloads\\11\\Bilaterals 1.1 master.xlsx"
+    filename2 = excel_template_file
     wb2 = xl.load_workbook(filename2)
     ws21 = wb2.worksheets[0]
     ws22 = wb2.worksheets[1]
@@ -37,7 +40,7 @@ for f in mylist:
             ws21.cell(row=i, column=j).value = c.value
     # add info about version
     ws21.cell(
-        row=4, column=7).value = 'created with 1.1 excel template'
+        row=4, column=7).value = 'created with 1.8.0.1 excel template'
 
     # copying the cell values from source excel file worksheet2 to destination excel file worksheet2
     for k in range(1, mrws21 + 1):

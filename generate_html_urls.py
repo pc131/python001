@@ -1,10 +1,10 @@
 
 import shutil
 import os
-
+### CHANGE the details of &filename=BiLats_GDPR to reflect directory in Azure Storage
 mylist = os.listdir("C:\\Users\\tomasz.skoczylas\\Downloads\\11\\files")
 working_dir = 'C:\\Users\\tomasz.skoczylas\\Downloads\\11\\'
-
+### CHANGE the details of &filename=BiLats_GDPR to reflect directory in Azure Storage
 test_cases_folder = working_dir + 'HTML_URLS'
 
 if not os.path.exists(test_cases_folder):
@@ -30,7 +30,7 @@ urls_uat_file.write('<a href=\"https://bilateralhubtestharness-dev-as.azurewebsi
 for x in range(0, len(mylist)):
     print(mylist[x][:-5])
     trx_uat_file.write(mylist[x][:-5] + '\t\n')
-    urls_uat_file.write('<a href=\"https://bilateralhubtestharness-dev-as.azurewebsites.net/api/ExecuteTestCase?code=NbXUVu704AnFSJTiV1JYZ6gq7YCWBqJDxh//C0x/NBAUMnLGWN5uGg==&filename=TEST_SUITE_NAME/' +  mylist[x]  + '&format=JSON\">' + mylist[x][:-5]  + '</a><br><br>\n')
+    urls_uat_file.write('<a href=\"https://bilateralhubtestharness-dev-as.azurewebsites.net/api/ExecuteTestCase?code=NbXUVu704AnFSJTiV1JYZ6gq7YCWBqJDxh//C0x/NBAUMnLGWN5uGg==&filename=BiLats_GDPR_T225/C3/' +  mylist[x]  + '&format=JSON\">' + mylist[x][:-5]  + '</a><br><br>\n')
 urls_uat_file.write('</body>\n<html>') 
 urls_uat_file.close()
 
@@ -39,7 +39,7 @@ urls_test_file.write('<a href=\"https://bilateralhubtestharness-dev-as.azurewebs
 for x in range(0, len(mylist)):
     print(mylist[x][:-5])
     trx_test_file.write(mylist[x][:-5] + '\t\n')
-    urls_test_file.write('<a href=\"https://bilateralhubtestharness-dev-as.azurewebsites.net/api/ExecuteTestCase?code=NbXUVu704AnFSJTiV1JYZ6gq7YCWBqJDxh//C0x/NBAUMnLGWN5uGg==&filename=TEST_SUITE_NAME/' +  mylist[x]  + '&format=JSON&environment=TEST\">' + mylist[x][:-5]  + '</a><br><br>\n')
+    urls_test_file.write('<a href=\"https://bilateralhubtestharness-dev-as.azurewebsites.net/api/ExecuteTestCase?code=NbXUVu704AnFSJTiV1JYZ6gq7YCWBqJDxh//C0x/NBAUMnLGWN5uGg==&filename=BiLats_GDPR_T225/C3/' +  mylist[x]  + '&format=JSON&environment=TEST\">' + mylist[x][:-5]  + '</a><br><br>\n')
 urls_test_file.write('</body>\n<html>') 
 urls_test_file.close()
 
@@ -48,6 +48,6 @@ urls_asrn_file.write('<a href=\"https://bilateralhubtestharness-dev-as.azurewebs
 for x in range(0, len(mylist)):
     print(mylist[x][:-5])
     trx_asrn_file.write(mylist[x][:-5] + '\t\n')
-    urls_asrn_file.write('<a href=\"https://bilateralhubtestharness-dev-as.azurewebsites.net/api/ExecuteTestCase?code=NbXUVu704AnFSJTiV1JYZ6gq7YCWBqJDxh//C0x/NBAUMnLGWN5uGg==&filename=BiLats_ASRN_3-0-0/' +  mylist[x]  + '&format=JSON&environment=assurance\">' + mylist[x][:-5]  + '</a><br><br>\n')
+    urls_asrn_file.write('<a href=\"https://bilateralhubtestharness-dev-as.azurewebsites.net/api/ExecuteTestCase?code=NbXUVu704AnFSJTiV1JYZ6gq7YCWBqJDxh//C0x/NBAUMnLGWN5uGg==&filename=BiLats_GDPR_T225/C3/' +  mylist[x]  + '&format=JSON&environment=assurance\">' + mylist[x][:-5]  + '</a><br><br>\n')
 urls_asrn_file.write('</body>\n<html>') 
 urls_asrn_file.close()

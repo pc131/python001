@@ -8,10 +8,10 @@
 
 import xml.etree.ElementTree as ET
 
-xsd_filename = 'BilateralsHviMessage.V1.0.4.0.xsd'
+xsd_filename = 'BilateralsHviMessage.V1.0.4.2_DUMMY.xsd'
 tree = ET.parse(xsd_filename)
-transaction = 'T336.W'
-next_transaction = 'T336.M' # what is the next transaction in XSD file after transaction above
+transaction = 'T563.M'
+next_transaction = 'T999.W' # what is the next transaction in XSD file after transaction above
 
 root = tree.getroot()
 
@@ -47,7 +47,7 @@ transaction_XSD2 = list(filter(None, transaction_XSD1))
 # print(len(transaction_XSD2))
 new_x = []
 for index, element in enumerate(transaction_XSD2):
-    if element not in ('SelectedMeter', 'CustomerConsent', 'Meter', 'RepairedMeter', 'InstallMeter', 'PotentialMeters', 'PotentialMeter', 'GSDetails'):
+    if element not in ('SelectedMeter', 'CustomerConsent', 'Meter', 'RepairedMeter', 'InstallMeter', 'PotentialMeters', 'PotentialMeter', 'GSDetails', 'GSExistingMeters', 'GSExistingMeter', 'AttachedApplication'):
         new_x.append(element)
 transaction_XSD2 = new_x
 #remove non data items like 'SelectedMeter', 'CustomerConsent', 'Meter', 'RepairedMeter', 'InstallMeter'
@@ -62,7 +62,7 @@ for m in range(len(transaction_XSD2)):
 transactions_JSON = []
     
 #import file with JSON transactions
-filename = 'T336W.json'
+filename = 'G2_T563M.json'
 f1 = open(filename, 'r') # open source file
 lines = f1.readlines()
 
