@@ -7,21 +7,21 @@ import random
 import openpyxl as xl
 
 working_dir = "C:\\Users\\tomasz.skoczylas\\Downloads\\11\\"
-spids_meters_filename = working_dir + "SEWERAGE 1WSL1RTL_Unpaired SPIDs Dev-0 2022-06-14.xlsx"
+spids_meters_filename = working_dir + "ASSURANCE_TEST_DATA_2022-07-05.xlsx"
 wb1 = xl.load_workbook(spids_meters_filename)
-ws11 = wb1.worksheets[0]
-ws12 = wb1.worksheets[1]
+# ws11 = wb1.worksheets[0]
+# ws12 = wb1.worksheets[1]
 
 
-standalone_spids = wb1.worksheets[1]
+standalone_spids = wb1.worksheets[4]
 
 def pick_spid_meter_xlsx():
     # how many different SPIDS and METERS to pick from the Excel
     dict_spids = "{"
-    for a in range(2,64): #choose SPIDs from range of rows
+    for a in range(2,42): #choose SPIDs from range of rows
         spid = standalone_spids.cell(row=a, column=1).value
-        meter_mnf = standalone_spids.cell(row=a, column=5).value
-        meter_ser = standalone_spids.cell(row=a, column=6).value
+        meter_mnf = standalone_spids.cell(row=a, column=4).value
+        meter_ser = standalone_spids.cell(row=a, column=5).value
         dict_spids += "'" + str(spid) + "':('" + str(meter_mnf) + "','" + str(meter_ser) + "'),"
     dict_spids = dict_spids[:-1] # remove last comma  
     dict_spids += "}"
