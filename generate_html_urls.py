@@ -10,7 +10,7 @@ test_cases_folder = working_dir + 'HTML_URLS'
 if not os.path.exists(test_cases_folder):
     os.makedirs(test_cases_folder)
 
-dest_folder = 'BiLats_CSD170_CPW070g-C5/C5_RULES_T227R/'
+dest_folder = 'Bilats_Active_Sperr/'
 
 urls_for_uat_env = test_cases_folder + '\\' + mylist[0][3:-14] + '_TESTCASES_UAT_URLS.html'
 urls_for_test_env = test_cases_folder + '\\'  + mylist[0][3:-14] + '_TESTCASES_TEST_URLS.html'
