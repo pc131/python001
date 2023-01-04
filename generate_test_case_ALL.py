@@ -34,6 +34,7 @@ SWG_SPIDS_METERS = {'3019601851S1X':('Elster','88025763'),'3019601916S11':('Elst
 
 #2WSL_2RTL ASSURANCE 2022-07-05
 #SPIDS_METERS = {'3200399597W10':('ELSTER','10W12020906334'),'3200399600W16':('ELSTER','10W12020916250'),'3200399619W13':('ELSTER','10W12021155562'),'3200399619W13':('ELSTER','10W12021200598'),'3200399619W13':('ELSTER','10W12021201044'),'3200399619W13':('ELSTER','10W12021201092'),'3200399635W18':('ELSTER','10W12021216156'),'3200542845W18':('ELSTER','18A20180518b'),'3200543795W18':('ELSTER','18A20180519a'),'3200543833W15':('ELSTER','10W05191031159')}
+
 TEST_CASE_TRANSACTIONS =  ['T321.W','T201.W','T322.W','T208.R']
 
 TRX_DATA_TEMS_COUNT = {'T201.W':'2','T202.W':'4','T203.W':'3','T204.R':'2','T205.W':'4','T206.W':'3','T207.R':'2','T207.W':'2','T208.R':'2','T210.R':'3','T211.R':'3','T211.W':'3','T212.W':'2','T213.W':'5','T214.W':'3','T215.R':'5','T215.W':'5','T216.R':'2','T216.W':'2','T217.W':'4','T218.R':'25','T220.W':'2','T221.R':'2','T222.W':'9','T223.W':'26','T224.W':'3','T225.R':'4','T225.W':'4','T226.W':'3','T227.R':'2','T228.R':'2','T321.R':'133','T321.W':'110','T322.W':'91','T323.W':'7','T324.R':'2','T325.R':'2','T331.W':'24','T332.W':'29','T335.R':'76','T336.W':'64','T341.R':'102','T341.W':'79','T342.W':'11','T351.R':'53','T351.W':'30','T352.W':'29','T353.R':'42','T355.R':'48','T355.W':'25','T356.W':'12','T357.W':'28','T365.R':'51','T501.R':'35','T501.W':'12','T505.R':'31','T505.W':'8','T551.R':'30','T551.W':'7','T555.R':'39','T555.W':'16','T556.R':'50','T556.W':'28','T557.W':'5','T561.R':'44','T561.W':'21','T562.R':'57','T562.W':'34','T563.W':'5', 'T601.R':'82', 'T601.W':'60', 'T602.W':'18'}
@@ -625,7 +626,6 @@ D8462 = ['SPIDDEREG', 'REMOVESC']
 D8463 = ['INCORRECTWHL', 'INCORRECTRTL']
 D8465 = ['WATER', 'SEWERAGE', 'BOTH']
 
-
 #H1
 D8464 = ['NEW', 'REVIEW']
 D8465 = ['WATER', 'SEWERAGE', 'BOTH']
@@ -640,8 +640,6 @@ D8483 = ['THIRDPARTY', 'DETERIORATION', 'LEAKONPIPE', 'FITTINGS', 'NEGLECT', 'OT
 D8490 = ['EVAPORATION', 'IRRIGATION', 'REMOVEDOFFSITE', 'ADDTOPRODUCT', 'LIVESTOCKDW', 'OTHER']
 D8495 = ['AWARDNOAMEND', 'AWARDWITHAMEND', 'NOTAWARDED']
 D8497 = ['PERCENT', 'M2', 'M3', 'TARIFF']
-
-
 
 test_case_sequence = []
 def generate_test_case(loop_times):
@@ -745,69 +743,318 @@ def generate_test_case(loop_times):
         RANDOM_ADDRESS4 = get_random_address()
         RANDOM_ADDRESS5 = get_random_address()
 
-        T321R_data_items = [# basic data
-                        SPID, 'MEASURED', 'RET_' + RANDOM_STRING, '', '1', '[today]', '1',
-                        # customer and retailer data
-                        CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', random.choice(D8237),
-                        RANDOM_STRING, random.choice(D2005), RANDOM_STRING, RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL,
-                        # first meter details
-                        METER_MNF, METER_SER, '0', '120', '[today-1]', '0', 'METER', '1', RANDOM_METER_MNF, '1', RANDOM_METER_SER, '1', '5', '1', '5',
-                        '1', RANDOM_GISX, '1', RANDOM_GISY, '1', 'O', '1', RANDOM_METER_LOC, '1', OUTR_RANDOM_GISX, '1', OUTR_RANDOM_GISY, '1', 'I', '1', RANDOM_OUTRE_LOC, RANDOM_STRING, '',
-                        # second meter details empty
-                        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
-                        # missing meters
-                        '', '', '', '',
-                        # unmeasrued data empty
-                        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''
-                        ]
-        T321W_data_items = [# basic data
-                        SPID, 'MEASURED', '', '[today]',
-                        # first meter details
-                        METER_MNF, METER_SER, '0', '120', '[today-1]', '0', 'METER', '1', RANDOM_METER_MNF, '1', RANDOM_METER_SER, '1', '5', '1', '5',
-                        '1', RANDOM_GISX, '1', RANDOM_GISY, '1', 'O', '1', RANDOM_METER_LOC, '1', OUTR_RANDOM_GISX, '1', OUTR_RANDOM_GISY, '1', 'I', '1', RANDOM_OUTRE_LOC, RANDOM_STRING, '',
-                        # second meter details empty
-                        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
-                        # missing meters
-                        '', '', '', '',
-                        # unmeasrued data empty
-                        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''
-                        ]
-        T201W_data_items = ['[orid]', 'ACCEPTED']
-        T202W_data_items = ['[orid]', 'WSL-123456', random.choice(D8230), 'REJECTED']
-        T203W_data_items = ['[orid]', random.choice(D8226), 'INFOREQST']
-        T204R_data_items = ['[orid]', 'INFOPROVD']
-        T205W_data_items = ['[orid]', DATE_NOT_WEEKEND, '', 'VISITSCHED']
-        T206W_data_items = ['[orid]', random.choice(D8228), 'VISITNOTCOMP']
-        T207R_data_items = ['[orid]', 'RETAILER_COMMENT']
-        T207W_data_items = ['[orid]', 'WHOLESALER_COMMENT']
-        T208R_data_items = ['[orid]', 'CLOSED']
-        T210R_data_items = ['[orid]', random.choice(D8231), 'RESUBMITTED']
-        T211R_data_items = ['[orid]', random.choice(D8036), 'RTL CANCELLED']
-        T211W_data_items = ['[orid]', random.choice(D8036), 'WSL CANCELLED']
-        T212W_data_items = ['[orid]', 'PREPPLAN']
-        T213W_data_items = ['[orid]', random.choice(D8229), '[today]', '[today+7]', 'START_DEFERRAL']
-        T214W_data_items = ['[orid]', '[today]', 'END_DEFERRAL'] # can think of function to peek working day
-        T215R_data_items = ['[orid]', '', 'img1png', 'PNG', '4oCwUE5HChoKICAgCklIRFIgICADICAgAwgCICAgxa5KIsSNICAgCXBIWXMgIA7DhCAgDsOEAeKAoisOGyAgICdJREFUCOKEomPDlG7Dn8O2y5nLmX8BNnbCpn/LmcWjMTMzH8OrxI9nYmXLmXd5w7cmxLrFmBAgxZDFnwrFpH4uJsKsICAgIElFTkTCrkJg4oCa']
-        T215W_data_items = ['[orid]', '', 'img1png', 'PNG', '4oCwUE5HChoKICAgCklIRFIgICADICAgAwgCICAgxa5KIsSNICAgCXBIWXMgIA7DhCAgDsOEAeKAoisOGyAgICdJREFUCOKEomPDlG7Dn8O2y5nLmX8BNnbCpn/LmcWjMTMzH8OrxI9nYmXLmXd5w7cmxLrFmBAgxZDFnwrFpH4uJsKsICAgIElFTkTCrkJg4oCa']
-        T216R_data_items = ['[orid]', T216_URL]
-        T216W_data_items = ['[orid]', T216_URL]
-        T217W_data_items = ['[orid]', '1', random.choice(D8226), 'CUSTINFOREQST']
-
-        T218R_data_items = ['[orid]', 'RET_' + RANDOM_STRING, '[today]',
-                             '1', CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', 
-                             random.choice(D8237),  RANDOM_STRING, random.choice(D2005), RANDOM_STRING,RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', 
-                             RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL, 'CUSTINFOPROVD']
-        T220W_data_items = ['[orid]', fake.paragraph(nb_sentences=1)]
-        T221R_data_items = ['[orid]', fake.paragraph(nb_sentences=1)]
-        T222W_data_items = [# basic data
-                            '[orid]', 'FOLLOWON', fake.paragraph(nb_sentences=1), fake.paragraph(nb_sentences=1),'[today+' + str(random.randint(2, 10))  +']', '1', '', '', fake.paragraph(nb_sentences=1)
+        T201W_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8213 Additional Information
+                            'ACCEPTED'
                             ]
-        T223W_data_items = [# basic data
-                            '[orid]', 'NEWINSTALL', fake.paragraph(nb_sentences=1),
-                            #meter work copletion data
-                            RANDOM_METER_MNF, RANDOM_METER_SER, random.randint(100, 1000), '[today-' + str(random.randint(2, 30))  +']', random.randint(5, 15), random.randint(2, 6), RANDOM_GISX, RANDOM_GISY, random.choice(D3025), RANDOM_METER_LOC, OUTR_RANDOM_GISX, OUTR_RANDOM_GISY, random.choice(D3025), RANDOM_OUTRE_LOC, RANDOM_STRING, RANDOM_STRING, RANDOM_ADDRESS1, RANDOM_ADDRESS2, RANDOM_ADDRESS3, RANDOM_ADDRESS4, RANDOM_ADDRESS5, random.choice(POSTCODES), random.randint(1, 99999999)
+        T202W_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8185 Wholesaler System Reference
+                            'WSL_' + RANDOM_STRING,
+                            #D8230 Reject Reason Code
+                            random.choice(D8230),
+                            #D8213 Additional Information
+                            'REJECTED'
+                            ]
+        T203W_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8226 Additional Information Request Code
+                            random.choice(D8226),
+                            #D8213 Additional Information
+                            'INFOREQST'
+                            ]
+        T204R_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8213 Additional Information
+                            'INFOPROVD'
+                            ]
+        T205W_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8263	Site Visit Date and Time
+                            DATE_NOT_WEEKEND,
+                            #D8261	Site Visit Date and End Time
+                            '',
+                            #D8213 Additional Information
+                            'VISITCOMP'
+                            ]
+        T206W_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8228
+                            random.choice(D8228),
+                            #D8213 Additional Information
+                            'VISITNOTCOMP'
+                            ]
+        T207R_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8213 Additional Information
+                            'RETAILER COMMENT'
+                            ]
+        T207W_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8213 Additional Information
+                            'WHOLESALER COMMENT'
+                            ]
+        T208R_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8213 Additional Information
+                            'CLOSED'
+                            ]
+        T210R_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8231
+                            random.choice(D8231),
+                            #D8213 Additional Information
+                            'RESUBMITTED'
+                            ]
+        T211R_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8036 
+                            random.choice(D8036),
+                            #D8213 Additional Information
+                            'RTL CANCELLED'
+                            ]
+        T211W_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8036 
+                            random.choice(D8036),
+                            #D8213 Additional Information
+                            'WSL CANCELLED'
+                            ]
+        T212W_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8213 Additional Information
+                            'PREPPLAN'
+                            ]
+        T213W_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8229 Request Deferral Code
+                            random.choice(D8229),
+                            #D4006 Effective From Date
+                            '[today]',
+                            #D4024 Effective To Date
+                            '[today+7]',
+                            #D8213 Additional Information
+                            'START_DEFERRAL'
+                            ]
+        T214W_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D4024 Effective To Date
+                            '[today]',
+                            #D8213 Additional Information
+                            'END_DEFERRAL'
+                            ]
+        T215R_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8225 Parent Transaction Originators Reference
+                            '',
+                            #D8275 Attached File Name
+                            'img1png',
+                            #D8276 Attached File Type
+                            'PNG',
+                            #D8277 Attached File Content
+                            '4oCwUE5HChoKICAgCklIRFIgICADICAgAwgCICAgxa5KIsSNICAgCXBIWXMgIA7DhCAgDsOEAeKAoisOGyAgICdJREFUCOKEomPDlG7Dn8O2y5nLmX8BNnbCpn/LmcWjMTMzH8OrxI9nYmXLmXd5w7cmxLrFmBAgxZDFnwrFpH4uJsKsICAgIElFTkTCrkJg4oCa'
+                            ]
+        T215W_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8225 Parent Transaction Originators Reference
+                            '',
+                            #D8275 Attached File Name
+                            'img1png',
+                            #D8276 Attached File Type
+                            'PNG',
+                            #D8277 Attached File Content
+                            '4oCwUE5HChoKICAgCklIRFIgICADICAgAwgCICAgxa5KIsSNICAgCXBIWXMgIA7DhCAgDsOEAeKAoisOGyAgICdJREFUCOKEomPDlG7Dn8O2y5nLmX8BNnbCpn/LmcWjMTMzH8OrxI9nYmXLmXd5w7cmxLrFmBAgxZDFnwrFpH4uJsKsICAgIElFTkTCrkJg4oCa'
+                            ]
+        T216R_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8257 URL  
+                            T216_URL
+                            ]
+        T216W_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8257 URL  
+                            T216_URL
+                            ]
+        T217W_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8252 Customer Contact Required
+                            '1',
+                            #D8226 Additional Information Request Code
+                            random.choice(D8226),
+                            #D8213 Additional Information
+                            'CUSTINFOREQST'
+                            ]
+        T218R_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8186 Retailer System Reference
+                            'RET_' + RANDOM_STRING,
+                            #D8193 Declaration Date
+                            '[today]',
+                            ### GROUP CUSTOMER (START) ###
+                            #D8019 Consent to Contact Customer
+                            '1',
+                            #D8020 Customer Contact Name 1
+                            CUST_RANDOM_NAME,
+                            #D8021 Customer Contact Number 1
+                            CUST_RANDOM_PHONE,
+                            #D8233 Customer Extension 1
+                            '105',
+                            #D8239 Customer Contact Name 2
+                            CUST_RANDOM_NAME2,
+                            #D8145 Customer Contact Number 2
+                            CUST_RANDOM_PHONE2,
+                            #D8234 Customer Extension 2
+                            '122',
+                            #D8146 Customer Contact Email
+                            CUST_EMAIL,
+                            #D8235 Customer Aware of Service Request
+                            '1',
+                            #D8236 Customer Preferred Method of Contact
+                            'EMAIL',
+                            #D8237 Customer Preferred Contact Time
+                            random.choice(D8237),
+                            #D8238 Customer Additional Information
+                            RANDOM_STRING,
+                            #D2005 Customer Classification - Sensitive Customer
+                            random.choice(D2005),
+                            #D8240 Landlord Tenant Details
+                            RANDOM_STRING,
+                            #D8269 Retailer Contact Name 1
+                            RET_RANDOM_NAME,
+                            #D8270 Retailer Contact Number 1
+                            RET_RANDOM_PHONE,
+                            #D8271 Retailer Extension 1
+                            '210',
+                            #D8280 Retailer Contact Name 2
+                            RET_RANDOM_NAME2,
+                            #D8272 Retailer Contact Number 2
+                            RET_RANDOM_PHONE2,
+                            #D8273 Retailer Extension 2
+                            '224',
+                            #D8274 Retailer Contact Email
+                            RET_EMAIL,
+                            ### GROUP CUSTOMER (END) ###
+                            #D8213 Additional Information
+                            'CUSTINFOPROVD'
+                            ]
+        T220W_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8213 Additional Information
+                            fake.paragraph(nb_sentences=1)
+                            ]
+        T221R_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8213 Additional Information
+                            fake.paragraph(nb_sentences=1)
+                            ]
+        T222W_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8352 Response Type
+                            'FOLLOWON',
+                            #D8362 Request Response
+                            fake.paragraph(nb_sentences=1),
+                            #D8363 Outstanding Actions
+                            fake.paragraph(nb_sentences=1),
+                            #D8260 Expected Completion Date
+                            '[today+' + str(random.randint(2,10))  +']',
+                            #D8259 Customer Notified of Plan
+                            '1',
+                            #D8351 Follow-on Request ORID
+                            '',
+                            #D8323 Related Request ORID
+                            '',
+                            #D8213 Additional Information
+                            fake.paragraph(nb_sentences=1)
+                            ]
+        T223W_data_items = [
+                            #D8221 ORID Required
+                            '[orid]',
+                            #D8327 Meter Work Complete Code Required
+                            'NEWINSTALL',
+                            #D8213 Additional Information Optional. Field to describe the information of completed work.
+                            fake.paragraph(nb_sentences=1),
+                            ### GROUP METER (START) ###
+                            #D8342 New Meter Manufacturer
+                            RANDOM_METER_MNF,
+                            #D8343 New Manufacturer Meter Serial Number
+                            RANDOM_METER_SER,
+                            #D3008 Meter Read
+                            random.randint(100, 1000),
+                            #D3009 Meter Read Date
+                            '[today-' + str(random.randint(2, 30)) + ']',
+                            #D3003 Physical Meter Size
+                            random.randint(5, 15),
+                            #D3004 Number of Digits
+                            random.randint(2, 6),
+                            #D3017 GISX
+                            RANDOM_GISX,
+                            #D3018 GISY
+                            RANDOM_GISY,
+                            #D3025 Meter Location Code
+                            random.choice(D3025),
+                            #D3019 Meter Location Free Descriptor
+                            RANDOM_METER_LOC,
+                            #D3030 Meter Outreader GISX
+                            OUTR_RANDOM_GISX,
+                            #D3031 Meter Outreader GISY
+                            OUTR_RANDOM_GISY,
+                            #D3033 Meter Outreader Location Code
+                            random.choice(D3025),
+                            #D3032 Meter Outreader Location Free Descriptor
+                            RANDOM_OUTRE_LOC,
+                            #D5002 Secondary Addressable Object
+                            RANDOM_STRING,
+                            #D5003 Primary Addressable Object
+                            RANDOM_STRING,
+                            #D5004 Address Line 1
+                            RANDOM_ADDRESS1,
+                            #D5005 Address Line 2
+                            RANDOM_ADDRESS2,
+                            #D5006 Address Line 3
+                            RANDOM_ADDRESS3,
+                            #D5007 Address Line 4
+                            RANDOM_ADDRESS4,
+                            #D5008 Address Line 5
+                            RANDOM_ADDRESS5,
+                            #D5009 Postcode
+                            random.choice(POSTCODES),
+                            #D5011 PAF Address Key
+                            random.randint(1,99999999)
+                            ### GROUP METER (END) ###
                             ] 
-        T224W_data_items = ['[orid]', random.choice(D8227), 'PROCDELAY_' + RANDOM_STRING]
+        T224W_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8227 Delay Reason Code
+                            random.choice(D8227),
+                            #D8213 Additional Information
+                            'PROCDELAY_' + RANDOM_STRING
+                            ]
         T225R_data_items = [
             '[orid]', 
             random.choice(D8463), 
@@ -827,448 +1074,1529 @@ def generate_test_case(loop_times):
             '[orid]', 
             fake.paragraph(nb_sentences=1)
             ]
-        T323W_data_items = ['[orid]', 'ABLE', TIME_NOT_WEEKEND, '0', '1', DATE_NOT_WEEKEND, 'PLANPROP']
-        T324R_data_items = ['[orid]', 'PLANAGREED']
-        T325R_data_items = ['[orid]', 'PLANDISP']
-        T322W_data_items = [# basic data
-                            '[orid]', '1', 
-                            # 1st meter data
-                            METER_MNF, METER_SER, '0', '1', RANDOM_METER_MNF, '1', RANDOM_METER_SER, '1', '12', '1', '5',
-                            '1', RANDOM_GISX, '1', RANDOM_GISY, '1', 'I', '1', RANDOM_METER_LOC, '1', OUTR_RANDOM_GISX, '1', OUTR_RANDOM_GISY, '1', 'O', '1', RANDOM_OUTRE_LOC, 'MORE_INFO_T322W',
-                            # 2nd meter data
-                            '', '', '', '', '', '', '', '', '', '', '',
-                            '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
-                            # missing meters data
-                            '', '', '', '', '', '',
-                            # unmeasured  data
-                            '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 
-                            '', '', '']
-        T331W_data_items = [SPID, 'UNMETERED', '123', '[today-' + str(random.randint(1, 45))  +']', 'WSPID', fake.paragraph(nb_sentences=1), '0', '0', '0',
-                            '0', '1', 'WSPID', '0', '', fake.paragraph(nb_sentences=1), '[today]', '', '', '', '', '', ''
-                            ]   
-                            # CKECK CHECK!!!!!!!!!!!!!!!!!!!!!!!!!!!! POSTCODE
-        T332W_data_items = ['[orid]', '[today-' + str(random.randint(1, 45))  +']', random.choice(D8402), 'VOA_BA_REF', '', '12345678', '', 'WATERS CO UK',
-                            '', '', '', '', '', RANDOM_ADDRESS1, '', '', '', '', random.choice(POSTCODES), '' , '', '', '', '', '', '', "", '', ""
-                          ]
-        T335R_data_items = ['MOSLTEST-W', 'REF123', 'HOT WATERS', '', '', '', '', 'Mancherster 123', '', '', '', '', random.choice(POSTCODES), '', '', '', 
-                            'METERED', '', '[today-' + str(random.randint(1, 45))  +']', 'WSPID', fake.paragraph(nb_sentences=1), '0', '0', '0', '0', '0', '', '', '', fake.paragraph(nb_sentences=1), '1', '1', '[today]', '1', CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '103', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', random.choice(D8237), RANDOM_STRING, random.choice(D2005), RANDOM_STRING, RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''
+        T321R_data_items = [
+                            #D2001 SPID
+                            SPID,
+                            #D8006 Work Request Type
+                            'MEASURED',
+                            #D8186 Retailer System Reference
+                            'RET_' + RANDOM_STRING,
+                            #D8222 Parent Request ORID
+                            '',
+                            #D8252 Customer Contact Required
+                            '1',
+                            #D8193 Declaration Date
+                            '[today]',
+                            ### GROUP CUSTOMER (START) ###	
+                            #D8019 Consent to Contact Customer
+                            '1',
+                            #D8020 Customer Contact Name 1
+                            CUST_RANDOM_NAME,
+                            #D8021 Customer Contact Number 1
+                            CUST_RANDOM_PHONE,
+                            #D8233 Customer Extension 1
+                            '105',
+                            #D8239 Customer Contact Name 2
+                            CUST_RANDOM_NAME2,
+                            #D8145 Customer Contact Number 2
+                            CUST_RANDOM_PHONE2,
+                            #D8234 Customer Extension 2
+                            '122',
+                            #D8146 Customer Contact Email
+                            CUST_EMAIL,
+                            #D8235 Customer Aware of Service Request
+                            '1',
+                            #D8236 Customer Preferred Method of Contact
+                            'EMAIL',
+                            #D8237 Customer Preferred Contact Time
+                            random.choice(D8237),
+                            #D8238 Customer Additional Information
+                            RANDOM_STRING,
+                            #D2005 Customer Classification - Sensitive Customer
+                            random.choice(D2005),
+                            #D8240 Landlord Tenant Details
+                            RANDOM_STRING,
+                            #D8269 Retailer Contact Name 1
+                            RET_RANDOM_NAME,
+                            #D8270 Retailer Contact Number 1
+                            RET_RANDOM_PHONE,
+                            #D8271 Retailer Extension 1
+                            '210',
+                            #D8280 Retailer Contact Name 2
+                            RET_RANDOM_NAME2,
+                            #D8272 Retailer Contact Number 2
+                            RET_RANDOM_PHONE2,
+                            #D8273 Retailer Extension 2
+                            '224',
+                            #D8274 Retailer Contact Email
+                            RET_EMAIL,
+                            ### GROUP CUSTOMER (END) ###
+                            ### GROUP EXISTING METERS (START) ###		
+                            #D3013 Meter Manufacturer
+                            METER_MNF,
+                            #D3014 Manufacturer Meter Serial Number
+                            METER_SER,
+                            #D8194 Trough Connections Flag
+                            '0',
+                            #D8278 Last Meter Read
+                            '120',
+                            #D8279 Last Meter Read Date
+                            '[today-1]',
+                            #D8253 Remove Meter Flag
+                            '0',
+                            #D8242 Verification Type
+                            'METER',
+                            #D8265 Verify Meter Manufacturer
+                            '1',
+                            #D8267 Proposed Meter Manufacturer
+                            RANDOM_METER_MNF,
+                            #D8266 Verify Meter Serial Number
+                            '1',
+                            #D8268 Proposed Manufacturer Meter Serial Number
+                            RANDOM_METER_SER,
+                            #D8281 Verify Physical Meter Size
+                            '1',
+                            #D3003 Physical Meter Size
+                            '5',
+                            #D8282 Verify Number of Digits
+                            '1',
+                            #D3004 Number of Digits
+                            '5',
+                            #D8283 Verify GISX
+                            '1',
+                            #D3017 GISX
+                            RANDOM_GISX,
+                            #D8284 Verify GISY
+                            '1',
+                            #D3018 GISY
+                            RANDOM_GISY,
+                            #D8285 Verify Meter Location Code
+                            '1',
+                            #D3025 Meter Location Code
+                            'O',
+                            #D8286 Verify Meter Location Descriptor
+                            '1',
+                            #D3019 Meter Location Free Descriptor
+                            RANDOM_METER_LOC,
+                            #D8287 Verify Outreader GISX
+                            '1',
+                            #D3030 Meter Outreader GISX
+                            OUTR_RANDOM_GISX,
+                            #D8288 Verify Outreader GISY
+                            '1',
+                            #D3031 Meter Outreader GISY
+                            OUTR_RANDOM_GISY,
+                            #D8289 Verify Outreader Location Code
+                            '1',
+                            #D3033 Meter Outreader Location Code
+                            'I',
+                            #D8290 Verify Outreader Location Descriptor
+                            '1',
+                            #D3032 Meter Outreader Location Free Descriptor
+                            RANDOM_OUTRE_LOC,
+                            #D8213 Additional Information
+                            RANDOM_STRING,
+                            #D8264 Associated SPID
+                            '',
+                            ### EXISTING METER 1 (END) ###
+                            ### EXISTING METER 2 (START) ###
+                            #D3013 Meter Manufacturer
+                            '',
+                            #D3014 Manufacturer Meter Serial Number
+                            '',
+                            #D8194 Trough Connections Flag
+                            '',
+                            #D8278 Last Meter Read
+                            '',
+                            #D8279 Last Meter Read Date
+                            '',
+                            #D8253 Remove Meter Flag
+                            '',
+                            #D8242 Verification Type
+                            '',
+                            #D8265 Verify Meter Manufacturer
+                            '',
+                            #D8267 Proposed Meter Manufacturer
+                            '',
+                            #D8266 Verify Meter Serial Number
+                            '',
+                            #D8268 Proposed Manufacturer Meter Serial Number
+                            '',
+                            #D8281 Verify Physical Meter Size
+                            '',
+                            #D3003 Physical Meter Size
+                            '',
+                            #D8282 Verify Number of Digits
+                            '',
+                            #D3004 Number of Digits
+                            '',
+                            #D8283 Verify GISX
+                            '',
+                            #D3017 GISX
+                            '',
+                            #D8284 Verify GISY
+                            '',
+                            #D3018 GISY
+                            '',
+                            #D8285 Verify Meter Location Code
+                            '',
+                            #D3025 Meter Location Code
+                            '',
+                            #D8286 Verify Meter Location Descriptor
+                            '',
+                            #D3019 Meter Location Free Descriptor
+                            '',
+                            #D8287 Verify Outreader GISX
+                            '',
+                            #D3030 Meter Outreader GISX
+                            '',
+                            #D8288 Verify Outreader GISY
+                            '',
+                            #D3031 Meter Outreader GISY
+                            '',
+                            #D8289 Verify Outreader Location Code
+                            '',
+                            #D3033 Meter Outreader Location Code
+                            '',
+                            #D8290 Verify Outreader Location Descriptor
+                            '',
+                            #D3032 Meter Outreader Location Free Descriptor
+                            '',
+                            #D8213 Additional Information
+                            '',
+                            #D8264 Associated SPID
+                            ### GROUP EXISTING METERS (END) ###
+                            ### GROUP MISSING METERS (START) ###
+                            '',
+                            #D8255 Missing Meter Serial number
+                            '',
+                            #D8254 Missing Meter Additional Info
+                            '',
+                            ### MISSING METER 1 (END) ###
+                            ### MISSING METER 2 (START) ###
+                            #D8255 Missing Meter Serial number
+                            '',
+                            #D8254 Missing Meter Additional Info
+                            '',
+                            ### GROUP MISSING METERS (END) ###
+                            ### GROUP UNMEASURED SUPPLY ARRANGEMENTS (START) ###
+                            #D8291 Verify Unmeasured Items Type A
+                            '',
+                            #D2018 Unmeasured Items Type A Count
+                            '',
+                            #D2058 Unmeasured Items Type A Description
+                            '',
+                            #D8243 Unmeasured Items Type A – Additional Info
+                            '',
+                            #D8292 Verify Unmeasured Items Type B
+                            '',
+                            #D2019 Unmeasured Items Type B Count
+                            '',
+                            #D2059 Unmeasured Items Type B Description
+                            '',
+                            #D8244 Unmeasured Items Type B – Additional Info
+                            '',
+                            #D8293 Verify Unmeasured Items Type C
+                            '',
+                            #D2020 Unmeasured Items Type C Count
+                            '',
+                            #D2060 Unmeasured Items Type C Description
+                            '',
+                            #D8245 Unmeasured Items Type C – Additional Info
+                            '',
+                            #D8294 Verify Unmeasured Items Type D
+                            '',
+                            #D2021 Unmeasured Items Type D Count
+                            '',
+                            #D2061 Unmeasured Items Type D Description
+                            '',
+                            #D8246 Unmeasured Items Type D – Additional Info
+                            '',
+                            #D8295 Verify Unmeasured Items Type E
+                            '',
+                            #D2022 Unmeasured Items Type E Count
+                            '',
+                            #D2062 Unmeasured Items Type E Description
+                            '',
+                            #D8247 Unmeasured Items Type E – Additional Info
+                            '',
+                            #D8296 Verify Unmeasured Items Type F
+                            '',
+                            #D2024 Unmeasured Items Type F Count
+                            '',
+                            #D2064 Unmeasured Items Type F Description
+                            '',
+                            #D8248 Unmeasured Items Type F – Additional Info
+                            '',
+                            #D8297 Verify Unmeasured Items Type G
+                            '',
+                            #D2046 Unmeasured Items Type G Count
+                            '',
+                            #D2065 Unmeasured Items Type G Description
+                            '',
+                            #D8249 Unmeasured Items Type G – Additional Info
+                            '',
+                            #D8298 Verify Unmeasured Items Type H
+                            '',
+                            #D2048 Unmeasured Items Type H Count
+                            '',
+                            #D2069 Unmeasured Items Type H Description
+                            '',
+                            #D8250 Unmeasured Items Type H – Additional Info
+                            '',
+                            #D8299 Verify Pipe Size
+                            '',
+                            #D2071 Pipe Size
+                            '',
+                            #D8241 Supply Arrangement Check Flag
+                            '',
+                            #D8213 Additional Information
+                            ''
+                            ### GROUP UNMEASURED SUPPLY ARRANGEMENTS (END) ###
                             ]
-        T336W_data_items = ['[orid]', 'RA', 'MOSLTEST-R','1', '', SPID, 'UNMETERED', '1', '', '', '1', fake.paragraph(nb_sentences=1),
-                             fake.paragraph(nb_sentences=1), '', '[today-' + str(random.randint(1, 45))  +']', 'GS', 'VOA_BA_REF', '', '123123123', '', 'COLD WATERS', '', '', '', '', '', RANDOM_ADDRESS1, RANDOM_ADDRESS2, RANDOM_ADDRESS3, RANDOM_ADDRESS4, RANDOM_ADDRESS5, random.choice(POSTCODES), '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''
+        T321W_data_items = [
+                            #D2001 SPID
+                            SPID,
+                            #D8006 Work Request Type
+                            'MEASURED',
+                            #D8222 Parent Request ORID
+                            '',
+                            #D8193 Declaration Date
+                            '[today]',
+                            ### GROUP EXISTING METERS (START) ###		
+                            #D3013 Meter Manufacturer
+                            METER_MNF,
+                            #D3014 Manufacturer Meter Serial Number
+                            METER_SER,
+                            #D8194 Trough Connections Flag
+                            '0',
+                            #D8278 Last Meter Read
+                            '120',
+                            #D8279 Last Meter Read Date
+                            '[today-1]',
+                            #D8253 Remove Meter Flag
+                            '0',
+                            #D8242 Verification Type
+                            'METER',
+                            #D8265 Verify Meter Manufacturer
+                            '1',
+                            #D8267 Proposed Meter Manufacturer
+                            RANDOM_METER_MNF,
+                            #D8266 Verify Meter Serial Number
+                            '1',
+                            #D8268 Proposed Manufacturer Meter Serial Number
+                            RANDOM_METER_SER,
+                            #D8281 Verify Physical Meter Size
+                            '1',
+                            #D3003 Physical Meter Size
+                            '5',
+                            #D8282 Verify Number of Digits
+                            '1',
+                            #D3004 Number of Digits
+                            '5',
+                            #D8283 Verify GISX
+                            '1',
+                            #D3017 GISX
+                            RANDOM_GISX,
+                            #D8284 Verify GISY
+                            '1',
+                            #D3018 GISY
+                            RANDOM_GISY,
+                            #D8285 Verify Meter Location Code
+                            '1',
+                            #D3025 Meter Location Code
+                            'O',
+                            #D8286 Verify Meter Location Descriptor
+                            '1',
+                            #D3019 Meter Location Free Descriptor
+                            RANDOM_METER_LOC,
+                            #D8287 Verify Outreader GISX
+                            '1',
+                            #D3030 Meter Outreader GISX
+                            OUTR_RANDOM_GISX,
+                            #D8288 Verify Outreader GISY
+                            '1',
+                            #D3031 Meter Outreader GISY
+                            OUTR_RANDOM_GISY,
+                            #D8289 Verify Outreader Location Code
+                            '1',
+                            #D3033 Meter Outreader Location Code
+                            'I',
+                            #D8290 Verify Outreader Location Descriptor
+                            '1',
+                            #D3032 Meter Outreader Location Free Descriptor
+                            RANDOM_OUTRE_LOC,
+                            #D8213 Additional Information
+                            RANDOM_STRING,
+                            #D8264 Associated SPID
+                            '',
+                            ### EXISTING METER 1 (END) ###
+                            ### EXISTING METER 2 (START) ###
+                            #D3013 Meter Manufacturer
+                            '',
+                            #D3014 Manufacturer Meter Serial Number
+                            '',
+                            #D8194 Trough Connections Flag
+                            '',
+                            #D8278 Last Meter Read
+                            '',
+                            #D8279 Last Meter Read Date
+                            '',
+                            #D8253 Remove Meter Flag
+                            '',
+                            #D8242 Verification Type
+                            '',
+                            #D8265 Verify Meter Manufacturer
+                            '',
+                            #D8267 Proposed Meter Manufacturer
+                            '',
+                            #D8266 Verify Meter Serial Number
+                            '',
+                            #D8268 Proposed Manufacturer Meter Serial Number
+                            '',
+                            #D8281 Verify Physical Meter Size
+                            '',
+                            #D3003 Physical Meter Size
+                            '',
+                            #D8282 Verify Number of Digits
+                            '',
+                            #D3004 Number of Digits
+                            '',
+                            #D8283 Verify GISX
+                            '',
+                            #D3017 GISX
+                            '',
+                            #D8284 Verify GISY
+                            '',
+                            #D3018 GISY
+                            '',
+                            #D8285 Verify Meter Location Code
+                            '',
+                            #D3025 Meter Location Code
+                            '',
+                            #D8286 Verify Meter Location Descriptor
+                            '',
+                            #D3019 Meter Location Free Descriptor
+                            '',
+                            #D8287 Verify Outreader GISX
+                            '',
+                            #D3030 Meter Outreader GISX
+                            '',
+                            #D8288 Verify Outreader GISY
+                            '',
+                            #D3031 Meter Outreader GISY
+                            '',
+                            #D8289 Verify Outreader Location Code
+                            '',
+                            #D3033 Meter Outreader Location Code
+                            '',
+                            #D8290 Verify Outreader Location Descriptor
+                            '',
+                            #D3032 Meter Outreader Location Free Descriptor
+                            '',
+                            #D8213 Additional Information
+                            '',
+                            #D8264 Associated SPID
+                            ### GROUP EXISTING METERS (END) ###
+                            ### GROUP MISSING METERS (START) ###
+                            '',
+                            #D8255 Missing Meter Serial number
+                            '',
+                            #D8254 Missing Meter Additional Info
+                            '',
+                            ### MISSING METER 1 (END) ###
+                            ### MISSING METER 2 (START) ###
+                            #D8255 Missing Meter Serial number
+                            '',
+                            #D8254 Missing Meter Additional Info
+                            '',
+                            ### GROUP MISSING METERS (END) ###
+                            ### GROUP UNMEASURED SUPPLY ARRANGEMENTS (START) ###
+                            #D8291 Verify Unmeasured Items Type A
+                            '',
+                            #D2018 Unmeasured Items Type A Count
+                            '',
+                            #D2058 Unmeasured Items Type A Description
+                            '',
+                            #D8243 Unmeasured Items Type A – Additional Info
+                            '',
+                            #D8292 Verify Unmeasured Items Type B
+                            '',
+                            #D2019 Unmeasured Items Type B Count
+                            '',
+                            #D2059 Unmeasured Items Type B Description
+                            '',
+                            #D8244 Unmeasured Items Type B – Additional Info
+                            '',
+                            #D8293 Verify Unmeasured Items Type C
+                            '',
+                            #D2020 Unmeasured Items Type C Count
+                            '',
+                            #D2060 Unmeasured Items Type C Description
+                            '',
+                            #D8245 Unmeasured Items Type C – Additional Info
+                            '',
+                            #D8294 Verify Unmeasured Items Type D
+                            '',
+                            #D2021 Unmeasured Items Type D Count
+                            '',
+                            #D2061 Unmeasured Items Type D Description
+                            '',
+                            #D8246 Unmeasured Items Type D – Additional Info
+                            '',
+                            #D8295 Verify Unmeasured Items Type E
+                            '',
+                            #D2022 Unmeasured Items Type E Count
+                            '',
+                            #D2062 Unmeasured Items Type E Description
+                            '',
+                            #D8247 Unmeasured Items Type E – Additional Info
+                            '',
+                            #D8296 Verify Unmeasured Items Type F
+                            '',
+                            #D2024 Unmeasured Items Type F Count
+                            '',
+                            #D2064 Unmeasured Items Type F Description
+                            '',
+                            #D8248 Unmeasured Items Type F – Additional Info
+                            '',
+                            #D8297 Verify Unmeasured Items Type G
+                            '',
+                            #D2046 Unmeasured Items Type G Count
+                            '',
+                            #D2065 Unmeasured Items Type G Description
+                            '',
+                            #D8249 Unmeasured Items Type G – Additional Info
+                            '',
+                            #D8298 Verify Unmeasured Items Type H
+                            '',
+                            #D2048 Unmeasured Items Type H Count
+                            '',
+                            #D2069 Unmeasured Items Type H Description
+                            '',
+                            #D8250 Unmeasured Items Type H – Additional Info
+                            '',
+                            #D8299 Verify Pipe Size
+                            '',
+                            #D2071 Pipe Size
+                            '',
+                            #D8241 Supply Arrangement Check Flag
+                            '',
+                            #D8213 Additional Information
+                            ''
+                            ### GROUP UNMEASURED SUPPLY ARRANGEMENTS (END) ###
+                            ]
+        T322W_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8051 Charge to Retailer Flag
+                            '1',
+                            ### GROUP EXISTING METERS (START) ###	
+                            #D3013 Meter Manufacturer
+                            METER_MNF,
+                            #D3014 Manufacturer Meter Serial Number
+                            METER_SER,
+                            #D8253 Remove Meter Flag
+                            '0',
+                            #D8300 Updated Meter Manufacturer
+                            '1',
+                            #D8267 Proposed Meter Manufacturer
+                            RANDOM_METER_MNF,
+                            #D8301 Updated Manufacturer Meter Serial Number
+                            '1',
+                            #D8268 Proposed Manufacturer Meter Serial Number
+                            RANDOM_METER_SER,
+                            #D8302 Updated Physical Meter Size
+                            '1',
+                            #D3003 Physical Meter Size
+                            '12',
+                            #D8303 Updated Number of Digits
+                            '1',
+                            #D3004 Number of Digits
+                            '5',
+                            #D8304 Updated GISX
+                            '1',
+                            #D3017 GISX
+                            RANDOM_GISX,
+                            #D8305 Updated GISY
+                            '1',
+                            #D3018 GISY
+                            RANDOM_GISY,
+                            #D8306 Updated Meter Location Code
+                            '1',
+                            #D3025 Meter Location Code
+                            'I',
+                            #D8307 Updated Meter Location Free Descriptor
+                            '1',
+                            #D3019 Meter Location Free Descriptor
+                            RANDOM_METER_LOC,
+                            #D8308 Updated Meter Outreader GISX
+                            '1',
+                            #D3030 Meter Outreader GISX
+                            OUTR_RANDOM_GISX,
+                            #D8309 Updated Meter Outreader GISY
+                            '1',
+                            #D3031 Meter Outreader GISY
+                            OUTR_RANDOM_GISY,
+                            #D8310 Updated Meter Outreader Location Code
+                            '1',
+                            #D3033 Meter Outreader Location Code
+                            'O',
+                            #D8311 Updated Meter Outreader Location Free Descriptor
+                            '1',
+                            #D3032 Meter Outreader Location Free Descriptor
+                            RANDOM_OUTRE_LOC,
+                            #D8213 Additional Information
+                            'MORE_INFO_T322W',
+                            ### EXISTING METER 1 (END) ###
+                            ### EXISTING METER 2 (START) ###
+                            #D3013 Meter Manufacturer
+                            '',
+                            #D3014 Manufacturer Meter Serial Number
+                            '',
+                            #D8253 Remove Meter Flag
+                            '',
+                            #D8300 Updated Meter Manufacturer
+                            '',
+                            #D8267 Proposed Meter Manufacturer
+                            '',
+                            #D8301 Updated Manufacturer Meter Serial Number
+                            '',
+                            #D8268 Proposed Manufacturer Meter Serial Number
+                            '',
+                            #D8302 Updated Physical Meter Size
+                            '',
+                            #D3003 Physical Meter Size
+                            '',
+                            #D8303 Updated Number of Digits
+                            '',
+                            #D3004 Number of Digits
+                            '',
+                            #D8304 Updated GISX
+                            '',
+                            #D3017 GISX
+                            '',
+                            #D8305 Updated GISY
+                            '',
+                            #D3018 GISY
+                            '',
+                            #D8306 Updated Meter Location Code
+                            '',
+                            #D3025 Meter Location Code
+                            '',
+                            #D8307 Updated Meter Location Free Descriptor
+                            '',
+                            #D3019 Meter Location Free Descriptor
+                            '',
+                            #D8308 Updated Meter Outreader GISX
+                            '',
+                            #D3030 Meter Outreader GISX
+                            '',
+                            #D8309 Updated Meter Outreader GISY
+                            '',
+                            #D3031 Meter Outreader GISY
+                            '',
+                            #D8310 Updated Meter Outreader Location Code
+                            '',
+                            #D3033 Meter Outreader Location Code
+                            '',
+                            #D8311 Updated Meter Outreader Location Free Descriptor
+                            '',
+                            #D3032 Meter Outreader Location Free Descriptor
+                            '',
+                            #D8213 Additional Information
+                            '',
+                            ### GROUP EXISTING METERS (END) ###
+                            ### GROUP MISSING METERS (START) ###
+                            #D8255 Missing Meter Serial Number
+                            '',
+                            #D8262 Missing Meter Outcome
+                            '',
+                            #D8254 Missing Meter Additional Info
+                            '',
+                            ### MISSING METER 1 (END) ###
+                            ### MISSING METER 2 (START) ###
+                            #D8255 Missing Meter Serial Number
+                            '',
+                            #D8262 Missing Meter Outcome
+                            '',
+                            #D8254 Missing Meter Additional Info
+                            '',
+                            ### GROUP MISSING METERS (END) ###
+                            ### GROUP UNMEASURED SUPPLY ARRANGEMENTS (START) ###
+                            #D8312 Updated Unmeasured Items Type A
+                            '',
+                            #D2018 Unmeasured Item Type A Count
+                            '',
+                            #D2058 Unmeasured Item Type A description
+                            '',
+                            #D8313 Updated Unmeasured Items Type B
+                            '',
+                            #D2019 Unmeasured Item Type B Count
+                            '',
+                            #D2059 Unmeasured Item Type B description
+                            '',
+                            #D8314 Updated Unmeasured Items Type C
+                            '',
+                            #D2020 Unmeasured Item Type C Count
+                            '',
+                            #D2060 Unmeasured Item Type C description
+                            '',
+                            #D8315 Updated Unmeasured Items Type D
+                            '',
+                            #D2021 Unmeasured Item Type D Count
+                            '',
+                            #D2061 Unmeasured Item Type D description
+                            '',
+                            #D8316 Updated Unmeasured Items Type E
+                            '',
+                            #D2022 Unmeasured Item Type E Count
+                            '',
+                            #D2062 Unmeasured Item Type E description
+                            '',
+                            #D8317 Updated Unmeasured Items Type F
+                            '',
+                            #D2024 Unmeasured Item Type F Count
+                            '',
+                            #D2064 Unmeasured Item Type F description
+                            '',
+                            #D8318 Updated Unmeasured Items Type G
+                            '',
+                            #D2046 Unmeasured Item Type G Count
+                            '',
+                            #D2065 Unmeasured Item Type G description
+                            '',
+                            #D8319 Updated Unmeasured Items Type H
+                            '',
+                            #D2048 Unmeasured Item Type H Count
+                            '',
+                            #D2069 Unmeasured Item Type H description
+                            '',
+                            #D8320 Updated Pipe Size
+                            '',
+                            #D2071 Pipe Size
+                            '',
+                            #D8213 Additional Information
+                            ''
+                            ### GROUP UNMEASURED SUPPLY ARRANGEMENTS (END) ###
+                            ]        
+        T323W_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8256 Unable to Fulfil Request Reason
+                            'ABLE',
+                            #D8263 Site Visit Date and Time
+                            TIME_NOT_WEEKEND,
+                            #D8258 Other SPID or Meter Involved
+                            '0',
+                            #D8259 Customer Notified of Plan
+                            '1',
+                            #D8260 Expected Completion Date
+                            DATE_NOT_WEEKEND,
+                            #D8213 Additional Information
+                            'PLANPROP'
+                            ]
+        T324R_data_items = [
+                            #D8221 ORID
+                            '[orid]', 
+                            #D8213 Additional Information
+                            'PLANAGREED'
+                            ]
+        T325R_data_items = [
+                            #D8221 ORID
+                            '[orid]', 
+                            #D8213 Additional Information
+                            'PLANDISP'
+                            ]
+        T331W_data_items = [
+                            #D2001 SPID
+                            SPID,
+                            #D8391 GS Request Type
+                            'UNMETERED',
+                            #D2011 Rateable Value
+                            '123',
+                            #D8392 Gap Site Identified Date
+                            '[today-' + str(random.randint(1,45))  +']', 
+                            #D8393 Application Reason
+                            'WSPID',
+                            #D8394 Reason For Water Or Sewerage Only SPID
+                            fake.paragraph(nb_sentences=1),
+                            #D8395 Foul Sewerage Services
+                            '0',
+                            #D8396 Highway Drainage Services
+                            '0',
+                            #D8397 Surface Water Drainage Services
+                            '0',
+                            #D8398 Trade Effluent Services
+                            '0',
+                            #D8399 Existing SPID At Premises
+                            '1',
+                            #D8400 Type Of Existing SPID
+                            'WSPID',
+                            #D2091 Other SPID
+                            '0',
+                            #D8323 Related Request ORID
+                            '',
+                            #D8213 Additional Information
+                            fake.paragraph(nb_sentences=1),
+                            #D8193 Declaration Date
+                            '[today]',
+                            #START Group GS Existing Meters
+                            #D3013 Meter Manufacturer
+                            '',
+                            '',
+                            '',
+                            '',
+                            #END Group GS Existing Meters
+                            #START Group GS Missing Meters
+                            '',
+                            '',
+                            '',
+                            ''
+                            #END Group GS Existing Meters
+                            ]
+        T332W_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8401 Customer Letter Sent Date
+                            '[today-' + str(random.randint(1, 45))  +']',
+                            #D8402 GS Connection Type
+                            random.choice(D8402),
+                            #D2037 VOA BA Reference
+                            'VOA_BA_REF',
+                            #D2038 VOA BA Reference Reason Code
+                            '',
+                            #D2039 UPRN
+                            '12345678',
+                            #D2040 UPRN Reason Code
+                            '',
+                            #D2028 Developer/Business Name
+                            'WATERS CO UK',
+                            #D2050 Customer Banner Name
+                            '',
+                            #D4032 Contact Name
+                            '',
+                            #D4033 Contact Email
+                            '',
+                            #D4034 Contact Number
+                            '',
+                            #D5001 Free Descriptor
+                            '',
+                            #D5004 Address Line 1
+                            RANDOM_ADDRESS1,
+                            #D5005 Address Line 2
+                            '',
+                            #D5006 Address Line 3
+                            '',
+                            #D5007 Address Line 4
+                            '',
+                            #D5008 Address Line 5
+                            '',
+                            #D5009 Postcode
+                            random.choice(POSTCODES),
+                            #D5011 PAF Address Key
+                            '' ,
+                            #D5013 Billing Address Line 1
+                            '',
+                            #D5014 Billing Address Line 2
+                            '',
+                            #D5015 Billing Address Line 3
+                            '',
+                            #D5016 Billing Address Line 4
+                            '',
+                            #D5017 Billing Address Line 5
+                            '',
+                            #D5018 Billing Address Postcode
+                            '',
+                            #D2015 Occupancy Status
+                            '',
+                            #D2070 Landlord SPID
+                            '',
+                            #D8213 Additional Information
+                            ''
+                            ]
+        T335R_data_items = [
+                            #D4025 Wholesaler ID
+                            'MOSLTEST-W',
+                            #D8186 Retailer System Reference
+                            'REF123',
+                            #D2028 Developer/Business Name
+                            'HOT WATERS',
+                            #D2050 Customer Banner Name
+                            '',
+                            #D5001 Free Descriptor
+                            '',
+                            #D5002 Secondary Addressable Object
+                            '',
+                            #D5003 Primary Addressable Object
+                            '',
+                            #D5004 Address Line 1
+                            'Mancherster 123',
+                            #D5005 Address Line 2
+                            '',
+                            #D5006 Address Line 3
+                            '',
+                            #D5007 Address Line 4
+                            '',
+                            #D5008 Address Line 5
+                            '',
+                            #D5009 Postcode
+                            random.choice(POSTCODES),
+                            #D5011 PAF Address Key
+                            '',
+                            #D2037 VOA BA Reference
+                            '',
+                            #D2039 UPRN
+                            '',
+                            #D8391 GS Request Type
+                            'METERED',
+                            #D2011 Rateable Value
+                            '',
+                            #D8392 Gap Site Identified Date
+                            '[today-' + str(random.randint(1, 45))  +']',
+                            #D8393 Application Reason
+                            'WSPID',
+                            #D8394 Reason For Water Or Sewerage Only SPID
+                            fake.paragraph(nb_sentences=1),
+                            #D8395 Foul Sewerage Services
+                            '0',
+                            #D8396 Highway Drainage Services
+                            '0',
+                            #D8397 Surface Water Drainage Services
+                            '0',
+                            #D8398 Trade Effluent Services
+                            '0',
+                            #D8399 Existing SPID At Premises
+                            '0',
+                            #D8400 Type Of Existing SPID
+                            '',
+                            #D2091 Other SPID
+                            '',
+                            #D8323 Related Request ORID
+                            '',
+                            #D8213 Additional Information
+                            fake.paragraph(nb_sentences=1),
+                            #D8403 Wish To Be Retailer For This Gap Site
+                            '1',
+                            #D8252 Customer Contact Required
+                            '1',
+                            #D8193 Declaration Date
+                            '[today]',
+                            ### GROUP CUSTOMER (START) ###	
+                            #D8019 Consent to Contact Customer
+                            '1',
+                            #D8020 Customer Contact Name 1
+                            CUST_RANDOM_NAME,
+                            #D8021 Customer Contact Number 1
+                            CUST_RANDOM_PHONE,
+                            #D8233 Customer Extension 1
+                            '103',
+                            #D8239 Customer Contact Name 2
+                            CUST_RANDOM_NAME2,
+                            #D8145 Customer Contact Number 2
+                            CUST_RANDOM_PHONE2,
+                            #D8234 Customer Extension 2
+                            '122',
+                            #D8146 Customer Contact Email
+                            CUST_EMAIL,
+                            #D8235 Customer Aware of Service Request
+                            '1',
+                            #D8236 Customer Preferred Method of Contact
+                            'EMAIL',
+                            #D8237 Customer Preferred Contact Time
+                            random.choice(D8237),
+                            #D8238 Customer Additional Information
+                            RANDOM_STRING,
+                            #D2005 Customer Classification - Sensitive Customer
+                            random.choice(D2005),
+                            #D8240 Landlord Tenant Details
+                            RANDOM_STRING,
+                            #D8269 Retailer Contact Name 1
+                            RET_RANDOM_NAME,
+                            #D8270 Retailer Contact Number 1
+                            RET_RANDOM_PHONE,
+                            #D8271 Retailer Extension 1
+                            '210',
+                            #D8280 Retailer Contact Name 2
+                            RET_RANDOM_NAME2,
+                            #D8272 Retailer Contact Number 2
+                            RET_RANDOM_PHONE2,
+                            #D8273 Retailer Extension 2
+                            '224',
+                            #D8274 Retailer Contact Email
+                            RET_EMAIL,
+                            ### GROUP CUSTOMER (END) ###
+                            ### GROUP POTENTIAL METER1 (START) ###	
+                            #D8411 Potential Meter
+                            '',
+                            #D3013 Meter Manufacturer
+                            '',
+                            #D3014 Manufacturer Meter Serial Number
+                            '',
+                            #D3008 Meter Read
+                            '',
+                            #D3009 Meter Read Date
+                            '',
+                            #D3003 Physical Meter Size
+                            '',
+                            #D3004 Number of Digits
+                            '',
+                            #D3017 GISX
+                            '',
+                            #D3018 GISY
+                            '',
+                            #D3025 Meter Location Code
+                            '',
+                            #D3019 Meter Location Free Descriptor
+                            ''
+                            ### GROUP POTENTIAL METER1 (END) ###
+                            ### GROUP POTENTIAL METER2 (START) ###	
+                            #D8411 Potential Meter
+                            '',
+                            #D3013 Meter Manufacturer
+                            '',
+                            #D3014 Manufacturer Meter Serial Number
+                            '',
+                            #D3008 Meter Read
+                            '',
+                            #D3009 Meter Read Date
+                            '',
+                            #D3003 Physical Meter Size
+                            '',
+                            #D3004 Number of Digits
+                            '',
+                            #D3017 GISX
+                            '',
+                            #D3018 GISY
+                            '',
+                            #D3025 Meter Location Code
+                            '',
+                            #D3019 Meter Location Free Descriptor
+                            ''
+                            ### GROUP POTENTIAL METER2 (END) ###	                            	            
+                            ]
+        T336W_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8404 GS Completion Code
+                            'RA',
+                            #D4011 Retailer ID
+                            'MOSLTEST-R',
+                            #D8405 GS Confirmed
+                            '1',
+                            #D8406 GS Additional Information
+                            '',
+                            #D2001 SPID
+                            SPID,
+                            #D8391 GS Request Type
+                            'UNMETERED',
+                            #D8407 Payment Due To Retailer
+                            '1',
+                            #D8408 Amount Due To Retailer
+                            '',
+                            #D8409 Payment Additional Information
+                            '',
+                            #D8051 Charge to Retailer Flag
+                            '1',
+                            #D8410 Charge To Retailer Reason
+                            fake.paragraph(nb_sentences=1),
+                            #D8213 Additional Information
+                            fake.paragraph(nb_sentences=1),
+                            #D2011 Rateable Value
+                            '',
+                            #D8401 Customer Letter Sent Date
+                            '[today-' + str(random.randint(1,45))  +']',
+                            #D8402 GS Connection Type
+                            'GS',
+                            #D2037 VOA BA Reference
+                            'VOA_BA_REF',
+                            #D2038 VOA BA Reference Reason Code
+                            '',
+                            #D2039 UPRN
+                            '123123123',
+                            #D2040 UPRN Reason Code
+                            '',
+                            #D2028 Developer/Business Name
+                            'COLD WATERS',
+                            #D2050 Customer Banner Name
+                            '',
+                            #D4032 Contact Name
+                            '',
+                            #D4033 Contact Email
+                            '',
+                            #D4034 Contact Number
+                            '',
+                            #D5001 Free Descriptor
+                            '',
+                            #D5004 Address Line 1
+                            RANDOM_ADDRESS1,
+                            #D5005 Address Line 2
+                            RANDOM_ADDRESS2,
+                            #D5006 Address Line 3
+                            RANDOM_ADDRESS3,
+                            #D5007 Address Line 4
+                            RANDOM_ADDRESS4,
+                            #D5008 Address Line 5
+                            RANDOM_ADDRESS5,
+                            #D5009 Postcode
+                            random.choice(POSTCODES),
+                            #D5011 PAF Address Key
+                            '',
+                            #D5012 Billing Address Building Name
+                            '',
+                            #D5013 Billing Address Line 1
+                            '',
+                            #D5014 Billing Address Line 2
+                            '',
+                            #D5015 Billing Address Line 3
+                            '',
+                            #D5016 Billing Address Line 4
+                            '',
+                            #D5017 Billing Address Line 5
+                            '',
+                            #D5018 Billing Address Postcode
+                            '',
+                            #D2015 Occupancy Status
+                            '',
+                            #D2070 Landlord SPID
+                            '',
+                            #D8411 Potential Meter
+                            '',
+                            #D3013 Meter Manufacturer
+                            '',
+                            #D3014 Manufacturer Meter Serial Number
+                            '',
+                            #D3008 Meter Read
+                            '',
+                            #D3009 Meter Read Date
+                            '',
+                            #D3003 Physical Meter Size
+                            '',
+                            #D3004 Number of Digits
+                            '',
+                            #D3017 GISX
+                            '',
+                            #D3018 GISY
+                            '',
+                            #D3025 Meter Location Code
+                            '',
+                            #D3019 Meter Location Free Descriptor
+                            '',
+                            #D8411 Potential Meter
+                            '',
+                            #D3013 Meter Manufacturer
+                            '',
+                            #D3014 Manufacturer Meter Serial Number
+                            '',
+                            #D3008 Meter Read
+                            '',
+                            #D3009 Meter Read Date
+                            '',
+                            #D3003 Physical Meter Size
+                            '',
+                            #D3004 Number of Digits
+                            '',
+                            #D3017 GISX
+                            '',
+                            #D3018 GISY
+                            '',
+                            #D3025 Meter Location Code
+                            '',
+                            #D3019 Meter Location Free Descriptor
+                            ''
                              ]
         T341R_data_items = [
-            #D2001
-            SWG_SPID, 
-            #D8412
-            'REMOVESC', 
-            #d8413
-            'MERGED', 
-            #D8414
-            '0',
-            #D3013
-            SWG_METER_MNF,
-            #D3014
-            SWG_METER_SER,
-            #D3013
-            '', #SWG_METER_MNF,
-            #D3014
-            '', #SWG_METER_SER,
-            #D8415
-            fake.paragraph(nb_sentences=1),
-            #D8416 
-            fake.paragraph(nb_sentences=1),
-            #D8417
-            '', 
-            #D8418
-            '', 
-            #D8419
-            '', 
-            #D8420
-            '', 
-            #D8421
-            '', 
-            #D8422
-            random.choice(D8422),
-            #D8423
-            random.choice(D8423),
-            #D8424
-            random.choice(D8424),
-            #D8425
-            random.choice(D8425),
-            #D8426
-            random.choice(D8426),
-            #D8427
-            random.choice(D8427),
-            #D8450
-            random.choice(D8450),
-            #D8462
-            'REMOVESC',
-            #D8451
-            '1',
-            #D8452
-            random.choice(D8452),
-            #D8453
-            random.choice(D8453),
-            #D8454
-            random.choice(D8454),
-            #D8455
-            random.choice(D8455),
-            #D8456
-            '', 
-            #D8457
-            '', 
-            #D8458
-            '', 
-            #D8459
-            '', 
-            #D8460
-            '', 
-            #D8461
-            '', 
-            #D6001
-            'DPID_' + RANDOM_STRING,
-            #D8428
-            fake.paragraph(nb_sentences=1),
-            #D8429
-            '[today+' + str(random.randint(1, 15))  +']',
-            #D8430
-            random.choice(D8430),
-            #D8431
-            'PRIMARY',
-            #D8323
-            '', 
-            #D8213
-            fake.paragraph(nb_sentences=1),
-            #D8252
-            '1', 
-            #D8186
-            'REF_' + RANDOM_STRING,
-            #D8193
-            '[today]',
-            #D8019
-            '1',
-            #D8020
-            CUST_RANDOM_NAME, 
-            #D8021
-            CUST_RANDOM_PHONE, 
-            #D8233
-            '105', 
-            #D8239
-            CUST_RANDOM_NAME2, 
-            #D8145
-            CUST_RANDOM_PHONE2, 
-            #D8234
-            '122',
-            #D8146 
-            CUST_EMAIL, 
-            #D8235
-            '1',
-            #D8236 
-            'EMAIL', 
-            #D8237
-            random.choice(D8237),
-            #D8238
-            fake.paragraph(nb_sentences=1), 
-            #D2005
-            random.choice(D2005), 
-            #D8240
-            fake.paragraph(nb_sentences=1), 
-            #D8269
-            RET_RANDOM_NAME, 
-            #D8270
-            RET_RANDOM_PHONE, 
-            #D8271
-            '210', 
-            #D8280
-            RET_RANDOM_NAME2, 
-            #D8272
-            RET_RANDOM_PHONE2, 
-            #D8273
-            '224', 
-            #D8274
-            RET_EMAIL,
-        #GROUP DEMOLISHED
-            #D8432
-            #'[today-' + str(random.randint(1, 15))  +']',
-            '', 
-        #GROUP MERGED
-            #D8433
-            SPID,
-            #D8434 
-            '', 
-            #D2027
-            CUST_RANDOM_NAME,
-            #D2050
-            CUST_RANDOM_NAME2,
-            #D5004
-            RANDOM_ADDRESS1, 
-            #D5005
-            RANDOM_ADDRESS2, 
-            #D5006
-            RANDOM_ADDRESS3, 
-            #D5007
-            RANDOM_ADDRESS4, 
-            #D5008
-            RANDOM_ADDRESS5,
-            #D5009
-            random.choice(POSTCODES),
-            #D2037
-            'VOA_BA_REF',
-            #D2039
-            '123123123',
-            #D2011
-            '1234.12',
-            #D8435
-            RANDOM_METER_SER,
-            #D8436
-            '1', 
-            #D8437
-            fake.paragraph(nb_sentences=1), 
-            #D8441
-            '[today-' + str(random.randint(1, 15))  +']',
-            #GROUP NOCS
-            #D8438
-            #fake.paragraph(nb_sentences=1), 
-            '', 
-        #GROUP LANDLORD
-            #D8433
-            '',
-            #D8434 
-            '', 
-            #D2027
-            #CUST_RANDOM_NAME,
-            '', 
-            #D2050
-            #CUST_RANDOM_NAME2,
-            '', 
-            #D5004
-            #RANDOM_ADDRESS1, 
-            '', 
-            #D5005
-            #RANDOM_ADDRESS2, 
-            '', 
-            #D5006
-            #RANDOM_ADDRESS3, 
-            '', 
-            #D5007
-            #RANDOM_ADDRESS4, 
-            '', 
-            #D5008
-            #RANDOM_ADDRESS5,
-            '', 
-            #D5009
-            #random.choice(POSTCODES),
-            '', 
-            #D2037
-            #'VOA_BA_REF',
-            '', 
-            #D2039
-            #'123123123',
-            '', 
-            #D2011
-            #'1234',
-            '', 
-            #D8435
-            #RANDOM_METER_SER,
-            '', 
-            #D8436
-            #'1', 
-            '', 
-            #D8437
-            #fake.paragraph(nb_sentences=1), 
-            '', 
-        #GROUP NOTELIGIBLE
-            #D8439
-            #fake.paragraph(nb_sentences=1), 
-            '', 
-        #GROUP DUPLICATE
-            #D8440
-            #fake.paragraph(nb_sentences=1), 
-            '', 
-            ]
+                            #D2001 SPID
+                            SWG_SPID, 
+                            #D8412 SPID Update Request Type
+                            'REMOVESC', 
+                            #D8413 Request Reason
+                            'MERGED', 
+                            #D8414 All Meters Impacted
+                            '0',
+                            #D3013 Meter Manufacturer
+                            SWG_METER_MNF,
+                            #D3014 Manufacturer Meter Serial Number
+                            SWG_METER_SER,
+                            #D3013 Meter Manufacturer
+                            '',
+                            #D3014 Manufacturer Meter Serial Number
+                            '',
+                            #D8415 Additional Impacted Meters Info
+                            fake.paragraph(nb_sentences=1),
+                            #D8416 Missing Meters Info
+                            fake.paragraph(nb_sentences=1),
+                            #D8417 Remove SC MPW
+                            '', 
+                            #D8418 Remove SC MNPW
+                            '', 
+                            #D8419 Remove SC AW
+                            '', 
+                            #D8420 Remove SC UW
+                            '', 
+                            #D8421 Remove SC WCA
+                            '', 
+                            #D8422 Remove SC MS
+                            random.choice(D8422),
+                            #D8423 Remove SC AS
+                            random.choice(D8423),
+                            #D8424 Remove SC US
+                            random.choice(D8424),
+                            #D8425 Remove SC SW
+                            random.choice(D8425),
+                            #D8426 Remove SC HD
+                            random.choice(D8426),
+                            #D8427 Remove SC SCA
+                            random.choice(D8427),
+                            #D8450 Paired SPID Impacted
+                            random.choice(D8450),
+                            #D8462 Type Of Impact
+                            'REMOVESC',
+                            #D8451 Remove Other SPID SC MPW
+                            '1',
+                            #D8452 Remove Other SPID SC MNPW
+                            random.choice(D8452),
+                            #D8453 Remove Other SPID SC AW
+                            random.choice(D8453),
+                            #D8454 Remove Other SPID SC UW
+                            random.choice(D8454),
+                            #D8455 Remove Other SPID SC WCA
+                            random.choice(D8455),
+                            #D8456 Remove Other SPID SC MS
+                            '', 
+                            #D8457 Remove Other SPID SC AS
+                            '', 
+                            #D8458 Remove Other SPID SC US
+                            '', 
+                            #D8459 Remove Other SPID SC SW
+                            '', 
+                            #D8460 Remove Other SPID SC HD
+                            '', 
+                            #D8461 Remove Other SPID SC SCA
+                            '', 
+                            #D6001 DPID
+                            'DPID_' + RANDOM_STRING,
+                            #D8428 Investigation Details
+                            fake.paragraph(nb_sentences=1),
+                            #D8429 Date To Remove Services
+                            '[today+' + str(random.randint(1, 15))  +']',
+                            #D8430 Premises Extent
+                            random.choice(D8430),
+                            #D8431 Primary Or Secondary Use
+                            'PRIMARY',
+                            #D8323 Related Request ORID
+                            '', 
+                            #D8213 Additional Information
+                            fake.paragraph(nb_sentences=1),
+                            #D8252 Customer Contact Required
+                            '1', 
+                            #D8186 Retailer System Reference
+                            'REF_' + RANDOM_STRING,
+                            #D8193 Declaration Date
+                            '[today]',
+                            ### GROUP CUSTOMER (START) ###
+                            #D8019 Consent to Contact Customer
+                            '1',
+                            #D8020 Customer Contact Name 1
+                            CUST_RANDOM_NAME, 
+                            #D8021 Customer Contact Number 1
+                            CUST_RANDOM_PHONE, 
+                            #D8233 Customer Extension 1
+                            '105', 
+                            #D8239 Customer Contact Name 2
+                            CUST_RANDOM_NAME2, 
+                            #D8145 Customer Contact Number 2
+                            CUST_RANDOM_PHONE2, 
+                            #D8234 Customer Extension 2
+                            '122',
+                            #D8146 Customer Contact Email
+                            CUST_EMAIL, 
+                            #D8235 Customer Aware of Service Request
+                            '1',
+                            #D8236 Customer Preferred Method of Contact
+                            'EMAIL', 
+                            #D8237 Customer Preferred Contact Time
+                            random.choice(D8237),
+                            #D8238 Customer Additional Information
+                            fake.paragraph(nb_sentences=1), 
+                            #D2005 Customer Classification - Sensitive Customer
+                            random.choice(D2005), 
+                            #D8240 Landlord Tenant Details
+                            fake.paragraph(nb_sentences=1), 
+                            #D8269 Retailer Contact Name 1
+                            RET_RANDOM_NAME, 
+                            #D8270 Retailer Contact Number 1
+                            RET_RANDOM_PHONE, 
+                            #D8271 Retailer Extension 1
+                            '210', 
+                            #D8280 Retailer Contact Name 2
+                            RET_RANDOM_NAME2, 
+                            #D8272 Retailer Contact Number 2
+                            RET_RANDOM_PHONE2, 
+                            #D8273 Retailer Extension 2
+                            '224', 
+                            #D8274 Retailer Contact Email
+                            RET_EMAIL,
+                            ### GROUP CUSTOMER (END) ###
+                            ### GROUP DEMOLITION (START) ###
+                            #D8432 Date Of Demolition
+                            '', #'[today-' + str(random.randint(1, 15))  +']', 
+                            ### GROUP DEMOLITION (END) ###
+                            ### GROUP MERGED (START) ###
+                            #D8433 Associated Water SPID
+                            SPID,
+                            #D8434 Associated Sewerage SPID
+                            '', 
+                            #D2027 Customer Name
+                            CUST_RANDOM_NAME,
+                            #D2050 Customer Banner Name
+                            CUST_RANDOM_NAME2,
+                            #D5004 Address Line 1
+                            RANDOM_ADDRESS1, 
+                            #D5005 Address Line 2
+                            RANDOM_ADDRESS2, 
+                            #D5006 Address Line 3
+                            RANDOM_ADDRESS3, 
+                            #D5007 Address Line 4
+                            RANDOM_ADDRESS4, 
+                            #D5008 Address Line 5
+                            RANDOM_ADDRESS5,
+                            #D5009 Postcode
+                            random.choice(POSTCODES),
+                            #D2037 VOA BA Reference
+                            'VOA_BA_REF',
+                            #D2039 UPRN
+                            '123123123',
+                            #D2011 Rateable Value
+                            '1234.12',
+                            #D8435 Meters Serial Number Info
+                            RANDOM_METER_SER,
+                            #D8436 Multiple Water Supply Connections
+                            '1', 
+                            #D8437 Multiple Connections Further Info
+                            fake.paragraph(nb_sentences=1), 
+                            #D8441 Date Property Merged
+                            '[today-' + str(random.randint(1, 15))  +']',
+                            ### GROUP MERGED (END) ###
+                            ### GROUP NOSC (START) ###
+                            #D8438 No Water Or Sewerage Info
+                            '', #fake.paragraph(nb_sentences=1), 
+                            ### GROUP NOSC (END) ###
+                            ### GROUP LANDLORD (START) ###
+                            #D8433 Associated Water SPID
+                            '', 
+                            #D8434 Associated Sewerage SPID
+                            '',
+                            #D2027 Customer Name
+                            '', 
+                            #D2050 Customer Banner Name
+                            '', 
+                            #D5004 Address Line 1
+                            '', 
+                            #D5005 Address Line 2
+                            '', 
+                            #D5006 Address Line 3
+                            '', 
+                            #D5007 Address Line 4
+                            '', 
+                            #D5008 Address Line 5
+                            '', 
+                            #D5009 Postcode
+                            '', 
+                            #D2037 VOA BA Reference
+                            '', 
+                            #D2039 UPRN
+                            '', 
+                            #D2011 Rateable Value
+                            '', 
+                            #D8435 Meters Serial Number Info
+                            '', 
+                            #D8436 Multiple Water Supply Connections
+                            '', 
+                            #D8437 Multiple Connections Further Info
+                            '', 
+                            ### GROUP LANDLORD (END) ###
+                            ### GROUP NOTELIGIBLE (START) ###
+                            #D8439 Not Eligible Or COU Info
+                            '', 
+                            ### GROUP NOTELIGIBLE (END) ###
+                            ### GROUP DUPLICATE (START) ###
+                            #D8440 Duplicate SPID Info
+                            ''
+                            ### GROUP DUPLICATE (END) ###
+                            ]
         T341W_data_items = [
-            #D2001
-            SWG_SPID, 
-            #D8412
-            'REMOVESC', 
-            #d8413
-            'MERGED', 
-            #D8414
-            '0',
-            #D3013
-            SWG_METER_MNF,
-            #D3014
-            SWG_METER_SER,
-            #D3013
-            '', #SWG_METER_MNF,
-            #D3014
-            '', #SWG_METER_SER,
-            #D8415
-            fake.paragraph(nb_sentences=1),
-            #D8416 
-            fake.paragraph(nb_sentences=1),
-            #D8417
-            '', 
-            #D8418
-            '', 
-            #D8419
-            '', 
-            #D8420
-            '', 
-            #D8421
-            '', 
-            #D8422
-            random.choice(D8422),
-            #D8423
-            random.choice(D8423),
-            #D8424
-            random.choice(D8424),
-            #D8425
-            random.choice(D8425),
-            #D8426
-            random.choice(D8426),
-            #D8427
-            random.choice(D8427),
-            #D8450
-            random.choice(D8450),
-            #D8462
-            'REMOVESC',
-            #D8451
-            random.choice(D8451),
-            #D8452
-            random.choice(D8452),
-            #D8453
-            random.choice(D8453),
-            #D8454
-            random.choice(D8454),
-            #D8455
-            random.choice(D8455),
-            #D8456
-            '', 
-            #D8457
-            '', 
-            #D8458
-            '', 
-            #D8459
-            '', 
-            #D8460
-            '', 
-            #D8461
-            '', 
-            #D6001
-            'DPID_' + RANDOM_STRING,
-            #D8428
-            fake.paragraph(nb_sentences=1),
-            #D8429
-            '[today+' + str(random.randint(1, 15))  +']',
-            #D8430
-            random.choice(D8430),
-            #D8431
-            'PRIMARY',
-            #D8323
-            '', 
-            #D8213
-            fake.paragraph(nb_sentences=1),
-            #D8193
-            '[today]',
-        #GROUP DEMOLISHED
-            #D8432
-            #'[today-' + str(random.randint(1, 15))  +']',
-            '', 
-        #GROUP MERGED
-            #D8433
-            SPID,
-            #D8434 
-            '', 
-            #D2027
-            CUST_RANDOM_NAME,
-            #D2050
-            CUST_RANDOM_NAME2,
-            #D5004
-            RANDOM_ADDRESS1, 
-            #D5005
-            RANDOM_ADDRESS2, 
-            #D5006
-            RANDOM_ADDRESS3, 
-            #D5007
-            RANDOM_ADDRESS4, 
-            #D5008
-            RANDOM_ADDRESS5,
-            #D5009
-            random.choice(POSTCODES),
-            #D2037
-            'VOA_BA_REF',
-            #D2039
-            '123123123',
-            #D2011
-            '1234.12',
-            #D8435
-            RANDOM_METER_SER,
-            #D8436
-            '1', 
-            #D8437
-            fake.paragraph(nb_sentences=1), 
-            #D8441
-            '[today-' + str(random.randint(1, 15))  +']',
-        #GROUP NOCS
-            #D8438
-            '', 
-        #GROUP LANDLORD
-            #D8433
-            '',
-            #D8434 
-            '', 
-            #D2027
-            #CUST_RANDOM_NAME,
-            '', 
-            #D2050
-            #CUST_RANDOM_NAME2,
-            '', 
-            #D5004
-            #RANDOM_ADDRESS1, 
-            '', 
-            #D5005
-            #RANDOM_ADDRESS2, 
-            '', 
-            #D5006
-            #RANDOM_ADDRESS3, 
-            '', 
-            #D5007
-            #RANDOM_ADDRESS4, 
-            '', 
-            #D5008
-            #RANDOM_ADDRESS5,
-            '', 
-            #D5009
-            #random.choice(POSTCODES),
-            '', 
-            #D2037
-            #'VOA_BA_REF',
-            '', 
-            #D2039
-            #'123123123',
-            '', 
-            #D2011
-            #'1234',
-            '', 
-            #D8435
-            #RANDOM_METER_SER,
-            '', 
-            #D8436
-            #'1', 
-            '', 
-            #D8437
-            #fake.paragraph(nb_sentences=1), 
-            '', 
-        #GROUP NOTELIGIBLE
-            #D8439
-            #fake.paragraph(nb_sentences=1),
-            '',
-        #GROUP DUPLICATE
-            #fake.paragraph(nb_sentences=1),
-            #D8440
-            ''
-            ]                    
+                            #D2001 SPID
+                            SWG_SPID, 
+                            #D8412 SPID Update Request Type
+                            'REMOVESC', 
+                            #D8413 Request Reason
+                            'MERGED', 
+                            #D8414 All Meters Impacted
+                            '0',
+                            #D3013 Meter Manufacturer
+                            SWG_METER_MNF,
+                            #D3014 Manufacturer Meter Serial Number
+                            SWG_METER_SER,
+                            #D3013 Meter Manufacturer
+                            '',
+                            #D3014 Manufacturer Meter Serial Number
+                            '',
+                            #D8415 Additional Impacted Meters Info
+                            fake.paragraph(nb_sentences=1),
+                            #D8416 Missing Meters Info
+                            fake.paragraph(nb_sentences=1),
+                            #D8417 Remove SC MPW
+                            '', 
+                            #D8418 Remove SC MNPW
+                            '', 
+                            #D8419 Remove SC AW
+                            '', 
+                            #D8420 Remove SC UW
+                            '', 
+                            #D8421 Remove SC WCA
+                            '', 
+                            #D8422 Remove SC MS
+                            random.choice(D8422),
+                            #D8423 Remove SC AS
+                            random.choice(D8423),
+                            #D8424 Remove SC US
+                            random.choice(D8424),
+                            #D8425 Remove SC SW
+                            random.choice(D8425),
+                            #D8426 Remove SC HD
+                            random.choice(D8426),
+                            #D8427 Remove SC SCA
+                            random.choice(D8427),
+                            #D8450 Paired SPID Impacted
+                            random.choice(D8450),
+                            #D8462 Type Of Impact
+                            'REMOVESC',
+                            #D8451 Remove Other SPID SC MPW
+                            '1',
+                            #D8452 Remove Other SPID SC MNPW
+                            random.choice(D8452),
+                            #D8453 Remove Other SPID SC AW
+                            random.choice(D8453),
+                            #D8454 Remove Other SPID SC UW
+                            random.choice(D8454),
+                            #D8455 Remove Other SPID SC WCA
+                            random.choice(D8455),
+                            #D8456 Remove Other SPID SC MS
+                            '', 
+                            #D8457 Remove Other SPID SC AS
+                            '', 
+                            #D8458 Remove Other SPID SC US
+                            '', 
+                            #D8459 Remove Other SPID SC SW
+                            '', 
+                            #D8460 Remove Other SPID SC HD
+                            '', 
+                            #D8461 Remove Other SPID SC SCA
+                            '', 
+                            #D6001 DPID
+                            'DPID_' + RANDOM_STRING,
+                            #D8428 Investigation Details
+                            fake.paragraph(nb_sentences=1),
+                            #D8429 Date To Remove Services
+                            '[today+' + str(random.randint(1, 15))  +']',
+                            #D8430 Premises Extent
+                            random.choice(D8430),
+                            #D8431 Primary Or Secondary Use
+                            'PRIMARY',
+                            #D8323 Related Request ORID
+                            '', 
+                            #D8213 Additional Information
+                            fake.paragraph(nb_sentences=1),
+                            #D8193 Declaration Date
+                            '[today]',
+                            ### GROUP DEMOLITION (START) ###
+                            #D8432 Date Of Demolition
+                            '', #'[today-' + str(random.randint(1, 15))  +']', 
+                            ### GROUP DEMOLITION (END) ###
+                            ### GROUP MERGED (START) ###
+                            #D8433 Associated Water SPID
+                            SPID,
+                            #D8434 Associated Sewerage SPID
+                            '', 
+                            #D2027 Customer Name
+                            CUST_RANDOM_NAME,
+                            #D2050 Customer Banner Name
+                            CUST_RANDOM_NAME2,
+                            #D5004 Address Line 1
+                            RANDOM_ADDRESS1, 
+                            #D5005 Address Line 2
+                            RANDOM_ADDRESS2, 
+                            #D5006 Address Line 3
+                            RANDOM_ADDRESS3, 
+                            #D5007 Address Line 4
+                            RANDOM_ADDRESS4, 
+                            #D5008 Address Line 5
+                            RANDOM_ADDRESS5,
+                            #D5009 Postcode
+                            random.choice(POSTCODES),
+                            #D2037 VOA BA Reference
+                            'VOA_BA_REF',
+                            #D2039 UPRN
+                            '123123123',
+                            #D2011 Rateable Value
+                            '1234.12',
+                            #D8435 Meters Serial Number Info
+                            RANDOM_METER_SER,
+                            #D8436 Multiple Water Supply Connections
+                            '1', 
+                            #D8437 Multiple Connections Further Info
+                            fake.paragraph(nb_sentences=1), 
+                            #D8441 Date Property Merged
+                            '[today-' + str(random.randint(1, 15))  +']',
+                            ### GROUP MERGED (END) ###
+                            ### GROUP NOSC (START) ###
+                            #D8438 No Water Or Sewerage Info
+                            '', #fake.paragraph(nb_sentences=1), 
+                            ### GROUP NOSC (END) ###
+                            ### GROUP LANDLORD (START) ###
+                            #D8433 Associated Water SPID
+                            '', 
+                            #D8434 Associated Sewerage SPID
+                            '',
+                            #D2027 Customer Name
+                            '', 
+                            #D2050 Customer Banner Name
+                            '', 
+                            #D5004 Address Line 1
+                            '', 
+                            #D5005 Address Line 2
+                            '', 
+                            #D5006 Address Line 3
+                            '', 
+                            #D5007 Address Line 4
+                            '', 
+                            #D5008 Address Line 5
+                            '', 
+                            #D5009 Postcode
+                            '', 
+                            #D2037 VOA BA Reference
+                            '', 
+                            #D2039 UPRN
+                            '', 
+                            #D2011 Rateable Value
+                            '', 
+                            #D8435 Meters Serial Number Info
+                            '', 
+                            #D8436 Multiple Water Supply Connections
+                            '', 
+                            #D8437 Multiple Connections Further Info
+                            '', 
+                            ### GROUP LANDLORD (END) ###
+                            ### GROUP NOTELIGIBLE (START) ###
+                            #D8439 Not Eligible Or COU Info
+                            '', 
+                            ### GROUP NOTELIGIBLE (END) ###
+                            ### GROUP DUPLICATE (START) ###
+                            #D8440 Duplicate SPID Info
+                            ''
+                            ### GROUP DUPLICATE (END) ###
+                            ]                    
         T342W_data_items = [
             #D8221
             '[orid]',
@@ -1293,26 +2621,241 @@ def generate_test_case(loop_times):
             #D8213
             fake.paragraph(nb_sentences=1),   
             ]
-        T351R_data_items = [# basic data
-                            SPID, 'RET_' + RANDOM_STRING, '', '1', '[today]', '1',
-                            # customer and retailer data
-                            CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', random.choice(D8237),
-                            RANDOM_STRING, random.choice(D2005), RANDOM_STRING, RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL,
-                            # meter details
-                            METER_MNF, METER_SER, random.choice(D8330), str(random.randint(1111, 9999)) + RANDOM_STRING, str(random.randint(1111, 9999)) + RANDOM_STRING, RANDOM_ADDRESS1, RANDOM_ADDRESS2, RANDOM_ADDRESS3, RANDOM_ADDRESS4, RANDOM_ADDRESS5, random.choice(POSTCODES), random.randint(1, 99999999), '0', '',
-                            random.choice(D8332), '1', 'NOTREMOVED', '[today+' + str(random.randint(1, 15))  +']', random.choice(D8335), 'METER_' + RANDOM_STRING, 'STOPPED', 'BACKWARD', 'SLOWED', '', random.randint(100, 9999), '[today-' + str(random.randint(1, 45))  +']', fake.paragraph(nb_sentences=1)
+        T351R_data_items = [
+                            #D2001 SPID
+                            SPID,
+                            #D8186 Retailer System Reference
+                            'RET_' + RANDOM_STRING,
+                            #D8323 Related Request ORID
+                            '',
+                            #D8252 Customer Contact Required
+                            '1',
+                            #D8193 Declaration Date
+                            '[today]',
+                            ### GROUP CUSTOMER (START) ###	
+                            #D8019 Consent to Contact Customer
+                            '1',
+                            #D8020 Customer Contact Name 1
+                            CUST_RANDOM_NAME,
+                            #D8021 Customer Contact Number 1
+                            CUST_RANDOM_PHONE,
+                            #D8233 Customer Extension 1
+                            '105',
+                            #D8239 Customer Contact Name 2
+                            CUST_RANDOM_NAME2,
+                            #D8145 Customer Contact Number 2
+                            CUST_RANDOM_PHONE2,
+                            #D8234 Customer Extension 2
+                            '122',
+                            #D8146 Customer Contact Email
+                            CUST_EMAIL,
+                            #D8235 Customer Aware of Service Request
+                            '1',
+                            #D8236 Customer Preferred Method of Contact
+                            'EMAIL',
+                            #D8237 Customer Preferred Contact Time
+                            random.choice(D8237),
+                            #D8238 Customer Additional Information
+                            RANDOM_STRING,
+                            #D2005 Customer Classification - Sensitive Customer
+                            random.choice(D2005),
+                            #D8240 Landlord Tenant Details
+                            RANDOM_STRING,
+                            #D8269 Retailer Contact Name 1
+                            RET_RANDOM_NAME,
+                            #D8270 Retailer Contact Number 1
+                            RET_RANDOM_PHONE,
+                            #D8271 Retailer Extension 1
+                            '210',
+                            #D8280 Retailer Contact Name 2
+                            RET_RANDOM_NAME2,
+                            #D8272 Retailer Contact Number 2
+                            RET_RANDOM_PHONE2,
+                            #D8273 Retailer Extension 2
+                            '224',
+                            #D8274 Retailer Contact Email
+                            RET_EMAIL,
+                            ### GROUP CUSTOMER (END) ###
+                            ### GROUP SELECTED METER (START) ###		
+                            #D3013 Meter Manufacturer
+                            METER_MNF,
+                            #D3014 Manufacturer Meter Serial Number
+                            METER_SER,
+                            #D8330 Address Same As CMOS
+                            random.choice(D8330),
+                            #D5002 Secondary Addressable Object
+                            str(random.randint(1111,9999)) + RANDOM_STRING,
+                            #D5003 Primary Addressable Object
+                            str(random.randint(1111,9999)) + RANDOM_STRING,
+                            #D5004 Address Line 1
+                            RANDOM_ADDRESS1,
+                            #D5005 Address Line 2
+                            RANDOM_ADDRESS2,
+                            #D5006 Address Line 3
+                            RANDOM_ADDRESS3,
+                            #D5007 Address Line 4
+                            RANDOM_ADDRESS4,
+                            #D5008 Address Line 5
+                            RANDOM_ADDRESS5,
+                            #D5009 Postcode
+                            random.choice(POSTCODES),
+                            #D5011 PAF Address Key
+                            random.randint(1,99999999),
+                            #D3034 Combi Meter Flag
+                            '0',
+                            #D8331 Combi Meter Serial Number
+                            '',
+                            #D8332 Public Health Issue
+                            random.choice(D8332),
+                            #D3016 Datalogger Non-Wholesaler
+                            '1',
+                            #D8333 Datalogger Status
+                            'NOTREMOVED',
+                            #D8334 Datalogger Removal Date
+                            '[today+' + str(random.randint(1,15))  +']',
+                            #D8335 Meter Model
+                            random.choice(D8335),
+                            #D8336 Meter Menu Reference
+                            'METER_' + RANDOM_STRING,
+                            #D8337 Fault 1
+                            'STOPPED',
+                            #D8338 Fault 2
+                            'BACKWARD',
+                            #D8339 Fault 3
+                            'SLOWED',
+                            #D8340 Other Fault Details
+                            '',
+                            #D3008 Meter Read
+                            random.randint(100, 9999),
+                            #D3009 Meter Read Date
+                            '[today-' + str(random.randint(1, 45))  +']',
+                            #D8213 Additional Information
+                            fake.paragraph(nb_sentences=1)
+                            ### GROUP SELECTED METER (END) ###	
                             ]
-        T351W_data_items = [# basic data
-                            SPID, '', '[today]',
-                            # meter details
-                            METER_MNF, METER_SER, random.choice(D8330), str(random.randint(1111, 9999)) + RANDOM_STRING, str(random.randint(1111, 9999)) + RANDOM_STRING, RANDOM_ADDRESS1, RANDOM_ADDRESS2, RANDOM_ADDRESS3, RANDOM_ADDRESS4, RANDOM_ADDRESS5, random.choice(POSTCODES), random.randint(1, 99999999), '0', '',
-                            random.choice(D8332), '1', 'NOTREMOVED', '[today+' + str(random.randint(1, 15))  +']', random.choice(D8335), 'METER_' + RANDOM_STRING, 'STOPPED', 'BACKWARD', 'SLOWED', '', random.randint(100, 9999), '[today-' + str(random.randint(1, 45))  +']', fake.paragraph(nb_sentences=1)
+        T351W_data_items = [
+                            #D2001 SPID
+                            SPID,
+                            #D8323 Related Request ORID
+                            '',
+                            #D8193 Declaration Date
+                            '[today]',
+                            ### GROUP SELECTED METER (START) ###
+                            #D3013 Meter Manufacturer
+                            METER_MNF,
+                            #D3014 Manufacturer Meter Serial Number
+                            METER_SER,
+                            #D8330 Address Same As CMOS
+                            random.choice(D8330),
+                            #D5002 Secondary Addressable Object
+                            str(random.randint(1111,9999)) + RANDOM_STRING,
+                            #D5003 Primary Addressable Object
+                            str(random.randint(1111,9999)) + RANDOM_STRING,
+                            #D5004 Address Line 1
+                            RANDOM_ADDRESS1,
+                            #D5005 Address Line 2
+                            RANDOM_ADDRESS2,
+                            #D5006 Address Line 3
+                            RANDOM_ADDRESS3,
+                            #D5007 Address Line 4
+                            RANDOM_ADDRESS4,
+                            #D5008 Address Line 5
+                            RANDOM_ADDRESS5,
+                            #D5009 Postcode
+                            random.choice(POSTCODES),
+                            #D5011 PAF Address Key
+                            random.randint(1,99999999),
+                            #D3034 Combi Meter Flag
+                            '0',
+                            #D8331 Combi Meter Serial Number
+                            '',
+                            #D8332 Public Health Issue
+                            random.choice(D8332),
+                            #D3016 Datalogger Non-Wholesaler
+                            '1',
+                            #D8333 Datalogger Status
+                            'NOTREMOVED',
+                            #D8334 Datalogger Removal Date
+                            '[today+' + str(random.randint(1,15))  +']',
+                            #D8335 Meter Model
+                            random.choice(D8335),
+                            #D8336 Meter Menu Reference
+                            'METER_' + RANDOM_STRING,
+                            #D8337 Fault 1
+                            'STOPPED',
+                            #D8338 Fault 2
+                            'BACKWARD',
+                            #D8339 Fault 3
+                            'SLOWED',
+                            #D8340 Other Fault Details
+                            '',
+                            #D3008 Meter Read
+                            random.randint(100,9999),
+                            #D3009 Meter Read Date
+                            '[today-' + str(random.randint(1,45))  +']',
+                            #D8213 Additional Information
+                            fake.paragraph(nb_sentences=1)
+                            ### GROUP SELECTED METER (END) ###
                             ]
-        T352W_data_items = [# basic data
-                            '[orid]', 'REPLACED', # random.choice(D8341), # when other option than REPLACED no NEW METER can be provided - CONSIDER RULE!
-                            # meter data
-                            METER_MNF, METER_SER, RANDOM_METER_MNF, RANDOM_METER_SER, '120', '[today]', '1', '12', '1', '5', '1', RANDOM_GISX, '1', RANDOM_GISY, '1', 'I', '1', RANDOM_METER_LOC,
-                            '1', OUTR_RANDOM_GISX, '1', OUTR_RANDOM_GISY, '1', 'O', '1', RANDOM_OUTRE_LOC, 'UPDATED_METER_T352W',
+        T352W_data_items = [
+                            #D8221 ORID
+                            '[orid]',
+                            #D8341 Complete Reason Code
+                            'REPLACED',
+                            #D3013 Meter Manufacturer
+                            METER_MNF,
+                            #D3014 Manufacturer Meter Serial Number
+                            METER_SER,
+                            #D8342 New Meter Manufacturer
+                            RANDOM_METER_MNF,
+                            #D8343 New Manufacturer Meter Serial Number
+                            RANDOM_METER_SER,
+                            #D3008 Meter Read
+                            '120',
+                            #D3009 Meter Read Date
+                            '[today]',
+                            #D8302 Updated Physical Meter Size
+                            '1',
+                            #D3003 Physical Meter Size
+                            '12',
+                            #D8303 Updated Number of Digits
+                            '1',
+                            #D3004 Number of Digits
+                            '5',
+                            #D8304 Updated GISX
+                            '1',
+                            #D3017 GISX
+                            RANDOM_GISX,
+                            #D8305 Updated GISY
+                            '1',
+                            #D3018 GISY
+                            RANDOM_GISY,
+                            #D8306 Updated Meter Location Code
+                            '1',
+                            #D3025 Meter Location Code
+                            'I',
+                            #D8307 Updated Meter Location Free Descriptor
+                            '1',
+                            #D3019 Meter Location Free Descriptor
+                            RANDOM_METER_LOC,
+                            #D8308 Updated Meter Outreader GISX
+                            '1',
+                            #D3030 Meter Outreader GISX
+                            OUTR_RANDOM_GISX,
+                            #D8309 Updated Meter Outreader GISY
+                            '1',
+                            #D3031 Meter Outreader GISY
+                            OUTR_RANDOM_GISY,
+                            #D8310 Updated Meter Outreader Location Code
+                            '1',
+                            #D3033 Meter Outreader Location Code
+                            'O',
+                            #D8311 Updated Meter Outreader Location Free Descriptor
+                            '1',
+                            #D3032 Meter Outreader Location Free Descriptor
+                            RANDOM_OUTRE_LOC,
+                            #D8213 Additional Information
+                            'UPDATED_METER_T352W'
                             ]
         T353R_data_items = [# basic data
                             SPID, 'RET_' + RANDOM_STRING, '', '1', '[today]', 
@@ -1510,19 +3053,19 @@ def generate_test_case(loop_times):
                     ### GROUP FIREFIGHTING (END) ###	
                     ### GROUP LEAK (START) ###	
                     #D8478 Leak Volumetric Adjustment Reason
-                    'LEAKPROPERTY',
+                    random.choice(D8478),
                     #D8473 Volumetric Adjustment Reason Additional Info
                     fake.paragraph(nb_sentences=1),
                     #D8479 Leak Details
-                    'REPSUPPLYPIPE',
+                    random.choice(D8479),
                     #D8480 Leak Details Additional Info
                     fake.paragraph(nb_sentences=1),
                     #D8481 Source Of Leak
-                    'WHOLESALER',
+                    random.choice(D8481),
                     #D8482 Leak Discharge Point
-                    'GROUND',
+                    random.choice(D8482),
                     #D8483 Cause Of Leak
-                    'THIRDPARTY',
+                    random.choice(D8483),
                     #D8484 Cause Of Leak Additional Info
                     fake.paragraph(nb_sentences=1),
                     #D4006 Effective From Date
@@ -1615,7 +3158,7 @@ def generate_test_case(loop_times):
                     # D8186 Retailer System Reference
                     'RET_' + RANDOM_STRING,
                     # D8193 Declaration Date
-                    '[today]'
+                    '[today]',
                     ### GROUP FIREFIGHTING (START) ###		
                     #D8471 Type Of Charge
                     random.choice(D8471),
@@ -2000,10 +3543,26 @@ def generate_test_case(loop_times):
                     for k in range(len(T325R_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T325R_data_items[k]
-                case 'T331.W':             
+                case 'T331.W':
+                    #START coloring header cells to distinguish data blocks
+                    #SPID
+                    for col_range in range(7, 23):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="A3E4D7", end_color="A3E4D7", fill_type="solid")
+                    #GROUP Existing Meter       
+                    for col_range in range(23, 27):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="D6EAF8", end_color="D6EAF8", fill_type="solid")                    
+                    #GROUP Missing Meter
+                    for col_range in range(27, 31):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="FCF3CF", end_color="FCF3CF", fill_type="solid")
+                    #END coloring header cells to distinguish data blocks 
+                    #START filling in data items values                                          
                     for k in range(len(T331W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T331W_data_items[k]
+                    #END filling in data items values
                 case 'T332.W':
                     for k in range(len(T332W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
@@ -2034,7 +3593,7 @@ def generate_test_case(loop_times):
                     #SPID 13
                     for col_range in range(7, 20):
                         cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
-                        cell_title.fill = PatternFill(start_color="A3E4D7", end_color="A3E4D7", fill_type="solid")
+                        cell_title.fill = PatternFill(start_color="A3E6D9", end_color="A3E6D9", fill_type="solid")
                     #GS DETAILS         
                     for col_range in range(20, 49):
                         cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
@@ -2194,6 +3753,15 @@ def generate_test_case(loop_times):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T351W_data_items[k]
                 case 'T352.W':
+                    #coloring header cells to distinguish data blocks
+                    #SPID 2
+                    for col_range in range(7, 9):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="A3E4D7", end_color="A3E4D7", fill_type="solid")
+                    #GROUP REPAIRED METER 27          
+                    for col_range in range(9, 36):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="AED6F1", end_color="AED6F1", fill_type="solid")
                     for k in range(len(T352W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T352W_data_items[k]
@@ -2288,13 +3856,73 @@ def generate_test_case(loop_times):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T563W_data_items[k]
                 case 'T601.R':
+                    #START coloring header cells to distinguish data blocks
+                    #SPID
+                    for col_range in range(7, 23):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="A3E4D7", end_color="A3E4D7", fill_type="solid")
+                    #CUSTOMER DETAILS          
+                    for col_range in range(23, 44):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="AED6F1", end_color="AED6F1", fill_type="solid")
+                    #GROUP FIRTEFIGHTING        
+                    for col_range in range(44, 55):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="D6EAF8", end_color="D6EAF8", fill_type="solid")  
+                    #GROUP LEAK    
+                    for col_range in range(55, 70):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="ABB2B9", end_color="ABB2B9", fill_type="solid")
+                    #GROUP VOLUMEADJST 
+                    for col_range in range(70, 79):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="A9DFBF", end_color="A9DFBF", fill_type="solid")
+                    #GROUP NONRTSCHANGE  
+                    for col_range in range(79, 85):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="B2BABB", end_color="B2BABB", fill_type="solid")
+                    #GROUP SWAREACHANGE  
+                    for col_range in range(85, 89):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="F0B27A", end_color="F0B27A", fill_type="solid")
+                    #END coloring header cells to distinguish data blocks
+                    #START filling in data items values                             
                     for k in range(len(T601R_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T601R_data_items[k]
+                    #END filling in data items values
                 case 'T601.W':
+                    #START coloring header cells to distinguish data blocks
+                    #SPID
+                    for col_range in range(7, 23):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="A3E4D7", end_color="A3E4D7", fill_type="solid")
+                    #GROUP FIRTEFIGHTING        
+                    for col_range in range(23, 34):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="D6EAF8", end_color="D6EAF8", fill_type="solid")  
+                    #GROUP LEAK    
+                    for col_range in range(34, 49):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="ABB2B9", end_color="ABB2B9", fill_type="solid")
+                    #GROUP VOLUMEADJST 
+                    for col_range in range(49, 58):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="A9DFBF", end_color="A9DFBF", fill_type="solid")
+                    #GROUP NONRTSCHANGE  
+                    for col_range in range(58, 66):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="B2BABB", end_color="B2BABB", fill_type="solid")
+                    #GROUP SWAREACHANGE  
+                    for col_range in range(66, 70):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="F0B27A", end_color="F0B27A", fill_type="solid")
+                    #END coloring header cells to distinguish data blocks
+                    #START filling in data items values                      
                     for k in range(len(T601W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T601W_data_items[k]
+                    #END filling in data items values
                 case 'T602.W':
                     for k in range(len(T602W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
