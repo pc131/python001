@@ -2857,54 +2857,546 @@ def generate_test_case(loop_times):
                             #D8213 Additional Information
                             'UPDATED_METER_T352W'
                             ]
-        T353R_data_items = [# basic data
-                            SPID, 'RET_' + RANDOM_STRING, '', '1', '[today]', 
-                            # customer and retailer data
-                            '1', CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', random.choice(D8237),
-                            RANDOM_STRING, random.choice(D2005), RANDOM_STRING, RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL,
-                            # install meter details
-                            '1', RANDOM_STRING, RANDOM_STRING,  RANDOM_ADDRESS1, RANDOM_ADDRESS2, RANDOM_ADDRESS3, RANDOM_ADDRESS4, RANDOM_ADDRESS5, random.choice(POSTCODES), random.randint(1, 99999999), random.randint(10, 30), random.choice(D8335), 'METER_' + RANDOM_STRING, random.choice(D8346), fake.paragraph(nb_sentences=1), fake.paragraph(nb_sentences=1)
+        T353R_data_items = [
+                            #D2001 SPID
+                            SPID,
+                            #D8186 Retailer System Reference
+                            'RET_' + RANDOM_STRING,
+                            #D8323 Related Request ORID
+                            '',
+                            #D8252 Customer Contact
+                            '1',
+                            #D8193 Declaration Date
+                            '[today]',
+                            ### GROUP CUSTOMER (START) ###	
+                            #D8019 Consent to Contact Customer
+                            '1',
+                            #D8020 Customer Contact Name 1
+                            CUST_RANDOM_NAME,
+                            #D8021 Customer Contact Number 1
+                            CUST_RANDOM_PHONE,
+                            #D8233 Customer Extension 1
+                            '105',
+                            #D8239 Customer Contact Name 2
+                            CUST_RANDOM_NAME2,
+                            #D8145 Customer Contact Number 2
+                            CUST_RANDOM_PHONE2,
+                            #D8234 Customer Extension 2
+                            '122',
+                            #D8146 Customer Contact Email
+                            CUST_EMAIL,
+                            #D8235 Customer Aware of Service Request
+                            '1',
+                            #D8236 Customer Preferred Method of Contact
+                            'EMAIL',
+                            #D8237 Customer Preferred Contact Time
+                            random.choice(D8237),
+                            #D8238 Customer Additional Information
+                            RANDOM_STRING,
+                            #D2005 Customer Classification - Sensitive Customer
+                            random.choice(D2005),
+                            #D8240 Landlord Tenant Details
+                            RANDOM_STRING,
+                            #D8269 Retailer Contact Name 1
+                            RET_RANDOM_NAME,
+                            #D8270 Retailer Contact Number 1
+                            RET_RANDOM_PHONE,
+                            #D8271 Retailer Extension 1
+                            '210',
+                            #D8280 Retailer Contact Name 2
+                            RET_RANDOM_NAME2,
+                            #D8272 Retailer Contact Number 2
+                            RET_RANDOM_PHONE2,
+                            #D8273 Retailer Extension 2
+                            '224',
+                            #D8274 Retailer Contact Email
+                            RET_EMAIL,
+                            ### GROUP CUSTOMER (END) ###
+                            ### GROUP INSTALL METER (START) ###		
+                            #D8345 Meter Address Same As SPID Address
+                            '1',
+                            #D5002 Secondary Addressable Object
+                            RANDOM_STRING,
+                            #D5003 Primary Addressable Object
+                            RANDOM_STRING,
+                            #D5004 Address Line 1
+                            RANDOM_ADDRESS1,
+                            #D5005 Address Line 2
+                            RANDOM_ADDRESS2,
+                            #D5006 Address Line 3
+                            RANDOM_ADDRESS3,
+                            #D5007 Address Line 4
+                            RANDOM_ADDRESS4,
+                            #D5008 Address Line 5
+                            RANDOM_ADDRESS5,
+                            #D5009 Postcode
+                            random.choice(POSTCODES),
+                            #D5011 PAF Address Key
+                            random.randint(1, 99999999),
+                            #D8344 Proposed Physical Meter Size
+                            random.randint(10, 30),
+                            #D8335 Meter Model
+                            random.choice(D8335),
+                            #D8336 Meter Menu Reference
+                            'METER_' + RANDOM_STRING,
+                            #D8346 Proposed Meter Location Code
+                            random.choice(D8346),
+                            #D8347 Proposed Meter Location Free Descriptor
+                            fake.paragraph(nb_sentences=1),
+                            #D8213 Additional Information
+                            fake.paragraph(nb_sentences=1)
+                            ### GROUP INSTALL METER (END) ###	
                             ]
-        T355R_data_items = [# basic data
-                            SPID, 'RET_' + RANDOM_STRING, '', '1', '[today]', 
-                            # customer and retailer data
-                            '1', CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', random.choice(D8237),
-                            RANDOM_STRING, random.choice(D2005), RANDOM_STRING, RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL,
-                            # request accuracy meter details
-                            METER_MNF, METER_SER, '1', RANDOM_STRING, RANDOM_STRING, RANDOM_ADDRESS1, RANDOM_ADDRESS2, RANDOM_ADDRESS3, RANDOM_ADDRESS4, RANDOM_ADDRESS5, random.choice(POSTCODES), random.randint(1, 99999999), '0', '', '1', 'NOTREMOVED', '[today+' + str(random.randint(1, 15))  +']', random.choice(D8335), 'METER_' + RANDOM_STRING, random.choice(D8348), fake.paragraph(nb_sentences=1), fake.paragraph(nb_sentences=1) 
+        T355R_data_items = [
+                            #D2001 SPID
+                            SPID,
+                            #D8186 Retailer System Reference
+                            'RET_' + RANDOM_STRING,
+                            #D8323 Related Request ORID
+                            '',
+                            #D8252 Customer Contact Required
+                            '1',
+                            #D8193 Declaration Date
+                            '[today]',
+                            ### GROUP CUSTOMER (START) ###	
+                            #D8019 Consent to Contact Customer
+                            '1',
+                            #D8020 Customer Contact Name 1
+                            CUST_RANDOM_NAME,
+                            #D8021 Customer Contact Number 1
+                            CUST_RANDOM_PHONE,
+                            #D8233 Customer Extension 1
+                            '105',
+                            #D8239 Customer Contact Name 2
+                            CUST_RANDOM_NAME2,
+                            #D8145 Customer Contact Number 2
+                            CUST_RANDOM_PHONE2,
+                            #D8234 Customer Extension 2
+                            '122',
+                            #D8146 Customer Contact Email
+                            CUST_EMAIL,
+                            #D8235 Customer Aware of Service Request
+                            '1',
+                            #D8236 Customer Preferred Method of Contact
+                            'EMAIL',
+                            #D8237 Customer Preferred Contact Time
+                            random.choice(D8237),
+                            #D8238 Customer Additional Information
+                            RANDOM_STRING,
+                            #D2005 Customer Classification - Sensitive Customer
+                            random.choice(D2005),
+                            #D8240 Landlord Tenant Details
+                            RANDOM_STRING,
+                            #D8269 Retailer Contact Name 1
+                            RET_RANDOM_NAME,
+                            #D8270 Retailer Contact Number 1
+                            RET_RANDOM_PHONE,
+                            #D8271 Retailer Extension 1
+                            '210',
+                            #D8280 Retailer Contact Name 2
+                            RET_RANDOM_NAME2,
+                            #D8272 Retailer Contact Number 2
+                            RET_RANDOM_PHONE2,
+                            #D8273 Retailer Extension 2
+                            '224',
+                            #D8274 Retailer Contact Email
+                            RET_EMAIL,
+                            ### GROUP CUSTOMER (END) ###
+                            ### GROUP SELECTED METER (START) ###		
+                            #D3013 Meter Manufacturer
+                            METER_MNF,
+                            #D3014 Manufacturer Meter Serial Number
+                            METER_SER,
+                            #D8330 Address Same As CMOS
+                            '1',
+                            #D5002 Secondary Addressable Object
+                            RANDOM_STRING,
+                            #D5003 Primary Addressable Object
+                            RANDOM_STRING,
+                            #D5004 Address Line 1
+                            RANDOM_ADDRESS1,
+                            #D5005 Address Line 2
+                            RANDOM_ADDRESS2,
+                            #D5006 Address Line 3
+                            RANDOM_ADDRESS3,
+                            #D5007 Address Line 4
+                            RANDOM_ADDRESS4,
+                            #D5008 Address Line 5
+                            RANDOM_ADDRESS5,
+                            #D5009 Postcode
+                            random.choice(POSTCODES),
+                            #D5011 PAF Address Key
+                            random.randint(1, 99999999),
+                            #D3034 Combi Meter Flag
+                            '0',
+                            #D8331 Combi Meter Serial Number
+                            '',
+                            #D3016 Datalogger Non-Wholesaler
+                            '1',
+                            #D8333 Datalogger Status
+                            'NOTREMOVED',
+                            #D8334 Datalogger Removal Date
+                            '[today+' + str(random.randint(1, 15))  +']',
+                            #D8335 Meter Model
+                            random.choice(D8335),
+                            #D8336 Meter Menu Reference
+                            'METER_' + RANDOM_STRING,
+                            #D8348 Meter Accuracy Test Reason Code
+                            random.choice(D8348),
+                            #D8349 Other Reason Details
+                            fake.paragraph(nb_sentences=1),
+                            #D8213 Additional Information
+                            fake.paragraph(nb_sentences=1)
+                            ### GROUP SELECTED METER (END) ### 
                             ]
-        T355W_data_items = [# basic data
-                            SPID, '', '[today]', 
-                            # request accuracy meter details
-                            METER_MNF, METER_SER, '1', RANDOM_STRING, RANDOM_STRING, RANDOM_ADDRESS1, RANDOM_ADDRESS2, RANDOM_ADDRESS3, RANDOM_ADDRESS4, RANDOM_ADDRESS5, random.choice(POSTCODES), random.randint(1, 99999999), '0', '', '1', 'NOTREMOVED', '[today+' + str(random.randint(1, 15))  +']', random.choice(D8335), 'METER_' + RANDOM_STRING, random.choice(D8348), fake.paragraph(nb_sentences=1), fake.paragraph(nb_sentences=1)
+        T355W_data_items = [
+                            #D2001 SPID
+                            SPID,
+                            #D8323 Related Request ORID
+                            '',
+                            #D8193 Declaration Date
+                            '[today]',
+                            ### GROUP SELECTED METER (START) ###
+                            #D3013 Meter Manufacturer
+                            METER_MNF,
+                            #D3014 Manufacturer Meter Serial Number
+                            METER_SER,
+                            #D8330 Address Same As CMOS
+                            '1',
+                            #D5002 Secondary Addressable Object
+                            RANDOM_STRING,
+                            #D5003 Primary Addressable Object
+                            RANDOM_STRING,
+                            #D5004 Address Line 1
+                            RANDOM_ADDRESS1,
+                            #D5005 Address Line 2
+                            RANDOM_ADDRESS2,
+                            #D5006 Address Line 3
+                            RANDOM_ADDRESS3,
+                            #D5007 Address Line 4
+                            RANDOM_ADDRESS4,
+                            #D5008 Address Line 5
+                            RANDOM_ADDRESS5,
+                            #D5009 Postcode
+                            random.choice(POSTCODES),
+                            #D5011 PAF Address Key
+                            random.randint(1,99999999),
+                            #D3034 Combi Meter Flag
+                            '0',
+                            #D8331 Combi Meter Serial Number
+                            '',
+                            #D3016 Datalogger Non-Wholesaler
+                            '1',
+                            #D8333 Datalogger Status
+                            'NOTREMOVED',
+                            #D8334 Datalogger Removal Date
+                            '[today+' + str(random.randint(1, 15))  +']',
+                            #D8335 Meter Model
+                            random.choice(D8335),
+                            #D8336 Meter Menu Reference
+                            'METER_' + RANDOM_STRING,
+                            #D8348 Meter Accuracy Test Reason Code
+                            random.choice(D8348),
+                            #D8349 Other Reason Details
+                            fake.paragraph(nb_sentences=1),
+                            #D8213 Additional Information
+                            fake.paragraph(nb_sentences=1)
+                            ### GROUP SELECTED METER (END) ###
                             ]
-        T356W_data_items = [# basic data
+        T356W_data_items = [
+                             #D8221 ORID
                             '[orid]',
-                            #rAwaiting Meter Accuracy Test data
-                            METER_MNF, METER_SER, random.choice(D8367), random.choice(D8368), '1', random.randint(100, 9999), random.randint(100, 9999), '[today-' + str(random.randint(1, 45))  +']', '1', '', fake.paragraph(nb_sentences=1)
+                            #D3013 Meter Manufacturer
+                            METER_MNF,
+                            #D3014 Manufacturer Meter Serial Number
+                            METER_SER,
+                            #D8367 Work Complete Reason Code
+                            random.choice(D8367),
+                            #D8368 Meter Test Result
+                            random.choice(D8368),
+                            #D8369 Allowance Awarded
+                            '1',
+                            #D8370 Allocated Volumetric Allowance
+                            random.randint(100, 9999),
+                            #D3008 Meter Read
+                            random.randint(100, 9999),
+                            #D3009 Meter Read Date
+                            '[today-' + str(random.randint(1, 45))  +']',
+                            #D8051 Charge to Retailer Flag
+                            '1',
+                            #D8351 Follow-on Request ORID
+                            '',
+                            #D8213 Additional Information
+                            fake.paragraph(nb_sentences=1)
                             ]
-        T357W_data_items = [# basic data
+        T357W_data_items = [
+                            #D8221 ORID Required
                             '[orid]',
-                            # rAwaiting Meter Accuracy Test data
-                            METER_MNF, METER_SER, RANDOM_METER_MNF, RANDOM_METER_SER, random.randint(100, 9999), '[today-' + str(random.randint(1, 45))  +']', '1', random.randint(3, 10), '1', random.randint(2, 6), '1', RANDOM_GISX, '1', RANDOM_GISY, '1', random.choice(D3025), '1', RANDOM_METER_LOC, '1', OUTR_RANDOM_GISX, '1', OUTR_RANDOM_GISY, '1', random.choice(D3025), '1', RANDOM_OUTRE_LOC, fake.paragraph(nb_sentences=1)
+                            ### GROUP REPLACED METER (START) ###
+                            #D3013 Meter Manufacturer
+                            METER_MNF,
+                            #D3014 Manufacturer Meter Serial Number
+                            METER_SER,
+                            #D8342 New Meter Manufacturer
+                            RANDOM_METER_MNF,
+                            #D8343 New Manufacturer Meter Serial Number
+                            RANDOM_METER_SER,
+                            #D3008 Meter Read
+                            random.randint(100, 9999),
+                            #D3009 Meter Read Date
+                            '[today-' + str(random.randint(1, 45))  +']',
+                            #D8302 Updated Physical Meter Size
+                            '1',
+                            #D3003 Physical Meter Size
+                            random.randint(3, 10),
+                            #D8303 Updated Number of Digits
+                            '1',
+                            #D3004 Number of Digits
+                            random.randint(2, 6),
+                            #D8304 Updated GISX
+                            '1',
+                            #D3017 GISX
+                            RANDOM_GISX,
+                            #D8305 Updated GISY
+                            '1',
+                            #D3018 GISY
+                            RANDOM_GISY,
+                            #D8306 Updated Meter Location Code
+                            '1',
+                            #D3025 Meter Location Code
+                            random.choice(D3025),
+                            #D8307 Updated Meter Location Free Descriptor
+                            '1',
+                            #D3019 Meter Location Free Descriptor
+                            RANDOM_METER_LOC,
+                            #D8308 Updated Meter Outreader GISX
+                            '1',
+                            #D3030 Meter Outreader GISX
+                            OUTR_RANDOM_GISX,
+                            #D8309 Updated Meter Outreader GISY
+                            '1',
+                            #D3031 Meter Outreader GISY
+                            OUTR_RANDOM_GISY,
+                            #D8310 Updated Meter Outreader Location Code
+                            '1',
+                            #D3033 Meter Outreader Location Code
+                            random.choice(D3025),
+                            #D8311 Updated Meter Outreader Location Free Descriptor
+                            '1',
+                            #D3032 Meter Outreader Location Free Descriptor
+                            RANDOM_OUTRE_LOC,
+                            #D8213 Additional Information
+                            fake.paragraph(nb_sentences=1)
+                            ### GROUP REPLACED METER (END) ###
                             ]
-        T365R_data_items = [# basic data
-                            SPID, 'RET_' + RANDOM_STRING, '', '1', '[today]', 
-                            # customer and retailer data
-                            '1', CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', random.choice(D8237),
-                            RANDOM_STRING, random.choice(D2005), RANDOM_STRING, RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL,
-                            # Meter Change details
-                            METER_MNF, METER_SER, '1', RANDOM_STRING, RANDOM_STRING,  RANDOM_ADDRESS1, RANDOM_ADDRESS2, RANDOM_ADDRESS3, RANDOM_ADDRESS4, RANDOM_ADDRESS5, random.choice(POSTCODES), random.randint(1, 99999999), '0', '', random.choice(D8332), '1', 'NOTREMOVED', '[today+' + str(random.randint(1, 15))  +']', random.choice(D8326), random.randint(10, 30), random.choice(D8335), 'METER_' + RANDOM_STRING, random.choice(D8346), fake.paragraph(nb_sentences=1), fake.paragraph(nb_sentences=1)
+        T365R_data_items = [
+                            #D2001 SPID Required
+                            SPID,
+                            #D8186 Retailer System Reference Optional
+                            'RET_' + RANDOM_STRING,
+                            #D8323 Related Request ORID Optional
+                            '',
+                            #D8252 Customer Contact Required Required
+                            '1',
+                            #D8193 Declaration Date Required
+                            ### GROUP CUSTOMER (START) ###	
+                            '[today]',
+                            #D8019 Consent to Contact Customer
+                            '1',
+                            #D8020 Customer Contact Name 1
+                            CUST_RANDOM_NAME,
+                            #D8021 Customer Contact Number 1
+                            CUST_RANDOM_PHONE,
+                            #D8233 Customer Extension 1
+                            '105',
+                            #D8239 Customer Contact Name 2
+                            CUST_RANDOM_NAME2,
+                            #D8145 Customer Contact Number 2
+                            CUST_RANDOM_PHONE2,
+                            #D8234 Customer Extension 2
+                            '122',
+                            #D8146 Customer Contact Email
+                            CUST_EMAIL,
+                            #D8235 Customer Aware of Service Request
+                            '1',
+                            #D8236 Customer Preferred Method of Contact
+                            'EMAIL',
+                            #D8237 Customer Preferred Contact Time
+                            random.choice(D8237),
+                            #D8238 Customer Additional Information
+                            RANDOM_STRING,
+                            #D2005 Customer Classification - Sensitive Customer
+                            random.choice(D2005),
+                            #D8240 Landlord Tenant Details
+                            RANDOM_STRING,
+                            #D8269 Retailer Contact Name 1
+                            RET_RANDOM_NAME,
+                            #D8270 Retailer Contact Number 1
+                            RET_RANDOM_PHONE,
+                            #D8271 Retailer Extension 1
+                            '210',
+                            #D8280 Retailer Contact Name 2
+                            RET_RANDOM_NAME2,
+                            #D8272 Retailer Contact Number 2
+                            RET_RANDOM_PHONE2,
+                            #D8273 Retailer Extension 2
+                            '224',
+                            #D8274 Retailer Contact Email
+                            RET_EMAIL,
+                            ### GROUP CUSTOMER (END) ###
+                            ### GROUP SELECTED METER (START) ###
+                            #D3013 Meter Manufacturer
+                            METER_MNF,
+                            #D3014 Manufacturer Meter Serial Number
+                            METER_SER,
+                            #D8330 Address Same As CMOS
+                            '1',
+                            #D5002 Secondary Addressable Object
+                            RANDOM_STRING,
+                            #D5003 Primary Addressable Object
+                            RANDOM_STRING,
+                            #D5004 Address Line 1
+                            RANDOM_ADDRESS1,
+                            #D5005 Address Line 2
+                            RANDOM_ADDRESS2,
+                            #D5006 Address Line 3
+                            RANDOM_ADDRESS3,
+                            #D5007 Address Line 4
+                            RANDOM_ADDRESS4,
+                            #D5008 Address Line 5
+                            RANDOM_ADDRESS5,
+                            #D5009 Postcode
+                            random.choice(POSTCODES),
+                            #D5011 PAF Address Key
+                            random.randint(1, 99999999),
+                            #D3034 Combi Meter Flag
+                            '0',
+                            #D8331 Combi Meter Serial Number
+                            '',
+                            #D8332 Public Health Issue
+                            random.choice(D8332),
+                            #D3016 Datalogger Non-Wholesaler
+                            '1',
+                            #D8333 Datalogger Status
+                            'NOTREMOVED',
+                            #D8334 Datalogger Removal Date
+                            '[today+' + str(random.randint(1, 15))  +']',
+                            #D8326 Meter Work Request Type
+                            random.choice(D8326),
+                            #D8344 Proposed Physical Meter Size
+                            random.randint(10, 30),
+                            #D8335 Meter Model
+                            random.choice(D8335),
+                            #D8336 Meter Menu Reference
+                            'METER_' + RANDOM_STRING,
+                            #D8346 Proposed Meter Location Code
+                            random.choice(D8346),
+                            #D8347 Proposed Meter Location Free Descriptor
+                            fake.paragraph(nb_sentences=1),
+                            #D8213 Additional Information
+                            fake.paragraph(nb_sentences=1)
+                            ### GROUP SELECTED METER (END) ###
                             ]
-        T501R_data_items = [# basic data
-                            SPID, 'RET_' + RANDOM_STRING, '[today-' + str(random.randint(0, 7))  +']', fake.paragraph(nb_sentences=1), random.choice(D8356), RANDOM_STRING, random.choice(D8358), RANDOM_STRING,random.choice(D8360), RANDOM_STRING, '', '1', fake.paragraph(nb_sentences=1), '[today]', '1',
-                            # customer and retailer data
-                            CUST_RANDOM_NAME, CUST_RANDOM_PHONE, '105', CUST_RANDOM_NAME2, CUST_RANDOM_PHONE2, '122', CUST_EMAIL, '1', 'EMAIL', random.choice(D8237),
-                            fake.paragraph(nb_sentences=1), random.choice(D2005), fake.paragraph(nb_sentences=1), RET_RANDOM_NAME, RET_RANDOM_PHONE, '210', RET_RANDOM_NAME2, RET_RANDOM_PHONE2, '224', RET_EMAIL,
+        T501R_data_items = [
+                            #D2001 SPID
+                            SPID,
+                            #D8186 Retailer System Reference
+                            'RET_' + RANDOM_STRING,
+                            #D8350 Request Received Date
+                            '[today-' + str(random.randint(0, 7))  +']',
+                            #D8355 Request Description
+                            fake.paragraph(nb_sentences=1),
+                            #D8356 Complaint Level
+                            random.choice(D8356),
+                            #D8357 Other Complaint Details
+                            RANDOM_STRING,
+                            #D8358 Complaint Category
+                            random.choice(D8358),
+                            #D8359 Other Category Details
+                            RANDOM_STRING,
+                            #D8360 Compensation Claimed
+                            random.choice(D8360),
+                            #D8361 Other Compensation Details
+                            RANDOM_STRING,
+                            #D8323 Related Request ORID
+                            '',
+                            #D8252 Customer Contact
+                            '1',
+                            #D8213 Additional Information
+                            fake.paragraph(nb_sentences=1),
+                            #D8193 Declaration Date
+                            '[today]',
+                            ### GROUP CUSTOMER (START) ###	
+                            #D8019 Consent to Contact Customer
+                            '1',
+                            #D8020 Customer Contact Name 1
+                            CUST_RANDOM_NAME,
+                            #D8021 Customer Contact Number 1
+                            CUST_RANDOM_PHONE,
+                            #D8233 Customer Extension 1
+                            '105',
+                            #D8239 Customer Contact Name 2
+                            CUST_RANDOM_NAME2,
+                            #D8145 Customer Contact Number 2
+                            CUST_RANDOM_PHONE2,
+                            #D8234 Customer Extension 2
+                            '122',
+                            #D8146 Customer Contact Email
+                            CUST_EMAIL,
+                            #D8235 Customer Aware of Service Request
+                            '1',
+                            #D8236 Customer Preferred Method of Contact
+                            'EMAIL',
+                            #D8237 Customer Preferred Contact Time
+                            random.choice(D8237),
+                            #D8238 Customer Additional Information
+                            fake.paragraph(nb_sentences=1),
+                            #D2005 Customer Classification - Sensitive Customer
+                            random.choice(D2005),
+                            #D8240 Landlord Tenant Details
+                            fake.paragraph(nb_sentences=1),
+                            #D8269 Retailer Contact Name 1
+                            RET_RANDOM_NAME,
+                            #D8270 Retailer Contact Number 1
+                            RET_RANDOM_PHONE,
+                            #D8271 Retailer Extension 1
+                            '210',
+                            #D8280 Retailer Contact Name 2
+                            RET_RANDOM_NAME2,
+                            #D8272 Retailer Contact Number 2
+                            RET_RANDOM_PHONE2,
+                            #D8273 Retailer Extension 2
+                            '224',
+                            #D8274 Retailer Contact Email
+                            RET_EMAIL
+                            ### GROUP CUSTOMER (END) ###	
                             ]
-        T501W_data_items = [# basic data
-                            SPID, '[today-' + str(random.randint(0, 7))  +']', fake.paragraph(nb_sentences=1), random.choice(D8356), ''.join(random.choice(string.ascii_letters) for _ in range(15)), random.choice(D8358),''.join(random.choice(string.ascii_letters) for _ in range(15)),random.choice(D8360), ''.join(random.choice(string.ascii_letters) for _ in range(15)), '', fake.paragraph(nb_sentences=1), '[today]'      # [today - 0] = [today]!!!
-                           ]
+        T501W_data_items = [
+                            #D2001 SPID
+                            SPID,
+                            #D8350 Request Received Date
+                            '[today-' + str(random.randint(0, 7))  +']',
+                            #D8355 Request Description
+                            fake.paragraph(nb_sentences=1),
+                            #D8356 Complaint Level
+                            random.choice(D8356),
+                            #D8357 Other Complaint Details
+                            ''.join(random.choice(string.ascii_letters) for _ in range(15)),
+                            #D8358 Complaint Category
+                            random.choice(D8358),
+                            #D8359 Other Category Details
+                            ''.join(random.choice(string.ascii_letters) for _ in range(15)),
+                            #D8360 Compensation Claimed
+                            random.choice(D8360),
+                            #D8361 Other Compensation Details
+                            ''.join(random.choice(string.ascii_letters) for _ in range(15)),
+                            #D8323 Related Request ORID
+                            '',
+                            #D8213 Additional Information
+                            fake.paragraph(nb_sentences=1),
+                            #D8193 Declaration Date
+                            '[today]' 
+                            ]
         T505R_data_items = [# basic data
                             SPID, 'RET_' + RANDOM_STRING, '[today-' + str(random.randint(0, 7))  +']', 'DWENQUIRY', random.choice(D8365), fake.enzyme(), '', '1', fake.paragraph(nb_sentences=1), '[today]', '1',       # [today - 0] = [today]!!!
                             # customer and retailer data
@@ -3766,6 +4258,19 @@ def generate_test_case(loop_times):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T352W_data_items[k]
                 case 'T353.R':
+                    #coloring header cells to distinguish data blocks
+                    #SPID 5
+                    for col_range in range(7, 12):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="A3E4D7", end_color="A3E4D7", fill_type="solid")
+                    #CUSTOMER DETAILS 21          
+                    for col_range in range(12, 33):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="AED6F1", end_color="AED6F1", fill_type="solid")
+                    #GROUP INSTALL METER  16                  
+                    for col_range in range(33, 49):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="FCF3CF", end_color="FCF3CF", fill_type="solid")                        
                     for k in range(len(T353R_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T353R_data_items[k]
@@ -3808,14 +4313,41 @@ def generate_test_case(loop_times):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T357W_data_items[k]
                 case 'T365.R':
+                    #coloring header cells to distinguish data blocks
+                    #SPID 5
+                    for col_range in range(7, 12):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="A3E4D7", end_color="A3E4D7", fill_type="solid")
+                    #CUSTOMER DETAILS 21          
+                    for col_range in range(12, 33):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="AED6F1", end_color="AED6F1", fill_type="solid")
+                    #SELECTED METER 25                  
+                    for col_range in range(33, 58):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="FCF3CF", end_color="FCF3CF", fill_type="solid")                    
                     for k in range(len(T365R_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T365R_data_items[k]
                 case 'T501.R':
+                    #coloring header cells to distinguish data blocks
+                    #SPID 14
+                    for col_range in range(7, 21):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="A3E4D7", end_color="A3E4D7", fill_type="solid")
+                    #CUSTOMER DETAILS 21          
+                    for col_range in range(21, 42):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="AED6F1", end_color="AED6F1", fill_type="solid")                    
                     for k in range(len(T501R_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T501R_data_items[k]
                 case 'T501.W':
+                    #coloring header cells to distinguish data blocks
+                    #SPID 12
+                    for col_range in range(7, 19):
+                        cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
+                        cell_title.fill = PatternFill(start_color="A3E4D7", end_color="A3E4D7", fill_type="solid")                    
                     for k in range(len(T501W_data_items)):
                         ws12.cell(row=6+(3*i)+(3*a*TEST_CASE_LENGTH), column=k +
                                 7).value = T501W_data_items[k]
