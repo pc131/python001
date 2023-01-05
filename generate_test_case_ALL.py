@@ -13,7 +13,7 @@ from faker_biology.mol_biol import Enzyme
 #UNCOMMENT FOR LOCAL
 working_dir = "C:\\Users\\tomasz.skoczylas\\Downloads\\11\\"
 
-# UNCOMMENT FOR VM
+#UNCOMMENT FOR VM
 #working_dir = "C:\\Users\\cgi\\Desktop\\_downloads\\11\\"
 
 filename = working_dir + "Bilaterals 1.8.0.1 master.xlsx"
@@ -48,7 +48,7 @@ T216_URL = 'https://moservicesdev.mosl.co.uk/test/attachments/87ffc85e-ebd5-461c
 
 POSTCODES = ['B1 1HQ', 'BN88 1AH', 'BS98 1TL', 'BX1 1LT', 'BX2 1LB', 'BX3 2BB', 'BX4 7SB', 'BX5 5AT', 'CF10 1BH', 'CF99 1NA', 'CO4 3SQ', 'CV4 8UW', 'CV35 0DB', 'E14 5EY', 'DA1 1RT', 'DE99 3GG', 'DE55 4SW', 'DH98 1BT', 'DH99 1NS', 'E14 5HQ', 'E14 5JP', 'E16 1XL', 'E20 2AQ', 'E20 2BB', 'E20 2ST', 'E20 3BS', 'E20 3EL', 'E20 3ET', 'E20 3HB', 'E20 3HY', 'E98 1SN', 'E98 1ST', 'E98 1TT', 'EC2N 2DB', 'EC4Y 0HQ', 'EH12 1HQ', 'EH99 1SP', 'G58 1SB', 'GIR 0AA', 'IV21 2LR', 'L30 4GB', 'LS98 1FD', 'M50 2BH', 'M50 2QH', 'N1 9G', 'N81 1ER', 'NE1 4ST', 'NG80 1EH', 'NG80 1LH', 'NG80 1RH', 'NG80 1TH', 'PH1 5RB', 'PH1 2SJ', 'S2 4SU	', 'S6 1SW', 'S14 7UP', 'SE1 0NE', 'SE1 8UJ', 'SM6 0HB', 'SN38 1NW', 'SR5 1SU', 'SW1A 0AA', 'SW1A 0PW', 'SW1A 1AA', 'SW1A 2AA', 'SW1A 2AB', 'SW1H 0TL', 'SW1P 3EU', 'SW1W 0DT', 'SW11 7US', 'SW19 5AE', 'TW8 9GS', 'W1A 1AA', 'W1D 4FA', 'W1N 4DJ', 'W1T 1FB']
 
-### MAKE SURE THERE IS THE SAME NUMBER AND THE SAME ORDER OF ELEMENTS IN PROCESSES AND PROC_NAMES ###
+###MAKE SURE THERE IS THE SAME NUMBER AND THE SAME ORDER OF ELEMENTS IN PROCESSES AND PROC_NAMES ###
 PROCESSES = [
     'B1R', 
     'B3R', 
@@ -76,7 +76,7 @@ PROCESSES = [
     'H1W'
     ]
 
-### MAKE SURE THERE IS THE SAME NUMBER AND THE SAME ORDER OF ELEMENTS IN PROCESSES AND PROC_NAMES ###
+###MAKE SURE THERE IS THE SAME NUMBER AND THE SAME ORDER OF ELEMENTS IN PROCESSES AND PROC_NAMES ###
 PROC_NAMES = {
     'B1R':'Request Meter Install Work', 
     'B3R':'Request Meter Accuracy Test', 
@@ -521,50 +521,50 @@ def time_not_weekend():
     else: 
         return '[now+3]'
     
-def get_random_address(): # !!!!!!!!!! LEARN HOW TO USE IT
+def get_random_address(): #!!!!!!!!!! LEARN HOW TO USE IT
     rand_address =  real_random_address()
     return rand_address["address1"]
 
 #C1
-D8036 = ['ERROR', 'DUPLICATE', 'SWITCHED', 'REJECTION', 'UNABLEASST', 'DISAGREEPLAN'] # T211.R T211.W Cancellation Reason Code
-D8226 = ['NOCONTACT', 'UNCOOPCUST', 'INACCONTACT', 'MOREDETAILS'] # T203.W T217W Additional Information Request Code
-D8228 = ['WHOL', 'NONWHOL'] # T206.W Site Visit Failure Code
-D8229 = ['CUSTOMER', 'RETAILER', 'THIRDPARTY', 'CONSENTS', 'REGULAT', 'WEATHER', 'FORCEMAJ', 'INFOREQD', 'BULK'] # T213.W Request Deferral Code
-D8230 = ['INACCURATE', 'DUPLICATE', 'WRONGPRO', 'POLICY', 'HOUSEHOLD', 'NOTWHOL'] # T202.W Reject Reason Code
-D8231 = ['DISPREJECT', 'DISPCMOS', 'DISPQUOTE'] # T210.R Resubmit Reason Code
-D8236 = ['EMAIL', 'TEL', 'BOTH'] # T321.R T321.W Customer Preferred Method of Contact
-D2005 = ['SEMDV', 'NA'] # T321.R T321.W Customer Classification – Sensitive Customer
-D8237 = ['AM', 'PM', 'BOTH'] # T321.R T321.W
-D8242 = ['METER', 'SUPPLY', 'BOTH'] # T321.R T321.W
-D8262 = ['ACCEPT', 'REJECT'] # T321.R T321.W
-D8242 = ['PDF', 'JPG', 'PNG'] # T215.R T215.W
+D8036 = ['ERROR', 'DUPLICATE', 'SWITCHED', 'REJECTION', 'UNABLEASST', 'DISAGREEPLAN'] #T211.R T211.W Cancellation Reason Code
+D8226 = ['NOCONTACT', 'UNCOOPCUST', 'INACCONTACT', 'MOREDETAILS'] #T203.W T217W Additional Information Request Code
+D8228 = ['WHOL', 'NONWHOL'] #T206.W Site Visit Failure Code
+D8229 = ['CUSTOMER', 'RETAILER', 'THIRDPARTY', 'CONSENTS', 'REGULAT', 'WEATHER', 'FORCEMAJ', 'INFOREQD', 'BULK'] #T213.W Request Deferral Code
+D8230 = ['INACCURATE', 'DUPLICATE', 'WRONGPRO', 'POLICY', 'HOUSEHOLD', 'NOTWHOL'] #T202.W Reject Reason Code
+D8231 = ['DISPREJECT', 'DISPCMOS', 'DISPQUOTE'] #T210.R Resubmit Reason Code
+D8236 = ['EMAIL', 'TEL', 'BOTH'] #T321.R T321.W Customer Preferred Method of Contact
+D2005 = ['SEMDV', 'NA'] #T321.R T321.W Customer Classification – Sensitive Customer
+D8237 = ['AM', 'PM', 'BOTH'] #T321.R T321.W
+D8242 = ['METER', 'SUPPLY', 'BOTH'] #T321.R T321.W
+D8262 = ['ACCEPT', 'REJECT'] #T321.R T321.W
+D8242 = ['PDF', 'JPG', 'PNG'] #T215.R T215.W
 D3025 = ['I', 'O']
 
 #B1 #B7
-D8327 = ['NEWINSTALL', 'CHGNEW', 'LOCCHGNEW', 'LOCCHGEXG', 'UNFEASIBLE'] # B1 B7 COMPLETED T223.W -> Meter Work Complete Code
+D8327 = ['NEWINSTALL', 'CHGNEW', 'LOCCHGNEW', 'LOCCHGEXG', 'UNFEASIBLE'] #B1 B7 COMPLETED T223.W -> Meter Work Complete Code
 
 #B3
-D8346 = ['INSIDE', 'OUTSIDE', 'UNKNOWN'] # T353.R Meter Location Code
-D8348 = ['OVERRECORD', 'UNDERRECORD', 'OTHER'] # T353.R Meter Location Code
+D8346 = ['INSIDE', 'OUTSIDE', 'UNKNOWN'] #T353.R Meter Location Code
+D8348 = ['OVERRECORD', 'UNDERRECORD', 'OTHER'] #T353.R Meter Location Code
 D8367 = ['AFTEREXCHG', 'ALREADYTESTED', 'INSITUTESTED']
 D8368 = ['WITHIN', 'OUTSIDE']
 D8369 = ['1', '0']
 
 #B5
-D8227 = ['PARTS', 'STREETWORKS', 'THIRDPARTY', 'CUSTCONFRM', 'PREPWORK', 'OTHER'] # T224.W Delay Reason Code - B5R B5W - Advise Process Delay
-D8332 = ['NOISSUE', 'NOWATER', 'FLOODING'] # T351.R T351.W Public Health Issue
-D8333 = ['REMOVED', 'NOTREMOVED'] # T351.R T351.W Datalogger Status
-D8335 = ['STD', 'NONSTD'] # T351.R T351.W Meter Model
-D8337 = D8838 = D8839 = ['STOPPED', 'BACKWARD', 'SLOWED', 'BURRIED', 'CONDENS', 'ELECT', 'BURST', 'SMASHED', 'REMOVED', 'NONMETER', 'OTHER'] # T351.R T351.W Meter Fault
+D8227 = ['PARTS', 'STREETWORKS', 'THIRDPARTY', 'CUSTCONFRM', 'PREPWORK', 'OTHER'] #T224.W Delay Reason Code - B5R B5W - Advise Process Delay
+D8332 = ['NOISSUE', 'NOWATER', 'FLOODING'] #T351.R T351.W Public Health Issue
+D8333 = ['REMOVED', 'NOTREMOVED'] #T351.R T351.W Datalogger Status
+D8335 = ['STD', 'NONSTD'] #T351.R T351.W Meter Model
+D8337 = D8838 = D8839 = ['STOPPED', 'BACKWARD', 'SLOWED', 'BURRIED', 'CONDENS', 'ELECT', 'BURST', 'SMASHED', 'REMOVED', 'NONMETER', 'OTHER'] #T351.R T351.W Meter Fault
 D8330 = ['0', '1'] #T351.R T351.W Meter Fault address same as CMOS
-D8341 = ['REPLACED', 'REPAIRED', 'NOUPDATE', 'NOFAULT', 'NONMETER', 'UPDATE'] # T352.W Complete Reason Code
+D8341 = ['REPLACED', 'REPAIRED', 'NOUPDATE', 'NOFAULT', 'NONMETER', 'UPDATE'] #T352.W Complete Reason Code
 
 #B7
-D8326 = ['CHGTYPE', 'CHGSSIZE', 'CHGLSIZE', 'CHGLOC'] # B7 T365.R Request Meter Change -> Meter Work Request Type
+D8326 = ['CHGTYPE', 'CHGSSIZE', 'CHGLSIZE', 'CHGLOC'] #B7 T365.R Request Meter Change -> Meter Work Request Type
 
 #F4
-D8364 = ['DWENQUIRY', 'OTHERENQUIRY'] # F4 T505.R Request Type
-D8365 = ['WATERQUALITY', 'FLUORIDE', 'HARDNESS', 'QUALITYREPT', 'GENERAL', 'ANIMALS', 'LEAD', 'PUBLICINFO'] # F4 T505.R Drinking Water Enquiry Type - D8364 = 'DWENQUIRY'
+D8364 = ['DWENQUIRY', 'OTHERENQUIRY'] #F4 T505.R Request Type
+D8365 = ['WATERQUALITY', 'FLUORIDE', 'HARDNESS', 'QUALITYREPT', 'GENERAL', 'ANIMALS', 'LEAD', 'PUBLICINFO'] #F4 T505.R Drinking Water Enquiry Type - D8364 = 'DWENQUIRY'
 D8352 = ['FOLLOWON', 'NOFOLLOWON'] #F4 T222.W Response Type
 
 #F5
@@ -652,10 +652,10 @@ def generate_test_case(loop_times):
     while program_mode not in ('I', 'P'):
         program_mode = input("You can choose only from [I]interactive or [P]redefined mode? What's your choice? ")
     if program_mode == 'I':
-        ############################################################### ASK USER WHICH TEST CASE HE/SHE WANTS
+        ###############################################################ASK USER WHICH TEST CASE HE/SHE WANTS
         available_processes = ""
         for b in range(len(PROC_NAMES)):
-            ################################################################### get process name from PROC_NAMES  + get process description
+            ###################################################################get process name from PROC_NAMES  + get process description
             available_processes = available_processes + "{:2}".format(b+1) + " - " + list(PROC_NAMES.keys())[b] + " - " +  PROC_NAMES.get(list(PROC_NAMES.keys())[b])+ "\n"
         chosen_process = input("Choose process to start with - available are: \n\n" + available_processes + "\n")
         while ((not chosen_process.isdigit()) or (int(chosen_process) not in range(1, len(PROC_NAMES)+1))):
@@ -675,9 +675,9 @@ def generate_test_case(loop_times):
         if more_transactions =='N':
             print("Generating a test case, thank you. Bye!")
         if more_transactions == 'C':
-            generate_test_case(max_loop) # REPEAT FROM START - TEST_CASE_SEQUENCE WILL NOT BE OVERWRITTEN!!!!    
+            generate_test_case(max_loop) #REPEAT FROM START - TEST_CASE_SEQUENCE WILL NOT BE OVERWRITTEN!!!!    
             
-        # when A selected loop through all transactions in the process, when Y selected loop through available transactions in the process    
+        #when A selected loop through all transactions in the process, when Y selected loop through available transactions in the process    
         while more_transactions == 'Y' or more_transactions == 'A':
             if  more_transactions == 'A':
                 next_transactions = globals()[PROCESSES[chosen_proc-1] + '_TRANSACTIONS']
@@ -696,7 +696,7 @@ def generate_test_case(loop_times):
             next_tran = int(next_transaction)
             print("Your choice: " + str(next_transactions[next_tran-1])) 
             test_case_sequence.append(next_transactions[next_tran-1])
-            # if in available processes mode exit when found T208.R
+            #if in available processes mode exit when found T208.R
             if more_transactions == 'Y' and str(next_transactions[next_tran-1]) == 'T208.R':
                 print("\nTest case sequence:")
                 print(test_case_sequence)
@@ -709,14 +709,14 @@ def generate_test_case(loop_times):
             while more_transactions not in ('Y', 'N', 'C', 'A'):
                 more_transactions = input("You can only choose [Y]es, [N]o, [C]hange or [A]ny. Do you want to add more transactions for current process? [Y]/[N], [C]hange process or [A]ny transaction from current process?\n")
             if more_transactions == 'C':
-                generate_test_case(max_loop) # REPEAT FROM START - TEST_CASE_SEQUENCE WILL NOT BE OVERWRITTEN!!!!                   
+                generate_test_case(max_loop) #REPEAT FROM START - TEST_CASE_SEQUENCE WILL NOT BE OVERWRITTEN!!!!                   
             if more_transactions =='N':
                 print("Generating a test case, thank you. Bye!") 
     if program_mode == 'P':
         test_case_sequence = TEST_CASE_TRANSACTIONS        
-##############################################################################    
+##############################################################################   
     for a in range(loop_times):
-        # assign random SPID, METER_MNF, METER_SERIAL to variables - use EXCEL or SPIDS_METERS static dictionary
+        #assign random SPID, METER_MNF, METER_SERIAL to variables - use EXCEL or SPIDS_METERS static dictionary
         SPID, METER_MNF, METER_SER = pick_spid_meter()
         SWG_SPID, SWG_METER_MNF, SWG_METER_SER = pick_swg_spid_meter()
         CUST_EMAIL = random_email()
@@ -915,7 +915,7 @@ def generate_test_case(loop_times):
                             'RET_' + RANDOM_STRING,
                             #D8193 Declaration Date
                             '[today]',
-                            ### GROUP CUSTOMER (START) ###
+                            ###GROUP CUSTOMER (START) ###
                             #D8019 Consent to Contact Customer
                             '1',
                             #D8020 Customer Contact Name 1
@@ -958,7 +958,7 @@ def generate_test_case(loop_times):
                             '224',
                             #D8274 Retailer Contact Email
                             RET_EMAIL,
-                            ### GROUP CUSTOMER (END) ###
+                            ###GROUP CUSTOMER (END) ###
                             #D8213 Additional Information
                             'CUSTINFOPROVD'
                             ]
@@ -1001,7 +1001,7 @@ def generate_test_case(loop_times):
                             'NEWINSTALL',
                             #D8213 Additional Information Optional. Field to describe the information of completed work.
                             fake.paragraph(nb_sentences=1),
-                            ### GROUP METER (START) ###
+                            ###GROUP METER (START) ###
                             #D8342 New Meter Manufacturer
                             RANDOM_METER_MNF,
                             #D8343 New Manufacturer Meter Serial Number
@@ -1048,7 +1048,7 @@ def generate_test_case(loop_times):
                             random.choice(POSTCODES),
                             #D5011 PAF Address Key
                             random.randint(1,99999999)
-                            ### GROUP METER (END) ###
+                            ###GROUP METER (END) ###
                             ] 
         T224W_data_items = [
                             #D8221 ORID
@@ -1090,7 +1090,7 @@ def generate_test_case(loop_times):
                             '1',
                             #D8193 Declaration Date
                             '[today]',
-                            ### GROUP CUSTOMER (START) ###	
+                            ###GROUP CUSTOMER (START) ###	
                             #D8019 Consent to Contact Customer
                             '1',
                             #D8020 Customer Contact Name 1
@@ -1133,8 +1133,8 @@ def generate_test_case(loop_times):
                             '224',
                             #D8274 Retailer Contact Email
                             RET_EMAIL,
-                            ### GROUP CUSTOMER (END) ###
-                            ### GROUP EXISTING METERS (START) ###		
+                            ###GROUP CUSTOMER (END) ###
+                            ###GROUP EXISTING METERS (START) ###		
                             #D3013 Meter Manufacturer
                             METER_MNF,
                             #D3014 Manufacturer Meter Serial Number
@@ -1201,8 +1201,8 @@ def generate_test_case(loop_times):
                             RANDOM_STRING,
                             #D8264 Associated SPID
                             '',
-                            ### EXISTING METER 1 (END) ###
-                            ### EXISTING METER 2 (START) ###
+                            ###EXISTING METER 1 (END) ###
+                            ###EXISTING METER 2 (START) ###
                             #D3013 Meter Manufacturer
                             '',
                             #D3014 Manufacturer Meter Serial Number
@@ -1268,21 +1268,21 @@ def generate_test_case(loop_times):
                             #D8213 Additional Information
                             '',
                             #D8264 Associated SPID
-                            ### GROUP EXISTING METERS (END) ###
-                            ### GROUP MISSING METERS (START) ###
+                            ###GROUP EXISTING METERS (END) ###
+                            ###GROUP MISSING METERS (START) ###
                             '',
                             #D8255 Missing Meter Serial number
                             '',
                             #D8254 Missing Meter Additional Info
                             '',
-                            ### MISSING METER 1 (END) ###
-                            ### MISSING METER 2 (START) ###
+                            ###MISSING METER 1 (END) ###
+                            ###MISSING METER 2 (START) ###
                             #D8255 Missing Meter Serial number
                             '',
                             #D8254 Missing Meter Additional Info
                             '',
-                            ### GROUP MISSING METERS (END) ###
-                            ### GROUP UNMEASURED SUPPLY ARRANGEMENTS (START) ###
+                            ###GROUP MISSING METERS (END) ###
+                            ###GROUP UNMEASURED SUPPLY ARRANGEMENTS (START) ###
                             #D8291 Verify Unmeasured Items Type A
                             '',
                             #D2018 Unmeasured Items Type A Count
@@ -1355,7 +1355,7 @@ def generate_test_case(loop_times):
                             '',
                             #D8213 Additional Information
                             ''
-                            ### GROUP UNMEASURED SUPPLY ARRANGEMENTS (END) ###
+                            ###GROUP UNMEASURED SUPPLY ARRANGEMENTS (END) ###
                             ]
         T321W_data_items = [
                             #D2001 SPID
@@ -1366,7 +1366,7 @@ def generate_test_case(loop_times):
                             '',
                             #D8193 Declaration Date
                             '[today]',
-                            ### GROUP EXISTING METERS (START) ###		
+                            ###GROUP EXISTING METERS (START) ###		
                             #D3013 Meter Manufacturer
                             METER_MNF,
                             #D3014 Manufacturer Meter Serial Number
@@ -1433,8 +1433,8 @@ def generate_test_case(loop_times):
                             RANDOM_STRING,
                             #D8264 Associated SPID
                             '',
-                            ### EXISTING METER 1 (END) ###
-                            ### EXISTING METER 2 (START) ###
+                            ###EXISTING METER 1 (END) ###
+                            ###EXISTING METER 2 (START) ###
                             #D3013 Meter Manufacturer
                             '',
                             #D3014 Manufacturer Meter Serial Number
@@ -1500,21 +1500,21 @@ def generate_test_case(loop_times):
                             #D8213 Additional Information
                             '',
                             #D8264 Associated SPID
-                            ### GROUP EXISTING METERS (END) ###
-                            ### GROUP MISSING METERS (START) ###
+                            ###GROUP EXISTING METERS (END) ###
+                            ###GROUP MISSING METERS (START) ###
                             '',
                             #D8255 Missing Meter Serial number
                             '',
                             #D8254 Missing Meter Additional Info
                             '',
-                            ### MISSING METER 1 (END) ###
-                            ### MISSING METER 2 (START) ###
+                            ###MISSING METER 1 (END) ###
+                            ###MISSING METER 2 (START) ###
                             #D8255 Missing Meter Serial number
                             '',
                             #D8254 Missing Meter Additional Info
                             '',
-                            ### GROUP MISSING METERS (END) ###
-                            ### GROUP UNMEASURED SUPPLY ARRANGEMENTS (START) ###
+                            ###GROUP MISSING METERS (END) ###
+                            ###GROUP UNMEASURED SUPPLY ARRANGEMENTS (START) ###
                             #D8291 Verify Unmeasured Items Type A
                             '',
                             #D2018 Unmeasured Items Type A Count
@@ -1587,14 +1587,14 @@ def generate_test_case(loop_times):
                             '',
                             #D8213 Additional Information
                             ''
-                            ### GROUP UNMEASURED SUPPLY ARRANGEMENTS (END) ###
+                            ###GROUP UNMEASURED SUPPLY ARRANGEMENTS (END) ###
                             ]
         T322W_data_items = [
                             #D8221 ORID
                             '[orid]',
                             #D8051 Charge to Retailer Flag
                             '1',
-                            ### GROUP EXISTING METERS (START) ###	
+                            ###GROUP EXISTING METERS (START) ###	
                             #D3013 Meter Manufacturer
                             METER_MNF,
                             #D3014 Manufacturer Meter Serial Number
@@ -1651,8 +1651,8 @@ def generate_test_case(loop_times):
                             RANDOM_OUTRE_LOC,
                             #D8213 Additional Information
                             'MORE_INFO_T322W',
-                            ### EXISTING METER 1 (END) ###
-                            ### EXISTING METER 2 (START) ###
+                            ###EXISTING METER 1 (END) ###
+                            ###EXISTING METER 2 (START) ###
                             #D3013 Meter Manufacturer
                             '',
                             #D3014 Manufacturer Meter Serial Number
@@ -1709,24 +1709,24 @@ def generate_test_case(loop_times):
                             '',
                             #D8213 Additional Information
                             '',
-                            ### GROUP EXISTING METERS (END) ###
-                            ### GROUP MISSING METERS (START) ###
+                            ###GROUP EXISTING METERS (END) ###
+                            ###GROUP MISSING METERS (START) ###
                             #D8255 Missing Meter Serial Number
                             '',
                             #D8262 Missing Meter Outcome
                             '',
                             #D8254 Missing Meter Additional Info
                             '',
-                            ### MISSING METER 1 (END) ###
-                            ### MISSING METER 2 (START) ###
+                            ###MISSING METER 1 (END) ###
+                            ###MISSING METER 2 (START) ###
                             #D8255 Missing Meter Serial Number
                             '',
                             #D8262 Missing Meter Outcome
                             '',
                             #D8254 Missing Meter Additional Info
                             '',
-                            ### GROUP MISSING METERS (END) ###
-                            ### GROUP UNMEASURED SUPPLY ARRANGEMENTS (START) ###
+                            ###GROUP MISSING METERS (END) ###
+                            ###GROUP UNMEASURED SUPPLY ARRANGEMENTS (START) ###
                             #D8312 Updated Unmeasured Items Type A
                             '',
                             #D2018 Unmeasured Item Type A Count
@@ -1781,7 +1781,7 @@ def generate_test_case(loop_times):
                             '',
                             #D8213 Additional Information
                             ''
-                            ### GROUP UNMEASURED SUPPLY ARRANGEMENTS (END) ###
+                            ###GROUP UNMEASURED SUPPLY ARRANGEMENTS (END) ###
                             ]        
         T323W_data_items = [
                             #D8221 ORID
@@ -1985,7 +1985,7 @@ def generate_test_case(loop_times):
                             '1',
                             #D8193 Declaration Date
                             '[today]',
-                            ### GROUP CUSTOMER (START) ###	
+                            ###GROUP CUSTOMER (START) ###	
                             #D8019 Consent to Contact Customer
                             '1',
                             #D8020 Customer Contact Name 1
@@ -2028,8 +2028,8 @@ def generate_test_case(loop_times):
                             '224',
                             #D8274 Retailer Contact Email
                             RET_EMAIL,
-                            ### GROUP CUSTOMER (END) ###
-                            ### GROUP POTENTIAL METER1 (START) ###	
+                            ###GROUP CUSTOMER (END) ###
+                            ###GROUP POTENTIAL METER1 (START) ###	
                             #D8411 Potential Meter
                             '',
                             #D3013 Meter Manufacturer
@@ -2052,8 +2052,8 @@ def generate_test_case(loop_times):
                             '',
                             #D3019 Meter Location Free Descriptor
                             ''
-                            ### GROUP POTENTIAL METER1 (END) ###
-                            ### GROUP POTENTIAL METER2 (START) ###	
+                            ###GROUP POTENTIAL METER1 (END) ###
+                            ###GROUP POTENTIAL METER2 (START) ###	
                             #D8411 Potential Meter
                             '',
                             #D3013 Meter Manufacturer
@@ -2076,7 +2076,7 @@ def generate_test_case(loop_times):
                             '',
                             #D3019 Meter Location Free Descriptor
                             ''
-                            ### GROUP POTENTIAL METER2 (END) ###	                            	            
+                            ###GROUP POTENTIAL METER2 (END) ###	                            	            
                             ]
         T336W_data_items = [
                             #D8221 ORID
@@ -2297,7 +2297,7 @@ def generate_test_case(loop_times):
                             'REF_' + RANDOM_STRING,
                             #D8193 Declaration Date
                             '[today]',
-                            ### GROUP CUSTOMER (START) ###
+                            ###GROUP CUSTOMER (START) ###
                             #D8019 Consent to Contact Customer
                             '1',
                             #D8020 Customer Contact Name 1
@@ -2340,12 +2340,12 @@ def generate_test_case(loop_times):
                             '224', 
                             #D8274 Retailer Contact Email
                             RET_EMAIL,
-                            ### GROUP CUSTOMER (END) ###
-                            ### GROUP DEMOLITION (START) ###
+                            ###GROUP CUSTOMER (END) ###
+                            ###GROUP DEMOLITION (START) ###
                             #D8432 Date Of Demolition
                             '', #'[today-' + str(random.randint(1, 15))  +']', 
-                            ### GROUP DEMOLITION (END) ###
-                            ### GROUP MERGED (START) ###
+                            ###GROUP DEMOLITION (END) ###
+                            ###GROUP MERGED (START) ###
                             #D8433 Associated Water SPID
                             SPID,
                             #D8434 Associated Sewerage SPID
@@ -2380,12 +2380,12 @@ def generate_test_case(loop_times):
                             fake.paragraph(nb_sentences=1), 
                             #D8441 Date Property Merged
                             '[today-' + str(random.randint(1, 15))  +']',
-                            ### GROUP MERGED (END) ###
-                            ### GROUP NOSC (START) ###
+                            ###GROUP MERGED (END) ###
+                            ###GROUP NOSC (START) ###
                             #D8438 No Water Or Sewerage Info
                             '', #fake.paragraph(nb_sentences=1), 
-                            ### GROUP NOSC (END) ###
-                            ### GROUP LANDLORD (START) ###
+                            ###GROUP NOSC (END) ###
+                            ###GROUP LANDLORD (START) ###
                             #D8433 Associated Water SPID
                             '', 
                             #D8434 Associated Sewerage SPID
@@ -2418,15 +2418,15 @@ def generate_test_case(loop_times):
                             '', 
                             #D8437 Multiple Connections Further Info
                             '', 
-                            ### GROUP LANDLORD (END) ###
-                            ### GROUP NOTELIGIBLE (START) ###
+                            ###GROUP LANDLORD (END) ###
+                            ###GROUP NOTELIGIBLE (START) ###
                             #D8439 Not Eligible Or COU Info
                             '', 
-                            ### GROUP NOTELIGIBLE (END) ###
-                            ### GROUP DUPLICATE (START) ###
+                            ###GROUP NOTELIGIBLE (END) ###
+                            ###GROUP DUPLICATE (START) ###
                             #D8440 Duplicate SPID Info
                             ''
-                            ### GROUP DUPLICATE (END) ###
+                            ###GROUP DUPLICATE (END) ###
                             ]
         T341W_data_items = [
                             #D2001 SPID
@@ -2513,11 +2513,11 @@ def generate_test_case(loop_times):
                             fake.paragraph(nb_sentences=1),
                             #D8193 Declaration Date
                             '[today]',
-                            ### GROUP DEMOLITION (START) ###
+                            ###GROUP DEMOLITION (START) ###
                             #D8432 Date Of Demolition
                             '', #'[today-' + str(random.randint(1, 15))  +']', 
-                            ### GROUP DEMOLITION (END) ###
-                            ### GROUP MERGED (START) ###
+                            ###GROUP DEMOLITION (END) ###
+                            ###GROUP MERGED (START) ###
                             #D8433 Associated Water SPID
                             SPID,
                             #D8434 Associated Sewerage SPID
@@ -2552,12 +2552,12 @@ def generate_test_case(loop_times):
                             fake.paragraph(nb_sentences=1), 
                             #D8441 Date Property Merged
                             '[today-' + str(random.randint(1, 15))  +']',
-                            ### GROUP MERGED (END) ###
-                            ### GROUP NOSC (START) ###
+                            ###GROUP MERGED (END) ###
+                            ###GROUP NOSC (START) ###
                             #D8438 No Water Or Sewerage Info
                             '', #fake.paragraph(nb_sentences=1), 
-                            ### GROUP NOSC (END) ###
-                            ### GROUP LANDLORD (START) ###
+                            ###GROUP NOSC (END) ###
+                            ###GROUP LANDLORD (START) ###
                             #D8433 Associated Water SPID
                             '', 
                             #D8434 Associated Sewerage SPID
@@ -2590,15 +2590,15 @@ def generate_test_case(loop_times):
                             '', 
                             #D8437 Multiple Connections Further Info
                             '', 
-                            ### GROUP LANDLORD (END) ###
-                            ### GROUP NOTELIGIBLE (START) ###
+                            ###GROUP LANDLORD (END) ###
+                            ###GROUP NOTELIGIBLE (START) ###
                             #D8439 Not Eligible Or COU Info
                             '', 
-                            ### GROUP NOTELIGIBLE (END) ###
-                            ### GROUP DUPLICATE (START) ###
+                            ###GROUP NOTELIGIBLE (END) ###
+                            ###GROUP DUPLICATE (START) ###
                             #D8440 Duplicate SPID Info
                             ''
-                            ### GROUP DUPLICATE (END) ###
+                            ###GROUP DUPLICATE (END) ###
                             ]                    
         T342W_data_items = [
             #D8221
@@ -2635,7 +2635,7 @@ def generate_test_case(loop_times):
                             '1',
                             #D8193 Declaration Date
                             '[today]',
-                            ### GROUP CUSTOMER (START) ###	
+                            ###GROUP CUSTOMER (START) ###	
                             #D8019 Consent to Contact Customer
                             '1',
                             #D8020 Customer Contact Name 1
@@ -2678,8 +2678,8 @@ def generate_test_case(loop_times):
                             '224',
                             #D8274 Retailer Contact Email
                             RET_EMAIL,
-                            ### GROUP CUSTOMER (END) ###
-                            ### GROUP SELECTED METER (START) ###		
+                            ###GROUP CUSTOMER (END) ###
+                            ###GROUP SELECTED METER (START) ###		
                             #D3013 Meter Manufacturer
                             METER_MNF,
                             #D3014 Manufacturer Meter Serial Number
@@ -2734,7 +2734,7 @@ def generate_test_case(loop_times):
                             '[today-' + str(random.randint(1, 45))  +']',
                             #D8213 Additional Information
                             fake.paragraph(nb_sentences=1)
-                            ### GROUP SELECTED METER (END) ###	
+                            ###GROUP SELECTED METER (END) ###	
                             ]
         T351W_data_items = [
                             #D2001 SPID
@@ -2743,7 +2743,7 @@ def generate_test_case(loop_times):
                             '',
                             #D8193 Declaration Date
                             '[today]',
-                            ### GROUP SELECTED METER (START) ###
+                            ###GROUP SELECTED METER (START) ###
                             #D3013 Meter Manufacturer
                             METER_MNF,
                             #D3014 Manufacturer Meter Serial Number
@@ -2798,7 +2798,7 @@ def generate_test_case(loop_times):
                             '[today-' + str(random.randint(1,45))  +']',
                             #D8213 Additional Information
                             fake.paragraph(nb_sentences=1)
-                            ### GROUP SELECTED METER (END) ###
+                            ###GROUP SELECTED METER (END) ###
                             ]
         T352W_data_items = [
                             #D8221 ORID
@@ -2871,7 +2871,7 @@ def generate_test_case(loop_times):
                             '1',
                             #D8193 Declaration Date
                             '[today]',
-                            ### GROUP CUSTOMER (START) ###	
+                            ###GROUP CUSTOMER (START) ###	
                             #D8019 Consent to Contact Customer
                             '1',
                             #D8020 Customer Contact Name 1
@@ -2914,8 +2914,8 @@ def generate_test_case(loop_times):
                             '224',
                             #D8274 Retailer Contact Email
                             RET_EMAIL,
-                            ### GROUP CUSTOMER (END) ###
-                            ### GROUP INSTALL METER (START) ###		
+                            ###GROUP CUSTOMER (END) ###
+                            ###GROUP INSTALL METER (START) ###		
                             #D8345 Meter Address Same As SPID Address
                             '1',
                             #D5002 Secondary Addressable Object
@@ -2948,7 +2948,7 @@ def generate_test_case(loop_times):
                             fake.paragraph(nb_sentences=1),
                             #D8213 Additional Information
                             fake.paragraph(nb_sentences=1)
-                            ### GROUP INSTALL METER (END) ###	
+                            ###GROUP INSTALL METER (END) ###	
                             ]
         T355R_data_items = [
                             #D2001 SPID
@@ -2961,7 +2961,7 @@ def generate_test_case(loop_times):
                             '1',
                             #D8193 Declaration Date
                             '[today]',
-                            ### GROUP CUSTOMER (START) ###	
+                            ###GROUP CUSTOMER (START) ###	
                             #D8019 Consent to Contact Customer
                             '1',
                             #D8020 Customer Contact Name 1
@@ -3004,8 +3004,8 @@ def generate_test_case(loop_times):
                             '224',
                             #D8274 Retailer Contact Email
                             RET_EMAIL,
-                            ### GROUP CUSTOMER (END) ###
-                            ### GROUP SELECTED METER (START) ###		
+                            ###GROUP CUSTOMER (END) ###
+                            ###GROUP SELECTED METER (START) ###		
                             #D3013 Meter Manufacturer
                             METER_MNF,
                             #D3014 Manufacturer Meter Serial Number
@@ -3050,7 +3050,7 @@ def generate_test_case(loop_times):
                             fake.paragraph(nb_sentences=1),
                             #D8213 Additional Information
                             fake.paragraph(nb_sentences=1)
-                            ### GROUP SELECTED METER (END) ### 
+                            ###GROUP SELECTED METER (END) ###
                             ]
         T355W_data_items = [
                             #D2001 SPID
@@ -3059,7 +3059,7 @@ def generate_test_case(loop_times):
                             '',
                             #D8193 Declaration Date
                             '[today]',
-                            ### GROUP SELECTED METER (START) ###
+                            ###GROUP SELECTED METER (START) ###
                             #D3013 Meter Manufacturer
                             METER_MNF,
                             #D3014 Manufacturer Meter Serial Number
@@ -3104,7 +3104,7 @@ def generate_test_case(loop_times):
                             fake.paragraph(nb_sentences=1),
                             #D8213 Additional Information
                             fake.paragraph(nb_sentences=1)
-                            ### GROUP SELECTED METER (END) ###
+                            ###GROUP SELECTED METER (END) ###
                             ]
         T356W_data_items = [
                              #D8221 ORID
@@ -3135,7 +3135,7 @@ def generate_test_case(loop_times):
         T357W_data_items = [
                             #D8221 ORID Required
                             '[orid]',
-                            ### GROUP REPLACED METER (START) ###
+                            ###GROUP REPLACED METER (START) ###
                             #D3013 Meter Manufacturer
                             METER_MNF,
                             #D3014 Manufacturer Meter Serial Number
@@ -3190,7 +3190,7 @@ def generate_test_case(loop_times):
                             RANDOM_OUTRE_LOC,
                             #D8213 Additional Information
                             fake.paragraph(nb_sentences=1)
-                            ### GROUP REPLACED METER (END) ###
+                            ###GROUP REPLACED METER (END) ###
                             ]
         T365R_data_items = [
                             #D2001 SPID Required
@@ -3202,7 +3202,7 @@ def generate_test_case(loop_times):
                             #D8252 Customer Contact Required Required
                             '1',
                             #D8193 Declaration Date Required
-                            ### GROUP CUSTOMER (START) ###	
+                            ###GROUP CUSTOMER (START) ###	
                             '[today]',
                             #D8019 Consent to Contact Customer
                             '1',
@@ -3246,8 +3246,8 @@ def generate_test_case(loop_times):
                             '224',
                             #D8274 Retailer Contact Email
                             RET_EMAIL,
-                            ### GROUP CUSTOMER (END) ###
-                            ### GROUP SELECTED METER (START) ###
+                            ###GROUP CUSTOMER (END) ###
+                            ###GROUP SELECTED METER (START) ###
                             #D3013 Meter Manufacturer
                             METER_MNF,
                             #D3014 Manufacturer Meter Serial Number
@@ -3298,7 +3298,7 @@ def generate_test_case(loop_times):
                             fake.paragraph(nb_sentences=1),
                             #D8213 Additional Information
                             fake.paragraph(nb_sentences=1)
-                            ### GROUP SELECTED METER (END) ###
+                            ###GROUP SELECTED METER (END) ###
                             ]
         T501R_data_items = [
                             #D2001 SPID
@@ -3329,7 +3329,7 @@ def generate_test_case(loop_times):
                             fake.paragraph(nb_sentences=1),
                             #D8193 Declaration Date
                             '[today]',
-                            ### GROUP CUSTOMER (START) ###	
+                            ###GROUP CUSTOMER (START) ###	
                             #D8019 Consent to Contact Customer
                             '1',
                             #D8020 Customer Contact Name 1
@@ -3372,7 +3372,7 @@ def generate_test_case(loop_times):
                             '224',
                             #D8274 Retailer Contact Email
                             RET_EMAIL
-                            ### GROUP CUSTOMER (END) ###	
+                            ###GROUP CUSTOMER (END) ###	
                             ]
         T501W_data_items = [
                             #D2001 SPID
@@ -3421,7 +3421,7 @@ def generate_test_case(loop_times):
                             fake.paragraph(nb_sentences=1),
                             #D8193 Declaration Date
                             '[today]',
-                            ### GROUP CUSTOMER (START) ###	
+                            ###GROUP CUSTOMER (START) ###	
                             #D8019 Consent to Contact Customer
                             '1',
                             #D8020 Customer Contact Name 1
@@ -3464,7 +3464,7 @@ def generate_test_case(loop_times):
                             '224',
                             #D8274 Retailer Contact Email
                             RET_EMAIL
-                            ### GROUP CUSTOMER (END) ###	
+                            ###GROUP CUSTOMER (END) ###	
                             ]
         T505W_data_items = [
                             #D2001 SPID
@@ -3507,7 +3507,7 @@ def generate_test_case(loop_times):
                             fake.paragraph(nb_sentences=1),
                             #D8193 Declaration Date
                             '[today]',
-                            ### GROUP CUSTOMER (START) ###	
+                            ###GROUP CUSTOMER (START) ###	
                             #D8019 Consent to Contact Customer
                             '1',
                             #D8020 Customer Contact Name 1
@@ -3550,7 +3550,7 @@ def generate_test_case(loop_times):
                             '224',
                             #D8274 Retailer Contact Email
                             RET_EMAIL
-                            ### GROUP CUSTOMER (END) ###
+                            ###GROUP CUSTOMER (END) ###
                             ]
         T551W_data_items = [
                             #D2001 SPID
@@ -3597,7 +3597,7 @@ def generate_test_case(loop_times):
                             fake.paragraph(nb_sentences=1),
                             #D8193 Declaration Date
                             '[today]',
-                            ### GROUP CUSTOMER (START) ###	
+                            ###GROUP CUSTOMER (START) ###	
                             #D8019 Consent to Contact Customer
                             '1',
                             #D8020 Customer Contact Name 1
@@ -3640,8 +3640,8 @@ def generate_test_case(loop_times):
                             '224',
                             #D8274 Retailer Contact Email
                             RET_EMAIL,
-                            ### GROUP CUSTOMER (END) ###
-                            ### GROUP ATTACHED APPLICATION (START) ###		
+                            ###GROUP CUSTOMER (END) ###
+                            ###GROUP ATTACHED APPLICATION (START) ###		
                             #D8374 Application Type
                             random.choice(D8374),
                             #D8375 Applicant Organisation Information
@@ -3664,7 +3664,7 @@ def generate_test_case(loop_times):
                             random.choice(D8380),
                             #D8381 Declaration Signed
                             'YES'
-                            ### GROUP ATTACHED APPLICATION (END) ###	
+                            ###GROUP ATTACHED APPLICATION (END) ###	
                             ]
         T561W_data_items = [
                             #D2001 SPID
@@ -3687,7 +3687,7 @@ def generate_test_case(loop_times):
                             fake.paragraph(nb_sentences=1),
                             #D8193 Declaration Date
                             '[today]',
-                            ### GROUP ATTACHED APPLICATION (START) ###	
+                            ###GROUP ATTACHED APPLICATION (START) ###	
                             #D8374 Application Type
                             random.choice(D8374),
                             #D8375 Applicant Organisation Information
@@ -3710,7 +3710,7 @@ def generate_test_case(loop_times):
                             random.choice(D8380),
                             #D8381 Declaration Signed
                             'YES'
-                            ### GROUP ATTACHED APPLICATION (END) ###	
+                            ###GROUP ATTACHED APPLICATION (END) ###	
                             ]
         T562R_data_items = [
                             #D4025 Wholesaler ID
@@ -3763,7 +3763,7 @@ def generate_test_case(loop_times):
                             fake.paragraph(nb_sentences=1),
                             #D8193 Declaration Date
                             '[today]',
-                            ### GROUP CUSTOMER (START) ###
+                            ###GROUP CUSTOMER (START) ###
                             #D8019 Consent to Contact Customer
                             '1',
                             #D8020 Customer Contact Name 1
@@ -3806,8 +3806,8 @@ def generate_test_case(loop_times):
                             '224',
                             #D8274 Retailer Contact Email
                             RET_EMAIL,
-                            ### GROUP CUSTOMER (END) ###
-                            ### GROUP ATTACHED APPLICATION (START) ###
+                            ###GROUP CUSTOMER (END) ###
+                            ###GROUP ATTACHED APPLICATION (START) ###
                             #D8374 Application Type
                             random.choice(D8374),
                             #D8375 Applicant Organisation Information
@@ -3830,7 +3830,7 @@ def generate_test_case(loop_times):
                             random.choice(D8385),
                             #D8381 Declaration Signed
                             random.choice(D8386)
-                            ### GROUP ATTACHED APPLICATION (END) ###
+                            ###GROUP ATTACHED APPLICATION (END) ###
                             ]
         T562W_data_items = [
                             #D4025 Wholesaler ID
@@ -3879,7 +3879,7 @@ def generate_test_case(loop_times):
                             fake.paragraph(nb_sentences=1),
                             #D8388 Discontinuation Or Termination Date
                             '[today]',
-                            ### GROUP ATTACHED APPLICATION (START) ###
+                            ###GROUP ATTACHED APPLICATION (START) ###
                             #D8213 Additional Information
                             random.choice(D8374),
                             #D8193 Declaration Date
@@ -3902,7 +3902,7 @@ def generate_test_case(loop_times):
                             random.choice(D8380),
                             #D8235 Customer Aware of Service Request
                             'YES'
-                            ### GROUP ATTACHED APPLICATION (END) ###
+                            ###GROUP ATTACHED APPLICATION (END) ###
                             ]
         T563W_data_items = [
                             #D8221 ORID
@@ -3917,37 +3917,37 @@ def generate_test_case(loop_times):
                             fake.paragraph(nb_sentences=1)
                             ]
         T601R_data_items = [
-                    # D2001 SPID
+                    #D2001 SPID
                     SWG_SPID, 
-                    # D8464 Volumetric Adjustment Request Type
+                    #D8464 Volumetric Adjustment Request Type
                     random.choice(D8464),
-                    # D8465 Volumetric Adjustment Type
+                    #D8465 Volumetric Adjustment Type
                     random.choice(D8465),
-                    # D3013 Meter Manufacturer
+                    #D3013 Meter Manufacturer
                     SWG_METER_MNF,
-                    # D3014 Manufacturer Meter Serial Number
+                    #D3014 Manufacturer Meter Serial Number
                     SWG_METER_SER,
-                    # D8466 Volumetric Adjustment Application Category
-                    random.choice(D8466),
-                    # D8467 Attachments Included
+                    #D8466 Volumetric Adjustment Application Category
+                    random.choice(D8466), # FIREFIGHTING, LEAK, VOLUMEADJST, NONRTSCHANGE, SWAREACHANGE
+                    #D8467 Attachments Included
                     '0',
-                    # D8468 Reason For No Attachments
+                    #D8468 Reason For No Attachments
                     fake.paragraph(nb_sentences=1),
-                    # D8469 Eligibility Criteria Met
+                    #D8469 Eligibility Criteria Met
                     '0',
-                    # D8470 Reason For Not Meeting Criteria
+                    #D8470 Reason For Not Meeting Criteria
                     fake.paragraph(nb_sentences=1),
-                    # D8323 Related Request ORID
+                    #D8323 Related Request ORID
                     '',
-                    # D8213 Additional Information
+                    #D8213 Additional Information
                     fake.paragraph(nb_sentences=1),
-                    # D8252 Customer Contact Required
+                    #D8252 Customer Contact Required
                     '1',
-                    # D8186 Retailer System Reference
+                    #D8186 Retailer System Reference
                     'RET_' + RANDOM_STRING,
-                    # D8193 Declaration Date
+                    #D8193 Declaration Date
                     '[today]'
-                    ### GROUP CUSTOMER (START) ###	
+                    ###GROUP CUSTOMER (START) ###	
                     #D8019 Consent to Contact Customer
                     '1',
                     #D8020 Customer Contact Name 1
@@ -3990,8 +3990,8 @@ def generate_test_case(loop_times):
                     '224',
                     #D8274 Retailer Contact Email
                     RET_EMAIL,
-                    ### GROUP CUSTOMER (END) ###	
-                    ### GROUP FIREFIGHTING (START) ###		
+                    ###GROUP CUSTOMER (END) ###	
+                    ###GROUP FIREFIGHTING (START) ###		
                     #D8471 Type Of Charge
                     random.choice(D8471),
                     #D8472 Firefighting Volumetric Adjustment Reason
@@ -4014,8 +4014,8 @@ def generate_test_case(loop_times):
                     '200',
                     #D8477 After Event Meter Read Date
                     '[today]',
-                    ### GROUP FIREFIGHTING (END) ###	
-                    ### GROUP LEAK (START) ###	
+                    ###GROUP FIREFIGHTING (END) ###	
+                    ###GROUP LEAK (START) ###	
                     #D8478 Leak Volumetric Adjustment Reason
                     random.choice(D8478),
                     #D8473 Volumetric Adjustment Reason Additional Info
@@ -4046,8 +4046,8 @@ def generate_test_case(loop_times):
                     '205',
                     #D8489 Second Meter Read Date
                     '[today]',
-                    ### GROUP LEAK (END) ###
-                    ### GROUP VOLUMEADJST (START) ###	 
+                    ###GROUP LEAK (END) ###
+                    ###GROUP VOLUMEADJST (START) ###	 
                     #D8492 Volumetric Adjustment Type
                     'TYPE',
                     #D8473 Volumetric Adjustment Reason Additional Info
@@ -4066,8 +4066,8 @@ def generate_test_case(loop_times):
                     '200',
                     #D8477 After Event Meter Read Date
                     '[today]',
-                    ### GROUP VOLUMEADJST (END) ###
-                    ### GROUP NONRTSCHANGE (START) ###		
+                    ###GROUP VOLUMEADJST (END) ###
+                    ###GROUP NONRTSCHANGE (START) ###		
                     #D8490 Reason No RTS
                     random.choice(D8490),
                     #D8473 Volumetric Adjustment Reason Additional Info
@@ -4080,8 +4080,8 @@ def generate_test_case(loop_times):
                     '[today+7]',
                     #D3007 Return to Sewer
                     '1',        
-                    ### GROUP NONRTSCHANGE (END) ###
-                    ### GROUP SWAREACHANGE (START) ###       
+                    ###GROUP NONRTSCHANGE (END) ###
+                    ###GROUP SWAREACHANGE (START) ###      
                     #D2012 Surface Area
                     '150',
                     #D8502 Sewerage System Connected Site Percentage
@@ -4090,40 +4090,40 @@ def generate_test_case(loop_times):
                     '[today]',
                     #D4024 Effective To Date
                     '[today+7]',          
-                    ### GROUP SWAREACHANGE (END) ###
+                    ###GROUP SWAREACHANGE (END) ###
                             ]
         T601W_data_items = [
-                    # D2001 SPID
+                    #D2001 SPID
                     SWG_SPID, 
-                    # D8464 Volumetric Adjustment Request Type
+                    #D8464 Volumetric Adjustment Request Type
                     random.choice(D8464),
-                    # D8465 Volumetric Adjustment Type
+                    #D8465 Volumetric Adjustment Type
                     random.choice(D8465),
-                    # D3013 Meter Manufacturer
+                    #D3013 Meter Manufacturer
                     SWG_METER_MNF,
-                    # D3014 Manufacturer Meter Serial Number
+                    #D3014 Manufacturer Meter Serial Number
                     SWG_METER_SER,
-                    # D8466 Volumetric Adjustment Application Category
-                    random.choice(D8466),
-                    # D8467 Attachments Included
+                    #D8466 Volumetric Adjustment Application Category
+                    random.choice(D8466), # FIREFIGHTING, LEAK, VOLUMEADJST, NONRTSCHANGE, SWAREACHANGE
+                    #D8467 Attachments Included
                     '0',
-                    # D8468 Reason For No Attachments
+                    #D8468 Reason For No Attachments
                     fake.paragraph(nb_sentences=1),
-                    # D8469 Eligibility Criteria Met
+                    #D8469 Eligibility Criteria Met
                     '0',
-                    # D8470 Reason For Not Meeting Criteria
+                    #D8470 Reason For Not Meeting Criteria
                     fake.paragraph(nb_sentences=1),
-                    # D8323 Related Request ORID
+                    #D8323 Related Request ORID
                     '',
-                    # D8213 Additional Information
+                    #D8213 Additional Information
                     fake.paragraph(nb_sentences=1),
-                    # D8252 Customer Contact Required
+                    #D8252 Customer Contact Required
                     '1',
-                    # D8186 Retailer System Reference
+                    #D8186 Retailer System Reference
                     'RET_' + RANDOM_STRING,
-                    # D8193 Declaration Date
+                    #D8193 Declaration Date
                     '[today]',
-                    ### GROUP FIREFIGHTING (START) ###		
+                    ###GROUP FIREFIGHTING (START) ###		
                     #D8471 Type Of Charge
                     random.choice(D8471),
                     #D8472 Firefighting Volumetric Adjustment Reason
@@ -4146,22 +4146,22 @@ def generate_test_case(loop_times):
                     '200',
                     #D8477 After Event Meter Read Date
                     '[today]',
-                    ### GROUP FIREFIGHTING (END) ###	
-                    ### GROUP LEAK (START) ###	
+                    ###GROUP FIREFIGHTING (END) ###	
+                    ###GROUP LEAK (START) ###	
                     #D8478 Leak Volumetric Adjustment Reason
-                    'LEAKPROPERTY',
+                    random.choice(D8478),
                     #D8473 Volumetric Adjustment Reason Additional Info
                     fake.paragraph(nb_sentences=1),
                     #D8479 Leak Details
-                    'REPSUPPLYPIPE',
+                    random.choice(D8479),
                     #D8480 Leak Details Additional Info
                     fake.paragraph(nb_sentences=1),
                     #D8481 Source Of Leak
-                    'WHOLESALER',
+                    random.choice(D8481),
                     #D8482 Leak Discharge Point
-                    'GROUND',
+                    random.choice(D8482),
                     #D8483 Cause Of Leak
-                    'THIRDPARTY',
+                    random.choice(D8483),
                     #D8484 Cause Of Leak Additional Info
                     fake.paragraph(nb_sentences=1),
                     #D4006 Effective From Date
@@ -4178,8 +4178,8 @@ def generate_test_case(loop_times):
                     '205',
                     #D8489 Second Meter Read Date
                     '[today]',
-                    ### GROUP LEAK (END) ###
-                    ### GROUP VOLUMEADJST (START) ###	 
+                    ###GROUP LEAK (END) ###
+                    ###GROUP VOLUMEADJST (START) ###	 
                     #D8492 Volumetric Adjustment Type
                     'TYPE',
                     #D8473 Volumetric Adjustment Reason Additional Info
@@ -4198,8 +4198,8 @@ def generate_test_case(loop_times):
                     '200',
                     #D8477 After Event Meter Read Date
                     '[today]',
-                    ### GROUP VOLUMEADJST (END) ###
-                    ### GROUP NONRTSCHANGE (START) ###		
+                    ###GROUP VOLUMEADJST (END) ###
+                    ###GROUP NONRTSCHANGE (START) ###		
                     #D8490 Reason No RTS
                     random.choice(D8490),
                     #D8473 Volumetric Adjustment Reason Additional Info
@@ -4212,8 +4212,8 @@ def generate_test_case(loop_times):
                     '[today+7]',
                     #D3007 Return to Sewer
                     '1',        
-                    ### GROUP NONRTSCHANGE (END) ###
-                    ### GROUP SWAREACHANGE (START) ###       
+                    ###GROUP NONRTSCHANGE (END) ###
+                    ###GROUP SWAREACHANGE (START) ###      
                     #D2012 Surface Area
                     '150',
                     #D8502 Sewerage System Connected Site Percentage
@@ -4222,7 +4222,7 @@ def generate_test_case(loop_times):
                     '[today]',
                     #D4024 Effective To Date
                     '[today+7]',          
-                    ### GROUP SWAREACHANGE (END) ###	 
+                    ###GROUP SWAREACHANGE (END) ###	 
                     ]
         T602W_data_items = [
                     #D8221 ORID
@@ -4266,10 +4266,10 @@ def generate_test_case(loop_times):
         TEST_CASE_LENGTH = len(test_case_sequence)
         #gererate test case sequence in Excel file       
         for i in range(TEST_CASE_LENGTH):
-            # build file name based on transactions chain. i.e. T321R_T201W_T322W....
+            #build file name based on transactions chain. i.e. T321R_T201W_T322W....
             new_filename = new_filename + test_case_sequence[i] + '_'
-            # if transaction has .R in the name, it is MOSLTEST-R as requestor
-            # put the transaction Source Org ID in sheet Test Case Sequence, column C - Source ID
+            #if transaction has .R in the name, it is MOSLTEST-R as requestor
+            #put the transaction Source Org ID in sheet Test Case Sequence, column C - Source ID
             ws11.cell(row=i+4+(a*TEST_CASE_LENGTH), column=5).value = test_case_sequence[i]
             if test_case_sequence[i][-1] == 'R':
                 ws11.cell(row=i+4+(a*TEST_CASE_LENGTH), column=3).value = RETAILER
@@ -4282,7 +4282,7 @@ def generate_test_case(loop_times):
                         cell_title.fill = PatternFill(start_color="E5E500", end_color="E5E500", fill_type="solid")
                 cell_title2 = ws11.cell(row=i+4+(a*TEST_CASE_LENGTH), column=7)
                 cell_title2.fill = PatternFill(start_color="E5E500", end_color="E5E500", fill_type="solid")
-            # then in second sheet 'Test case data' depending on the transaction, insert respctive data items
+            #then in second sheet 'Test case data' depending on the transaction, insert respctive data items
             match test_case_sequence[i]:
                 case 'T201.W':
                     for k in range(len(T201W_data_items)):
@@ -5020,7 +5020,7 @@ def generate_test_case(loop_times):
 
     wb1.save(filename = test_cases_folder + '\\' + new_filename.replace('.','') + '.xlsx')
 
-# loop_times repeats test case sequence in the excel file
-# max_loop = int (100/TEST_CASE_LENGTH)
+#loop_times repeats test case sequence in the excel file
+#max_loop = int (100/TEST_CASE_LENGTH)
 max_loop = 1
 generate_test_case(max_loop)
