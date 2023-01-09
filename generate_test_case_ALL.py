@@ -16,7 +16,8 @@ working_dir = "C:\\Users\\tomasz.skoczylas\\Downloads\\11\\"
 #UNCOMMENT FOR VM
 #working_dir = "C:\\Users\\cgi\\Desktop\\_downloads\\11\\"
 
-filename = working_dir + "Bilaterals 1.8.0.1 master.xlsx"
+#filename = working_dir + "Bilaterals 1.8.0.1 master.xlsx"
+filename = working_dir + "Bilaterals 1.8.0.2TSK master.xlsx"
 wb1 = xl.load_workbook(filename)
 ws11 = wb1.worksheets[0]
 ws12 = wb1.worksheets[1]
@@ -3946,7 +3947,7 @@ def generate_test_case(loop_times):
                     #D8186 Retailer System Reference
                     'RET_' + RANDOM_STRING,
                     #D8193 Declaration Date
-                    '[today]'
+                    '[today]',
                     ###GROUP CUSTOMER (START) ###	
                     #D8019 Consent to Contact Customer
                     '1',
@@ -4050,7 +4051,7 @@ def generate_test_case(loop_times):
                     ###GROUP VOLUMEADJST (START) ###	 
                     #D8492 Volumetric Adjustment Type
                     'TYPE',
-                    #D8473 Volumetric Adjustment Reason Additional Info
+                    #D8493 General Volumetric Adjustment Type Reason
                     fake.paragraph(nb_sentences=1),
                     #D4006 Effective From Date
                     '[today]',
@@ -4070,7 +4071,7 @@ def generate_test_case(loop_times):
                     ###GROUP NONRTSCHANGE (START) ###		
                     #D8490 Reason No RTS
                     random.choice(D8490),
-                    #D8473 Volumetric Adjustment Reason Additional Info
+                    #D8493 General Volumetric Adjustment Type Reason
                     fake.paragraph(nb_sentences=1),
                     #D8491 Customer Sub Meter Fitted
                     '1',
@@ -4117,10 +4118,6 @@ def generate_test_case(loop_times):
                     '',
                     #D8213 Additional Information
                     fake.paragraph(nb_sentences=1),
-                    #D8252 Customer Contact Required
-                    '1',
-                    #D8186 Retailer System Reference
-                    'RET_' + RANDOM_STRING,
                     #D8193 Declaration Date
                     '[today]',
                     ###GROUP FIREFIGHTING (START) ###		
@@ -4941,31 +4938,31 @@ def generate_test_case(loop_times):
                 case 'T601.R':
                     #START coloring header cells to distinguish data blocks
                     #SPID
-                    for col_range in range(7, 23):
+                    for col_range in range(7, 22):
                         cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
                         cell_title.fill = PatternFill(start_color="A3E4D7", end_color="A3E4D7", fill_type="solid")
                     #CUSTOMER DETAILS          
-                    for col_range in range(23, 44):
+                    for col_range in range(22, 43):
                         cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
                         cell_title.fill = PatternFill(start_color="AED6F1", end_color="AED6F1", fill_type="solid")
                     #GROUP FIRTEFIGHTING        
-                    for col_range in range(44, 55):
+                    for col_range in range(43, 54):
                         cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
-                        cell_title.fill = PatternFill(start_color="D6EAF8", end_color="D6EAF8", fill_type="solid")  
+                        cell_title.fill = PatternFill(start_color="D6BAB8", end_color="D6BAB8", fill_type="solid")  
                     #GROUP LEAK    
-                    for col_range in range(55, 70):
+                    for col_range in range(54, 69):
                         cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
                         cell_title.fill = PatternFill(start_color="ABB2B9", end_color="ABB2B9", fill_type="solid")
                     #GROUP VOLUMEADJST 
-                    for col_range in range(70, 79):
+                    for col_range in range(69, 78):
                         cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
                         cell_title.fill = PatternFill(start_color="A9DFBF", end_color="A9DFBF", fill_type="solid")
                     #GROUP NONRTSCHANGE  
-                    for col_range in range(79, 85):
+                    for col_range in range(78, 84):
                         cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
-                        cell_title.fill = PatternFill(start_color="B2BABB", end_color="B2BABB", fill_type="solid")
+                        cell_title.fill = PatternFill(start_color="92EE0B", end_color="92EE0B", fill_type="solid")
                     #GROUP SWAREACHANGE  
-                    for col_range in range(85, 89):
+                    for col_range in range(84, 88):
                         cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
                         cell_title.fill = PatternFill(start_color="F0B27A", end_color="F0B27A", fill_type="solid")
                     #END coloring header cells to distinguish data blocks
@@ -4976,27 +4973,27 @@ def generate_test_case(loop_times):
                 case 'T601.W':
                     #START coloring header cells to distinguish data blocks
                     #SPID
-                    for col_range in range(7, 23):
+                    for col_range in range(7, 20):
                         cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
                         cell_title.fill = PatternFill(start_color="A3E4D7", end_color="A3E4D7", fill_type="solid")
                     #GROUP FIRTEFIGHTING        
-                    for col_range in range(23, 34):
+                    for col_range in range(20, 31):
                         cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
-                        cell_title.fill = PatternFill(start_color="D6EAF8", end_color="D6EAF8", fill_type="solid")  
+                        cell_title.fill = PatternFill(start_color="D6BAB8", end_color="D6BAB8", fill_type="solid")  
                     #GROUP LEAK    
-                    for col_range in range(34, 49):
+                    for col_range in range(31, 46):
                         cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
                         cell_title.fill = PatternFill(start_color="ABB2B9", end_color="ABB2B9", fill_type="solid")
                     #GROUP VOLUMEADJST 
-                    for col_range in range(49, 58):
+                    for col_range in range(46, 55):
                         cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
                         cell_title.fill = PatternFill(start_color="A9DFBF", end_color="A9DFBF", fill_type="solid")
                     #GROUP NONRTSCHANGE  
-                    for col_range in range(58, 66):
+                    for col_range in range(55, 61):
                         cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
-                        cell_title.fill = PatternFill(start_color="B2BABB", end_color="B2BABB", fill_type="solid")
+                        cell_title.fill = PatternFill(start_color="92EE0B", end_color="92EE0B", fill_type="solid")
                     #GROUP SWAREACHANGE  
-                    for col_range in range(66, 70):
+                    for col_range in range(61, 65):
                         cell_title = ws12.cell(4+(3*i)+(3*a*TEST_CASE_LENGTH), col_range)
                         cell_title.fill = PatternFill(start_color="F0B27A", end_color="F0B27A", fill_type="solid")
                     #END coloring header cells to distinguish data blocks
