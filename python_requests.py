@@ -404,13 +404,13 @@ def wsl_postheader():
 global_orid = ''
 
 def T201W():
-    return wsl_preheader() + '"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T201W"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T201W"][0]+'",'+ wsl_postheader() + ',"Payload":{"ORID":"'+global_orid+'","WholesalerSystemReference": "ACCEPTED_'+RANDOM_STRING+'"}}}}}}}'
+	return wsl_preheader() + '"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T201W"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T201W"][0]+'",'+ wsl_postheader() + ',"Payload":{"ORID":"'+global_orid+'","WholesalerSystemReference": "ACCEPTED_'+RANDOM_STRING+'"}}}}}}}'
 def T202W():
-    return wsl_preheader() + '"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T202W"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T202W"][0]+'",'+ wsl_postheader() + ',"Payload":{"ORID":"'+global_orid+'","WholesalerSystemReference":"WSL_'+RANDOM_STRING+'","RejectReasonCode":"'+random.choice(D8230)+'","AdditionalInformation":"'+fake.paragraph(nb_sentences=1)+'"}}}}}}}'
+	return wsl_preheader() + '"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T202W"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T202W"][0]+'",'+ wsl_postheader() + ',"Payload":{"ORID":"'+global_orid+'","WholesalerSystemReference":"WSL_'+RANDOM_STRING+'","RejectReasonCode":"'+random.choice(D8230)+'","AdditionalInformation":"'+fake.paragraph(nb_sentences=1)+'"}}}}}}}'
 def T203W():
-    return wsl_preheader() + '"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T203W"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T203W"][0]+'",'+ wsl_postheader() + ',"Payload":{"ORID":"'+global_orid+'","AdditionalInformationRequestCode":"'+random.choice(D8226)+'","AdditionalInformation": "INFOREQST_'+RANDOM_STRING+'"}}}}}}}'
+	return wsl_preheader() + '"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T203W"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T203W"][0]+'",'+ wsl_postheader() + ',"Payload":{"ORID":"'+global_orid+'","AdditionalInformationRequestCode":"'+random.choice(D8226)+'","AdditionalInformation": "INFOREQST_'+RANDOM_STRING+'"}}}}}}}'
 def T204R():
-    return rtl_preheader() + '"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T204R"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T204R"][0]+'",'+ rtl_postheader() + ',"Payload":{"ORID":"'+global_orid+'","AdditionalInformation": "INFOPROVD_'+RANDOM_STRING+'"}}}}}}}'
+	return rtl_preheader() + '"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T204R"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T204R"][0]+'",'+ rtl_postheader() + ',"Payload":{"ORID":"'+global_orid+'","AdditionalInformation": "INFOPROVD_'+RANDOM_STRING+'"}}}}}}}'
 def T205W():
 	return wsl_preheader() + '"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T205W"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T205W"][0]+'",'+ wsl_postheader() + ',"Payload":{"ORID":"'+global_orid+'","SiteVisitDateAndTime":"'+now_plus_1+'","SiteVisitDateAndEndTime":"'+now_plus_2+'","AdditionalInformation": "VISITSCHED_'+RANDOM_STRING+'"}}}}}}}'
 def T206W():
