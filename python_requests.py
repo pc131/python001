@@ -40,9 +40,9 @@ environment = 'tst'
 #transactions_list = ['T601R', 'T201W', 'T203W', 'T204R', 'T205W', 'T226W', 'T228R', 'T602W', 'T208R']
 #transactions_list = ['T601W', 'T201W', 'T203W', 'T204R', 'T205W', 'T226W', 'T228R', 'T602W', 'T208R']
 #transactions_list = ['T601W', 'T201W', 'T226W', 'T228R']
-transactions_list = ['T601R', 'T201W', 'T602W']
+transactions_list = ['T601R', 'T201W', 'T201W']#, 'T602W']
 #transactions_list = ['T601W', 'T201W', 'T602W', 'T210R',  'T202W', 'T210R', 'T201W', 'T217W', 'T204R', 'T218R', 'T226W', 'T227R', 'T211W']
-#transactions_list = ['T601R_VOLUMEADJST']
+#transactions_list = ['T601R_SWAREACHANGE']
 
 if environment in ('uat', 'tst', 'ppr'):
     SPIDS_METERS = {'3019178819W13':('KENT','000000000000189985'),'3019178827W10':('KENT','4A059235'),'3019178843W15':('KENT','4A026515'),'3019178851W12':('ELSTER','000000000008081344'),'301917886XW1X':('ARAD','152026121'),'3019178991W12':('KENT','000000000000221909'),'3019179017W10':('KENT','4A024157'),'3019179033W15':('KENT','2T021233'),'3019179130W16':('KENT','90P169156'),'3019179149W13':('KENT','3T042349'),'3019179173W15':('ARAD','09044840'),'3019179289W13':('KENT','AE188861'),'301917936XW1X':('KENT','4A023209'),'3019179386W14':('ARAD','16732739'),'3019179416W14':('ARAD','8004476'),'3019179483W15':('AMR','8569517'),'3019179564W11':('ARAD','9103911'),'3019179653W15':('KENT','000000000083235847'),'3019024854W11':('ARAD','9097878'),'3019025117W10':('SW_METER','9M129866'),'3019025125W18':('KENT','2M034061'),'3019025230W16':('KENT','3M310071'),'3019025486W14':('KENT','4M093717'),'3019025532W19':('ARAD','000000000008011122'),'3019025648W17':('ARAD','000000000008596289'),'3019025648W17':('ARAD','000000000008385953'),'3019025737W10':('KENT','4M058479'),'3019026067W10':('KENT','1M079127'),'301902644XW1X':('KENT','000000000090248995'),'3019027314W11':('ARAD','000000000008110959'),'3019027322W19':('KENT','1M202328'),'301902739XW1X':('KENT','000000000087080861')}
@@ -392,10 +392,14 @@ VERIFIED_UNMEASURED_ITEMS = '"UpdatedUnmeasuredItemsTypeA":"1","UnmeasuredItemsT
 POTENTIAL_METERS = '"PotentialMeter":"'+random.choice(D8411)+'","MeterManufacturer":"'+METER_MNF+'","ManufacturerMeterSerialNumber":"'+METER_SER+'","MeterRead":"'+lastmeterread+'","MeterReadDate":"'+week_ago+'","PhysicalMeterSize":"'+physicalmetersize+'","NumberofDigits":"'+numberofdigits+'","GISX":"'+RANDOM_GISX+'","GISY":"'+RANDOM_GISY+'","MeterLocationCode":"'+meterlocationcode+'","MeterLocationFreeDescriptor":"'+RANDOM_METER_LOC+'"'
 #potential meters T335.R T336.W
 
-rtl_preheader = '{"SendMessageRequest":{"MessageContainer":{"DocumentReferenceNumber":"'+unique_id1()+'","DocumentTransactionType":"RetailerTransaction","DataTransactionFormat":"JSON","Payload":{'
-rtl_postheader = '"DataTransactionReferenceNumber":"'+unique_id2()+'","OriginatorsReference":"'+unique_id3()+'","TransactionSourceOrgID":"'+retailer+'","TransactionDestinationOrgID":"MOSL-M","TransactionTimestamp":"'+transaction_timestamp()+'"}'
-wsl_preheader = '{"SendMessageRequest":{"MessageContainer":{"DocumentReferenceNumber":"'+unique_id1()+'","DocumentTransactionType":"WholesalerTransaction","DataTransactionFormat":"JSON","Payload":{'
-wsl_postheader = '"DataTransactionReferenceNumber":"'+unique_id2()+'","OriginatorsReference":"'+unique_id3()+'","TransactionSourceOrgID":"'+wholesaler+'","TransactionDestinationOrgID":"MOSL-M","TransactionTimestamp":"'+transaction_timestamp()+'"}'
+def rtl_preheader():
+	return '{"SendMessageRequest":{"MessageContainer":{"DocumentReferenceNumber":"'+unique_id1()+'","DocumentTransactionType":"RetailerTransaction","DataTransactionFormat":"JSON","Payload":{'
+def rtl_postheader():
+	return '"DataTransactionReferenceNumber":"'+unique_id2()+'","OriginatorsReference":"'+unique_id3()+'","TransactionSourceOrgID":"'+retailer+'","TransactionDestinationOrgID":"MOSL-M","TransactionTimestamp":"'+transaction_timestamp()+'"}'
+def wsl_preheader():
+	return '{"SendMessageRequest":{"MessageContainer":{"DocumentReferenceNumber":"'+unique_id1()+'","DocumentTransactionType":"WholesalerTransaction","DataTransactionFormat":"JSON","Payload":{'
+def wsl_postheader():
+	return '"DataTransactionReferenceNumber":"'+unique_id2()+'","OriginatorsReference":"'+unique_id3()+'","TransactionSourceOrgID":"'+wholesaler+'","TransactionDestinationOrgID":"MOSL-M","TransactionTimestamp":"'+transaction_timestamp()+'"}'
 
 global_orid = ''
 
@@ -408,21 +412,21 @@ def T203W():
 def T204R():
     return '{"SendMessageRequest":{"MessageContainer":{"DocumentReferenceNumber":"'+unique_id1()+'","DocumentTransactionType":"RetailerTransaction","DataTransactionFormat":"JSON","Payload":{"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T204R"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T204R"][0]+'","DataTransactionReferenceNumber":"'+unique_id2()+'","OriginatorsReference":"'+unique_id3()+'","TransactionSourceOrgID":"'+retailer+'","TransactionDestinationOrgID":"MOSL-M","TransactionTimestamp":"'+transaction_timestamp()+'"},"Payload":{"ORID":"'+global_orid+'","AdditionalInformation": "INFOPROVD_'+RANDOM_STRING+'"}}}}}}}'
 def T205W():
-	return'{"SendMessageRequest":{"MessageContainer":{"DocumentReferenceNumber":"'+unique_id1()+'","DocumentTransactionType":"WholesalerTransaction","DataTransactionFormat":"JSON","Payload":{"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T205W"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T205W"][0]+'","DataTransactionReferenceNumber":"'+unique_id2()+'","OriginatorsReference":"'+unique_id3()+'","TransactionSourceOrgID":"'+wholesaler+'","TransactionDestinationOrgID":"MOSL-M","TransactionTimestamp":"'+transaction_timestamp()+'"},"Payload":{"ORID":"'+global_orid+'","SiteVisitDateAndTime":"'+now_plus_1+'","SiteVisitDateAndEndTime":"'+now_plus_2+'","AdditionalInformation": "VISITSCHED_'+RANDOM_STRING+'"}}}}}}}'
+	return '{"SendMessageRequest":{"MessageContainer":{"DocumentReferenceNumber":"'+unique_id1()+'","DocumentTransactionType":"WholesalerTransaction","DataTransactionFormat":"JSON","Payload":{"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T205W"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T205W"][0]+'","DataTransactionReferenceNumber":"'+unique_id2()+'","OriginatorsReference":"'+unique_id3()+'","TransactionSourceOrgID":"'+wholesaler+'","TransactionDestinationOrgID":"MOSL-M","TransactionTimestamp":"'+transaction_timestamp()+'"},"Payload":{"ORID":"'+global_orid+'","SiteVisitDateAndTime":"'+now_plus_1+'","SiteVisitDateAndEndTime":"'+now_plus_2+'","AdditionalInformation": "VISITSCHED_'+RANDOM_STRING+'"}}}}}}}'
 def T206W():
-	return'{"SendMessageRequest":{"MessageContainer":{"DocumentReferenceNumber":"'+unique_id1()+'","DocumentTransactionType":"WholesalerTransaction","DataTransactionFormat":"JSON","Payload":{"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T206W"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T206W"][0]+'","DataTransactionReferenceNumber":"'+unique_id2()+'","OriginatorsReference":"'+unique_id3()+'","TransactionSourceOrgID":"'+wholesaler+'","TransactionDestinationOrgID":"MOSL-M","TransactionTimestamp":"'+transaction_timestamp()+'"},"Payload":{"ORID":"'+global_orid+'","SiteVisitFailureCode":"'+random.choice(D8228)+'","AdditionalInformation": "VISITNOTCOMP_'+RANDOM_STRING+'"}}}}}}}'
+	return '{"SendMessageRequest":{"MessageContainer":{"DocumentReferenceNumber":"'+unique_id1()+'","DocumentTransactionType":"WholesalerTransaction","DataTransactionFormat":"JSON","Payload":{"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T206W"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T206W"][0]+'","DataTransactionReferenceNumber":"'+unique_id2()+'","OriginatorsReference":"'+unique_id3()+'","TransactionSourceOrgID":"'+wholesaler+'","TransactionDestinationOrgID":"MOSL-M","TransactionTimestamp":"'+transaction_timestamp()+'"},"Payload":{"ORID":"'+global_orid+'","SiteVisitFailureCode":"'+random.choice(D8228)+'","AdditionalInformation": "VISITNOTCOMP_'+RANDOM_STRING+'"}}}}}}}'
 def T207R():
-	return'{"SendMessageRequest":{"MessageContainer":{"DocumentReferenceNumber":"'+unique_id1()+'","DocumentTransactionType":"RetailerTransaction","DataTransactionFormat":"JSON","Payload":{"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T207R"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T207R"][0]+'","DataTransactionReferenceNumber":"'+unique_id2()+'","OriginatorsReference":"'+unique_id3()+'","TransactionSourceOrgID":"'+retailer+'","TransactionDestinationOrgID":"MOSL-M","TransactionTimestamp":"'+transaction_timestamp()+'"},"Payload":{"ORID":"'+global_orid+'","AdditionalInformation": "RTL_COMMETED_'+RANDOM_STRING+'"}}}}}}}'
+	return '{"SendMessageRequest":{"MessageContainer":{"DocumentReferenceNumber":"'+unique_id1()+'","DocumentTransactionType":"RetailerTransaction","DataTransactionFormat":"JSON","Payload":{"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T207R"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T207R"][0]+'","DataTransactionReferenceNumber":"'+unique_id2()+'","OriginatorsReference":"'+unique_id3()+'","TransactionSourceOrgID":"'+retailer+'","TransactionDestinationOrgID":"MOSL-M","TransactionTimestamp":"'+transaction_timestamp()+'"},"Payload":{"ORID":"'+global_orid+'","AdditionalInformation": "RTL_COMMETED_'+RANDOM_STRING+'"}}}}}}}'
 def T207W():
-	return'{"SendMessageRequest":{"MessageContainer":{"DocumentReferenceNumber":"'+unique_id1()+'","DocumentTransactionType":"WholesalerTransaction","DataTransactionFormat":"JSON","Payload":{"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T207W"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T207W"][0]+'","DataTransactionReferenceNumber":"'+unique_id2()+'","OriginatorsReference":"'+unique_id3()+'","TransactionSourceOrgID":"'+wholesaler+'","TransactionDestinationOrgID":"MOSL-M","TransactionTimestamp":"'+transaction_timestamp()+'"},"Payload":{"ORID":"'+global_orid+'","AdditionalInformation": "WSL_COMMETED_'+RANDOM_STRING+'"}}}}}}}'
+	return '{"SendMessageRequest":{"MessageContainer":{"DocumentReferenceNumber":"'+unique_id1()+'","DocumentTransactionType":"WholesalerTransaction","DataTransactionFormat":"JSON","Payload":{"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T207W"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T207W"][0]+'","DataTransactionReferenceNumber":"'+unique_id2()+'","OriginatorsReference":"'+unique_id3()+'","TransactionSourceOrgID":"'+wholesaler+'","TransactionDestinationOrgID":"MOSL-M","TransactionTimestamp":"'+transaction_timestamp()+'"},"Payload":{"ORID":"'+global_orid+'","AdditionalInformation": "WSL_COMMETED_'+RANDOM_STRING+'"}}}}}}}'
 def T208R():
-	return'{"SendMessageRequest":{"MessageContainer":{"DocumentReferenceNumber":"'+unique_id1()+'","DocumentTransactionType":"RetailerTransaction","DataTransactionFormat":"JSON","Payload":{"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T208R"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T208R"][0]+'","DataTransactionReferenceNumber":"'+unique_id2()+'","OriginatorsReference":"'+unique_id3()+'","TransactionSourceOrgID":"'+retailer+'","TransactionDestinationOrgID":"MOSL-M","TransactionTimestamp":"'+transaction_timestamp()+'"},"Payload":{"ORID":"'+global_orid+'","AdditionalInformation": "CLOSED_'+RANDOM_STRING+'"}}}}}}}'
+	return '{"SendMessageRequest":{"MessageContainer":{"DocumentReferenceNumber":"'+unique_id1()+'","DocumentTransactionType":"RetailerTransaction","DataTransactionFormat":"JSON","Payload":{"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T208R"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T208R"][0]+'","DataTransactionReferenceNumber":"'+unique_id2()+'","OriginatorsReference":"'+unique_id3()+'","TransactionSourceOrgID":"'+retailer+'","TransactionDestinationOrgID":"MOSL-M","TransactionTimestamp":"'+transaction_timestamp()+'"},"Payload":{"ORID":"'+global_orid+'","AdditionalInformation": "CLOSED_'+RANDOM_STRING+'"}}}}}}}'
 def T210R():
-	return'{"SendMessageRequest":{"MessageContainer":{"DocumentReferenceNumber":"'+unique_id1()+'","DocumentTransactionType":"RetailerTransaction","DataTransactionFormat":"JSON","Payload":{"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T210R"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T210R"][0]+'","DataTransactionReferenceNumber":"'+unique_id2()+'","OriginatorsReference":"'+unique_id3()+'","TransactionSourceOrgID":"'+retailer+'","TransactionDestinationOrgID":"MOSL-M","TransactionTimestamp":"'+transaction_timestamp()+'"},"Payload":{"ORID":"'+global_orid+'","ResubmitReasonCode":"'+random.choice(D8231)+'","AdditionalInformation": "RESUBMITTED_'+RANDOM_STRING+'"}}}}}}}'
+	return '{"SendMessageRequest":{"MessageContainer":{"DocumentReferenceNumber":"'+unique_id1()+'","DocumentTransactionType":"RetailerTransaction","DataTransactionFormat":"JSON","Payload":{"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T210R"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T210R"][0]+'","DataTransactionReferenceNumber":"'+unique_id2()+'","OriginatorsReference":"'+unique_id3()+'","TransactionSourceOrgID":"'+retailer+'","TransactionDestinationOrgID":"MOSL-M","TransactionTimestamp":"'+transaction_timestamp()+'"},"Payload":{"ORID":"'+global_orid+'","ResubmitReasonCode":"'+random.choice(D8231)+'","AdditionalInformation": "RESUBMITTED_'+RANDOM_STRING+'"}}}}}}}'
 def T211R():
-	return'{"SendMessageRequest":{"MessageContainer":{"DocumentReferenceNumber":"'+unique_id1()+'","DocumentTransactionType":"RetailerTransaction","DataTransactionFormat":"JSON","Payload":{"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T211R"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T211R"][0]+'","DataTransactionReferenceNumber":"'+unique_id2()+'","OriginatorsReference":"'+unique_id3()+'","TransactionSourceOrgID":"'+retailer+'","TransactionDestinationOrgID":"MOSL-M","TransactionTimestamp":"'+transaction_timestamp()+'"},"Payload":{"ORID":"'+global_orid+'","CancellationReasonCode":"'+random.choice(D8036)+'","AdditionalInformation": "RTL_CANCELLED_'+RANDOM_STRING+'"}}}}}}}'
+	return '{"SendMessageRequest":{"MessageContainer":{"DocumentReferenceNumber":"'+unique_id1()+'","DocumentTransactionType":"RetailerTransaction","DataTransactionFormat":"JSON","Payload":{"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T211R"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T211R"][0]+'","DataTransactionReferenceNumber":"'+unique_id2()+'","OriginatorsReference":"'+unique_id3()+'","TransactionSourceOrgID":"'+retailer+'","TransactionDestinationOrgID":"MOSL-M","TransactionTimestamp":"'+transaction_timestamp()+'"},"Payload":{"ORID":"'+global_orid+'","CancellationReasonCode":"'+random.choice(D8036)+'","AdditionalInformation": "RTL_CANCELLED_'+RANDOM_STRING+'"}}}}}}}'
 def T211W():
-	return'{"SendMessageRequest":{"MessageContainer":{"DocumentReferenceNumber":"'+unique_id1()+'","DocumentTransactionType":"WholesalerTransaction","DataTransactionFormat":"JSON","Payload":{"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T211W"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T211W"][0]+'","DataTransactionReferenceNumber":"'+unique_id2()+'","OriginatorsReference":"'+unique_id3()+'","TransactionSourceOrgID":"'+wholesaler+'","TransactionDestinationOrgID":"MOSL-M","TransactionTimestamp":"'+transaction_timestamp()+'"},"Payload":{"ORID":"'+global_orid+'","CancellationReasonCode":"'+random.choice(D8036)+'","AdditionalInformation": "WSL_CANCELLED_'+RANDOM_STRING+'"}}}}}}}'
+	return '{"SendMessageRequest":{"MessageContainer":{"DocumentReferenceNumber":"'+unique_id1()+'","DocumentTransactionType":"WholesalerTransaction","DataTransactionFormat":"JSON","Payload":{"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T211W"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T211W"][0]+'","DataTransactionReferenceNumber":"'+unique_id2()+'","OriginatorsReference":"'+unique_id3()+'","TransactionSourceOrgID":"'+wholesaler+'","TransactionDestinationOrgID":"MOSL-M","TransactionTimestamp":"'+transaction_timestamp()+'"},"Payload":{"ORID":"'+global_orid+'","CancellationReasonCode":"'+random.choice(D8036)+'","AdditionalInformation": "WSL_CANCELLED_'+RANDOM_STRING+'"}}}}}}}'
 def T212W():
 	return '{"SendMessageRequest":{"MessageContainer":{"DocumentReferenceNumber":"'+unique_id1()+'","DocumentTransactionType":"WholesalerTransaction","DataTransactionFormat":"JSON","Payload":{"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T212W"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T212W"][0]+'","DataTransactionReferenceNumber":"'+unique_id2()+'","OriginatorsReference":"'+unique_id3()+'","TransactionSourceOrgID":"'+wholesaler+'","TransactionDestinationOrgID":"MOSL-M","TransactionTimestamp":"'+transaction_timestamp()+'"},"Payload":{"ORID":"'+global_orid+'","AdditionalInformation": "PREPLAN_'+RANDOM_STRING+'"}}}}}}}'
 def T213W():
@@ -806,15 +810,12 @@ def T602W_CON_0324():
 def submit_transaction(trx_name):
     #trx_name1 = eval(trx_name)()
     trx_name1 = eval(trx_name.replace('.',''))()
-    # if 'RetailerTransaction' in trx_name1:
-    #     cert = 'C:/Users/cgi/Desktop/_downloads/BIL_DEV_MOSL_MOSLTEST-R_B2B_412.pfx'
-    # else:
-    #     cert = 'C:/Users/cgi/Desktop/_downloads/BIL_DEV_MOSL_MOSLTEST-W_B2B_411.pfx'
-    #req = post(env_asr, data = trx_name1, headers = {'Content-Type': 'application/json'}, pkcs12_filename = cert,  pkcs12_password = string_numbers)
+    
     cert_rtl = working_dir + 'BIL_DEV_MOSL_MOSLTEST-R_B2B_412.pfx'
     cert_wsl = working_dir + 'BIL_DEV_MOSL_MOSLTEST-W_B2B_411.pfx'
     cert_rtl2 = working_dir + 'BIL_DEV_MOSL_MOSLTEST2-R_B2B_418.pfx'
     cert_wsl2 = working_dir + 'BIL_DEV_MOSL_MOSLTEST2-W_B2B_419.pfx'	
+    
     if 'RetailerTransaction' in trx_name1 and 'MOSLTEST-R' in trx_name1:
         req = post(vald_env, data = trx_name1, headers = {'Content-Type': 'application/json'}, pkcs12_filename = cert_rtl,  pkcs12_password = string_numbers)
     elif 'WholesalerTransaction' in trx_name1 and 'MOSLTEST-W' in trx_name1:
@@ -841,6 +842,7 @@ def submit_transaction(trx_name):
         global global_orid
         global_orid = req.text[690:703]
    
+   #IF TESTING CONS BUSINESS RULES
     if 'CON_' in trx_name: #in req.text:
         myfile2 = open(filename2, 'w')
         myfile2.write('Request:\n' + json.dumps(json.loads(trx_name1), indent=2)+ '\n')
@@ -905,5 +907,3 @@ def submit_transactions(trx_list):
         os.rename(filename,filename + '-' + environment.upper() +  '-' +  now + '.json')  
 
 submit_transactions(transactions_list)
-#submit_transactions(T601R_CON_0005)
-#print(T563W())
