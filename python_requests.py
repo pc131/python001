@@ -42,10 +42,15 @@ environment = 'tst'
 #transactions_list = ['T601W', 'T201W', 'T226W', 'T228R']
 #transactions_list = ['T601R', 'T201W', 'T201W']#, 'T602W']
 #transactions_list = ['T601W', 'T201W', 'T602W', 'T210R',  'T202W', 'T210R', 'T201W', 'T217W', 'T204R', 'T218R', 'T226W', 'T227R', 'T211W']
-transactions_list = ['T601R_LEAK']
+
+transactions_list = ['T601W', 'T201W', 'T602W']
 
 if environment in ('uat', 'tst', 'ppr'):
-    SPIDS_METERS = {'3019178819W13':('KENT','000000000000189985'),'3019178827W10':('KENT','4A059235'),'3019178843W15':('KENT','4A026515'),'3019178851W12':('ELSTER','000000000008081344'),'301917886XW1X':('ARAD','152026121'),'3019178991W12':('KENT','000000000000221909'),'3019179017W10':('KENT','4A024157'),'3019179033W15':('KENT','2T021233'),'3019179130W16':('KENT','90P169156'),'3019179149W13':('KENT','3T042349'),'3019179173W15':('ARAD','09044840'),'3019179289W13':('KENT','AE188861'),'301917936XW1X':('KENT','4A023209'),'3019179386W14':('ARAD','16732739'),'3019179416W14':('ARAD','8004476'),'3019179483W15':('AMR','8569517'),'3019179564W11':('ARAD','9103911'),'3019179653W15':('KENT','000000000083235847'),'3019024854W11':('ARAD','9097878'),'3019025117W10':('SW_METER','9M129866'),'3019025125W18':('KENT','2M034061'),'3019025230W16':('KENT','3M310071'),'3019025486W14':('KENT','4M093717'),'3019025532W19':('ARAD','000000000008011122'),'3019025648W17':('ARAD','000000000008596289'),'3019025648W17':('ARAD','000000000008385953'),'3019025737W10':('KENT','4M058479'),'3019026067W10':('KENT','1M079127'),'301902644XW1X':('KENT','000000000090248995'),'3019027314W11':('ARAD','000000000008110959'),'3019027322W19':('KENT','1M202328'),'301902739XW1X':('KENT','000000000087080861')}
+    #SPIDS_METERS = {'3019178819W13':('KENT','000000000000189985'),'3019178827W10':('KENT','4A059235'),'3019178843W15':('KENT','4A026515'),'3019178851W12':('ELSTER','000000000008081344'),'301917886XW1X':('ARAD','152026121'),'3019178991W12':('KENT','000000000000221909'),'3019179017W10':('KENT','4A024157'),'3019179033W15':('KENT','2T021233'),'3019179130W16':('KENT','90P169156'),'3019179149W13':('KENT','3T042349'),'3019179173W15':('ARAD','09044840'),'3019179289W13':('KENT','AE188861'),'301917936XW1X':('KENT','4A023209'),'3019179386W14':('ARAD','16732739'),'3019179416W14':('ARAD','8004476'),'3019179483W15':('AMR','8569517'),'3019179564W11':('ARAD','9103911'),'3019179653W15':('KENT','000000000083235847'),'3019024854W11':('ARAD','9097878'),'3019025117W10':('SW_METER','9M129866'),'3019025125W18':('KENT','2M034061'),'3019025230W16':('KENT','3M310071'),'3019025486W14':('KENT','4M093717'),'3019025532W19':('ARAD','000000000008011122'),'3019025648W17':('ARAD','000000000008596289'),'3019025648W17':('ARAD','000000000008385953'),'3019025737W10':('KENT','4M058479'),'3019026067W10':('KENT','1M079127'),'301902644XW1X':('KENT','000000000090248995'),'3019027314W11':('ARAD','000000000008110959'),'3019027322W19':('KENT','1M202328'),'301902739XW1X':('KENT','000000000087080861')}
+
+    #2WSL2RTL
+    SPIDS_METERS = {'3200075538W17': ('ELSTER', '10W02111431249')}
+
     SWG_SPIDS_METERS = {'3019601851S1X':('Elster','88025763'),'3019601916S11':('Elster','93A015953'),'3019602009S10':('Elster','93A614270'),'3019602734S19':('Elster','COWDRAYHALL'),'3019607736S11':('ZENNER','4.220703'),'301964108XS17':('PortsmouthWater','1800145069999'),'3019643848S14':('ELSTER','14163329'),'3019644402S16':('Elster','CP3152181945'),'3019648947S18':('Elster','A815013'),'3019650909S10':('KENT','81011123'),'3019669766S11':('ELSTER','2345942'),'3019670136S11':('ELSTER','13-40040803'),'3200061251S1X':('SIEMENS','N1F2250089'),'3200061448S14':('SIEMENS','469002H036'),'3200061464S19':('ABB','244813121X001'),'3200061510S13':('SIEMENS','7ME69201AA101AA0'),'3200061545S15':('ENDRESS_AND_HAUSER','S6257905'),'3200061588S14':('ELSTER','10S01131151428'),'320006160XS17':('ARAD','M10765299'),'3200061685S15':('SIEMANS','NIE4099400'),'3200061782S16':('SIEMENS','450702H425'),'3200061812S16':('SIEMENS','252002H164'),'3200061928S14':('SIEMENS','194502H524'),'3200062312S16':('ELSTER','10S01141641343'),'320006238XS17':('ELSTER','10S01141751319'),'3200062401S1X':('ELSTER','10S01141806328')}
 
 if environment == 'asr':
@@ -566,7 +571,7 @@ def T601W_VOLUMEADJST():
 def T601W_NONRTSCHANGE():
 	return wsl_preheader() + '"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T601W"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T601W"][0]+'",'+ wsl_postheader() + ',"Payload":{"SPID":"'+SPID+'","VolumetricAdjustmentRequestType":"'+random.choice(D8464)+'","VolumetricAdjustmentType":"'+random.choice(D8465)+'","MeterManufacturer":"'+METER_MNF+'","ManufacturerMeterSerialNumber":"'+METER_SER+'","VolumetricAdjustmentApplicationCategory":"NONRTSCHANGE","AttachmentsIncluded":"0","ReasonForNoAttachments":"'+fake.paragraph(nb_sentences=1)+'","EligibilityCriteriaMet":"0","ReasonForNotMeetingCriteria":"'+fake.paragraph(nb_sentences=1)+'","RelatedRequestORID":null,"AdditionalInformation":"'+fake.paragraph(nb_sentences=1)+'","DeclarationDate":"'+today+'","Nonrtschange":{"ReasonNoRTS": "'+random.choice(D8490)+'","VolumetricAdjustmentReasonAdditionalInfo": "'+fake.paragraph(nb_sentences=1)+'","CustomerSubMeterFitted": "1","EffectiveFromDate": "'+week_ago+'","EffectiveToDate": "'+today+'","ReturntoSewer": "23.3"}}}}}}}}'
 def T601W_SWAREACHANGE():
-	return wsl_preheader() + '"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T601W"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T601W"][0]+'",'+ wsl_postheader() + ',"Payload":{"SPID":"'+SPID+'","VolumetricAdjustmentRequestType":"'+random.choice(D8464)+'","VolumetricAdjustmentType":"'+random.choice(D8465)+'","MeterManufacturer":"ARAD","ManufacturerMeterSerialNumber":"9127666","VolumetricAdjustmentApplicationCategory":"SWAREACHANGE","AttachmentsIncluded":"0","ReasonForNoAttachments":"'+fake.paragraph(nb_sentences=1)+'","EligibilityCriteriaMet":"0","ReasonForNotMeetingCriteria":"'+fake.paragraph(nb_sentences=1)+'","RelatedRequestORID":null,"AdditionalInformation":"'+fake.paragraph(nb_sentences=1)+'","DeclarationDate":"'+today+'","Swareachange":{"SurfaceArea":"150","SewerageSystemConnectedSitePercentage":"25","EffectiveFromDate":"'+week_ago+'","EffectiveToDate":"'+today+'"}}}}}}}}'
+	return wsl_preheader() + '"Transaction":{"'+TRANSACTIONS_XSD_NAMES["T601W"][1]+'":{"Header":{"DataTransaction":"'+TRANSACTIONS_XSD_NAMES["T601W"][0]+'",'+ wsl_postheader() + ',"Payload":{"SPID":"'+SPID+'","VolumetricAdjustmentRequestType":"'+random.choice(D8464)+'","VolumetricAdjustmentType":"'+random.choice(D8465)+'","MeterManufacturer":"'+METER_MNF+'","ManufacturerMeterSerialNumber":"'+METER_SER+'","VolumetricAdjustmentApplicationCategory":"SWAREACHANGE","AttachmentsIncluded":"0","ReasonForNoAttachments":"'+fake.paragraph(nb_sentences=1)+'","EligibilityCriteriaMet":"0","ReasonForNotMeetingCriteria":"'+fake.paragraph(nb_sentences=1)+'","RelatedRequestORID":null,"AdditionalInformation":"'+fake.paragraph(nb_sentences=1)+'","DeclarationDate":"'+today+'","Swareachange":{"SurfaceArea":"150","SewerageSystemConnectedSitePercentage":"25","EffectiveFromDate":"'+week_ago+'","EffectiveToDate":"'+today+'"}}}}}}}}'
 def T601W():
     return T601W_SWAREACHANGE()
 
@@ -653,6 +658,28 @@ def submit_transaction(trx_name):
         doc_ref_num2 = peek_request1.text[88:126]
         dequeue_body2 = '{"DequeueMessageRequest":{"DocumentReferenceNumber":'+doc_ref_num2+'}}'
         dequeue_request = post(dequ_env, data = dequeue_body2, headers = {'Content-Type': 'application/json'}, pkcs12_filename = cert_wsl,  pkcs12_password = string_numbers)
+	
+    ### PEEK FOR MOSLTEST2 USERS ### ### PEEK FOR MOSLTEST2 USERS ### ### PEEK FOR MOSLTEST2 USERS ###
+    peek_request2 = get(peek_env, headers = {'Content-Type': 'application/json'}, pkcs12_filename = cert_rtl2,  pkcs12_password = string_numbers)
+    #IF NOTHING HAS BEEN PEEK FOR RETAILER, DO NOT ADD EMPTY PEEK TO REPONSE AND DO NOT DEQUEUE
+    if '{}' not in peek_request2.text:
+        submit_transactions.peeked_messages += 'Peek Message:\n' + peek_request2.text + '\n'
+        if '<Response [200]>' in str(peek_request2):
+            print('Peek message:\n' + peek_request2.text)
+        doc_ref_num = peek_request2.text[88:126]
+        dequeue_body = '{"DequeueMessageRequest":{"DocumentReferenceNumber":'+doc_ref_num+'}}'
+        dequeue_request = post(dequ_env, data = dequeue_body, headers = {'Content-Type': 'application/json'}, pkcs12_filename = cert_rtl2,  pkcs12_password = string_numbers)
+    
+    peek_request3 = get(peek_env, headers = {'Content-Type': 'application/json'}, pkcs12_filename = cert_wsl2,  pkcs12_password = string_numbers)
+    #IF NOTHING HAS BEEN PEEK FOR WHOLESALER, DO NOT ADD EMPTY PEEK TO REPONSE AND DO NOT DEQUEUE
+    if '{}' not in peek_request3.text:
+        submit_transactions.peeked_messages += 'Peek Message:\n' + peek_request3.text + '\n'
+        if '<Response [200]>' in str(peek_request3):
+            print('Peek message:\n' + peek_request3.text)
+        doc_ref_num2 = peek_request3.text[88:126]
+        dequeue_body2 = '{"DequeueMessageRequest":{"DocumentReferenceNumber":'+doc_ref_num2+'}}'
+        dequeue_request = post(dequ_env, data = dequeue_body2, headers = {'Content-Type': 'application/json'}, pkcs12_filename = cert_wsl2,  pkcs12_password = string_numbers)
+    ### PEEK FOR MOSLTEST2 USERS ### ### PEEK FOR MOSLTEST2 USERS ### ### PEEK FOR MOSLTEST2 USERS ###
 
     ### PEEK AND DEQUEUE ### PEEK AND DEQUEUE ### PEEK AND DEQUEUE 
 
